@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2f1ff6be-c13d-408c-ad54-4b15011735f6" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../5-17 doomsday/5-17 doomsday.cbp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../5-17 doomsday/5-17 doomsday.depend" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../5-17 doomsday/5-17 doomsday.layout" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../5-17 doomsday/a.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../5-17 doomsday/a.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../5-17 doomsday/b.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../5-17 doomsday/b.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../5-17 doomsday/bin/Debug/5-17 doomsday.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../5-17 doomsday/c.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../5-17 doomsday/c.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../5-17 doomsday/d.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../5-17 doomsday/d.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../5-17 doomsday/e.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../5-17 doomsday/e.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../5-17 doomsday/f.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../5-17 doomsday/f.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../5-17 doomsday/g.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../5-17 doomsday/g.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../5-17 doomsday/h.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../5-17 doomsday/h.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../5-17 doomsday/main.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../5-17 doomsday/obj/Debug/a.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../5-17 doomsday/obj/Debug/b.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../5-17 doomsday/obj/Debug/c.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../5-17 doomsday/obj/Debug/d.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../5-17 doomsday/obj/Debug/e.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../5-17 doomsday/obj/Debug/f.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../5-17 doomsday/obj/Debug/g.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../5-17 doomsday/obj/Debug/h.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../5-17 doomsday/obj/Debug/main.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Airlines/Airlines.dev" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Airlines/Airlines.layout" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Airlines/Makefile.win" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Airlines/airlines.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Airlines/airlines.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Airlines/airlnes.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Airlines/main.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Conversionn/Conversion.dev" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Conversionn/Conversion.layout" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Conversionn/conversion.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Conversionn/conversion.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Conversionn/conversion.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Conversionn/main.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Conversionn/myTools.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Conversionn/myTools.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DOUBLYLL/DOUBLYLL.cbp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DOUBLYLL/DOUBLYLL.depend" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DOUBLYLL/DOUBLYLL.layout" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DOUBLYLL/WHAT.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DOUBLYLL/bin/Debug/DOUBLYLL.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DOUBLYLL/main.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DOUBLYLL/obj/Debug/WHAT.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DOUBLYLL/obj/Debug/main.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/bst-successor&amp;predecessor/bin/Debug/bst-successor&amp;predecessor.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/bst-successor&amp;predecessor/binarytree.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/bst-successor&amp;predecessor/bst-successor&amp;predecessor.cbp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/bst-successor&amp;predecessor/bst-successor&amp;predecessor.depend" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/bst-successor&amp;predecessor/bst-successor&amp;predecessor.layout" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/bst-successor&amp;predecessor/bst.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/bst-successor&amp;predecessor/main.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/bst-successor&amp;predecessor/mybinarytree.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/bst-successor&amp;predecessor/node.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/bst-successor&amp;predecessor/obj/Debug/main.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/graphs-traversals/bin/Debug/graphs-traversals.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/graphs-traversals/graph.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/graphs-traversals/graphmatrix.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/graphs-traversals/graphs-traversals.cbp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/graphs-traversals/graphs-traversals.depend" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/graphs-traversals/graphs-traversals.layout" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/graphs-traversals/main.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/graphs-traversals/obj/Debug/main.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/maxheap/arrayheap.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/maxheap/bin/Debug/maxheap.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/maxheap/main.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/maxheap/maxheap.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/maxheap/maxheap.cbp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/maxheap/maxheap.depend" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/maxheap/maxheap.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/maxheap/maxheap.layout" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/maxheap/obj/Debug/main.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/palindrome-Stack/arraylist.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/palindrome-Stack/arraystack.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/palindrome-Stack/bin/Debug/palindrome-Stack.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/palindrome-Stack/list.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/palindrome-Stack/main.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/palindrome-Stack/obj/Debug/main.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/palindrome-Stack/palindrome-Stack.cbp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/palindrome-Stack/palindrome-Stack.depend" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/palindrome-Stack/palindrome-Stack.layout" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/palindrome-Stack/stack.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/prefix-STACK/arraylist.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/prefix-STACK/arraystack.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/prefix-STACK/bin/Debug/prefix-STACK.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/prefix-STACK/list.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/prefix-STACK/main.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/prefix-STACK/obj/Debug/main.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/prefix-STACK/prefix-STACK.cbp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/prefix-STACK/prefix-STACK.depend" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/prefix-STACK/prefix-STACK.layout" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/prefix-STACK/stack.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/queue-FINALEXAMM/bin/Debug/queue-FINALEXAMM.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/queue-FINALEXAMM/linkedlist.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/queue-FINALEXAMM/list.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/queue-FINALEXAMM/main.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/queue-FINALEXAMM/node.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/queue-FINALEXAMM/obj/Debug/main.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/queue-FINALEXAMM/queue-FINALEXAMM.cbp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/queue-FINALEXAMM/queue-FINALEXAMM.depend" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/queue-FINALEXAMM/queue-FINALEXAMM.layout" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/queue-FINALEXAMM/queue.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA FINAL EXAMS/queue-FINALEXAMM/singlyqueue.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/Trees/BST-Insert&amp;Search/BST-Insert&amp;Search.cbp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/Trees/BST-Insert&amp;Search/BST-Insert&amp;Search.depend" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/Trees/BST-Insert&amp;Search/BST-Insert&amp;Search.layout" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/Trees/BST-Insert&amp;Search/bin/Debug/BST-Insert&amp;Search.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/Trees/BST-Insert&amp;Search/binarytree.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/Trees/BST-Insert&amp;Search/bst.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/Trees/BST-Insert&amp;Search/main.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/Trees/BST-Insert&amp;Search/mybinarytree.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/Trees/BST-Insert&amp;Search/node.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/Trees/BST-Insert&amp;Search/obj/Debug/main.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/Trees/BST-REMOVE/BST-REMOVE.cbp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/Trees/BST-REMOVE/BST-REMOVE.layout" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/Trees/BST-REMOVE/bin/Debug/BST-REMOVE.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/Trees/BST-REMOVE/binarytree.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/Trees/BST-REMOVE/bst-remove.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/Trees/BST-REMOVE/bst.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/Trees/BST-REMOVE/main.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/Trees/BST-REMOVE/mybinarytree.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/Trees/BST-REMOVE/node.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/Trees/BST-REMOVE/obj/Debug/main.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/Trees/BST-verifyPreOrder/BST-verifyPreOrder.cbp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/Trees/BST-verifyPreOrder/BST-verifyPreOrder.depend" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/Trees/BST-verifyPreOrder/BST-verifyPreOrder.layout" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/Trees/BST-verifyPreOrder/bin/Debug/BST-verifyPreOrder.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/Trees/BST-verifyPreOrder/main.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/Trees/BST-verifyPreOrder/obj/Debug/main.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/doublu/LL.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/doublu/bin/Debug/doublu.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/doublu/doublu.cbp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/doublu/doublu.depend" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/doublu/doublu.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/doublu/doublu.layout" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/doublu/main.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/doublu/main.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/doublu/nein.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/doublu/node.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/doublu/obj/Debug/main.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/graphs-adjacencyMatrix/bin/Debug/graphs-adjacencyMatrix.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/graphs-adjacencyMatrix/graph.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/graphs-adjacencyMatrix/graphmatrix.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/graphs-adjacencyMatrix/graphs-adjacencyMatrix.cbp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/graphs-adjacencyMatrix/graphs-adjacencyMatrix.depend" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/graphs-adjacencyMatrix/graphs-adjacencyMatrix.layout" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/graphs-adjacencyMatrix/main.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/graphs-adjacencyMatrix/obj/Debug/main.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/minHeap/main.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/minHeap/minHeap.cbp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/minHeap/minHeap.layout" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/test/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/test/test.cbp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DSA activities/test/test.layout" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Dynamic array/Dynamic array.dev" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Dynamic array/Dynamic array.layout" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Dynamic array/Makefile.win" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Dynamic array/dynamArray.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Dynamic array/dynamArray.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Dynamic array/main.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../JavaTests/FileIo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../JavaTests/IntegerPrinter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../JavaTests/Printer.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../JavaTests/Printer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../JavaTests/generics.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../JavaTests/generics.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../JavaTests/test.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LinkedList/LinkedList.cbp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LinkedList/LinkedList.depend" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LinkedList/LinkedList.layout" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LinkedList/a.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LinkedList/ar.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LinkedList/bin/Debug/LinkedList.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LinkedList/main.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LinkedList/node.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LinkedList/obj/Debug/main.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practice/Practice.cbp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practice/Practice.depend" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practice/Practice.layout" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practice/bin/Debug/Practice.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practice/course.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practice/main.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practice/node.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practice/obj/Debug/main.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practice/student.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SimpleJavaGAME/Characters.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SimpleJavaGAME/Game.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SimpleJavaGAME/Game.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SimpleJavaGAME/GameModes.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SimpleJavaGAME/GameStart.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StackArray/StackArray.cbp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StackArray/StackArray.depend" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StackArray/StackArray.layout" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StackArray/arraylist.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StackArray/bin/Debug/StackArray.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StackArray/list.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StackArray/main.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StackArray/obj/Debug/main.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StackArray/stack.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StackArray/stackarray.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../a/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../a/a.cbp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../a/a.layout" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aaad/aaad.cbp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aaad/aaad.depend" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aaad/aaad.layout" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aaad/bin/Debug/xdd.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aaad/main.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aaad/obj/Debug/main.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ab/ab.cbp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ab/ab.depend" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ab/ab.layout" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ab/bin/Debug/ab.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ab/main.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ab/obj/Debug/main.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../airlinesACTIVITY/airlines.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../airlinesACTIVITY/airlines.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../airlinesACTIVITY/airlinesACTIVITY.cbp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../airlinesACTIVITY/airlinesACTIVITY.depend" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../airlinesACTIVITY/airlinesACTIVITY.layout" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../airlinesACTIVITY/bin/Debug/airlinesACTIVITY.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../airlinesACTIVITY/main.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../airlinesACTIVITY/obj/Debug/airlines.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../airlinesACTIVITY/obj/Debug/main.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../arrayss/arrayOptn.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../arrayss/arrayOptn.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../arrayss/arrayss.cbp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../arrayss/arrayss.depend" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../arrayss/arrayss.layout" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../arrayss/bin/Debug/arrayss.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../arrayss/main.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../arrayss/myTOOLS.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../arrayss/myTOOLS.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../arrayss/obj/Debug/arrayOptn.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../arrayss/obj/Debug/main.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../arrayss/obj/Debug/myTOOLS.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../asd/asd.cbp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../asd/asd.depend" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../asd/asd.layout" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../asd/bin/Debug/asd.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../asd/main.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../asd/obj/Debug/main.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../conversion/a.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../conversion/bin/Debug/conversion.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../conversion/conversion.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../conversion/conversion.cbp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../conversion/conversion.depend" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../conversion/conversion.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../conversion/conversion.layout" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../conversion/main.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../conversion/myTools.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../conversion/myTools.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../conversion/obj/Debug/conversion.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../conversion/obj/Debug/main.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../conversion/obj/Debug/myTools.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csit 132 project(CONVERTER)/csit 132 project(CONVERTER).cbp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csit 132 project(CONVERTER)/csit 132 project(CONVERTER).layout" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csit 132 project(CONVERTER)/main.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dsa practice/DOUBLY.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dsa practice/a.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dsa practice/a.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dsa practice/ar.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dsa practice/arr.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dsa practice/bin/Debug/dsa practice.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dsa practice/dsa practice.cbp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dsa practice/dsa practice.depend" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dsa practice/dsa practice.layout" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dsa practice/main.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dsa practice/nodde.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dsa practice/obj/Debug/a.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dsa practice/obj/Debug/main.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dynARRAY/bin/Debug/dynARRAY.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dynARRAY/dynARRAY.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dynARRAY/dynARRAY.cbp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dynARRAY/dynARRAY.depend" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dynARRAY/dynARRAY.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dynARRAY/dynARRAY.layout" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dynARRAY/main.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dynARRAY/obj/Debug/dynARRAY.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dynARRAY/obj/Debug/main.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../exer/bin/Debug/exer.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../exer/exer.cbp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../exer/exer.depend" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../exer/exer.layout" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../exer/main.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../exer/obj/Debug/main.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../function abc(){.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../heafanfanfanfan/bin/Debug/heafanfanfanfan.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../heafanfanfanfan/factoriak.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../heafanfanfanfan/factoriak.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../heafanfanfanfan/heafanfanfanfan.cbp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../heafanfanfanfan/heafanfanfanfan.depend" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../heafanfanfanfan/heafanfanfanfan.layout" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../heafanfanfanfan/main.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../heafanfanfanfan/obj/Debug/factoriak.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../heafanfanfanfan/obj/Debug/main.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../inventory system/a.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../inventory system/a.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../inventory system/bin/Debug/inventory system.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../inventory system/inventory system.cbp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../inventory system/inventory system.depend" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../inventory system/inventory system.layout" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../inventory system/main.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../inventory system/obj/Debug/a.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../inventory system/obj/Debug/main.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../katarinnaaabluuuuu/bin/Debug/katarinnaaabluuuuu.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../katarinnaaabluuuuu/data.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../katarinnaaabluuuuu/katarinnaaabluuuuu.cbp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../katarinnaaabluuuuu/katarinnaaabluuuuu.depend" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../katarinnaaabluuuuu/katarinnaaabluuuuu.layout" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../katarinnaaabluuuuu/main.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../katarinnaaabluuuuu/obj/Debug/main.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kotlin/asd.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kotlin/main.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kotlin/main.jar]/META-INF/main.kotlin_module" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kotlin/main.jar]/MainKt.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kotlin/main.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../linesair/airlines.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../linesair/airlines.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../linesair/bin/Debug/linesair.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../linesair/linesair.cbp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../linesair/linesair.depend" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../linesair/linesair.layout" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../linesair/main.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../linesair/obj/Debug/airlines.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../linesair/obj/Debug/main.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../s/bin/Debug/s.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../s/main.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../s/obj/Debug/main.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../s/s.cbp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../s/s.depend" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../s/s.layout" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sad/bin/Debug/sad.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sad/main.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sad/obj/Debug/main.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sad/sad.cbp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sad/sad.depend" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sad/sad.layout" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sadd/bin/Debug/sadd.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sadd/main.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sadd/obj/Debug/main.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sadd/obj/Debug/recursion.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sadd/obj/Debug/xdd.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sadd/recursion.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sadd/recursion.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sadd/sadd.cbp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sadd/sadd.depend" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sadd/sadd.layout" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sadd/xdd.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sadd/xdd.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../testing.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../testtest" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../treeeesssss/bin/Debug/treeeesssss.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../treeeesssss/main.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../treeeesssss/obj/Debug/main.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../treeeesssss/treeeesssss.cbp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../treeeesssss/treeeesssss.layout" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../xdd" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 2
+}]]></component>
+  <component name="ProjectId" id="2tRXrn5YxakiM9ZhWaaX6jeo22o" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/zyla/codeblocksCODDEESS/GameGo-main/GameGo3"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2f1ff6be-c13d-408c-ad54-4b15011735f6" name="Changes" comment="" />
+      <created>1740316061566</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1740316061566</updated>
+    </task>
+    <servers />
+  </component>
+</project>
