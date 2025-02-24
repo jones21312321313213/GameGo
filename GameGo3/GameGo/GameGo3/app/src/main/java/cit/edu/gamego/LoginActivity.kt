@@ -19,7 +19,7 @@ class LoginActivity : Activity() {
         val button_register = findViewById<Button>(R.id.login_Id);
         button_register.setOnClickListener {
             Log.e("CSIT 284", "absolute cinema");
-            Toast.makeText(this,"absolute dogshit",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Success",Toast.LENGTH_LONG).show();
             val intent = Intent(this,ProfilePictureActivity::class.java);//temp
             startActivity(intent);
         }

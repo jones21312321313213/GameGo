@@ -179,5 +179,37 @@
             android:src="@drawable/steam" />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="-20dp">
+
+        <TextView
+            android:layout_width="190dp"
+            android:layout_height="25dp"
+            android:layout_gravity="top|start"
+            android:layout_marginEnd="50dp"
+            android:fontFamily="sans-serif"
+            android:text="Dont have an account yet?"
+            android:textColor="#FFFFFF"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="25dp"
+            android:layout_gravity="top|end"
+            android:fontFamily="sans-serif"
+            android:text="Sign Up"
+            android:textColor="#0AEAF1"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+
 </LinearLayout>
 
