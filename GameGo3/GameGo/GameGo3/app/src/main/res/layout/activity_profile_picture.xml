@@ -5,8 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfilePictureActivity"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:background="#5E5EF6">
 
 
@@ -14,8 +13,220 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="#FF64F6">
+        android:background="#FF64F6"
+        android:gravity = "center">
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="-40dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_gravity="start"
+                android:src="@drawable/back_arrow"/>
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_gravity="end"
+                android:src="@drawable/settings"/>
+
+        </FrameLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginTop="-90dp">
+
+        <!-- PFP    ?-->
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="50dp"
+            android:background="@drawable/pfp"
+            android:scaleType="centerCrop"
+            android:clipToOutline="true"
+            android:src="@drawable/mew" />
+
+        <!-- edit circle    ?-->
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="45dp"
+            android:background="@drawable/circlebg"
+            android:scaleType="centerCrop"
+            android:clipToOutline="true"
+            android:backgroundTint="#EE8924"
+            android:src="@drawable/edit" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:fontFamily="sans-serif"
+            android:layout_marginTop="72dp"
+            android:text="Jcole21"
+            android:textColor="#000000"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:fontFamily="sans-serif"
+            android:layout_marginTop="109dp"
+            android:text="jcole@gmail.com"
+            android:textColor="#ABABAB"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#5E5EF6">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|top"
+                android:layout_marginEnd="140dp"
+                android:fontFamily="sans-serif"
+                android:text="Name"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="332dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:fontFamily="sans-serif"
+                android:text="Jermain Cole"
+                android:textColor="#838383"
+                android:textSize="20sp"
+                android:background="@drawable/profilepiceditcircle"
+                android:textStyle="bold" />
+        </FrameLayout>
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="10dp"
+        android:background="#5E5EF6">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|top"
+                android:layout_marginEnd="117dp"
+                android:fontFamily="sans-serif"
+                android:text="Your email"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="332dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:fontFamily="sans-serif"
+                android:text="jcole@gmail.com"
+                android:textColor="#838383"
+                android:textSize="20sp"
+                android:background="@drawable/profilepiceditcircle"
+                android:textStyle="bold" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="10dp"
+        android:background="#5E5EF6">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|top"
+                android:layout_marginEnd="140dp"
+                android:fontFamily="sans-serif"
+                android:text="Phone number"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="332dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:fontFamily="sans-serif"
+                android:text="Jermain Cole"
+                android:textColor="#838383"
+                android:textSize="20sp"
+                android:background="@drawable/profilepiceditcircle"
+                android:textStyle="bold" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="10dp"
+        android:background="#5E5EF6">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|top"
+                android:layout_marginEnd="140dp"
+                android:fontFamily="sans-serif"
+                android:text="Name"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="332dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:fontFamily="sans-serif"
+                android:text="Jermain Cole"
+                android:textColor="#838383"
+                android:textSize="20sp"
+                android:background="@drawable/profilepiceditcircle"
+                android:textStyle="bold" />
+        </FrameLayout>
     </LinearLayout>
 
 

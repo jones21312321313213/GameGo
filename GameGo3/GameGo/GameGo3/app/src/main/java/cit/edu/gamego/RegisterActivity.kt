@@ -10,6 +10,6 @@ import androidx.core.view.WindowInsetsCompat
 class RegisterActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.login_f3);
+        setContentView(R.layout.register_f3);
     }
 }
