@@ -42,7 +42,16 @@ class activity_landing : AppCompatActivity() {
         navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.nav_home -> toast("Home selected")
-                R.id.nav_profile -> toast("Profile selected")
+                R.id.nav_profile -> startActivity(
+                    Intent(this,ProfilePictureActivity::class.java)
+                )
+                R.id.nav_logout -> startActivity(
+                    Intent(this,LoginActivity::class.java)
+                )
+
+                R.id.nav_settings -> startActivity(
+                    Intent(this,settings::class.java)
+                )
                 // Add other menu items here
             }
             mainLayout.closeDrawers()
