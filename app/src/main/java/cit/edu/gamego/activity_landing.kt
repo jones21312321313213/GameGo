@@ -52,6 +52,10 @@ class activity_landing : AppCompatActivity() {
                 R.id.nav_settings -> startActivity(
                     Intent(this,settings::class.java)
                 )
+                
+                R.id.nav_about_devs -> startActivity(
+                    Intent(this,activity_developer::class.java)
+                )
                 // Add other menu items here
             }
             mainLayout.closeDrawers()

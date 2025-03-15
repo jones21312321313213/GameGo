@@ -13,6 +13,9 @@
         android:theme="@style/Theme.GameGo"
         tools:targetApi="31">
         <activity
+            android:name=".about_me_dev1"
+            android:exported="false" />
+        <activity
             android:name=".settings"
             android:exported="false" />
         <activity
