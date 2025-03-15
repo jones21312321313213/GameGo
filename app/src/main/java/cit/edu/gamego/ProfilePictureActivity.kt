@@ -31,7 +31,7 @@ class ProfilePictureActivity : Activity() {
         button_profilepic_back.setOnClickListener{
             Log.e("Dont u", "absolute cinema");
             Toast.makeText(this,"avasd",Toast.LENGTH_LONG).show();
-            val intent = Intent(this,LoginActivity::class.java);
+            val intent = Intent(this,activity_landing::class.java);
             startActivity(intent);
         }
 

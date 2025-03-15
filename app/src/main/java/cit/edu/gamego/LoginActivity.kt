@@ -38,7 +38,7 @@ class LoginActivity : Activity() {
             startActivity(intent);
         }
 
-        val btnMain = findViewById<TextView>(R.id.login_Id);
+        val btnMain = findViewById<Button>(R.id.login_Id);
         btnMain.setOnClickListener {
             if (et_username.text.toString().isNullOrEmpty()|| et_password.text.toString().isNullOrEmpty()) {
                 Toast.makeText(this,"Username and pass is empty",Toast.LENGTH_LONG).show();
