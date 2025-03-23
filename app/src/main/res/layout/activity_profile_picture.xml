@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#5E5EF6">
-
+    android:background="#5E5EF6"
+    tools:context=".ProfilePicFragment">
 
 
     <LinearLayout
@@ -15,6 +15,7 @@
         android:layout_height="200dp"
         android:background="#FF64F6"
         android:gravity = "center">
+
 
 <!--        <FrameLayout-->
 <!--            android:layout_width="match_parent"-->
@@ -38,6 +39,8 @@
 
 <!--        </FrameLayout>-->
     </LinearLayout>
+
+
 
     <FrameLayout
         android:layout_width="match_parent"

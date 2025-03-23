@@ -50,6 +50,7 @@ class LoginActivity : Activity() {
                     putExtra("password", et_password.text.toString());
                 }
             )
+
         }
 
     }

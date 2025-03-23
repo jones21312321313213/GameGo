@@ -13,7 +13,7 @@ import android.widget.Toast
 import cit.edu.gamego.LoginActivity
 import cit.edu.gamego.R
 
-fun Context.showLogOutConfirmation(message: String) {
+fun Context.showConfirmation(message: String) {
     val dialog = Dialog(this)
     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
     dialog.setCancelable(false)

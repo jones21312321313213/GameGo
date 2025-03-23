@@ -6,9 +6,10 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
-import cit.edu.gamego.extensions.showLogOutConfirmation
+import cit.edu.gamego.extensions.showConfirmation
 import com.google.android.material.navigation.NavigationView
 import android.widget.ImageView
+import cit.edu.gamego.extensions.showConfirmation
 
 class landingWIthFragmentActivity : AppCompatActivity() {
 
@@ -19,14 +20,12 @@ class landingWIthFragmentActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_landing_with_fragment);
 
-
         // Para inig start ani kaay naa na ang contents sa activity_landing.xml
         if (supportFragmentManager.findFragmentById(R.id.fragment_container) == null) {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, landingFragment())
                 .commit()
         }
-
 
         val fav = findViewById<ImageView>(R.id.faves);
         fav.setOnClickListener{
@@ -47,12 +46,13 @@ class landingWIthFragmentActivity : AppCompatActivity() {
             this, mainLayout, toolbar,
             R.string.navigation_drawer_open, R.string.navigation_drawer_close
         )
+
         mainLayout.addDrawerListener(toggle)
         toggle.syncState()
 
         navView.setNavigationItemSelectedListener { menuItem ->
             if(menuItem.itemId == R.id.nav_logout){
-                showLogOutConfirmation("Are you sure you want to log out");
+                showConfirmation("Are you sure you want to log out");
                 return@setNavigationItemSelectedListener true
             }
             val fragment: Fragment = when (menuItem.itemId) {
@@ -67,8 +67,5 @@ class landingWIthFragmentActivity : AppCompatActivity() {
             mainLayout.closeDrawers()
             true
         }
-
     }
-
-
 }

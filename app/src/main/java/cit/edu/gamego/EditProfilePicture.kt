@@ -12,6 +12,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import cit.edu.gamego.extensions.showConfirmation
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -24,10 +25,11 @@ class EditProfilePicture : Activity() {
 
         val btnBack = findViewById<ImageView>(R.id.edit_pfp_back_Id);
         btnBack.setOnClickListener{
-            val intent = Intent(this,ProfilePictureActivity::class.java);
+           // val intent = Intent(this,ProfilePictureActivity::class.java);
 //            val message = "Saves have not been save are you sure\n do you want to save changes?"
 //            showSaveConfirmationPopUp(message);
-            startActivity(intent);
+            //startActivity(intent);
+            finish()
         }
 
         val btnSave = findViewById<Button>(R.id.edit_save_Id);
@@ -69,9 +71,10 @@ class EditProfilePicture : Activity() {
         msg.text = message;
         dialog.show();
         btnYes.setOnClickListener{
-            Toast.makeText(this,"saved changes", Toast.LENGTH_LONG).show();
-            val intent = Intent(this,ProfilePictureActivity::class.java);
-            startActivity(intent);
+//            Toast.makeText(this,"saved changes", Toast.LENGTH_LONG).show();
+//            val intent = Intent(this,ProfilePictureActivity::class.java);
+//            startActivity(intent);
+            finish()
         }
 
         btnNo.setOnClickListener{

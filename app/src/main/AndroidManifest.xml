@@ -30,7 +30,7 @@
             android:exported="false" />
         <activity
             android:name=".activity_developer"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".activity_landing"
             android:exported="false" />

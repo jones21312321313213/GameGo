@@ -23,7 +23,6 @@ class activity_developer : Activity() {
                 Intent(this,about_me_dev1::class.java)
             )
         }
-
         abme_arco.setOnClickListener {
             startActivity(
                 Intent(this,about_me_dev2::class.java)

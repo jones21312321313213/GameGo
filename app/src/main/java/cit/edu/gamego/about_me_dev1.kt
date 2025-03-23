@@ -25,10 +25,9 @@ class about_me_dev1 : Activity() {
 
         val back = findViewById<ImageView>(R.id.abme_dev1_back);
 
-        back.setOnClickListener{
-            startActivity(
-                Intent(this,activity_developer::class.java)
-            )
+        back.setOnClickListener {
+            finish()
         }
+
     }
 }
