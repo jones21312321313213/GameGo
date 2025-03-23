@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/cflogout_corner">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/cflogout_corner"
+        android:backgroundTint="#9D9DFF"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/message"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:text="message"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"
+            android:fontFamily="sans-serif-black"/>
+
+        <Button
+            android:id="@+id/yesLogout_id"
+            android:layout_width="230dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#0AEAF1"
+            android:text="Yes"
+            android:textSize="24sp"
+            android:textColor="@color/white"
+            android:background="@drawable/button_corner"/>
+
+        <Button
+            android:id="@+id/noLogout_id"
+            android:layout_width="230dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#FF3030"
+            android:text="No"
+            android:textSize="24sp"
+            android:textColor="@color/white"
+            android:background="@drawable/button_corner"/>
+
+    </LinearLayout>
+
+</LinearLayout>

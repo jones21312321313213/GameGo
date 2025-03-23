@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:ignore="ExtraText">
+    <solid android:color="#EE8924" /> <!-- Background color of the EditText -->
+    <stroke
+        android:color="#EE8924"
+        android:width="2dp" />
+    <corners android:radius="400dp" />
+</shape>

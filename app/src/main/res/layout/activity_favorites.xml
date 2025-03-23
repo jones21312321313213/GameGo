@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#5E5EF6">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="#FF64F6"
+        android:gravity = "center">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp">
+
+            <ImageView
+                android:id="@+id/fav_back"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_gravity="start"
+                android:src="@drawable/back_arrow"/>
+
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:text="Favorites"
+                android:gravity="top|center"
+                android:textSize="36dp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif"
+                android:textColor="#000000"
+                android:layout_gravity="center"/>
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_gravity="end"
+                android:src="@drawable/logo2"/>
+
+        </FrameLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="horizontal"
+        android:paddingStart="10dp"
+        android:background="#5E5EF6">
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ye" />
+        <TextView
+            android:layout_width="150dp"
+            android:layout_margin="20dp"
+            android:layout_height="match_parent"
+            android:text="The Ye Quest"
+            android:textSize="24dp"
+            android:gravity="center"
+            android:textColor="#000000"/>
+
+        <ImageView
+            android:layout_width="76dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/heart" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="horizontal"
+        android:paddingStart="10dp"
+        android:background="#5E5EF6">
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ye" />
+        <TextView
+            android:layout_width="150dp"
+            android:layout_margin="20dp"
+            android:layout_height="match_parent"
+            android:text="The Ye Quest"
+            android:textSize="24dp"
+            android:gravity="center"
+            android:textColor="#000000"/>
+
+        <ImageView
+            android:layout_width="76dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/heart" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="horizontal"
+        android:paddingStart="10dp"
+        android:background="#5E5EF6">
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ye" />
+        <TextView
+            android:layout_width="150dp"
+            android:layout_margin="20dp"
+            android:layout_height="match_parent"
+            android:text="The Ye Quest"
+            android:textSize="24dp"
+            android:gravity="center"
+            android:textColor="#000000"/>
+
+        <ImageView
+            android:layout_width="76dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/heart" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="horizontal"
+        android:paddingStart="10dp"
+        android:background="#5E5EF6">
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ye" />
+        <TextView
+            android:layout_width="150dp"
+            android:layout_margin="20dp"
+            android:layout_height="match_parent"
+            android:text="The Ye Quest"
+            android:textSize="24dp"
+            android:gravity="center"
+            android:textColor="#000000"/>
+
+        <ImageView
+            android:layout_width="76dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/heart" />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="horizontal"
+        android:paddingStart="10dp"
+        android:background="#5E5EF6">
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ye" />
+        <TextView
+            android:layout_width="150dp"
+            android:layout_margin="20dp"
+            android:layout_height="match_parent"
+            android:text="The Ye Quest"
+            android:textSize="24dp"
+            android:gravity="center"
+            android:textColor="#000000"/>
+
+        <ImageView
+            android:layout_width="76dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/heart" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="horizontal"
+        android:paddingStart="10dp"
+        android:background="#5E5EF6">
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ye" />
+        <TextView
+            android:layout_width="150dp"
+            android:layout_margin="20dp"
+            android:layout_height="match_parent"
+            android:text="The Ye Quest"
+            android:textSize="24dp"
+            android:gravity="center"
+            android:textColor="#000000"/>
+
+        <ImageView
+            android:layout_width="76dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/heart" />
+    </LinearLayout>
+
+</LinearLayout>
