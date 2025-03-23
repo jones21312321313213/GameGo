@@ -30,49 +30,51 @@ class activity_landing : AppCompatActivity() {
         setContentView(R.layout.activity_landing)
 
         // Initialize Views
-        mainLayout = findViewById(R.id.main)
-        navView = findViewById(R.id.nav_view)
-        val toolbar: androidx.appcompat.widget.Toolbar =  findViewById(R.id.toolbar)
-
-        // Set Toolbar as ActionBar
-       setSupportActionBar(toolbar)
-
-        // Enable Drawer Toggle
-        val toggle = ActionBarDrawerToggle(
-            this, mainLayout, toolbar,
-            R.string.navigation_drawer_open, R.string.navigation_drawer_close
-        )
-        mainLayout.addDrawerListener(toggle)
-        toggle.syncState()
-
-        // Handle Navigation Menu Item Clicks
-        navView.setNavigationItemSelectedListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.nav_home -> toast("Home selected")
-                R.id.nav_profile -> startActivity(
-                    Intent(this,ProfilePictureActivity::class.java)
-                )
-                R.id.nav_logout -> showLogOutConfirmation("Are you sure you want to log out?")
-
-                R.id.nav_settings -> startActivity(
-                    Intent(this,settings::class.java)
-                )
-                
-                R.id.nav_about_devs -> startActivity(
-                    Intent(this,activity_developer::class.java)
-                )
-                // Add other menu items here
-            }
-            mainLayout.closeDrawers()
-            true
-        }
+//        mainLayout = findViewById(R.id.main)
+//        navView = findViewById(R.id.nav_view)
+//        val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.toolbar)
+//
+//        // Set Toolbar as ActionBar
+//        setSupportActionBar(toolbar)
+//
+//        // Enable Drawer Toggle
+//        val toggle = ActionBarDrawerToggle(
+//            this, mainLayout, toolbar,
+//            R.string.navigation_drawer_open, R.string.navigation_drawer_close
+//        )
+//        mainLayout.addDrawerListener(toggle)
+//        toggle.syncState()
+//
+//        // Handle Navigation Menu Item Clicks
+//        navView.setNavigationItemSelectedListener { menuItem ->
+//            when (menuItem.itemId) {
+//                R.id.nav_home -> toast("Home selected")
+//                R.id.nav_profile -> startActivity(
+//                    Intent(this, ProfilePictureActivity::class.java)
+//                )
+//
+//                R.id.nav_logout -> showLogOutConfirmation("Are you sure you want to log out?")
+//
+//                R.id.nav_settings -> startActivity(
+//                    Intent(this, settings::class.java)
+//                )
+//
+//                R.id.nav_about_devs -> startActivity(
+//                    Intent(this, activity_developer::class.java)
+//                )
+//                // Add other menu items here
+//            }
+//            mainLayout.closeDrawers()
+//            true
+//        }
 
 
         // Goes to favorites/liked/saved
-        val btnAccount = findViewById<ImageView>(R.id.account_Id)
-        btnAccount.setOnClickListener {
-            startActivity(Intent(this, Favorites::class.java))
-        }
+//        val btnAccount = findViewById<ImageView>(R.id.account_Id)
+//        btnAccount.setOnClickListener {
+//            startActivity(Intent(this, Favorites::class.java))
+//        }
+//    }
     }
 
     // Helper function to show a toast

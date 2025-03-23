@@ -45,7 +45,7 @@ class LoginActivity : Activity() {
                 return@setOnClickListener
             }
             startActivity(
-                Intent(this, landingWIthFragmentActivity::class.java).apply {
+                Intent(this,landingWIthFragmentActivity::class.java).apply {
                     putExtra("username", et_username.text.toString());
                     putExtra("password", et_password.text.toString());
                 }

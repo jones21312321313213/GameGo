@@ -299,8 +299,7 @@
                     android:textSize="24sp"
                     android:textColor="@color/white"
                     android:layout_marginVertical="20dp"
-                    android:paddingVertical="10dp"
-                    android:background="@drawable/button_corner"/>
+                    android:paddingVertical="10dp"/>
             </LinearLayout>
 
         </LinearLayout>

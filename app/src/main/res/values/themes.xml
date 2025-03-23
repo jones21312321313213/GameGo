@@ -1,12 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.GameGo" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <!-- Other theme attributes -->
+    <style name="Theme.GameGo" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Primary Color for Buttons -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+
+        <!-- Ensure Buttons Use the Primary Theme -->
+        <item name="android:buttonStyle">@style/Widget.AppCompat.Button</item>
+
+        <!-- Force Material 3 Buttons to Use Custom Colors -->
+        <item name="materialButtonStyle">@style/CustomMaterialButton</item>
+
     </style>
-    <!-- Base application theme. -->
-    <style name="Base.Theme.GameGo" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+
+
+    <!-- Custom Material Button Style -->
+    <style name="CustomMaterialButton" parent="Widget.Material3.Button">
+        <item name="android:backgroundTint">?attr/colorPrimary</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
     </style>
+
 </resources>

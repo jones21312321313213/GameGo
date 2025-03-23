@@ -16,27 +16,27 @@
         android:background="#FF64F6"
         android:gravity = "center">
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="-40dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp">
+<!--        <FrameLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:layout_marginTop="-40dp"-->
+<!--            android:layout_marginStart="10dp"-->
+<!--            android:layout_marginEnd="10dp">-->
 
-            <ImageView
-                android:id="@+id/profilepic_back_Id"
-                android:layout_width="50dp"
-                android:layout_height="40dp"
-                android:layout_gravity="start"
-                android:src="@drawable/back_arrow"/>
+<!--            <ImageView-->
+<!--                android:id="@+id/profilepic_back_Id"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:layout_gravity="start"-->
+<!--                android:src="@drawable/back_arrow"/>-->
 
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="40dp"
-                android:layout_gravity="end"
-                android:src="@drawable/settings"/>
+<!--            <ImageView-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:layout_gravity="end"-->
+<!--                android:src="@drawable/settings"/>-->
 
-        </FrameLayout>
+<!--        </FrameLayout>-->
     </LinearLayout>
 
     <FrameLayout
@@ -44,7 +44,7 @@
         android:layout_height="250dp"
         android:layout_marginTop="-90dp">
 
-        <!-- PFP    ?-->
+        <!-- PFP   ?-->
         <ImageView
             android:layout_width="150dp"
             android:layout_height="150dp"
@@ -128,155 +128,161 @@
         </FrameLayout>
     </LinearLayout>
 
-
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginTop="10dp"
-        android:background="#5E5EF6">
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="80dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|top"
-                android:layout_marginEnd="117dp"
-                android:fontFamily="sans-serif"
-                android:text="Your email"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="332dp"
-                android:layout_height="45dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="15dp"
-                android:fontFamily="sans-serif"
-                android:text="jcole@gmail.com"
-                android:textColor="#838383"
-                android:textSize="20sp"
-                android:background="@drawable/profilepiceditcircle"
-                android:textStyle="bold" />
-        </FrameLayout>
-    </LinearLayout>
-
-    <LinearLayout
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+        <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginTop="10dp"
-        android:background="#5E5EF6">
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="80dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|top"
-                android:layout_marginEnd="98dp"
-                android:fontFamily="sans-serif"
-                android:text="Phone Number"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="332dp"
-                android:layout_height="45dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="15dp"
-                android:fontFamily="sans-serif"
-                android:text="+63 014921743"
-                android:textColor="#838383"
-                android:textSize="20sp"
-                android:background="@drawable/profilepiceditcircle"
-                android:textStyle="bold" />
-        </FrameLayout>
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginTop="10dp"
-        android:background="#5E5EF6">
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="80dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|top"
-                android:layout_marginEnd="120dp"
-                android:fontFamily="sans-serif"
-                android:text="Password"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <!-- to put image beside pass-->
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
             <LinearLayout
-                android:layout_width="332dp"
-                android:layout_height="45dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/profilepiceditcircle"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:paddingEnd="15dp">
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginTop="10dp"
+                android:background="#5E5EF6">
 
-                <TextView
-                    android:id="@+id/password_text"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="sans-serif"
-                    android:text="*************"
-                    android:textColor="#838383"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|top"
+                        android:layout_marginEnd="117dp"
+                        android:fontFamily="sans-serif"
+                        android:text="Your email"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
-
-                <ImageView
-                    android:id="@+id/show_password"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/show"/>
+                    <TextView
+                        android:layout_width="332dp"
+                        android:layout_height="45dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="15dp"
+                        android:fontFamily="sans-serif"
+                        android:text="jcole@gmail.com"
+                        android:textColor="#838383"
+                        android:textSize="20sp"
+                        android:background="@drawable/profilepiceditcircle"
+                        android:textStyle="bold" />
+                </FrameLayout>
             </LinearLayout>
 
-        </FrameLayout>
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginTop="10dp"
+                android:background="#5E5EF6">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|top"
+                        android:layout_marginEnd="98dp"
+                        android:fontFamily="sans-serif"
+                        android:text="Phone Number"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="332dp"
+                        android:layout_height="45dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="15dp"
+                        android:fontFamily="sans-serif"
+                        android:text="+63 014921743"
+                        android:textColor="#838383"
+                        android:textSize="20sp"
+                        android:background="@drawable/profilepiceditcircle"
+                        android:textStyle="bold" />
+                </FrameLayout>
+            </LinearLayout>
 
 
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="70dp"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#5E5EF6">
 
-        <Button
-            android:id="@+id/edit_Id"
-            android:layout_width="250dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:backgroundTint="#0AEAF1"
-            android:layout_marginBottom="10dp"
-            android:text="Edit"
-            android:textSize="24sp"
-            android:textColor="@color/white"
-            android:layout_marginVertical="20dp"
-            android:paddingVertical="10dp"
-            android:background="@drawable/button_corner"/>
-    </LinearLayout>
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center|top"
+                            android:layout_marginEnd="120dp"
+                            android:fontFamily="sans-serif"
+                            android:text="Password"
+                            android:textColor="#FFFFFF"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <!-- to put image beside pass-->
+                        <LinearLayout
+                            android:layout_width="332dp"
+                            android:layout_height="45dp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="15dp"
+                            android:background="@drawable/profilepiceditcircle"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:paddingEnd="15dp">
+
+                            <TextView
+                                android:id="@+id/password_text"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="sans-serif"
+                                android:text="*************"
+                                android:textColor="#838383"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+
+                            <ImageView
+                                android:id="@+id/show_password"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@drawable/show"/>
+                        </LinearLayout>
+
+                    </FrameLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="70dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="30dp">
+
+                    <Button
+                        android:id="@+id/edit_Id"
+                        android:layout_width="250dp"
+                        android:layout_height="50dp"
+                        android:gravity="center"
+                        android:backgroundTint="#0AEAF1"
+                        android:layout_marginBottom="10dp"
+                        android:text="Edit"
+                        android:textSize="18sp"
+                        android:textColor="@color/white"
+                        android:layout_marginVertical="20dp"
+                        android:paddingVertical="10dp"/>
+                </LinearLayout>
+            </LinearLayout>
+    </ScrollView>
 
 
 </LinearLayout>

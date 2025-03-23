@@ -25,15 +25,13 @@ class ProfilePictureActivity : Activity() {
         setContentView(R.layout.activity_profile_picture);
 
 
-
-        // should return to the main page but wala paman so go to login page (this is temp)
-        val button_profilepic_back = findViewById<ImageView>(R.id.profilepic_back_Id);
-        button_profilepic_back.setOnClickListener{
-            Log.e("Dont u", "absolute cinema");
-            Toast.makeText(this,"avasd",Toast.LENGTH_LONG).show();
-            val intent = Intent(this,activity_landing::class.java);
-            startActivity(intent);
-        }
+//        val button_profilepic_back = findViewById<ImageView>(R.id.profilepic_back_Id);
+//        button_profilepic_back.setOnClickListener{
+//            Log.e("Dont u", "absolute cinema");
+//            Toast.makeText(this,"avasd",Toast.LENGTH_LONG).show();
+//            val intent = Intent(this,activity_landing::class.java);
+//            startActivity(intent);
+//        }
 
         //pop up of confirmation logout
         val btnEdit = findViewById<Button>(R.id.edit_Id);
@@ -54,48 +52,5 @@ class ProfilePictureActivity : Activity() {
 
             startActivity(intent);
         }
-    }
-
-    private fun showLogOutConfirmation(message:String):Unit{
-        val dialog = Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setCancelable(false);
-        dialog.setContentView(R.layout.activity_logout_popout);
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
-
-        //para ma change and width sa popup
-        val widthInPx = TypedValue.applyDimension(
-            TypedValue.COMPLEX_UNIT_DIP,
-            400f,
-            resources.displayMetrics
-        ).toInt()
-        //para ma change and height sa popup
-        val heightInPx = TypedValue.applyDimension(
-            TypedValue.COMPLEX_UNIT_DIP,
-            200f,
-            resources.displayMetrics
-        ).toInt()
-
-        dialog.window?.setLayout(
-            widthInPx,  // Width
-            heightInPx   // Height
-        )
-
-        val btnYes = dialog.findViewById<Button>(R.id.yesLogout_id);
-        val btnNo = dialog.findViewById<Button>(R.id.noLogout_id);
-        val msg = dialog.findViewById<TextView>(R.id.message);
-
-        msg.text = message;
-        dialog.show();
-        btnYes.setOnClickListener{
-            Toast.makeText(this,"logged out", Toast.LENGTH_LONG).show();
-            val intent = Intent(this,activity_landing::class.java);
-            startActivity(intent);
-        }
-
-        btnNo.setOnClickListener{
-            dialog.dismiss();
-        }
-
     }
 }

@@ -20,22 +20,21 @@
             android:id="@+id/message"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:text="message"
+            android:fontFamily="sans-serif-black"
             android:gravity="center"
-            android:textSize="20sp"
+            android:text="message"
             android:textColor="#FFFFFF"
-            android:fontFamily="sans-serif-black"/>
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/yesLogout_id"
             android:layout_width="230dp"
             android:layout_height="40dp"
             android:layout_marginTop="20dp"
-            android:backgroundTint="#0AEAF1"
+            android:backgroundTint="#32CD32"
             android:text="Yes"
-            android:textSize="24sp"
-            android:textColor="@color/white"
-            android:background="@drawable/button_corner"/>
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/noLogout_id"
@@ -44,9 +43,8 @@
             android:layout_marginTop="20dp"
             android:backgroundTint="#FF3030"
             android:text="No"
-            android:textSize="24sp"
-            android:textColor="@color/white"
-            android:background="@drawable/button_corner"/>
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
 
     </LinearLayout>
 

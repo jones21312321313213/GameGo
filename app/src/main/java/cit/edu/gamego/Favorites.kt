@@ -19,7 +19,7 @@ class Favorites : Activity() {
 
         btn_back.setOnClickListener{
             startActivity(
-                Intent(this,activity_landing::class.java)
+                Intent(this,landingWIthFragmentActivity::class.java)
             )
         }
     }
