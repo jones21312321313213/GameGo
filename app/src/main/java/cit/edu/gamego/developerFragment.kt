@@ -18,7 +18,7 @@ class developerFragment : Fragment() {
 
         val abmeArchival = view.findViewById<Button>(R.id.about_me_archival)
         val abmeArco = view.findViewById<Button>(R.id.about_me_arco)
-        val back = view.findViewById<ImageView>(R.id.abme_devs_back)
+        //val back = view.findViewById<ImageView>(R.id.abme_devs_back)
 
         abmeArchival.setOnClickListener {
             startActivity(Intent(requireContext(), about_me_dev1::class.java))
@@ -28,9 +28,9 @@ class developerFragment : Fragment() {
             startActivity(Intent(requireContext(), about_me_dev2::class.java))
         }
 
-        back.setOnClickListener {
-            startActivity(Intent(requireContext(), landingWIthFragmentActivity::class.java))
-        }
+//        back.setOnClickListener {
+//            startActivity(Intent(requireContext(), landingWIthFragmentActivity::class.java))
+//        }
 
         return view
     }

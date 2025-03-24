@@ -9,15 +9,24 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.SearchView
+import cit.edu.gamego.data.Game
+import cit.edu.gamego.helper.GameListAdapter
 
 class activity_developer : Activity() {
+
+    lateinit var listOfGame: MutableList<Game>
+    lateinit var filteredList: MutableList<Game>
+    lateinit var arrayAdapter: GameListAdapter
+    lateinit var searchView: SearchView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_developer);
 
         val abme_archival = findViewById<Button>(R.id.about_me_archival);
         val abme_arco = findViewById<Button>(R.id.about_me_arco);
-        val back = findViewById<ImageView>(R.id  .abme_devs_back);
+       // val back = findViewById<ImageView>(R.id.abme_devs_back);
         abme_archival.setOnClickListener {
             startActivity(
                 Intent(this,about_me_dev1::class.java)
@@ -29,10 +38,10 @@ class activity_developer : Activity() {
             )
         }
         // back
-        back.setOnClickListener{
-            startActivity(
-                Intent(this,activity_landing::class.java)
-            )
-        }
+//        back.setOnClickListener{
+//            startActivity(
+//                Intent(this,activity_landing::class.java)
+//            )
+//        }
     }
 }
