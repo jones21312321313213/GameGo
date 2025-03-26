@@ -12,6 +12,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import cit.edu.gamego.extensions.isTextNullOrEmpty
+import cit.edu.gamego.extensions.toast
 
 class RegisterActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,18 +30,26 @@ class RegisterActivity : Activity() {
 
         val username= findViewById<EditText>(R.id.register_username_Id);
         val password= findViewById<EditText>(R.id.register_pass_Id);
-
+        val email = findViewById<EditText>(R.id.register_email_Id)
+        val cpass = findViewById<EditText>(R.id.register_confirmpass_Id)
         val btnRegister = findViewById<Button>(R.id.register_Id);
         btnRegister.setOnClickListener{
-            if (username.text.toString().isNullOrEmpty()
-                || password.text.toString().isNullOrEmpty()) {
-                Toast.makeText(this, "Fill out the form completely.", Toast.LENGTH_LONG).show()
+            if (username.isTextNullOrEmpty()
+                || password.isTextNullOrEmpty() || email.isTextNullOrEmpty() ||
+                cpass.isTextNullOrEmpty()){
+                toast("fill out the form completely");
                 return@setOnClickListener
             }
+
+//            if(cpass != password){
+//                toast("passwords does not match")
+//                return@setOnClickListener
+//            }
             startActivity(
                 Intent(this, LoginActivity::class.java).apply {
                     putExtra("username", username.text.toString())
                     putExtra("password", password.text.toString())
+                    putExtra("email",email.text.toString())
                 }
             )
         }

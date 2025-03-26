@@ -31,6 +31,7 @@ class GameListAdapter (
 
         val photo = view.findViewById<ImageView>(R.id.imageview_photo)
         val name = view.findViewById<TextView>(R.id.textview_name)
+        val more = view.findViewById<ImageView>(R.id.iv_more)
 
         val game = listOfGame[position]
 
@@ -39,6 +40,10 @@ class GameListAdapter (
         // this is jsut name.text = "${game.name} ${game.date}" but ide wants it to be lke at top
 
 
+
+        more.setOnClickListener{
+            onClickMore(game)
+        }
 
         view.setOnClickListener {
             onClickItem(game)

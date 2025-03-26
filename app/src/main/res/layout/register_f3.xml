@@ -48,7 +48,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/register_name_Id"
+                android:id="@+id/register_email_Id"
                 android:layout_width="332dp"
                 android:layout_height="47dp"
                 android:layout_gravity="center"

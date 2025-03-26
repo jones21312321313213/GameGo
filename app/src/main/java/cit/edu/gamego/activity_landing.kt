@@ -14,6 +14,7 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.util.TypedValue
+import android.view.ViewGroup
 import android.view.Window
 import android.widget.Button
 import android.widget.SearchView
@@ -29,6 +30,14 @@ class activity_landing : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_landing)
+
+
+        val searchView = findViewById<SearchView>(R.id.searchView)
+
+        searchView.setOnSearchClickListener {
+            searchView.layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
+            searchView.requestLayout()
+        }
 
 
         // Initialize Views

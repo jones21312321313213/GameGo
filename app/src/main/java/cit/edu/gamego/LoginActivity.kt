@@ -20,7 +20,7 @@ class LoginActivity : Activity() {
 
         val et_username = findViewById<EditText>(R.id.login_username_Id);
         val et_password = findViewById<EditText>(R.id.login_pass_Id);
-
+        var et_email: String? = null
         intent?.let {
             it.getStringExtra("username")?.let {username ->
                 et_username.setText(username)
@@ -28,6 +28,10 @@ class LoginActivity : Activity() {
 
             it.getStringExtra("password")?.let {password ->
                 et_password.setText(password)
+            }
+
+            it.getStringExtra("email")?.let{
+                et_email = it
             }
         }
 
@@ -48,6 +52,7 @@ class LoginActivity : Activity() {
                 Intent(this,landingWIthFragmentActivity::class.java).apply {
                     putExtra("username", et_username.text.toString());
                     putExtra("password", et_password.text.toString());
+                    putExtra("email", et_email);
                 }
             )
         }

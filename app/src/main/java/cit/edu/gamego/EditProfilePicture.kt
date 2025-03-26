@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.util.TypedValue
 import android.view.Window
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -23,6 +24,15 @@ class EditProfilePicture : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.edit_profile_picture);
 
+
+        val name = findViewById<EditText>(R.id.edit_name_Id)
+        val email = findViewById<EditText>(R.id.edit_email_Id)
+        val phone = findViewById<EditText>(R.id.edit_phoneNumber_Id)
+        val newPass = findViewById<EditText>(R.id.newpass_Id)
+        val confirmPass = findViewById<EditText>(R.id.edit_confirmpass_Id)
+
+
+
         val btnBack = findViewById<ImageView>(R.id.edit_pfp_back_Id);
         btnBack.setOnClickListener{
            // val intent = Intent(this,ProfilePictureActivity::class.java);
@@ -35,8 +45,21 @@ class EditProfilePicture : Activity() {
         val btnSave = findViewById<Button>(R.id.edit_save_Id);
         btnSave.setOnClickListener{
             val message = "Are you sure you want to save changes?"
+            sendDatatoFragment(name.toString(),newPass.toString(),email.toString())
             showSaveConfirmationPopUp(message);
         }
+    }
+
+    private fun sendDatatoFragment(name: String, pass: String,email: String): ProfilePicFragment {
+        val fragment = ProfilePicFragment()
+        val bundle = Bundle().apply {
+            putString("new_username", name)
+            putString("new_password", pass)
+            putString("new_email", email)
+
+        }
+        fragment.arguments = bundle
+        return fragment
     }
 
     private fun showSaveConfirmationPopUp(message:String){

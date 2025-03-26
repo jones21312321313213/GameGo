@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import cit.edu.gamego.extensions.showConfirmation
 import com.google.android.material.navigation.NavigationView
 import android.widget.ImageView
-import cit.edu.gamego.extensions.showConfirmation
+
 
 class landingWIthFragmentActivity : AppCompatActivity() {
 
@@ -25,6 +25,24 @@ class landingWIthFragmentActivity : AppCompatActivity() {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, landingFragment())
                 .commit()
+        }
+
+        var et_uname: String? = null
+        var et_upass: String? = null
+        var et_uemail: String? = null
+
+
+        intent?.let{
+            it.getStringExtra("username")?.let{
+                et_uname = it
+            }
+            it.getStringExtra("password")?.let{
+                et_upass = it
+            }
+
+            it.getStringExtra("email")?.let{
+                et_uemail = it
+            }
         }
 
         val fav = findViewById<ImageView>(R.id.faves);
@@ -50,14 +68,18 @@ class landingWIthFragmentActivity : AppCompatActivity() {
         mainLayout.addDrawerListener(toggle)
         toggle.syncState()
 
+
+
         navView.setNavigationItemSelectedListener { menuItem ->
             if(menuItem.itemId == R.id.nav_logout){
                 showConfirmation("Are you sure you want to log out");
                 return@setNavigationItemSelectedListener true
+            }else if(menuItem.itemId == R.id.nav_profile){
+
             }
             val fragment: Fragment = when (menuItem.itemId) {
                 R.id.nav_home -> landingFragment()
-                R.id.nav_profile -> ProfilePicFragment()
+                R.id.nav_profile -> pwdProfilePicFragment(et_uname.toString(),et_upass.toString(),et_uemail.toString())
                 R.id.nav_about_devs -> developerFragment()
                 R.id.nav_settings -> settingsFragment()
                 // Add other menu items here
@@ -68,4 +90,16 @@ class landingWIthFragmentActivity : AppCompatActivity() {
             true
         }
     }
+
+    private fun pwdProfilePicFragment(name: String, pass: String,email: String): ProfilePicFragment {
+        val fragment = ProfilePicFragment()
+        val bundle = Bundle().apply {
+            putString("username", name)
+            putString("password", pass)
+            putString("email", email)
+        }
+        fragment.arguments = bundle
+        return fragment
+    }
+
 }
