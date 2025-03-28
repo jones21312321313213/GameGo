@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="20dp"
         android:layout_marginTop="-50dp"
         android:fontFamily="sans-serif-black"
         android:text="Create an account"
@@ -28,203 +28,241 @@
         android:textColor="#000000"/>
 
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="90dp"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
         android:background="#5E5EF6">
 
-        <FrameLayout
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="80dp">
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|start"
+            android:background="#5E5EF6"
+            android:paddingBottom="20dp">
+
+            <ImageView
+                android:layout_width="250dp"
+                android:layout_height="300dp"
+                android:layout_gravity="center"
+                android:background="@drawable/logo"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center|top"
-                android:layout_marginEnd="83dp"
-                android:fontFamily="sans-serif"
-                android:text="Enter a valid email"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/register_email_Id"
-                android:layout_width="332dp"
-                android:layout_height="47dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="15dp"
-                android:fontFamily="sans-serif"
-                android:hint="enter email"
-                android:padding="10dp"
-                android:textColor="#838383"
-                android:textSize="20sp"
-                android:background="@drawable/edittext_background"
-                android:textStyle="bold" />
-        </FrameLayout>
-    </LinearLayout>
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="-50dp"
+                android:fontFamily="sans-serif-black"
+                android:text="Create an account"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:textColor="#000000"/>
 
+            <!-- All input fields and buttons remain unchanged -->
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="90dp"
-        android:background="#5E5EF6">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:background="#5E5EF6">
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="80dp">
-            <TextView
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|top"
+                        android:layout_marginEnd="140dp"
+                        android:fontFamily="sans-serif"
+                        android:text="Email"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/register_email_Id"
+                        android:layout_width="332dp"
+                        android:layout_height="47dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="15dp"
+                        android:fontFamily="sans-serif"
+                        android:hint="enter email"
+                        android:padding="10dp"
+                        android:textColor="#838383"
+                        android:textSize="20sp"
+                        android:background="@drawable/edittext_background"
+                        android:textStyle="bold"
+                        android:maxLines="1"
+                        android:lines="1"
+                        android:singleLine="true" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <!-- Username -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:background="#5E5EF6">
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|top"
+                        android:layout_marginEnd="120dp"
+                        android:fontFamily="sans-serif"
+                        android:text="Username"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/register_username_Id"
+                        android:layout_width="332dp"
+                        android:layout_height="47dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="15dp"
+                        android:fontFamily="sans-serif"
+                        android:hint="enter username"
+                        android:padding="10dp"
+                        android:textColor="#838383"
+                        android:textSize="20sp"
+                        android:background="@drawable/edittext_background"
+                        android:textStyle="bold"
+                        android:maxLines="1"
+                        android:lines="1"
+                        android:singleLine="true" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <!-- Password -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:background="#5E5EF6">
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|top"
+                        android:layout_marginEnd="120dp"
+                        android:fontFamily="sans-serif"
+                        android:text="Password"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/register_pass_Id"
+                        android:layout_width="332dp"
+                        android:layout_height="47dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="15dp"
+                        android:fontFamily="sans-serif"
+                        android:hint="enter password"
+                        android:inputType="textPassword"
+                        android:padding="10dp"
+                        android:textColor="#838383"
+                        android:textSize="20sp"
+                        android:background="@drawable/edittext_background"
+                        android:textStyle="bold"
+                        android:maxLines="1"
+                        android:lines="1"
+                        android:singleLine="true" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <!-- Confirm Password -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:background="#5E5EF6">
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|top"
+                        android:layout_marginEnd="84dp"
+                        android:fontFamily="sans-serif"
+                        android:text="Confirm Password"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/register_confirmpass_Id"
+                        android:layout_width="332dp"
+                        android:layout_height="47dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="15dp"
+                        android:fontFamily="sans-serif"
+                        android:hint="confirm password"
+                        android:inputType="textPassword"
+                        android:padding="10dp"
+                        android:textColor="#838383"
+                        android:textSize="20sp"
+                        android:background="@drawable/edittext_background"
+                        android:textStyle="bold"
+                        android:maxLines="1"
+                        android:lines="1"
+                        android:singleLine="true"/>
+                </FrameLayout>
+            </LinearLayout>
+
+            <!-- Register Button -->
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|top"
-                android:layout_marginEnd="94dp"
-                android:fontFamily="sans-serif"
-                android:text="Enter Username"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/register_username_Id"
-                android:layout_width="332dp"
-                android:layout_height="47dp"
+                android:layout_height="70dp"
+                android:orientation="vertical"
+                android:gravity="center"
                 android:layout_gravity="center"
-                android:layout_marginTop="15dp"
-                android:fontFamily="sans-serif"
-                android:hint="enter username"
-                android:padding="10dp"
-                android:textColor="#838383"
-                android:textSize="20sp"
-                android:background="@drawable/edittext_background"
-                android:textStyle="bold" />
-        </FrameLayout>
-    </LinearLayout>
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="25dp">
+                <Button
+                    android:id="@+id/register_Id"
+                    android:layout_width="270dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:backgroundTint="#0AEAF1"
+                    android:text="Register"
+                    android:textSize="24sp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/button_corner"/>
+            </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="90dp"
-        android:background="#5E5EF6">
+            <!-- Already have an account -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="-20dp">
+                <TextView
+                    android:layout_width="190dp"
+                    android:layout_height="25dp"
+                    android:text="Already have an account?"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="80dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|top"
-                android:layout_marginEnd="96dp"
-                android:fontFamily="sans-serif"
-                android:text="Enter Password"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/register_signup_Id"
+                    android:layout_width="70dp"
+                    android:layout_height="25dp"
+                    android:text="Sign Up"
+                    android:textColor="#0AEAF1"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
-            <EditText
-                android:id="@+id/register_pass_Id"
-                android:layout_width="332dp"
-                android:layout_height="47dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="15dp"
-                android:fontFamily="sans-serif"
-                android:hint="enter password"
-                android:inputType="textPassword"
-                android:padding="10dp"
-                android:textColor="#838383"
-                android:textSize="20sp"
-                android:background="@drawable/edittext_background"
-                android:textStyle="bold" />
-        </FrameLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="90dp"
-        android:background="#5E5EF6">
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="80dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|top"
-                android:layout_marginEnd="84dp"
-                android:fontFamily="sans-serif"
-                android:text="Confirm Password"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/register_confirmpass_Id"
-                android:layout_width="332dp"
-                android:layout_height="47dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="15dp"
-                android:fontFamily="sans-serif"
-                android:hint="confirm password"
-                android:inputType="textPassword"
-                android:padding="10dp"
-                android:textColor="#838383"
-                android:textSize="20sp"
-                android:background="@drawable/edittext_background"
-                android:textStyle="bold" />
-        </FrameLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="70dp"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="25dp">
-
-        <Button
-            android:id="@+id/register_Id"
-            android:layout_width="270dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:backgroundTint="#0AEAF1"
-            android:layout_marginBottom="10dp"
-            android:text="Register"
-            android:textSize="24sp"
-            android:textColor="@color/white"
-            android:layout_marginVertical="20dp"
-            android:paddingVertical="10dp"
-            android:background="@drawable/button_corner"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="-20dp">
-
-        <TextView
-            android:layout_width="190dp"
-            android:layout_height="25dp"
-            android:layout_gravity="top|start"
-            android:layout_marginEnd="50dp"
-            android:fontFamily="sans-serif"
-            android:text="Already have an account?"
-            android:textColor="#FFFFFF"
-            android:textSize="16dp"
-            android:textStyle="bold" />
-
-
-        <TextView
-            android:id="@+id/register_signup_Id"
-            android:layout_width="70dp"
-            android:layout_height="25dp"
-            android:layout_gravity="top|end"
-            android:fontFamily="sans-serif"
-            android:text="Sign Up"
-            android:textColor="#0AEAF1"
-            android:textSize="16dp"
-            android:textStyle="bold" />
-    </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

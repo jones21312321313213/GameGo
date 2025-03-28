@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -33,6 +34,9 @@ class RegisterActivity : Activity() {
         val email = findViewById<EditText>(R.id.register_email_Id)
         val cpass = findViewById<EditText>(R.id.register_confirmpass_Id)
         val btnRegister = findViewById<Button>(R.id.register_Id);
+
+
+
         btnRegister.setOnClickListener{
             if (username.isTextNullOrEmpty()
                 || password.isTextNullOrEmpty() || email.isTextNullOrEmpty() ||
@@ -41,10 +45,11 @@ class RegisterActivity : Activity() {
                 return@setOnClickListener
             }
 
-//            if(cpass != password){
-//                toast("passwords does not match")
-//                return@setOnClickListener
-//            }
+            if(cpass.text.toString() != password.text.toString()){
+                toast("passwords does not match")
+                return@setOnClickListener
+            }
+
             startActivity(
                 Intent(this, LoginActivity::class.java).apply {
                     putExtra("username", username.text.toString())

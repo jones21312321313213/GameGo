@@ -115,9 +115,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center|top"
-                        android:layout_marginEnd="140dp"
+                        android:layout_marginEnd="118dp"
                         android:fontFamily="sans-serif"
-                        android:text="Name"
+                        android:text="Username"
                         android:textColor="#FFFFFF"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -129,11 +129,14 @@
                         android:layout_gravity="center"
                         android:layout_marginTop="15dp"
                         android:fontFamily="sans-serif"
-                        android:hint="Enter new name"
+                        android:hint="Enter new username"
                         android:textColor="#838383"
                         android:textSize="20sp"
                         android:background="@drawable/profilepiceditcircle"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:maxLines="1"
+                        android:lines="1"
+                        android:singleLine="true"/>
                 </FrameLayout>
             </LinearLayout>
 
@@ -169,7 +172,10 @@
                         android:textColor="#838383"
                         android:textSize="20sp"
                         android:background="@drawable/profilepiceditcircle"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:maxLines="1"
+                        android:lines="1"
+                        android:singleLine="true"/>
                 </FrameLayout>
             </LinearLayout>
 
@@ -204,7 +210,10 @@
                         android:textColor="#838383"
                         android:textSize="20sp"
                         android:background="@drawable/profilepiceditcircle"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:maxLines="1"
+                        android:lines="1"
+                        android:singleLine="true"/>
                 </FrameLayout>
             </LinearLayout>
 
@@ -241,7 +250,10 @@
                         android:textColor="#838383"
                         android:textSize="20sp"
                         android:background="@drawable/profilepiceditcircle"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:maxLines="1"
+                        android:lines="1"
+                        android:singleLine="true"/>
                 </FrameLayout>
             </LinearLayout>
 
@@ -277,7 +289,11 @@
                         android:textColor="#838383"
                         android:textSize="20sp"
                         android:background="@drawable/profilepiceditcircle"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:hint="Confirm password"
+                        android:maxLines="1"
+                        android:lines="1"
+                        android:singleLine="true"/>
                 </FrameLayout>
             </LinearLayout>
 
@@ -292,7 +308,7 @@
                 <Button
                     android:id="@+id/edit_save_Id"
                     android:layout_width="250dp"
-                    android:layout_height="50dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="center"
                     android:backgroundTint="#0AEAF1"
                     android:layout_marginBottom="10dp"

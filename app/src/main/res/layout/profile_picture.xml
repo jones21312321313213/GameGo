@@ -59,19 +59,6 @@
             android:src="@drawable/mew" />
 
         <!-- edit circle    ?-->
-        <ImageView
-            android:id="@+id/pp_editinfo_Id"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="45dp"
-            android:background="@drawable/circlebg"
-            android:scaleType="centerCrop"
-            android:clipToOutline="true"
-            android:backgroundTint="#EE8924"
-            android:src="@drawable/edit" />
-
         <TextView
             android:id="@+id/username_tv"
             android:layout_width="wrap_content"
@@ -99,40 +86,6 @@
             />
     </FrameLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="#5E5EF6">
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="80dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|top"
-                android:layout_marginEnd="140dp"
-                android:fontFamily="sans-serif"
-                android:text="Name"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/name_tv"
-                android:layout_width="332dp"
-                android:layout_height="45dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/profilepiceditcircle"
-                android:fontFamily="sans-serif"
-                android:text="Jermain Cole"
-                android:textColor="#838383"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-        </FrameLayout>
-    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -142,6 +95,41 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="#5E5EF6">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|top"
+                        android:layout_marginEnd="118dp"
+                        android:fontFamily="sans-serif"
+                        android:text="Username"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/name_tv"
+                        android:layout_width="332dp"
+                        android:layout_height="45dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="15dp"
+                        android:background="@drawable/profilepiceditcircle"
+                        android:fontFamily="sans-serif"
+                        android:text="Jermain Cole"
+                        android:textColor="#838383"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+                </FrameLayout>
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
@@ -293,6 +281,4 @@
                 </LinearLayout>
             </LinearLayout>
     </ScrollView>
-
-
 </LinearLayout>
