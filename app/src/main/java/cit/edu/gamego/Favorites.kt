@@ -41,10 +41,10 @@ class Favorites : Activity() {
         //favoriteGames.add( Game(name,date,R.drawable.ye))
 
         favoriteGames = mutableListOf(
-            Game("ye quest", "2030", R.drawable.ye),
-            Game("Helldivers", "2022", R.drawable.helldivers),
-            Game("Black Myth Wukong", "2024", R.drawable.bmw),
-            Game("Monster Hunter World", "2018", R.drawable.mhw)
+            Game("ye quest", "2030",1.1, R.drawable.ye),
+            Game("Helldivers", "2022",2.2, R.drawable.helldivers),
+            Game("Black Myth Wukong", "2024",3.3, R.drawable.bmw),
+            Game("Monster Hunter World", "2018",4.4, R.drawable.mhw)
         )
 
 

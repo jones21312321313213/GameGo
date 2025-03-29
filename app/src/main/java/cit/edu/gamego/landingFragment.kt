@@ -12,11 +12,15 @@ import android.widget.LinearLayout
 import android.widget.ListView
 import android.widget.SearchView // Use this for the correct SearchView
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import cit.edu.gamego.data.Game
 import cit.edu.gamego.helper.GameListAdapter
+import cit.edu.gamego.helper.GameRecyclerViewAdapter
 import com.google.android.material.search.SearchBar
 
 class landingFragment : Fragment() {
+
 
     private lateinit var listOfGame: MutableList<Game>
     private lateinit var filteredList: MutableList<Game>
@@ -33,70 +37,95 @@ class landingFragment : Fragment() {
         listView = view.findViewById(R.id.listview)
 
 
-        /////////////////TEMOPORARY RANI
-        val ye = view.findViewById<LinearLayout>(R.id.yeQuestLL)
-        val yeIV  = view.findViewById<ImageView>(R.id.yeQuestIV)
-        val yeTV = view.findViewById<TextView>(R.id.yeQuestTV)
+//        /////////////////TEMOPORARY RANI
+//        val ye = view.findViewById<LinearLayout>(R.id.yeQuestLL)
+//        val yeIV  = view.findViewById<ImageView>(R.id.yeQuestIV)
+//        val yeTV = view.findViewById<TextView>(R.id.yeQuestTV)
+//
+//        val bmwLl =  view.findViewById<LinearLayout>(R.id.bmwLL)
+//        val bmwIv =  view.findViewById<ImageView>(R.id.bmwIV)
+//        val bmwTv =  view.findViewById<TextView>(R.id.bmwTV)
+//
+//        val mwhLl =  view.findViewById<LinearLayout>(R.id.mhwLL)
+//        val mwhIv =  view.findViewById<ImageView>(R.id.mhwIV)
+//        val mhwTv =  view.findViewById<TextView>(R.id.mhwTV)
+//
+//        val hd2Ll =  view.findViewById<LinearLayout>(R.id.hd2LL)
+//        val hd2Iv =  view.findViewById<ImageView>(R.id.hd2IV)
+//        val hd2Tv =  view.findViewById<TextView>(R.id.hd2TV)
+//
+//        ye.setOnClickListener{
+//            val title = yeTV.text.toString()
+//            val imageResId = yeIV.tag as? Int ?: R.drawable.aaa // Fallback image
+//            startActivity(
+//                Intent(requireContext(),reviewPageActivity::class.java).apply{
+//                    putExtra("title",title)
+//                    putExtra("imageRes",R.drawable.ye)
+//                }
+//            )
+//        }
+//
+//        bmwLl.setOnClickListener{
+//            val title = bmwTv.text.toString()
+//            val imageResId = bmwIv.tag as? Int ?: R.drawable.aaa // Fallback image
+//            startActivity(
+//                Intent(requireContext(),reviewPageActivity::class.java).apply{
+//                    putExtra("title",title)
+//                    putExtra("imageRes",R.drawable.bmw)
+//                }
+//            )
+//        }
+//
+//
+//        mwhLl.setOnClickListener{
+//            val title = mhwTv.text.toString()
+//            val imageResId = mwhIv.tag as? Int ?: R.drawable.aaa // Fallback image
+//            startActivity(
+//                Intent(requireContext(),reviewPageActivity::class.java).apply{
+//                    putExtra("title",title)
+//                    putExtra("imageRes",R.drawable.mhw)
+//                }
+//            )
+//        }
+//
+//        hd2Ll.setOnClickListener{
+//            val title = hd2Tv.text.toString()
+//            val imageResId = hd2Iv.tag as? Int ?: R.drawable.aaa // Fallback image
+//            startActivity(
+//                Intent(requireContext(),reviewPageActivity::class.java).apply{
+//                    putExtra("title",title)
+//                    putExtra("imageRes",R.drawable.helldivers)
+//                }
+//            )
+//        }
 
-        val bmwLl =  view.findViewById<LinearLayout>(R.id.bmwLL)
-        val bmwIv =  view.findViewById<ImageView>(R.id.bmwIV)
-        val bmwTv =  view.findViewById<TextView>(R.id.bmwTV)
 
-        val mwhLl =  view.findViewById<LinearLayout>(R.id.mhwLL)
-        val mwhIv =  view.findViewById<ImageView>(R.id.mhwIV)
-        val mhwTv =  view.findViewById<TextView>(R.id.mhwTV)
+        //////////////////////// RECYCLER VIEW
+        val listOfGame2 = listOf(
+            Game("YE Quest", "2030",1.1, R.drawable.ye),
+            Game("Helldivers", "2022",2.2, R.drawable.helldivers),
+            Game("Black Myth Wukong", "2024",3.3, R.drawable.bmw),
+            Game("Monster Hunter World", "2018",4.4, R.drawable.mhw)
+        )
 
-        val hd2Ll =  view.findViewById<LinearLayout>(R.id.hd2LL)
-        val hd2Iv =  view.findViewById<ImageView>(R.id.hd2IV)
-        val hd2Tv =  view.findViewById<TextView>(R.id.hd2TV)
 
-        ye.setOnClickListener{
-            val title = yeTV.text.toString()
-            val imageResId = yeIV.tag as? Int ?: R.drawable.aaa // Fallback image
+        val recyclerView =view.findViewById<RecyclerView>(R.id.recyclerview)
+
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+    recyclerView.adapter =GameRecyclerViewAdapter(
+        listOfGame2,
+        onClick ={game->
             startActivity(
                 Intent(requireContext(),reviewPageActivity::class.java).apply{
-                    putExtra("title",title)
-                    putExtra("imageRes",R.drawable.ye)
+                        putExtra("title",game.name)
+                        putExtra("imageRes",game.photo)
+                        putExtra("ratings",game.rating)
                 }
             )
         }
+    )
 
-        bmwLl.setOnClickListener{
-            val title = bmwTv.text.toString()
-            val imageResId = bmwIv.tag as? Int ?: R.drawable.aaa // Fallback image
-            startActivity(
-                Intent(requireContext(),reviewPageActivity::class.java).apply{
-                    putExtra("title",title)
-                    putExtra("imageRes",R.drawable.bmw)
-                }
-            )
-        }
-
-
-        mwhLl.setOnClickListener{
-            val title = mhwTv.text.toString()
-            val imageResId = mwhIv.tag as? Int ?: R.drawable.aaa // Fallback image
-            startActivity(
-                Intent(requireContext(),reviewPageActivity::class.java).apply{
-                    putExtra("title",title)
-                    putExtra("imageRes",R.drawable.mhw)
-                }
-            )
-        }
-
-        hd2Ll.setOnClickListener{
-            val title = hd2Tv.text.toString()
-            val imageResId = hd2Iv.tag as? Int ?: R.drawable.aaa // Fallback image
-            startActivity(
-                Intent(requireContext(),reviewPageActivity::class.java).apply{
-                    putExtra("title",title)
-                    putExtra("imageRes",R.drawable.helldivers)
-                }
-            )
-        }
-
-
-        ////////////////
 
         //////////////////////////////////////LIST VIEW BELOW
         // Initially hide listView
@@ -104,10 +133,10 @@ class landingFragment : Fragment() {
 
         // Sample Data
         listOfGame = mutableListOf(
-            Game("YE Quest", "2030", R.drawable.ye),
-            Game("Helldivers", "2022", R.drawable.helldivers),
-            Game("Black Myth Wukong", "2024", R.drawable.bmw),
-            Game("Monster Hunter World", "2018", R.drawable.mhw)
+            Game("YE Quest", "2030",1.1, R.drawable.ye),
+            Game("Helldivers", "2022",2.2, R.drawable.helldivers),
+            Game("Black Myth Wukong", "2024",3.3, R.drawable.bmw),
+            Game("Monster Hunter World", "2018",4.4, R.drawable.mhw)
         )
 
         filteredList = listOfGame.toMutableList()

@@ -15,9 +15,9 @@
         <activity
             android:name=".reviewPageActivity"
             android:exported="false" />
-        <activity
-            android:name=".SearchWithList"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".SearchWithList"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".landingWIthFragmentActivity"
             android:exported="false"

@@ -8,7 +8,9 @@ import java.io.Serializable
 data class Game(
     var name: String = "",
     var date: String = "",
-    var photo: Int = R.drawable.aaa 
+    var rating:Double,
+    var photo: Int = R.drawable.aaa
+
 )
 
 // todo add platform compatablilit, rating ,genres ,theme,gamemodes
