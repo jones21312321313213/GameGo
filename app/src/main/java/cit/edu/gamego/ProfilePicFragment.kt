@@ -1,5 +1,6 @@
 package cit.edu.gamego
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,9 +9,36 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 
 class ProfilePicFragment : Fragment() {
+    private var currentPassword: String = ""
+    private var isHidden = true
+
+    // temp
+    private val editProfileLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val data = result.data
+            val newUsername = data?.getStringExtra("new_username") ?: ""
+            val newPassword = data?.getStringExtra("new_password") ?: ""
+            val newEmail = data?.getStringExtra("new_email") ?: ""
+            val newPhone = data?.getStringExtra("new_phone")?:""
+            // ✅ Update the password variable
+            if (newPassword.isNotEmpty()) {
+                currentPassword = newPassword
+            }
+
+            // Update UI with new data
+            view?.findViewById<TextView>(R.id.username_tv)?.text = newUsername
+            view?.findViewById<TextView>(R.id.email_tv)?.text = newEmail
+            view?.findViewById<TextView>(R.id.name_tv)?.text = newUsername
+            view?.findViewById<TextView>(R.id.email_view_tv)?.text = newEmail
+            view?.findViewById<TextView>(R.id.phonenumber_tv)?.text = newPhone
+            view?.findViewById<TextView>(R.id.password_tv)?.text = "*".repeat(currentPassword.length) // ✅ Show hidden password by default
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -24,52 +52,29 @@ class ProfilePicFragment : Fragment() {
         val pass = view.findViewById<TextView>(R.id.password_tv)
         val show_pass = view.findViewById<ImageView>(R.id.show_password)
 
-        var passnotHidden: String?
-        val passhid: String
-        var isHidden = true
+        // ✅ Get initial password and store it
+        currentPassword = arguments?.getString("password") ?: ""
 
-        // Get the original login data first
-        var username = arguments?.getString("username")
-        var emailText = arguments?.getString("email")
-        var password = arguments?.getString("password")
+        val username = arguments?.getString("username") ?: ""
+        val emailText = arguments?.getString("email") ?: ""
 
-        // Check if there is new data (edited profile) and update only if it's not null
-        val newUsername = arguments?.getString("new_username")
-        val newEmail = arguments?.getString("new_email")
-        val newPassword = arguments?.getString("new_password")
-
-        if (!newUsername.isNullOrEmpty()) username = newUsername
-        if (!newEmail.isNullOrEmpty()) emailText = newEmail
-        if (!newPassword.isNullOrEmpty()) password = newPassword
-
-        // Set the data to views
         name.text = username
         usern1.text = username
         email1.text = emailText
         email.text = emailText
-        pass.text = password
+        pass.text = "*".repeat(currentPassword.length) // ✅ Show hidden password initially
 
-        // Hide password initially
-        passnotHidden = pass.text.toString()
-        pass.text = "*".repeat(passnotHidden.length)
-        passhid = pass.text.toString()
-
-        // Toggle password visibility
+        // ✅ Toggle password visibility using latest password
         show_pass.setOnClickListener {
-            if (isHidden) {
-                pass.text = passnotHidden
-            } else {
-                pass.text = passhid
-            }
+            pass.text = if (isHidden) currentPassword else "*".repeat(currentPassword.length)
             isHidden = !isHidden
         }
 
-        // Edit button logic
         val btnEdit = view.findViewById<Button>(R.id.edit_Id)
         btnEdit.setOnClickListener {
-            startActivity(Intent(requireContext(), EditProfilePicture::class.java))
+            val intent = Intent(requireContext(), EditProfilePicture::class.java)
+            editProfileLauncher.launch(intent)
         }
-
         return view
     }
 }

@@ -9,79 +9,128 @@
     tools:context=".reviewPageActivity"
     android:background="@drawable/gradient_bg">
 
-    <!-- Top Half - Game Image -->
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+    <!-- Back Button -->
+    <ImageView
+        android:id="@+id/back_rp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="16dp"
+        android:src="@drawable/back_arrow" />
 
-        <!-- Game Image -->
-        <ImageView
-            android:id="@+id/game_pic_rp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:contentDescription="Game Image"
-            android:scaleType="fitCenter"
-            android:layout_centerInParent="true" /> <!-- Centers the ImageView -->
-
-        <!-- Back Button -->
-        <ImageView
-            android:id="@+id/back_rp"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_margin="16dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:background="@drawable/back_arrow" />
-
-        <!-- Heart Icon -->
-        <ImageView
-            android:id="@+id/heart"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_margin="16dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:background="@drawable/baseline_favorite_border" />
-
-    </RelativeLayout>
-
-
-    <!-- Bottom Half - Other Content -->
-    <LinearLayout
+    <!-- Scrollable Content -->
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="vertical"
-        android:padding="16dp"
-        >
-        <TextView
-            android:id="@+id/game_title_rp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Title"
-            android:textSize="35sp"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            android:layout_marginBottom="20dp" />
-        <!-- Example Text -->
-        <TextView
-            android:id="@+id/review_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Game Review"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:paddingBottom="8dp" />
+        android:fillViewport="true">
 
-        <!-- Placeholder for more content -->
-        <TextView
-            android:id="@+id/review_content"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text=" "
-            android:textSize="16sp"/>
-    </LinearLayout>
+            android:orientation="vertical"
+            android:padding="16dp">
 
+            <!-- Game Title -->
+            <TextView
+                android:id="@+id/game_title_rp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Title"
+                android:textSize="35sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_gravity="center_horizontal"
+                android:paddingBottom="10dp"/>
+
+            <!-- Grouped Layout for WebView + Game Info (Image + Platform & Genre) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                tools:ignore="WebViewLayout">
+
+                <!-- WebView -->
+                <WebView
+                    android:id="@+id/game_webview"
+                    android:layout_width="match_parent"
+                    android:layout_height="350dp"
+                    android:layout_marginBottom="50dp" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <!-- Game Image -->
+                    <ImageView
+                        android:id="@+id/game_pic_rp"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="Game Image"
+                        android:scaleType="fitCenter"
+                        android:layout_marginEnd="16dp"/>
+
+                    <!-- Container for Platform & Genre -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:padding="12dp"
+                        android:elevation="4dp"
+                        android:gravity="center"
+                        android:background="#99000000">
+                        <TextView
+                            android:id="@+id/platform_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Platform:\nPC, Xbox"
+                            android:textSize="16sp"
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold"
+                            android:paddingBottom="4dp"/>
+
+                        <TextView
+                            android:id="@+id/genre_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Genre:\nAction, RPG"
+                            android:textSize="16sp"
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Heart Icon -->
+            <ImageView
+                android:id="@+id/heart"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="16dp"
+                android:layout_gravity="end"
+                android:src="@drawable/baseline_favorite_border"/>
+
+            <!-- Review Section -->
+            <TextView
+                android:id="@+id/review_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Game Review"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:paddingBottom="8dp"/>
+
+            <TextView
+                android:id="@+id/review_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" "
+                android:textSize="16sp"/>
+
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

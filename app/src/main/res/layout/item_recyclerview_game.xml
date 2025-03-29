@@ -14,7 +14,7 @@
 
         <FrameLayout
             android:layout_width="289dp"
-            android:layout_height="240dp"
+            android:layout_height="245dp"
             android:background="@drawable/rounded_shadow_bg">
             <!-- Main Image -->
             <ImageView

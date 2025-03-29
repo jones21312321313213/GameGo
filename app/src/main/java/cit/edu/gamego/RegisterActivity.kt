@@ -23,8 +23,6 @@ class RegisterActivity : Activity() {
 
         val button_signUp = findViewById<TextView>(R.id.register_signup_Id);
         button_signUp.setOnClickListener {
-            Log.e("CSIT 284", "absolute cinema");
-            Toast.makeText(this,"Success", Toast.LENGTH_LONG).show();
             val intent = Intent(this,LoginActivity::class.java);//temp
             startActivity(intent);
         }
@@ -55,8 +53,10 @@ class RegisterActivity : Activity() {
                     putExtra("username", username.text.toString())
                     putExtra("password", password.text.toString())
                     putExtra("email",email.text.toString())
+                    toast("success")
                 }
             )
+            finish()
         }
 
     }

@@ -4,11 +4,13 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebView
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import cit.edu.gamego.R
 import cit.edu.gamego.data.Game
+import cit.edu.gamego.extensions.setupAndLoad
 
 class GameListAdapter (
     val context: Context,
@@ -32,7 +34,6 @@ class GameListAdapter (
         val photo = view.findViewById<ImageView>(R.id.imageview_photo)
         val name = view.findViewById<TextView>(R.id.textview_name)
         val more = view.findViewById<ImageView>(R.id.iv_more)
-
         val game = listOfGame[position]
 
         photo.setImageResource(game.photo)

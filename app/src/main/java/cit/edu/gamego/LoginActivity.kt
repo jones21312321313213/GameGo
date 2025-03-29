@@ -4,15 +4,20 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.KeyEvent
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+
+
+//import androidx.appcompat.app.AppCompatActivity
+//import retrofit2.*
+//import retrofit2.converter.gson.GsonConverterFactory
+//import retrofit2.http.*
+
+//import java.util.Properties
+//import java.io.File
+//import java.io.FileInputStream
 
 class LoginActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,7 +63,51 @@ class LoginActivity : Activity() {
                     putExtra("email", et_email);
                 }
             )
+            finish()
         }
-
     }
+
+
+    // OAuth 2.0 CALLBACKS
+//    override fun onResume() {
+//        super.onResume()
+//
+//        intent?.data?.let { uri ->
+//            if (uri.toString().startsWith("yourapp://callback")) {
+//                val code = uri.getQueryParameter("code")
+//                if (code != null) {
+//                    exchangeCodeForToken(code)
+//                }
+//            }
+//        }
+//    }
+//
+//    private fun exchangeCodeForToken(code: String) {
+//        val retrofit = Retrofit.Builder()
+//            .baseUrl("https://github.com/")
+//            .addConverterFactory(GsonConverterFactory.create())
+//            .build()
+//
+//        val service = retrofit.create(OAuthApi::class.java)
+//        val call = service.getAccessToken(
+//            "your_client_id",
+//            "your_client_secret",
+//            code,
+//            "yourapp://callback"
+//        )
+//
+//        call.enqueue(object : Callback<AccessTokenResponse> {
+//            override fun onResponse(call: Call<AccessTokenResponse>, response: Response<AccessTokenResponse>) {
+//                if (response.isSuccessful) {
+//                    val accessToken = response.body()?.accessToken
+//                    Log.d("OAuth", "Access Token: $accessToken")
+//                    // Use this token for authenticated requests
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<AccessTokenResponse>, t: Throwable) {
+//                Log.e("OAuth", "Error: ${t.message}")
+//            }
+//        })
+//    }
 }

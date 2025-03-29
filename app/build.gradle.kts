@@ -77,7 +77,14 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.appcompat)
 
-
+    // Retrofit core library
+//    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+//
+//    // Gson converter for parsing JSON responses
+//    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+//
+//    // OkHttp (optional but recommended for logging)
+//    implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
 
 
 }

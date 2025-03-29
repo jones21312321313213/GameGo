@@ -37,75 +37,29 @@ class landingFragment : Fragment() {
         listView = view.findViewById(R.id.listview)
 
 
-//        /////////////////TEMOPORARY RANI
-//        val ye = view.findViewById<LinearLayout>(R.id.yeQuestLL)
-//        val yeIV  = view.findViewById<ImageView>(R.id.yeQuestIV)
-//        val yeTV = view.findViewById<TextView>(R.id.yeQuestTV)
-//
-//        val bmwLl =  view.findViewById<LinearLayout>(R.id.bmwLL)
-//        val bmwIv =  view.findViewById<ImageView>(R.id.bmwIV)
-//        val bmwTv =  view.findViewById<TextView>(R.id.bmwTV)
-//
-//        val mwhLl =  view.findViewById<LinearLayout>(R.id.mhwLL)
-//        val mwhIv =  view.findViewById<ImageView>(R.id.mhwIV)
-//        val mhwTv =  view.findViewById<TextView>(R.id.mhwTV)
-//
-//        val hd2Ll =  view.findViewById<LinearLayout>(R.id.hd2LL)
-//        val hd2Iv =  view.findViewById<ImageView>(R.id.hd2IV)
-//        val hd2Tv =  view.findViewById<TextView>(R.id.hd2TV)
-//
-//        ye.setOnClickListener{
-//            val title = yeTV.text.toString()
-//            val imageResId = yeIV.tag as? Int ?: R.drawable.aaa // Fallback image
-//            startActivity(
-//                Intent(requireContext(),reviewPageActivity::class.java).apply{
-//                    putExtra("title",title)
-//                    putExtra("imageRes",R.drawable.ye)
-//                }
-//            )
-//        }
-//
-//        bmwLl.setOnClickListener{
-//            val title = bmwTv.text.toString()
-//            val imageResId = bmwIv.tag as? Int ?: R.drawable.aaa // Fallback image
-//            startActivity(
-//                Intent(requireContext(),reviewPageActivity::class.java).apply{
-//                    putExtra("title",title)
-//                    putExtra("imageRes",R.drawable.bmw)
-//                }
-//            )
-//        }
-//
-//
-//        mwhLl.setOnClickListener{
-//            val title = mhwTv.text.toString()
-//            val imageResId = mwhIv.tag as? Int ?: R.drawable.aaa // Fallback image
-//            startActivity(
-//                Intent(requireContext(),reviewPageActivity::class.java).apply{
-//                    putExtra("title",title)
-//                    putExtra("imageRes",R.drawable.mhw)
-//                }
-//            )
-//        }
-//
-//        hd2Ll.setOnClickListener{
-//            val title = hd2Tv.text.toString()
-//            val imageResId = hd2Iv.tag as? Int ?: R.drawable.aaa // Fallback image
-//            startActivity(
-//                Intent(requireContext(),reviewPageActivity::class.java).apply{
-//                    putExtra("title",title)
-//                    putExtra("imageRes",R.drawable.helldivers)
-//                }
-//            )
-//        }
-
-
+       // temp
+        val bmwTrailer = "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/pnSsgRJmsCc?si=Fy9aZVKwThO7lKAi\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>".trimIndent()
+        val helldiversTrailer = "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/UC5EpJR0GBQ?si=1IogxXO2cIXA1Mw5\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>".trimIndent()
+        val mhwTrailer = "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/OotQrKEqe94?si=ZJMQ0Ipel03V7Ouq\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>".trimIndent()
+        val kanyeeee = "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/X3d5rT7FGLE?si=Fekc_iv8eCUh2DHp\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>".trimIndent()
+        val dota2Trailer = "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/-cSFPIwMEq4?si=snIX76ATWr7M80fI\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>".trimIndent()
+        val lolTrailer = "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/RprbAMOPsH0?si=RCu5hNf6GQoDNvjg\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>".trimIndent()
+        val cs2Trailer = "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/nSE38xjMLqE?si=NrrEFt0Up-TpVYpJ\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>".trimIndent()
+        val valoTrailer = "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/e_E9W2vsRbQ?si=0IaLcsue6tIicRol\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>".trimIndent()
+        val gowTrailer = "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/hfJ4Km46A-0?si=baY8Yfl9Zer1BSCn\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>".trimIndent()
+        val eldenRingTrailer = "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/AKXiKBnzpBQ?si=zBuJ8VqG7Y5gjWOU\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>".trimIndent()
         //////////////////////// RECYCLER VIEW
         val listOfGame2 = listOf(
-            Game("YE Quest", "2030",1.1, R.drawable.ye),
-            Game("Helldivers", "2022",2.2, R.drawable.helldivers),
-            Game("Black Myth Wukong", "2024",3.3, R.drawable.bmw),
-            Game("Monster Hunter World", "2018",4.4, R.drawable.mhw)
+            Game("YE Quest", "2030",1.1, R.drawable.ye,kanyeeee),
+            Game("Helldivers", "2022",8.2, R.drawable.helldivers,helldiversTrailer),
+            Game("Black Myth Wukong", "2024",9.3, R.drawable.bmw,bmwTrailer),
+            Game("Monster Hunter World", "2018",8.4, R.drawable.mhw,mhwTrailer),
+            Game("DOTA 2", "2011",8.8, R.drawable.dota,dota2Trailer),
+            Game("League of Legends", "2012",0.0, R.drawable.lol,lolTrailer),
+            Game("Counter Strike 2", "2023",6.6, R.drawable.cs2,cs2Trailer),
+            Game("God of War: Ragnarock", "2018",9.9, R.drawable.gowrag,gowTrailer),
+            Game("Valorant", "2020",5.5, R.drawable.valo,valoTrailer),
+            Game("Elden Ring", "2018",10.0, R.drawable.eldenring,eldenRingTrailer)
         )
 
 
@@ -121,6 +75,7 @@ class landingFragment : Fragment() {
                         putExtra("title",game.name)
                         putExtra("imageRes",game.photo)
                         putExtra("ratings",game.rating)
+                        putExtra("trailer",game.gameTrailer)
                 }
             )
         }
@@ -133,10 +88,16 @@ class landingFragment : Fragment() {
 
         // Sample Data
         listOfGame = mutableListOf(
-            Game("YE Quest", "2030",1.1, R.drawable.ye),
-            Game("Helldivers", "2022",2.2, R.drawable.helldivers),
-            Game("Black Myth Wukong", "2024",3.3, R.drawable.bmw),
-            Game("Monster Hunter World", "2018",4.4, R.drawable.mhw)
+            Game("YE Quest", "2030",1.1, R.drawable.ye,kanyeeee),
+            Game("Helldivers", "2022",8.2, R.drawable.helldivers,helldiversTrailer),
+            Game("Black Myth Wukong", "2024",9.3, R.drawable.bmw,bmwTrailer),
+            Game("Monster Hunter World", "2018",8.4, R.drawable.mhw,mhwTrailer),
+            Game("DOTA 2", "2011",8.8, R.drawable.dota,dota2Trailer),
+            Game("League of Legends", "2012",0.0, R.drawable.lol,lolTrailer),
+            Game("Counter Strike 2", "2023",6.6, R.drawable.cs2,cs2Trailer),
+            Game("God of War: Ragnarock", "2018",9.9, R.drawable.gowrag,gowTrailer),
+            Game("Valorant", "2020",5.5, R.drawable.valo,valoTrailer),
+            Game("Elden Ring", "2018",10.0, R.drawable.eldenring,eldenRingTrailer)
         )
 
         filteredList = listOfGame.toMutableList()
@@ -212,6 +173,7 @@ class landingFragment : Fragment() {
             Intent(requireContext(),reviewPageActivity::class.java).apply{
                 putExtra("title",game.name)
                 putExtra("imageRes",game.photo)
+                putExtra("trailer",game.gameTrailer)
             }
         )
     }

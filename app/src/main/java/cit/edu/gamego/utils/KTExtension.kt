@@ -18,6 +18,9 @@ import cit.edu.gamego.LoginActivity
 import cit.edu.gamego.R
 import cit.edu.gamego.data.Game
 import cit.edu.gamego.reviewPageActivity
+import android.webkit.WebSettings
+import android.webkit.WebView
+import android.webkit.WebViewClient
 
 fun Context.showConfirmation(message: String) {
     val dialog = Dialog(this)
@@ -52,6 +55,17 @@ fun Context.showConfirmation(message: String) {
     btnNo.setOnClickListener {
         dialog.dismiss()
     }
+}
+
+fun WebView.setupAndLoad(trailer: String) {
+    settings.javaScriptEnabled = true
+    settings.domStorageEnabled = true
+    settings.cacheMode = WebSettings.LOAD_NO_CACHE
+    settings.mediaPlaybackRequiresUserGesture = false // Allow autoplay
+
+    webViewClient = WebViewClient() // Prevent opening in external browser
+
+    loadDataWithBaseURL(null, trailer, "text/html", "utf-8", null)
 }
 
 fun EditText.isTextNullOrEmpty(): Boolean {

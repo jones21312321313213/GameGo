@@ -13,96 +13,65 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import cit.edu.gamego.extensions.showConfirmation
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 
-class EditProfilePicture : Activity() {
+class EditProfilePicture : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.edit_profile_picture);
+        setContentView(R.layout.edit_profile_picture)
 
-
-        // todo pass the data from this act to the profilepicFragmenrt
         val name = findViewById<EditText>(R.id.edit_name_Id)
         val email = findViewById<EditText>(R.id.edit_email_Id)
         val phone = findViewById<EditText>(R.id.edit_phoneNumber_Id)
         val newPass = findViewById<EditText>(R.id.newpass_Id)
         val confirmPass = findViewById<EditText>(R.id.edit_confirmpass_Id)
 
-
-
-
-        val btnBack = findViewById<ImageView>(R.id.edit_pfp_back_Id);
-        btnBack.setOnClickListener{
-           // val intent = Intent(this,ProfilePictureActivity::class.java);
-//            val message = "Saves have not been save are you sure\n do you want to save changes?"
-//            showSaveConfirmationPopUp(message);
-            //startActivity(intent);
+        val btnBack = findViewById<ImageView>(R.id.edit_pfp_back_Id)
+        btnBack.setOnClickListener {
             finish()
         }
 
-        val btnSave = findViewById<Button>(R.id.edit_save_Id);
-        btnSave.setOnClickListener{
+        val btnSave = findViewById<Button>(R.id.edit_save_Id)
+        btnSave.setOnClickListener {
             val message = "Are you sure you want to save changes?"
-            sendDatatoFragment(name.text.toString(),newPass.text.toString(),email.text.toString())
-            showSaveConfirmationPopUp(message);
+            showSaveConfirmationPopUp(message, name.text.toString(), newPass.text.toString(), email.text.toString(),phone.text.toString())
         }
     }
 
-    private fun sendDatatoFragment(name: String, pass: String,email: String): ProfilePicFragment {
-        val fragment = ProfilePicFragment()
-        val bundle = Bundle().apply {
-            putString("new_username", name)
-            putString("new_password", pass)
-            putString("new_email", email)
-        }
-        fragment.arguments = bundle
-        return fragment
-    }
+    private fun showSaveConfirmationPopUp(message: String, name: String, pass: String, email: String,phone:String) {
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(false)
+        dialog.setContentView(R.layout.activity_logout_popout)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-    private fun showSaveConfirmationPopUp(message:String){
-        val dialog = Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setCancelable(false);
-        dialog.setContentView(R.layout.activity_logout_popout);
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
+        val widthInPx = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 400f, resources.displayMetrics).toInt()
+        val heightInPx = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200f, resources.displayMetrics).toInt()
+        dialog.window?.setLayout(widthInPx, heightInPx)
 
-        //para ma change and width sa popup
-        val widthInPx = TypedValue.applyDimension(
-            TypedValue.COMPLEX_UNIT_DIP,
-            400f,
-            resources.displayMetrics
-        ).toInt()
-        //para ma change and height sa popup
-        val heightInPx = TypedValue.applyDimension(
-            TypedValue.COMPLEX_UNIT_DIP,
-            200f,
-            resources.displayMetrics
-        ).toInt()
+        val btnYes = dialog.findViewById<Button>(R.id.yesLogout_id)
+        val btnNo = dialog.findViewById<Button>(R.id.noLogout_id)
+        val msg = dialog.findViewById<TextView>(R.id.message)
 
-        dialog.window?.setLayout(
-            widthInPx,  // Width
-            heightInPx   // Height
-        )
+        msg.text = message
+        dialog.show()
 
-        val btnYes = dialog.findViewById<Button>(R.id.yesLogout_id);
-        val btnNo = dialog.findViewById<Button>(R.id.noLogout_id);
-        val msg = dialog.findViewById<TextView>(R.id.message);
+        btnYes.setOnClickListener {
+            Toast.makeText(this, "Saved changes", Toast.LENGTH_LONG).show()
 
-        msg.text = message;
-        dialog.show();
-        btnYes.setOnClickListener{
-//            Toast.makeText(this,"saved changes", Toast.LENGTH_LONG).show();
-//            val intent = Intent(this,ProfilePictureActivity::class.java);
-//            startActivity(intent);
-            finish()
+            // Send data back to LandingWithFragmentActivity
+            val resultIntent = Intent().apply {
+                putExtra("new_username", name)
+                putExtra("new_password", pass)
+                putExtra("new_email", email)
+                putExtra("new_phone",phone)
+            }
+            setResult(Activity.RESULT_OK, resultIntent)
+            finish() // Close activity after saving
         }
 
-        btnNo.setOnClickListener{
-            dialog.dismiss();
+        btnNo.setOnClickListener {
+            dialog.dismiss()
         }
     }
 }
