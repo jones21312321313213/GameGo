@@ -51,13 +51,13 @@ class landingFragment : Fragment() {
         //////////////////////// RECYCLER VIEW
         val listOfGame2 = listOf(
             Game("YE Quest", "2030",1.1, R.drawable.ye,kanyeeee),
-            Game("Helldivers", "2022",8.2, R.drawable.helldivers,helldiversTrailer),
+            Game("Helldivers 2", "2022",8.2, R.drawable.helldivers,helldiversTrailer),
             Game("Black Myth Wukong", "2024",9.3, R.drawable.bmw,bmwTrailer),
-            Game("Monster Hunter World", "2018",8.4, R.drawable.mhw,mhwTrailer),
+            Game("Monster Hunter: World", "2018",8.4, R.drawable.mhw,mhwTrailer),
             Game("DOTA 2", "2011",8.8, R.drawable.dota,dota2Trailer),
             Game("League of Legends", "2012",0.0, R.drawable.lol,lolTrailer),
             Game("Counter Strike 2", "2023",6.6, R.drawable.cs2,cs2Trailer),
-            Game("God of War: Ragnarock", "2018",9.9, R.drawable.gowrag,gowTrailer),
+            Game("God of War: Ragnarok", "2022",9.9, R.drawable.gowrag,gowTrailer),
             Game("Valorant", "2020",5.5, R.drawable.valo,valoTrailer),
             Game("Elden Ring", "2018",10.0, R.drawable.eldenring,eldenRingTrailer)
         )
@@ -68,6 +68,7 @@ class landingFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
     recyclerView.adapter =GameRecyclerViewAdapter(
+        requireContext(),
         listOfGame2,
         onClick ={game->
             startActivity(
@@ -89,13 +90,13 @@ class landingFragment : Fragment() {
         // Sample Data
         listOfGame = mutableListOf(
             Game("YE Quest", "2030",1.1, R.drawable.ye,kanyeeee),
-            Game("Helldivers", "2022",8.2, R.drawable.helldivers,helldiversTrailer),
+            Game("Helldivers 2", "2022",8.2, R.drawable.helldivers,helldiversTrailer),
             Game("Black Myth Wukong", "2024",9.3, R.drawable.bmw,bmwTrailer),
-            Game("Monster Hunter World", "2018",8.4, R.drawable.mhw,mhwTrailer),
+            Game("Monster Hunter: World", "2018",8.4, R.drawable.mhw,mhwTrailer),
             Game("DOTA 2", "2011",8.8, R.drawable.dota,dota2Trailer),
             Game("League of Legends", "2012",0.0, R.drawable.lol,lolTrailer),
             Game("Counter Strike 2", "2023",6.6, R.drawable.cs2,cs2Trailer),
-            Game("God of War: Ragnarock", "2018",9.9, R.drawable.gowrag,gowTrailer),
+            Game("God of War: Ragnarok", "2022",9.9, R.drawable.gowrag,gowTrailer),
             Game("Valorant", "2020",5.5, R.drawable.valo,valoTrailer),
             Game("Elden Ring", "2018",10.0, R.drawable.eldenring,eldenRingTrailer)
         )
@@ -174,6 +175,7 @@ class landingFragment : Fragment() {
                 putExtra("title",game.name)
                 putExtra("imageRes",game.photo)
                 putExtra("trailer",game.gameTrailer)
+                putExtra("ratings",game.rating)
             }
         )
     }

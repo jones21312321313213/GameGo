@@ -77,6 +77,9 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.appcompat)
 
+    //card view
+    implementation("androidx.cardview:cardview:1.0.0")
+
     // Retrofit core library
 //    implementation("com.squareup.retrofit2:retrofit:2.9.0")
 //

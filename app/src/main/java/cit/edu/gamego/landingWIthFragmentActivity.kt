@@ -47,6 +47,7 @@ class landingWIthFragmentActivity : AppCompatActivity() {
         navView = findViewById(R.id.nav_view)
         val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.toolbar)
 
+        //supportActionBar?.title = ""
         setSupportActionBar(toolbar)
 
         val toggle = ActionBarDrawerToggle(

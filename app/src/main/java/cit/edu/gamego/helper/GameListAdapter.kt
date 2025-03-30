@@ -36,6 +36,7 @@ class GameListAdapter (
         val more = view.findViewById<ImageView>(R.id.iv_more)
         val game = listOfGame[position]
 
+
         photo.setImageResource(game.photo)
         "${game.name} ${game.date}".also { name.text = it }
         // this is jsut name.text = "${game.name} ${game.date}" but ide wants it to be lke at top

@@ -1,5 +1,6 @@
 package cit.edu.gamego.helper
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,36 +11,39 @@ import cit.edu.gamego.R
 import cit.edu.gamego.data.Game
 
 class GameRecyclerViewAdapter(
+    private val context: Context,  // Pass the context to determine activity
     private val listOfGame: List<Game>,
-    private val onClick:(Game) ->Unit
-    ):RecyclerView.Adapter<GameRecyclerViewAdapter.ItemViewHolder>(){
+    private val onClick: (Game) -> Unit,
+    private val isAlternativeLayout: Boolean = false // Flag for layout selection
+) : RecyclerView.Adapter<GameRecyclerViewAdapter.ItemViewHolder>() {
 
-        class ItemViewHolder(view: View):RecyclerView.ViewHolder(view){
-            val photo =view.findViewById<ImageView>(R.id.photo_irg)
-            val name = view.findViewById<TextView>(R.id.title_irg)
-            val ratings = view.findViewById<TextView>(R.id.ratings_irg)
+    class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val photo: ImageView = view.findViewById(R.id.photo_irg)
+        val name: TextView = view.findViewById(R.id.title_irg)
+        val ratings: TextView = view.findViewById(R.id.ratings_irg)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
+        val layoutId = if (isAlternativeLayout) {
+            R.layout.item_devs_fav_game // Use alternative layout
+        } else {
+            R.layout.item_recyclerview_game // Default layout
         }
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ):GameRecyclerViewAdapter.ItemViewHolder{
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_recyclerview_game,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(layoutId, parent, false)
         return ItemViewHolder(view)
     }
 
-    override fun onBindViewHolder(
-        holder: GameRecyclerViewAdapter.ItemViewHolder,
-        position: Int
-    ) {
+    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = listOfGame[position]
         holder.photo.setImageResource(item.photo)
-        holder.name.setText(item.name)
-        holder.ratings.setText(item.rating.toString())
+        holder.name.text = item.name
+        holder.ratings.text = item.rating.toString()
 
-        holder.itemView.setOnClickListener{
+        holder.itemView.setOnClickListener {
             onClick(item)
         }
     }
+
     override fun getItemCount(): Int = listOfGame.size
 }

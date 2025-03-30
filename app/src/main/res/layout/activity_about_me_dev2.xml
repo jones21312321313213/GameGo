@@ -5,15 +5,41 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#5e5ef6">
-    <LinearLayout android:layout_width="match_parent" android:layout_height="10dp" android:layout_marginTop="50dp" android:orientation="horizontal" android:gravity="center_vertical" android:background="#804fe6"> </LinearLayout>
-    <FrameLayout android:layout_width="match_parent" android:layout_height="500dp" android:orientation="horizontal" android:paddingTop="15dp" android:layout_gravity="center" android:background="#e620b4">
+
+    <ImageView
+        android:layout_gravity="center"
+        android:layout_width="70dp"
+        android:layout_marginTop="10dp"
+        android:layout_height="70dp"
+        android:src="@drawable/logo2" />
+
+    <!-- Top Bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="#804fe6" />
+
+    <!-- Developer Info Section -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:paddingTop="15dp"
+        android:background="#e620b4">
+
         <EditText
             android:layout_width="370dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/searchbar"
             android:backgroundTint="#A9A9A9"
+            android:focusable="false"
+            android:clickable="false"
+            android:inputType="none"
             android:padding="10dp"/>
+
         <EditText
             android:layout_width="355dp"
             android:layout_height="wrap_content"
@@ -23,6 +49,9 @@
             android:text="About the Developers"
             android:textAlignment="center"
             android:textStyle="bold"
+            android:focusable="false"
+            android:clickable="false"
+            android:inputType="none"
             android:padding="10dp"/>
 
         <ImageView
@@ -33,36 +62,27 @@
             android:layout_marginLeft="30dp"
             android:src="@drawable/back_arrow"/>
 
-        <EditText
-            android:backgroundTint="#A9A9A9"
-            android:layout_width="355dp"
-            android:layout_height="397dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="60dp"
-            android:background="@drawable/searchbar"
-            android:padding="10dp"/>
-
         <LinearLayout
             android:layout_width="359dp"
-            android:layout_height="373dp"
+            android:layout_height="320dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="70dp"
             android:background="@drawable/searchbar"
             android:orientation="vertical"
-            android:paddingTop="20dp">
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <!--  Archival  -->
+                <!-- Developer Info -->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="8dp"
                     android:gravity="center"
+                    android:layout_gravity="center|center_vertical"
                     android:orientation="vertical">
 
                     <ImageView
@@ -79,34 +99,309 @@
                         android:text="Arco"
                         android:textAlignment="center"
                         android:textColor="@color/black"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
-                <LinearLayout
+
+                <!-- Scrollable Developer Info Section -->
+                <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:orientation="vertical">
-                    <TextView
-                        android:id="@+id/abmetv2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:fontFamily="sans-serif"
-                        android:padding="10dp"
-                        android:text=" "
-                        android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textSize="14dp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-                <!--  Space between  -->
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp">
 
-                <!--  Black line  -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:id="@+id/abmetv2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif"
+                            android:padding="10dp"
+                            android:text=" "
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+
+                        <!-- Wrap both TextView and HorizontalScrollView inside a horizontal LinearLayout -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:padding="10dp">
+
+                            <!-- "My hobbies are:" Text -->
+                            <TextView
+                                android:id="@+id/abmehobbies2"
+                                android:layout_width="140dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif"
+                                android:padding="10dp"
+                                android:text="Hobbies        "
+                                android:textColor="@color/black"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <!-- Horizontal ScrollView -->
+                            <HorizontalScrollView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:scrollbars="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:paddingStart="10dp">
+
+                                    <!-- Hobby Item 1 -->
+                                    <LinearLayout
+                                        android:layout_width="100dp"
+                                        android:layout_height="100dp"
+                                        android:gravity="center"
+                                        android:background="@drawable/goku"
+                                        android:layout_margin="5dp">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:text="Watching Anime"
+                                            android:textStyle="bold"
+                                            android:textSize="14sp"
+                                            android:textColor="@android:color/black"/>
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="100dp"
+                                        android:layout_height="100dp"
+                                        android:background="@drawable/code"
+                                        android:gravity="center"
+                                        android:layout_margin="5dp">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:text="Coding"
+                                            android:textStyle="bold"
+                                            android:textSize="14sp"
+                                            android:textColor="@android:color/black"/>
+                                    </LinearLayout>
+
+                                    <!-- Hobby Item 2 -->
+                                    <LinearLayout
+                                        android:layout_width="100dp"
+                                        android:layout_height="100dp"
+                                        android:background="@drawable/vg"
+                                        android:gravity="center"
+                                        android:layout_margin="5dp">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:text="Playing Video games"
+                                            android:textStyle="bold"
+                                            android:textSize="14sp"
+                                            android:textColor="@android:color/black"/>
+                                    </LinearLayout>
+
+                                    <!-- Hobby Item 3 -->
+                                    <LinearLayout
+                                        android:layout_width="100dp"
+                                        android:layout_height="100dp"
+                                        android:background="@drawable/manga"
+                                        android:gravity="center"
+                                        android:layout_margin="5dp">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:text="Reading mangas/manhwas"
+                                            android:textStyle="bold"
+                                            android:textSize="14sp"
+                                            android:textColor="@android:color/black"/>
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                            </HorizontalScrollView>
+
+                        </LinearLayout>
+
+                        <!-- Programming languages -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:padding="10dp">
+
+                            <!-- "My hobbies are:" Text -->
+                            <TextView
+                                android:layout_width="140dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif"
+                                android:padding="10dp"
+                                android:text="Programming \nlanguages \nthat I learned"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <!-- Horizontal ScrollView -->
+                            <HorizontalScrollView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:scrollbars="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:paddingStart="10dp">
+
+                                    <!-- Hobby Item 1 -->
+                                    <LinearLayout
+                                        android:layout_width="100dp"
+                                        android:layout_height="100dp"
+                                        android:gravity="center"
+                                        android:background="@drawable/c"
+                                        android:layout_margin="5dp">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:text="C"
+                                            android:textStyle="bold"
+                                            android:textSize="14sp"
+                                            android:textColor="@android:color/black"/>
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="100dp"
+                                        android:layout_height="100dp"
+                                        android:background="@drawable/cpp"
+                                        android:gravity="center"
+                                        android:layout_margin="5dp">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:text="C++"
+                                            android:textStyle="bold"
+                                            android:textSize="14sp"
+                                            android:textColor="@android:color/black"/>
+                                    </LinearLayout>
+
+                                    <!-- Hobby Item 2 -->
+                                    <LinearLayout
+                                        android:layout_width="100dp"
+                                        android:layout_height="100dp"
+                                        android:background="@drawable/java"
+                                        android:gravity="center"
+                                        android:layout_margin="5dp">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:text="Java"
+                                            android:textStyle="bold"
+                                            android:textSize="14sp"
+                                            android:textColor="@android:color/black"/>
+                                    </LinearLayout>
+
+                                    <!-- Hobby Item 3 -->
+                                    <LinearLayout
+                                        android:layout_width="100dp"
+                                        android:layout_height="100dp"
+                                        android:background="@drawable/kotlin"
+                                        android:gravity="center"
+                                        android:layout_margin="5dp">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:text="Kotlin"
+                                            android:textStyle="bold"
+                                            android:textSize="14sp"
+                                            android:textColor="@android:color/black"/>
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="100dp"
+                                        android:layout_height="100dp"
+                                        android:background="@drawable/mysql"
+                                        android:gravity="center"
+                                        android:layout_margin="5dp">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:text="MySql"
+                                            android:textStyle="bold"
+                                            android:textSize="14sp"
+                                            android:textColor="@android:color/black"/>
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                            </HorizontalScrollView>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </ScrollView>
+
             </LinearLayout>
         </LinearLayout>
     </FrameLayout>
-    <LinearLayout android:layout_width="match_parent" android:layout_height="10dp" android:orientation="horizontal" android:gravity="center_vertical" android:background="#c430c5"> </LinearLayout>
-    <LinearLayout android:layout_width="match_parent" android:layout_height="10dp" android:orientation="horizontal" android:gravity="center_vertical" android:background="#a23fd5"> </LinearLayout>
-    <LinearLayout android:layout_width="match_parent" android:layout_height="10dp" android:orientation="horizontal" android:gravity="center_vertical" android:background="#804fe6"> </LinearLayout>
+
+    <!-- Games Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:text="Games that I like"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/horizontalRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:clipToPadding="false"
+            android:paddingBottom="20dp"
+            android:scrollbars="horizontal"/>
+
+        </ScrollView>
+    </LinearLayout>
+
 </LinearLayout>

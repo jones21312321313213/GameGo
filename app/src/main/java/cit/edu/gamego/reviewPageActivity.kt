@@ -1,5 +1,6 @@
 package cit.edu.gamego
 
+
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.webkit.WebSettings
@@ -26,6 +27,7 @@ class reviewPageActivity : Activity() {
         val gameTitle = findViewById<TextView>(R.id.game_title_rp)
         val gameRev = findViewById<TextView>(R.id.review_content)
         val back = findViewById<ImageView>(R.id.back_rp)
+        val rating = findViewById<TextView>(R.id.ratings_tv_rp)
         var trailer: String = ""
 
         intent?.let {
@@ -37,6 +39,9 @@ class reviewPageActivity : Activity() {
                     gameImg.setImageResource(imageResId)
                 }
             }
+            it.getDoubleExtra("ratings",0.0).let { ratings ->
+                rating.text = ratings.toString()
+            }
             trailer = it.getStringExtra("trailer") ?: ""  // ✅ Prevents "null" string
         }
 
@@ -45,21 +50,35 @@ class reviewPageActivity : Activity() {
         webView = findViewById(R.id.game_webview)
         webView.setupAndLoad(trailer)
 
-        // ✅ Set game review text based on title
-        gameRev.text = when (title.toString().lowercase()) { 
-            "the ye quest" -> "This game explores how Kanye takes inspiration from controversial figures to make music."
-            "black myth wukong 2024" -> "An action RPG where players control a monkey warrior inspired by Journey to the West."
-            "monster hunter: world 2018" -> "Embark on the ultimate hunting experience, tracking and battling massive creatures."
-            "helldivers 2 2022" -> "A cooperative third-person shooter where players defend Super Earth from alien threats."
+        // temp
+        gameRev.text = when {
+            gameTitle.text.toString().trim().equals("Ye Quest", ignoreCase = true) ->
+                "This game explores how Kanye takes inspiration from controversial figures to make music."
+            gameTitle.text.toString().trim().equals("Black Myth Wukong", ignoreCase = true) ->
+                "An action RPG where players control a monkey warrior inspired by Journey to the West."
+            gameTitle.text.toString().trim().equals("Monster Hunter: World", ignoreCase = true) ->
+                "Embark on the ultimate hunting experience, tracking and battling massive creatures."
+            gameTitle.text.toString().trim().equals("Helldivers 2", ignoreCase = true) ->
+                "A cooperative third-person shooter where players defend Super Earth from alien threats."
+            gameTitle.text.toString().trim().equals("DOTA 2", ignoreCase = true) ->
+                "A competitive MOBA where two teams of five heroes battle to destroy the enemy’s Ancient."
+            gameTitle.text.toString().trim().equals("League of Legends", ignoreCase = true) ->
+                "A fast-paced MOBA where champions with unique abilities fight to control Summoner’s Rift."
+            gameTitle.text.toString().trim().equals("Counter Strike 2", ignoreCase = true) ->
+                "A tactical first-person shooter where teams compete in bomb defusal and hostage rescue modes."
+            gameTitle.text.toString().trim().equals("God of War: Ragnarok", ignoreCase = true) ->
+                "A mythological action-adventure game following Kratos and Atreus on their Norse journey."
+            gameTitle.text.toString().trim().equals("Valorant", ignoreCase = true) ->
+                "A tactical shooter where agents with unique abilities battle in intense 5v5 matches."
+            gameTitle.text.toString().trim().equals("Elden Ring", ignoreCase = true) ->
+                "An open-world action RPG where players explore the Lands Between and battle formidable foes."
             else -> "No review available."
         }
 
-        // ✅ Back button functionality
         back.setOnClickListener {
             finish()
         }
 
-        // ✅ Heart button (Favorites)
         val heart = findViewById<ImageView>(R.id.heart)
         val imageResId = gameImg.tag as? Int ?: R.drawable.aaa
 
