@@ -8,7 +8,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import cit.edu.gamego.data.Game
 import androidx.recyclerview.widget.RecyclerView
-import cit.edu.gamego.helper.GameRecyclerViewAdapter
+import cit.edu.gamego.data.Image
+import cit.edu.gamego.helper.GameRecyclerViewAdapterwGlide
 
 
 class about_me_dev2 : Activity() {
@@ -33,11 +34,11 @@ class about_me_dev2 : Activity() {
         val eldenRingTrailer = "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/AKXiKBnzpBQ?si=zBuJ8VqG7Y5gjWOU\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>".trimIndent()
 
         val listOfGame = listOf(
-            Game("Counter Strike 2", "2023",6.6, R.drawable.cs2,cs2Trailer),
-            Game("DOTA 2", "2011",8.8, R.drawable.dota,dota2Trailer),
-            Game("Black Myth Wukong", "2024",9.3, R.drawable.bmw,bmwTrailer),
-            Game("God of War: Ragnarock", "2018",9.9, R.drawable.gowrag,gowTrailer),
-            Game("Elden Ring", "2018",10.0, R.drawable.eldenring,eldenRingTrailer)
+            Game("Counter Strike 2", "2023",6.6, Image(R.drawable.cs2.toString()),cs2Trailer),
+            Game("DOTA 2", "2011",8.8, Image(R.drawable.dota.toString()),dota2Trailer),
+            Game("Black Myth Wukong", "2024",9.3, Image(R.drawable.bmw.toString()),bmwTrailer),
+            Game("God of War: Ragnarock", "2018",9.9, Image(R.drawable.gowrag.toString()),gowTrailer),
+            Game("Elden Ring", "2018",10.0, Image(R.drawable.eldenring.toString()),eldenRingTrailer)
         )
 
 
@@ -45,14 +46,14 @@ class about_me_dev2 : Activity() {
 
         recyclerView.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
 
-        recyclerView.adapter = GameRecyclerViewAdapter(
+        recyclerView.adapter = GameRecyclerViewAdapterwGlide(
             this,
             listOfGame,
             onClick = {game ->
                 startActivity(
                     Intent(this,reviewPageActivity::class.java).apply{
                         putExtra("title",game.name)
-                        putExtra("imageRes",game.photo)
+                        putExtra("imageRes",game.photo.toString())
                         putExtra("ratings",game.rating)
                         putExtra("trailer",game.gameTrailer)
                     }

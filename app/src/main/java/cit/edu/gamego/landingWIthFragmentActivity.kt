@@ -11,6 +11,7 @@ import cit.edu.gamego.extensions.showConfirmation
 import com.google.android.material.navigation.NavigationView
 import android.widget.ImageView
 
+
 class landingWIthFragmentActivity : AppCompatActivity() {
 
     private lateinit var mainLayout: DrawerLayout
@@ -85,6 +86,7 @@ class landingWIthFragmentActivity : AppCompatActivity() {
         }
     }
 
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -112,4 +114,6 @@ class landingWIthFragmentActivity : AppCompatActivity() {
     companion object {
         private const val REQUEST_CODE_EDIT_PROFILE = 100
     }
+
+
 }

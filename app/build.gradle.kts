@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
@@ -18,6 +20,12 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+        // added these
+        val properties = Properties()
+        val localPropertiesFile = rootProject.file("local.properties")
+        if(localPropertiesFile.exists()){properties.load(localPropertiesFile.inputStream())}
+        val apiKey = properties.getProperty("Giant_Bomb_API_KEY", "")
+        buildConfigField("String","Giant_Bomb_API_KEY","\"$apiKey\"")
     }
 
     buildTypes {
@@ -34,6 +42,9 @@ android {
         jvmTarget = "1.8"
     }
     buildFeatures {
+        // added this
+        buildConfig = true
+        //
         compose = true
         viewBinding = true
     }
@@ -77,15 +88,21 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.appcompat)
 
+    //Recycler view
+    implementation("androidx.recyclerview:recyclerview:1.2.1")
+
     //card view
     implementation("androidx.cardview:cardview:1.0.0")
 
     // Retrofit core library
-//    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-//
-//    // Gson converter for parsing JSON responses
-//    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-//
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+
+    // Gson converter for parsing JSON responses
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+
+
+
 //    // OkHttp (optional but recommended for logging)
 //    implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
 

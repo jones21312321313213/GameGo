@@ -19,33 +19,34 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
             android:background="@android:color/transparent"
             android:elevation="0dp"
-            android:layout_height="?attr/actionBarSize"
             android:title="Home"
             android:titleTextColor="#FFFFFF">
 
 
-
             <View
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
+
             <ImageView
-                android:layout_gravity="center"
                 android:layout_width="150dp"
                 android:layout_height="45dp"
+                android:layout_gravity="center"
                 android:src="@drawable/logo2" />
+
             <View
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
 
             <ImageView
-                android:layout_gravity="end"
                 android:id="@+id/faves"
                 android:layout_width="76dp"
                 android:layout_height="45dp"
+                android:layout_gravity="end"
                 android:layout_marginEnd="20dp"
                 android:src="@drawable/heart" />
         </androidx.appcompat.widget.Toolbar>

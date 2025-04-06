@@ -11,12 +11,12 @@ import cit.edu.gamego.R
 import cit.edu.gamego.data.Game
 import com.bumptech.glide.Glide
 
-class GameRecyclerViewAdapter(
+class GameRecyclerViewAdapterwGlide(
     private val context: Context,  // Pass the context to determine activity
     private val listOfGame: List<Game>,
     private val onClick: (Game) -> Unit,
     private val isAlternativeLayout: Boolean = false // Flag for layout selection
-) : RecyclerView.Adapter<GameRecyclerViewAdapter.ItemViewHolder>() {
+) : RecyclerView.Adapter<GameRecyclerViewAdapterwGlide.ItemViewHolder>() {
 
     class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val photo: ImageView = view.findViewById(R.id.photo_irg)
@@ -37,7 +37,10 @@ class GameRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = listOfGame[position]
-        holder.photo.setImageResource(item.photo?.medium_url!!.toInt())
+
+        Glide.with(holder.itemView.context).load(item.photo?.medium_url).into(holder.photo)
+
+        //holder.photo.setImageResource(item.photo.toInt())
         holder.name.text = item.name
         holder.ratings.text = item.rating.toString()
 

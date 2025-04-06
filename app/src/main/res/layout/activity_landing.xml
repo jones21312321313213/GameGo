@@ -33,6 +33,24 @@
             android:visibility="gone"/>
 
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Random Games you might like"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textStyle="bold|italic"
+            />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/randomGamesRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:clipToPadding="false"
+            android:paddingBottom="20dp"
+            android:scrollbars="horizontal"/>
+
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"

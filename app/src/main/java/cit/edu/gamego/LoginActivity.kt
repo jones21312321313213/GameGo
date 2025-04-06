@@ -24,6 +24,7 @@ class LoginActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_f3);
 
+
         val et_username = findViewById<EditText>(R.id.login_username_Id);
         val et_password = findViewById<EditText>(R.id.login_pass_Id);
         var et_email: String? = null
