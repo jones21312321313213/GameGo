@@ -16,7 +16,6 @@ import cit.edu.gamego.data.Game
 import cit.edu.gamego.helper.GameListAdapter
 import cit.edu.gamego.helper.GameRecyclerViewAdapterwGlide
 
-
 import cit.edu.gamego.data.ApiClient
 import cit.edu.gamego.data.GameApiResponse
 import retrofit2.Call
@@ -27,8 +26,6 @@ import cit.edu.gamego.data.Image
 import cit.edu.gamego.helper.GameRecyclerViewAdapter
 
 class landingFragment : Fragment() {
-
-
     private lateinit var listOfGame: MutableList<Game>
     private lateinit var filteredList: MutableList<Game>
     private lateinit var arrayAdapter: GameListAdapter
@@ -80,7 +77,8 @@ class landingFragment : Fragment() {
         gameAdapter = GameRecyclerViewAdapterwGlide(
             requireContext(),
             listOfGames,
-            onClick ={game-> more(game)
+            onClick ={game->
+                moreWGlide(game)
             }
         )
         rgRecyclerView.adapter = gameAdapter
@@ -93,7 +91,6 @@ class landingFragment : Fragment() {
         )
 
         fetchGames()
-
         //////////////////////////////////////LIST VIEW BELOW
         // Initially hide listView
         listView.visibility = View.GONE
@@ -176,7 +173,6 @@ class landingFragment : Fragment() {
                 call: Call<GameApiResponse>,
                 response: Response<GameApiResponse>
             ) {
-
                 if (response.isSuccessful) {
                     // Log the games list
                     val games = response.body()?.results
@@ -225,7 +221,19 @@ class landingFragment : Fragment() {
             Intent(requireContext(),reviewPageActivity::class.java).apply{
                 putExtra("title",game.name)
                 //track this later since changed from String -> Image
-                putExtra("imageRes",game.photo?.medium_url!!.toInt())
+                putExtra("imageRes",game.photo?.medium_url)
+                putExtra("trailer",game.gameTrailer)
+                putExtra("ratings",game.rating)
+            }
+        )
+    }
+
+    private fun moreWGlide(game: Game) {
+        startActivity(
+            Intent(requireContext(),reviewPageActivity::class.java).apply{
+                putExtra("title",game.name)
+                //track this later since changed from String -> Image
+                putExtra("imageReswGlide",game.photo?.medium_url)
                 putExtra("trailer",game.gameTrailer)
                 putExtra("ratings",game.rating)
             }

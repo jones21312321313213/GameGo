@@ -41,6 +41,7 @@
             android:textSize="20sp"
             android:textStyle="bold|italic"
             />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/randomGamesRecyclerView"
             android:layout_width="match_parent"
@@ -48,8 +49,7 @@
             android:layout_marginTop="10dp"
             android:clipToPadding="false"
             android:paddingBottom="20dp"
-            android:scrollbars="horizontal"/>
-
+            android:scrollbars="horizontal" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"

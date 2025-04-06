@@ -16,11 +16,7 @@ data class GiantBombGame(
 // Image class for storing the image URL
 data class Image(
     val medium_url: String
-) {
-    fun toInt(): Int {
-        return this.toInt()
-    }
-}
+)
 
 // Rating class to handle game ratings
 data class Rating(

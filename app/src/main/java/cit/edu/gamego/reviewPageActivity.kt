@@ -13,6 +13,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import cit.edu.gamego.data.Game
 import cit.edu.gamego.extensions.setupAndLoad
+import com.bumptech.glide.Glide
 
 class reviewPageActivity : Activity() {
 
@@ -30,15 +31,20 @@ class reviewPageActivity : Activity() {
         val rating = findViewById<TextView>(R.id.ratings_tv_rp)
         var trailer: String = ""
 
+        var abc: String? = "a"
         intent?.let {
             it.getStringExtra("title")?.let { title ->
                 gameTitle.text = title
             }
-            it.getIntExtra("imageRes", 0).let { imageResId ->
-                if (imageResId != 0) {
-                    gameImg.setImageResource(imageResId)
-                }
+            it.getStringExtra("imageReswGlide").let { imageReswGlide ->
+                Glide.with(this).load(imageReswGlide).into(gameImg)
+                abc = imageReswGlide
             }
+            it.getStringExtra("imageRes")?.let{imageRes->
+                gameImg.setImageResource(imageRes.toInt())
+                abc = imageRes
+            }
+
             it.getDoubleExtra("ratings",0.0).let { ratings ->
                 rating.text = ratings.toString()
             }
@@ -80,14 +86,14 @@ class reviewPageActivity : Activity() {
         }
 
         val heart = findViewById<ImageView>(R.id.heart)
-        val imageResId = gameImg.tag as? Int ?: R.drawable.aaa
 
         heart.setOnClickListener {
             startActivity(
                 Intent(this, Favorites::class.java).apply {
                     putExtra("title", gameTitle.text.toString())
                     putExtra("releaseDate", "21")
-                    putExtra("imageRes", imageResId)
+                    putExtra("imageRes", abc)
+                    putExtra("rating",rating.text.toString())
                 }
             )
         }
