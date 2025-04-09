@@ -12,6 +12,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import cit.edu.gamego.data.Game
 import cit.edu.gamego.data.Image
+import cit.edu.gamego.extensions.FavoritesDataHolder
 import cit.edu.gamego.helper.GameListAdapter
 
 class Favorites : Activity() {
@@ -27,28 +28,27 @@ class Favorites : Activity() {
 
 
         //val img = findViewById<ImageView>(R.id.fav_back)
-        var name: String? = "asd"
-        var rating: Double = 0.0
-        var img: String? = "a"
-        intent?.let {
-            name = it.getStringExtra("title")  // Extract the title from the intent
-            rating = it.getDoubleExtra("rating",0.0)
-            img = it.getStringExtra("imageRes")
-        }
-        val game = Game(name ?: "Default Name", "2030", rating, Image(img.toString())) // Directly pass R.drawable.bmw as an Int
-
-        //favoriteGames.add( Game(name,date,1.1,Image(R.drawable.ye.toString())))
-
+//        var name: String = "Default Name"
+//        var rating: Double = 0.0
+//        var img: String = R.drawable.ye.toString()// fallback pic
 
         favoriteGames = mutableListOf(
-            Game("ye quest", "2030",1.1, Image(R.drawable.ye.toString())),
-            game
+            Game("ye quest", "2030","1.1", Image(R.drawable.ye.toString()))
 //            Game("Helldivers", "2022",2.2, R.drawable.helldivers.toString()),
 //            Game("Black Myth Wukong", "2024",3.3, R.drawable.bmw.toString()),
 //            Game("Monster Hunter World", "2018",4.4, R.drawable.mhw.toString())
         )
 
+        val name = FavoritesDataHolder.title
+        val rating = FavoritesDataHolder.rating
+        val img = FavoritesDataHolder.imageRes ?: R.drawable.ye.toString()
 
+        //val releaseDate = FavoritesDataHolder.releaseDate
+
+        favoriteGames.add(Game(name,"2030",rating,Image(img)))
+
+
+        //favoriteGames.add( Game(name,date,1.1,Image(R.drawable.ye.toString())))
 
 
         arrayAdapter = GameListAdapter(this, favoriteGames,

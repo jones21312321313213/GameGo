@@ -7,9 +7,12 @@ import java.io.Serializable
 data class Game(
     var name: String = "",
     var date: String? = "",
-    var rating:Double,
+    var rating:String="",
     var photo: Image?,
-    val gameTrailer: String? = ""
+    val gameTrailer: String? = "",
+    var description: String? = "",
+    var isLiked: Boolean = false,
+    val guid: String = ""
 
 ): Serializable
 

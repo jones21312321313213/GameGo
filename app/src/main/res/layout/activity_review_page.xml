@@ -40,7 +40,7 @@
                 android:textStyle="bold"
                 android:gravity="center"
                 android:layout_gravity="center_horizontal"
-                android:paddingBottom="10dp"/>
+                android:paddingBottom="10dp" />
 
             <!-- Grouped Layout for WebView + Game Info (Image + Platform & Genre) -->
             <LinearLayout
@@ -56,22 +56,33 @@
                     android:layout_height="350dp"
                     android:layout_marginBottom="50dp" />
 
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center_vertical">
 
-                    <!-- Game Image -->
-                    <ImageView
-                        android:id="@+id/game_pic_rp"
+                    <FrameLayout
                         android:layout_width="200dp"
-                        android:layout_height="200dp"
-                        android:adjustViewBounds="true"
-                        android:contentDescription="Game Image"
-                        android:scaleType="centerInside"
-                        android:layout_marginEnd="16dp"/>
+                        android:layout_height="200dp">
+
+                        <ImageView
+                            android:id="@+id/insideHeard"
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            android:visibility="invisible"
+                            android:layout_gravity="center"
+                            android:src="@drawable/baseline_favorite_white" />
+
+                        <ImageView
+                            android:id="@+id/game_pic_rp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:adjustViewBounds="true"
+                            android:contentDescription="Game Image"
+                            android:scaleType="centerInside"
+                            android:layout_marginEnd="16dp" />
+                    </FrameLayout>
 
                     <!-- Container for Platform & Genre -->
                     <LinearLayout
@@ -83,31 +94,48 @@
                         android:elevation="4dp"
                         android:gravity="center"
                         android:background="#99000000">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Platform:"
+                            android:textSize="16sp"
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold"
+                            android:paddingBottom="4dp" />
+
                         <TextView
                             android:id="@+id/platform_text"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Platform:\nPC, Xbox"
+                            android:text="Sample, Sample"
                             android:textSize="16sp"
                             android:textColor="@android:color/white"
                             android:textStyle="bold"
-                            android:paddingBottom="4dp"/>
+                            android:paddingBottom="4dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Genre:"
+                            android:textSize="16sp"
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold"
+                            android:paddingBottom="4dp" />
 
                         <TextView
                             android:id="@+id/genre_text"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Genre:\nAction, RPG"
+                            android:text="Sample, sample"
                             android:textSize="16sp"
                             android:textColor="@android:color/white"
-                            android:textStyle="bold"/>
+                            android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
 
-
-
-                <!-- IDGB Rating Label -->
+            <!-- IDGB Rating Label -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -121,8 +149,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:textStyle="bold"
-                    android:textSize="25sp"
-                    android:text="IDGB Rating:"/>
+                    android:textSize="20sp"
+                    android:text="GiantBomb Rating:" />
 
                 <TextView
                     android:id="@+id/ratings_tv_rp"
@@ -130,22 +158,21 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:textStyle="bold"
-                    android:textSize="25sp"
-                    android:text="1.1"/>
-
+                    android:textSize="20sp"
+                    android:text="N/A" />
 
                 <ImageView
                     android:id="@+id/star"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:layout_marginStart="8dp"
-                    android:background="@drawable/star"/>
+                    android:background="@drawable/star" />
 
                 <!-- Spacer to push the heart to the end -->
                 <View
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1" />
 
                 <!-- Heart Icon at the end -->
                 <ImageView
@@ -153,11 +180,10 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginEnd="16dp"
-                    android:src="@drawable/baseline_favorite_border"/>
+                    android:src="@drawable/baseline_favorite_border_24" />
             </LinearLayout>
 
-
-            <!-- Review Section -->
+            <!--             Review Section -->
             <TextView
                 android:id="@+id/review_title"
                 android:layout_width="wrap_content"
@@ -166,7 +192,7 @@
                 android:textSize="24sp"
                 android:layout_margin="10dp"
                 android:textStyle="bold"
-                android:paddingBottom="8dp"/>
+                android:paddingBottom="8dp" />
 
             <TextView
                 android:id="@+id/review_content"
@@ -174,8 +200,9 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:text=" "
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
+            <!-- Bottom Navigation (Scrollable with Content) -->
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

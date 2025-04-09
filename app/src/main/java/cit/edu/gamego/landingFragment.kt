@@ -32,7 +32,7 @@ class landingFragment : Fragment() {
     private lateinit var searchView: SearchView
     private lateinit var listView: ListView
     private lateinit var gameAdapter: GameRecyclerViewAdapterwGlide
-    private val listOfGames = mutableListOf<Game>()
+    private val listOfRandomGames = mutableListOf<Game>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -57,17 +57,17 @@ class landingFragment : Fragment() {
         //////////////////////// RECYCLER VIEW
 
         val listOfGame2 = listOf(
-        Game("YE Quest", "2030", 1.1, Image(R.drawable.ye.toString()), kanyeeee),
-        Game("Helldivers 2", "2022", 8.2, Image(R.drawable.helldivers.toString()), helldiversTrailer),
-        Game("Black Myth Wukong", "2024", 9.3, Image(R.drawable.bmw.toString()), bmwTrailer),
-        Game("Monster Hunter: World", "2018", 8.4, Image(R.drawable.mhw.toString()), mhwTrailer),
-        Game("DOTA 2", "2011", 8.8, Image(R.drawable.dota.toString()), dota2Trailer),
-        Game("League of Legends", "2012", 0.0, Image(R.drawable.lol.toString()), lolTrailer),
-        Game("Counter Strike 2", "2023", 6.6, Image(R.drawable.cs2.toString()), cs2Trailer),
-        Game("God of War: Ragnarok", "2022", 9.9, Image(R.drawable.gowrag.toString()), gowTrailer),
-        Game("Valorant", "2020", 5.5, Image(R.drawable.valo.toString()), valoTrailer),
-        Game("Elden Ring", "2018", 10.0, Image(R.drawable.eldenring.toString()), eldenRingTrailer)
-       )
+            Game("YE Quest", "2030", "1.1", Image(R.drawable.ye.toString()), kanyeeee),
+            Game("Helldivers 2", "2022", "8.2", Image(R.drawable.helldivers.toString()), helldiversTrailer),
+            Game("Black Myth Wukong", "2024", "9.3", Image(R.drawable.bmw.toString()), bmwTrailer),
+            Game("Monster Hunter: World", "2018", "8.4", Image(R.drawable.mhw.toString()), mhwTrailer),
+            Game("DOTA 2", "2011", "8.8", Image(R.drawable.dota.toString()), dota2Trailer),
+            Game("League of Legends", "2012", "0.0", Image(R.drawable.lol.toString()), lolTrailer),
+            Game("Counter Strike 2", "2023", "6.6", Image(R.drawable.cs2.toString()), cs2Trailer),
+            Game("God of War: Ragnarok", "2022", "9.9", Image(R.drawable.gowrag.toString()), gowTrailer),
+            Game("Valorant", "2020", "5.5", Image(R.drawable.valo.toString()), valoTrailer),
+            Game("Elden Ring", "2018", "10.0", Image(R.drawable.eldenring.toString()), eldenRingTrailer)
+        )
 
         val recyclerView =view.findViewById<RecyclerView>(R.id.recyclerview)
         val rgRecyclerView = view.findViewById<RecyclerView>(R.id.randomGamesRecyclerView)
@@ -76,7 +76,7 @@ class landingFragment : Fragment() {
 
         gameAdapter = GameRecyclerViewAdapterwGlide(
             requireContext(),
-            listOfGames,
+            listOfRandomGames,
             onClick ={game->
                 moreWGlide(game)
             }
@@ -97,16 +97,16 @@ class landingFragment : Fragment() {
 
         // Sample Data
         listOfGame = mutableListOf(
-            Game("YE Quest", "2030", 1.1, Image(R.drawable.ye.toString()), kanyeeee),
-            Game("Helldivers 2", "2022", 8.2, Image(R.drawable.helldivers.toString()), helldiversTrailer),
-            Game("Black Myth Wukong", "2024", 9.3, Image(R.drawable.bmw.toString()), bmwTrailer),
-            Game("Monster Hunter: World", "2018", 8.4, Image(R.drawable.mhw.toString()), mhwTrailer),
-            Game("DOTA 2", "2011", 8.8, Image(R.drawable.dota.toString()), dota2Trailer),
-            Game("League of Legends", "2012", 0.0, Image(R.drawable.lol.toString()), lolTrailer),
-            Game("Counter Strike 2", "2023", 6.6, Image(R.drawable.cs2.toString()), cs2Trailer),
-            Game("God of War: Ragnarok", "2022", 9.9, Image(R.drawable.gowrag.toString()), gowTrailer),
-            Game("Valorant", "2020", 5.5, Image(R.drawable.valo.toString()), valoTrailer),
-            Game("Elden Ring", "2018", 10.0, Image(R.drawable.eldenring.toString()), eldenRingTrailer)
+            Game("YE Quest", "2030", "1.1", Image(R.drawable.ye.toString()), kanyeeee),
+            Game("Helldivers 2", "2022", "8.2", Image(R.drawable.helldivers.toString()), helldiversTrailer),
+            Game("Black Myth Wukong", "2024", "9.3", Image(R.drawable.bmw.toString()), bmwTrailer),
+            Game("Monster Hunter: World", "2018", "8.4", Image(R.drawable.mhw.toString()), mhwTrailer),
+            Game("DOTA 2", "2011", "8.8", Image(R.drawable.dota.toString()), dota2Trailer),
+            Game("League of Legends", "2012", "0.0", Image(R.drawable.lol.toString()), lolTrailer),
+            Game("Counter Strike 2", "2023", "6.6", Image(R.drawable.cs2.toString()), cs2Trailer),
+            Game("God of War: Ragnarok", "2022", "9.9", Image(R.drawable.gowrag.toString()), gowTrailer),
+            Game("Valorant", "2020", "5.5", Image(R.drawable.valo.toString()), valoTrailer),
+            Game("Elden Ring", "2018", "10.0", Image(R.drawable.eldenring.toString()), eldenRingTrailer)
         )
 
         filteredList = listOfGame.toMutableList()
@@ -178,12 +178,13 @@ class landingFragment : Fragment() {
                     val games = response.body()?.results
                     Log.d("API", "Fetched ${games?.size} games")
                     if(games != null){
-                        listOfGames.clear()
-                        listOfGames.addAll(games.map{ game->
+                        listOfRandomGames.clear()
+                        listOfRandomGames.addAll(games.map{ game->
                             Game(
+                                guid = game.guid,
                                 name = game.name ?: "Unknown",
                                 date = game.original_release_date,
-                                rating = 1.1,
+                                rating = "1.1",
                                 photo = game.image,
                                 gameTrailer = "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/pnSsgRJmsCc?si=Fy9aZVKwThO7lKAi\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>".trimIndent()
                             )
@@ -220,7 +221,6 @@ class landingFragment : Fragment() {
         startActivity(
             Intent(requireContext(),reviewPageActivity::class.java).apply{
                 putExtra("title",game.name)
-                //track this later since changed from String -> Image
                 putExtra("imageRes",game.photo?.medium_url)
                 putExtra("trailer",game.gameTrailer)
                 putExtra("ratings",game.rating)
@@ -229,6 +229,7 @@ class landingFragment : Fragment() {
     }
 
     private fun moreWGlide(game: Game) {
+        print(game.guid)
         startActivity(
             Intent(requireContext(),reviewPageActivity::class.java).apply{
                 putExtra("title",game.name)
@@ -236,6 +237,7 @@ class landingFragment : Fragment() {
                 putExtra("imageReswGlide",game.photo?.medium_url)
                 putExtra("trailer",game.gameTrailer)
                 putExtra("ratings",game.rating)
+                putExtra("guid",game.guid)
             }
         )
     }

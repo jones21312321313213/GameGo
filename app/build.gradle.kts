@@ -88,6 +88,9 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.appcompat)
 
+    //bottom nav view
+    implementation("com.google.android.material:material:1.1.0")
+
     //Recycler view
     implementation("androidx.recyclerview:recyclerview:1.2.1")
 
@@ -100,6 +103,7 @@ dependencies {
     // Gson converter for parsing JSON responses
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.github.bumptech.glide:glide:4.16.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
 
 
 

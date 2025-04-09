@@ -82,6 +82,14 @@ fun showDeleteDialog(position: Int) {
    print("skibidi")
 }
 
+object FavoritesDataHolder {
+    var title: String = ""
+    var releaseDate: String = ""
+    var imageRes: String = ""
+    var rating: String = ""
+    val isLiked: Boolean = true
+}
+
 
 
 

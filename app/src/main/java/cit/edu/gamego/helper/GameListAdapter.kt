@@ -11,6 +11,7 @@ import android.widget.TextView
 import cit.edu.gamego.R
 import cit.edu.gamego.data.Game
 import cit.edu.gamego.extensions.setupAndLoad
+import com.bumptech.glide.Glide
 
 class GameListAdapter (
     val context: Context,
@@ -38,7 +39,24 @@ class GameListAdapter (
 
 
         //added here
-        photo.setImageResource(game.photo?.medium_url!!.toInt())
+        val imageStr = game.photo?.medium_url ?: "placeholder"
+
+        if (imageStr.startsWith("http")) {
+            // Load from URL using Glide
+            Glide.with(context)
+                .load(imageStr)
+                .placeholder(R.drawable.ye)
+                .error(R.drawable.ye)
+                .into(photo)
+        } else {
+            // Load from drawable by name
+            val resId = context.resources.getIdentifier(imageStr, "drawable", context.packageName)
+            if (resId != 0) {
+                photo.setImageResource(resId)
+            } else {
+                photo.setImageResource(R.drawable.ye) // fallback if drawable not found
+            }
+        }
         "${game.name} ${game.date}".also { name.text = it }
         // this is jsut name.text = "${game.name} ${game.date}" but ide wants it to be lke at top
 
