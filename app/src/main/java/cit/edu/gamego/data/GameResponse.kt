@@ -32,8 +32,10 @@ data class GameDetails(
     val publishers: List<Company>?,
     val videos: List<Video>?,
     val themes: List<Theme>?,
-    val similar_games: List<Game>?
+    val similar_games: List<Game>?,
+    val aliases: String?
 )
+
 
 data class Company(
     val name: String

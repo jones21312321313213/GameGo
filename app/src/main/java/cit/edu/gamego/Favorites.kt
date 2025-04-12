@@ -33,8 +33,8 @@ class Favorites : Activity() {
 //        var img: String = R.drawable.ye.toString()// fallback pic
 
         favoriteGames = mutableListOf(
-            Game("ye quest", "2030","1.1", Image(R.drawable.ye.toString()))
-//            Game("Helldivers", "2022",2.2, R.drawable.helldivers.toString()),
+            Game("YE Quest", "2030", "1.1", Image(R.drawable.ye.toString()), " ", "The visionary's journey through a surreal rap universe.", false, "game_yequest", listOf("PS5", "PC"), "Yeezy Interactive", listOf("Adventure", "Rhythm"), listOf("Hip-Hop", "Satire"), listOf("YE Series"),listOf("Yeezy Productions"), "YQ"),
+            //Game("Helldivers", "2022",2.2, R.drawable.helldivers.toString()),
 //            Game("Black Myth Wukong", "2024",3.3, R.drawable.bmw.toString()),
 //            Game("Monster Hunter World", "2018",4.4, R.drawable.mhw.toString())
         )

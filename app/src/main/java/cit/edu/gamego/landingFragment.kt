@@ -56,18 +56,19 @@ class landingFragment : Fragment() {
         val eldenRingTrailer = "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/AKXiKBnzpBQ?si=zBuJ8VqG7Y5gjWOU\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>".trimIndent()
         //////////////////////// RECYCLER VIEW
 
-        val listOfGame2 = listOf(
-            Game("YE Quest", "2030", "1.1", Image(R.drawable.ye.toString()), kanyeeee),
-            Game("Helldivers 2", "2022", "8.2", Image(R.drawable.helldivers.toString()), helldiversTrailer),
-            Game("Black Myth Wukong", "2024", "9.3", Image(R.drawable.bmw.toString()), bmwTrailer),
-            Game("Monster Hunter: World", "2018", "8.4", Image(R.drawable.mhw.toString()), mhwTrailer),
-            Game("DOTA 2", "2011", "8.8", Image(R.drawable.dota.toString()), dota2Trailer),
-            Game("League of Legends", "2012", "0.0", Image(R.drawable.lol.toString()), lolTrailer),
-            Game("Counter Strike 2", "2023", "6.6", Image(R.drawable.cs2.toString()), cs2Trailer),
-            Game("God of War: Ragnarok", "2022", "9.9", Image(R.drawable.gowrag.toString()), gowTrailer),
-            Game("Valorant", "2020", "5.5", Image(R.drawable.valo.toString()), valoTrailer),
-            Game("Elden Ring", "2018", "10.0", Image(R.drawable.eldenring.toString()), eldenRingTrailer)
+        val listOfGame2 = mutableListOf(
+            Game("YE Quest", "2030", "1.1", Image(R.drawable.ye.toString()), kanyeeee, "The visionary's journey through a surreal rap universe.", false, "game_yequest", listOf("PS5", "PC"), "Yeezy Interactive", listOf("Adventure", "Rhythm"), listOf("Hip-Hop", "Satire"), listOf("YE Series"),listOf("Yeezy Productions"), "YQ"),
+            Game("Helldivers 2", "2022", "8.2", Image(R.drawable.helldivers.toString()), helldiversTrailer, "A chaotic co-op shooter fighting for liberty across galaxies.", false, "game_helldivers2", listOf("PS5", "PC"), "Arrowhead Game Studios", listOf("Shooter", "Co-op"), listOf("Sci-fi", "Military"),  listOf("Helldivers"), listOf("PlayStation Studios"),"HD2"),
+            Game("Black Myth Wukong", "2024", "9.3", Image(R.drawable.bmw.toString()), bmwTrailer, "An epic retelling of the legendary Monkey King's story.", false, "game_blackmythwukong", listOf("PS5", "PC"), "Game Science", listOf("Action RPG"), listOf("Mythology", "Fantasy"),  listOf("Black Myth"),listOf("Game Science"), "BMW"),
+            Game("Monster Hunter: World", "2018", "8.4", Image(R.drawable.mhw.toString()), mhwTrailer, "Hunt massive monsters in a living, breathing ecosystem.", false, "game_mhw", listOf("PS4", "Xbox One", "PC"), "Capcom", listOf("Action", "RPG"), listOf("Fantasy", "Exploration"), listOf("Monster Hunter"),  listOf("Capcom"),"MHW"),
+            Game("DOTA 2", "2011", "8.8", Image(R.drawable.dota.toString()), dota2Trailer, "Valve’s legendary competitive MOBA title.", false, "game_dota2", listOf("PC"), "Valve", listOf("MOBA"), listOf("Fantasy"),  listOf("DOTA"), listOf("Valve"),"Defense of the Ancients 2"),
+            Game("League of Legends", "2012", "0.0", Image(R.drawable.lol.toString()), lolTrailer, "The world’s biggest MOBA with global competitive scenes.", false, "game_lol", listOf("PC"), "Riot Games", listOf("MOBA"), listOf("Fantasy"),  listOf("League Universe"),listOf("Riot Games"), "LoL"),
+            Game("Counter Strike 2", "2023", "6.6", Image(R.drawable.cs2.toString()), cs2Trailer, "The next evolution of the iconic tactical shooter.", false, "game_cs2", listOf("PC"), "Valve", listOf("Shooter", "Tactical"), listOf("Modern Warfare"),  listOf("Counter-Strike"), listOf("Valve"),"CS2"),
+            Game("God of War: Ragnarok", "2022", "9.9", Image(R.drawable.gowrag.toString()), gowTrailer, "The epic Norse saga of Kratos and Atreus continues.", false, "game_gowrag", listOf("PS4", "PS5"), "Santa Monica Studio", listOf("Action", "Adventure"), listOf("Mythology"),  listOf("God of War"),listOf("Sony Interactive Entertainment"), "GOW: Ragnarok"),
+            Game("Valorant", "2020", "5.5", Image(R.drawable.valo.toString()), valoTrailer, "A 5v5 tactical shooter with unique agent abilities.", false, "game_valorant", listOf("PC"), "Riot Games", listOf("Shooter", "Tactical"), listOf("Futuristic"),  listOf("Valorant"),listOf("Riot Games"), "Valo"),
+            Game("Elden Ring", "2018", "10.0", Image(R.drawable.eldenring.toString()), eldenRingTrailer, "A dark fantasy masterpiece from FromSoftware and George R.R. Martin.", false, "game_eldenring", listOf("PS4", "PS5", "Xbox", "PC"), "FromSoftware", listOf("RPG", "Soulslike"), listOf("Dark Fantasy"),  listOf("Elden Ring"),listOf("Bandai Namco"), "ER")
         )
+
 
         val recyclerView =view.findViewById<RecyclerView>(R.id.recyclerview)
         val rgRecyclerView = view.findViewById<RecyclerView>(R.id.randomGamesRecyclerView)
@@ -96,18 +97,19 @@ class landingFragment : Fragment() {
         listView.visibility = View.GONE
 
         // Sample Data
-        listOfGame = mutableListOf(
-            Game("YE Quest", "2030", "1.1", Image(R.drawable.ye.toString()), kanyeeee),
-            Game("Helldivers 2", "2022", "8.2", Image(R.drawable.helldivers.toString()), helldiversTrailer),
-            Game("Black Myth Wukong", "2024", "9.3", Image(R.drawable.bmw.toString()), bmwTrailer),
-            Game("Monster Hunter: World", "2018", "8.4", Image(R.drawable.mhw.toString()), mhwTrailer),
-            Game("DOTA 2", "2011", "8.8", Image(R.drawable.dota.toString()), dota2Trailer),
-            Game("League of Legends", "2012", "0.0", Image(R.drawable.lol.toString()), lolTrailer),
-            Game("Counter Strike 2", "2023", "6.6", Image(R.drawable.cs2.toString()), cs2Trailer),
-            Game("God of War: Ragnarok", "2022", "9.9", Image(R.drawable.gowrag.toString()), gowTrailer),
-            Game("Valorant", "2020", "5.5", Image(R.drawable.valo.toString()), valoTrailer),
-            Game("Elden Ring", "2018", "10.0", Image(R.drawable.eldenring.toString()), eldenRingTrailer)
+        val listOfGame = mutableListOf(
+            Game("YE Quest", "2030", "1.1", Image(R.drawable.ye.toString()), kanyeeee, "The visionary's journey through a surreal rap universe.", false, "game_yequest", listOf("PS5", "PC"), "Yeezy Interactive", listOf("Adventure", "Rhythm"), listOf("Hip-Hop", "Satire"), listOf("YE Series"),listOf("Yeezy Productions"), "YQ"),
+            Game("Helldivers 2", "2022", "8.2", Image(R.drawable.helldivers.toString()), helldiversTrailer, "A chaotic co-op shooter fighting for liberty across galaxies.", false, "game_helldivers2", listOf("PS5", "PC"), "Arrowhead Game Studios", listOf("Shooter", "Co-op"), listOf("Sci-fi", "Military"),  listOf("Helldivers"), listOf("PlayStation Studios"),"HD2"),
+            Game("Black Myth Wukong", "2024", "9.3", Image(R.drawable.bmw.toString()), bmwTrailer, "An epic retelling of the legendary Monkey King's story.", false, "game_blackmythwukong", listOf("PS5", "PC"), "Game Science", listOf("Action RPG"), listOf("Mythology", "Fantasy"),  listOf("Black Myth"),listOf("Game Science"), "BMW"),
+            Game("Monster Hunter: World", "2018", "8.4", Image(R.drawable.mhw.toString()), mhwTrailer, "Hunt massive monsters in a living, breathing ecosystem.", false, "game_mhw", listOf("PS4", "Xbox One", "PC"), "Capcom", listOf("Action", "RPG"), listOf("Fantasy", "Exploration"), listOf("Monster Hunter"),  listOf("Capcom"),"MHW"),
+            Game("DOTA 2", "2011", "8.8", Image(R.drawable.dota.toString()), dota2Trailer, "Valve’s legendary competitive MOBA title.", false, "game_dota2", listOf("PC"), "Valve", listOf("MOBA"), listOf("Fantasy"),  listOf("DOTA"), listOf("Valve"),"Defense of the Ancients 2"),
+            Game("League of Legends", "2012", "0.0", Image(R.drawable.lol.toString()), lolTrailer, "The world’s biggest MOBA with global competitive scenes.", false, "game_lol", listOf("PC"), "Riot Games", listOf("MOBA"), listOf("Fantasy"),  listOf("League Universe"),listOf("Riot Games"), "LoL"),
+            Game("Counter Strike 2", "2023", "6.6", Image(R.drawable.cs2.toString()), cs2Trailer, "The next evolution of the iconic tactical shooter.", false, "game_cs2", listOf("PC"), "Valve", listOf("Shooter", "Tactical"), listOf("Modern Warfare"),  listOf("Counter-Strike"), listOf("Valve"),"CS2"),
+            Game("God of War: Ragnarok", "2022", "9.9", Image(R.drawable.gowrag.toString()), gowTrailer, "The epic Norse saga of Kratos and Atreus continues.", false, "game_gowrag", listOf("PS4", "PS5"), "Santa Monica Studio", listOf("Action", "Adventure"), listOf("Mythology"),  listOf("God of War"),listOf("Sony Interactive Entertainment"), "GOW: Ragnarok"),
+            Game("Valorant", "2020", "5.5", Image(R.drawable.valo.toString()), valoTrailer, "A 5v5 tactical shooter with unique agent abilities.", false, "game_valorant", listOf("PC"), "Riot Games", listOf("Shooter", "Tactical"), listOf("Futuristic"),  listOf("Valorant"),listOf("Riot Games"), "Valo"),
+            Game("Elden Ring", "2018", "10.0", Image(R.drawable.eldenring.toString()), eldenRingTrailer, "A dark fantasy masterpiece from FromSoftware and George R.R. Martin.", false, "game_eldenring", listOf("PS4", "PS5", "Xbox", "PC"), "FromSoftware", listOf("RPG", "Soulslike"), listOf("Dark Fantasy"),  listOf("Elden Ring"),listOf("Bandai Namco"), "ER")
         )
+
 
         filteredList = listOfGame.toMutableList()
 
@@ -186,7 +188,18 @@ class landingFragment : Fragment() {
                                 date = game.original_release_date,
                                 rating = "1.1",
                                 photo = game.image,
-                                gameTrailer = "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/pnSsgRJmsCc?si=Fy9aZVKwThO7lKAi\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>".trimIndent()
+                                gameTrailer = """
+        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/pnSsgRJmsCc?si=Fy9aZVKwThO7lKAi" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    """.trimIndent(),
+                                description = "",
+                                isLiked = false,
+                                platform = emptyList(),
+                                developer = "",
+                                genre = emptyList(),
+                                theme = emptyList(),
+                                franchise = emptyList(),
+                                publishers = emptyList(),
+                                alias = ""
                             )
                         })
                         gameAdapter.notifyDataSetChanged()
@@ -219,28 +232,48 @@ class landingFragment : Fragment() {
 
     private fun more(game: Game) {
         startActivity(
-            Intent(requireContext(),reviewPageActivity::class.java).apply{
-                putExtra("title",game.name)
-                putExtra("imageRes",game.photo?.medium_url)
-                putExtra("trailer",game.gameTrailer)
-                putExtra("ratings",game.rating)
+            Intent(requireContext(), reviewPageActivity::class.java).apply {
+                putExtra("title", game.name)
+                putExtra("date",game.date)
+                putExtra("imageRes", game.photo?.medium_url)
+                putExtra("trailer", game.gameTrailer)
+                putExtra("ratings", game.rating)
+                putExtra("desc", game.description)
+                putExtra("isLiked", game.isLiked)
+                putExtra("platform", game.platform?.joinToString(", ") ?: "N/A")
+                putExtra("developer", game.developer ?: "N/A")
+                putExtra("publishers", game.publishers?.joinToString(", ") ?: "N/A")
+                putExtra("genre", game.genre?.joinToString(", ") ?: "N/A")
+                putExtra("theme", game.theme?.joinToString(", ") ?: "N/A")
+                putExtra("franchise", game.franchise?.joinToString(", ") ?: "N/A")
+                putExtra("alias", game.alias ?: "N/A")
             }
         )
     }
 
+
     private fun moreWGlide(game: Game) {
-        print(game.guid)
         startActivity(
-            Intent(requireContext(),reviewPageActivity::class.java).apply{
-                putExtra("title",game.name)
-                //track this later since changed from String -> Image
-                putExtra("imageReswGlide",game.photo?.medium_url)
-                putExtra("trailer",game.gameTrailer)
-                putExtra("ratings",game.rating)
-                putExtra("guid",game.guid)
+            Intent(requireContext(), reviewPageActivity::class.java).apply {
+                putExtra("title", game.name)
+                putExtra("date",game.date)
+                putExtra("imageReswGlide", game.photo?.medium_url)
+                putExtra("trailer", game.gameTrailer)
+                putExtra("ratings", game.rating)
+                putExtra("guid", game.guid)
+                putExtra("desc", game.description)
+                putExtra("isLiked", game.isLiked)
+                putExtra("platform", game.platform?.joinToString(", ") ?: "N/A")
+                putExtra("developer", game.developer ?: "N/A")
+                putExtra("genre", game.genre?.joinToString(", ") ?: "N/A")
+                putExtra("theme", game.theme?.joinToString(", ") ?: "N/A")
+                putExtra("franchise", game.franchise?.joinToString(", ") ?: "N/A")
+                putExtra("publishers", game.publishers?.joinToString(", ") ?: "N/A")
+                putExtra("alias", game.alias ?: "N/A")
             }
         )
     }
+
 
     private fun abc(game: Game){
 

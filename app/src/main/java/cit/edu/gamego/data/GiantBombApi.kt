@@ -15,6 +15,7 @@ interface GiantBombApi {
         @Query("sort") sort: String = "original_release_date:asc"
     ): Call<GameApiResponse>
 
+    // kuwang pa og data to get
     @GET("game/{guid}/")
     fun getGameByGuid(
         @Path("guid") guid: String,

@@ -182,26 +182,29 @@
                     android:layout_marginEnd="16dp"
                     android:src="@drawable/baseline_favorite_border_24" />
             </LinearLayout>
-
             <!--             Review Section -->
-            <TextView
-                android:id="@+id/review_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Game Review"
-                android:textSize="24sp"
-                android:layout_margin="10dp"
-                android:textStyle="bold"
-                android:paddingBottom="8dp" />
 
-            <TextView
-                android:id="@+id/review_content"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text=" "
-                android:textSize="16sp" />
 
+            <com.google.android.material.tabs.TabLayout
+               android:layout_marginTop="20dp"
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                app:tabMode="fixed"
+                app:tabIndicatorGravity="stretch"
+                app:tabIndicatorAnimationMode="elastic"
+                app:tabSelectedTextColor="@color/black"
+                app:tabIndicatorColor="@null"
+                app:tabGravity="fill"
+                android:background="#db88ee"
+                app:tabIndicator="@drawable/tab_indicator" />
+
+            <!-- FrameLayout to hold fragments -->
+            <FrameLayout
+                android:id="@+id/frameLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
             <!-- Bottom Navigation (Scrollable with Content) -->
         </LinearLayout>
     </ScrollView>
