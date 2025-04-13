@@ -3,12 +3,15 @@ package cit.edu.gamego
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.ListView
 import android.widget.SearchView // Use this for the correct SearchView
+import androidx.core.text.HtmlCompat
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,22 +20,38 @@ import cit.edu.gamego.helper.GameListAdapter
 import cit.edu.gamego.helper.GameRecyclerViewAdapterwGlide
 
 import cit.edu.gamego.data.ApiClient
-import cit.edu.gamego.data.GameApiResponse
+import cit.edu.gamego.data.GameDetails
+import cit.edu.gamego.data.GiantBombReview
+import cit.edu.gamego.data.Image
+import cit.edu.gamego.data.ReviewListResponse
+import cit.edu.gamego.data.SingleGameResponse
+import cit.edu.gamego.extensions.enqueueGameList
+import cit.edu.gamego.extensions.extractGuidFromUrl
+import cit.edu.gamego.helper.GameRecyclerViewAdapter
+import com.bumptech.glide.Glide
+import cit.edu.gamego.BuildConfig
+import com.facebook.shimmer.ShimmerFrameLayout
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import android.util.Log
-import cit.edu.gamego.data.Image
-import cit.edu.gamego.helper.GameRecyclerViewAdapter
 
 class landingFragment : Fragment() {
     private lateinit var listOfGame: MutableList<Game>
     private lateinit var filteredList: MutableList<Game>
-    private lateinit var arrayAdapter: GameListAdapter
     private lateinit var searchView: SearchView
     private lateinit var listView: ListView
-    private lateinit var gameAdapter: GameRecyclerViewAdapterwGlide
+    private lateinit var arrayAdapter: GameListAdapter
+    private lateinit var randomGamesGameameAdapter: GameRecyclerViewAdapterwGlide
+    private lateinit var highRatedGamesGameAdapter: GameRecyclerViewAdapterwGlide
     private val listOfRandomGames = mutableListOf<Game>()
+    private val listOfHighRatedGames = mutableListOf<Game>()
+    private var isHighRatedLoaded = false
+    private var isRandomLoaded = false
+
+    private lateinit var shimmerLayout: ShimmerFrameLayout
+    private lateinit var hrgRecyclerView: RecyclerView
+    private lateinit var rgRecyclerView: RecyclerView
+    private lateinit var recyclerView: RecyclerView
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,8 +60,10 @@ class landingFragment : Fragment() {
 
         searchView = view.findViewById(R.id.searchView)
         listView = view.findViewById(R.id.listview)
+        fetchPopularReviews()
 
-
+        shimmerLayout = view.findViewById(R.id.shimmer)
+        shimmerLayout.startShimmer()
         // temp
         val bmwTrailer = "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/pnSsgRJmsCc?si=Fy9aZVKwThO7lKAi\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>".trimIndent()
         val helldiversTrailer = "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/UC5EpJR0GBQ?si=1IogxXO2cIXA1Mw5\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>".trimIndent()
@@ -70,19 +91,32 @@ class landingFragment : Fragment() {
         )
 
 
-        val recyclerView =view.findViewById<RecyclerView>(R.id.recyclerview)
-        val rgRecyclerView = view.findViewById<RecyclerView>(R.id.randomGamesRecyclerView)
+         recyclerView =view.findViewById<RecyclerView>(R.id.recyclerview)
+         rgRecyclerView = view.findViewById(R.id.randomGamesRecyclerView)
+         hrgRecyclerView = view.findViewById(R.id.highRatedGamesRecyclerView)
+        hrgRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
         rgRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        gameAdapter = GameRecyclerViewAdapterwGlide(
+        randomGamesGameameAdapter = GameRecyclerViewAdapterwGlide(
             requireContext(),
             listOfRandomGames,
             onClick ={game->
                 moreWGlide(game)
             }
         )
-        rgRecyclerView.adapter = gameAdapter
+
+        rgRecyclerView.adapter = randomGamesGameameAdapter
+
+        highRatedGamesGameAdapter = GameRecyclerViewAdapterwGlide(
+            requireContext(),
+            listOfHighRatedGames,
+            onClick ={game->
+                moreWGlide(game)
+            }
+        )
+        hrgRecyclerView.adapter = highRatedGamesGameAdapter
+
         recyclerView.adapter = GameRecyclerViewAdapter(
             requireContext(),
             listOfGame2,
@@ -90,8 +124,8 @@ class landingFragment : Fragment() {
                 more(game)
             }
         )
-
-        fetchGames()
+        fetchRandomGames()
+        fetchPopularReviews()
         //////////////////////////////////////LIST VIEW BELOW
         // Initially hide listView
         listView.visibility = View.GONE
@@ -162,57 +196,94 @@ class landingFragment : Fragment() {
 
         return view;
     }
-    private fun fetchGames() {
-        val apiKey = BuildConfig.Giant_Bomb_API_KEY
+    @SuppressLint("NotifyDataSetChanged")
+    private fun fetchRandomGames() {
+        val apiKey = BuildConfig.GIANT_BOMB_API_KEY
+        ApiClient.api.getGames(apiKey)
+            .enqueueGameList(listOfRandomGames) {
+                randomGamesGameameAdapter.notifyDataSetChanged()
+                isRandomLoaded = true
+                checkIfDataLoaded()
+            }
+    }
+    // Modify the function to directly fetch game details using the GUID
+    private fun fetchPopularReviews() {
+        val apiKey = BuildConfig.GIANT_BOMB_API_KEY
+        val call = ApiClient.api.getPopularReviews(apiKey)
 
-        // Make the API call
-        val call = ApiClient.api.getGames(apiKey)
-
-        // Asynchronously handle the response
-        call.enqueue(object : Callback<GameApiResponse> {
+        call.enqueue(object : Callback<ReviewListResponse> {
             @SuppressLint("NotifyDataSetChanged")
-            override fun onResponse(
-                call: Call<GameApiResponse>,
-                response: Response<GameApiResponse>
-            ) {
+            override fun onResponse(call: Call<ReviewListResponse>, response: Response<ReviewListResponse>) {
                 if (response.isSuccessful) {
-                    // Log the games list
-                    val games = response.body()?.results
-                    Log.d("API", "Fetched ${games?.size} games")
-                    if(games != null){
-                        listOfRandomGames.clear()
-                        listOfRandomGames.addAll(games.map{ game->
-                            Game(
-                                guid = game.guid,
-                                name = game.name ?: "Unknown",
-                                date = game.original_release_date,
-                                rating = "1.1",
-                                photo = game.image,
-                                gameTrailer = """
-        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/pnSsgRJmsCc?si=Fy9aZVKwThO7lKAi" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    """.trimIndent(),
-                                description = "",
-                                isLiked = false,
-                                platform = emptyList(),
-                                developer = "",
-                                genre = emptyList(),
-                                theme = emptyList(),
-                                franchise = emptyList(),
-                                publishers = emptyList(),
-                                alias = ""
-                            )
-                        })
-                        gameAdapter.notifyDataSetChanged()
+                    val reviews = response.body()?.results
+                    reviews?.forEach { review ->
+                        val gameGuid = review.game?.site_detail_url
+                        // Now fetch game data directly using the GUID
+                        if (gameGuid != null) {
+                            fetchGameDetails(gameGuid.extractGuidFromUrl().toString())
+                        }
+
                     }
                 } else {
-                    Log.e("API", "Error: ${response.message()}")
+                    Log.e("ApiError", "Error: ${response.errorBody()}")
                 }
             }
-            override fun onFailure(call: Call<GameApiResponse>, t: Throwable) {
-                Log.e("API", "Failed: ${t.message}")
+
+            override fun onFailure(call: Call<ReviewListResponse>, t: Throwable) {
+                Log.e("ApiError", "Failure: ${t.message}")
             }
         })
     }
+
+
+
+    // Modify the function to fetch game details directly for a single GUID
+    fun fetchGameDetails(guid: String) {
+        val apiKey = BuildConfig.GIANT_BOMB_API_KEY
+        val call = ApiClient.api.getGameByGuid(guid, apiKey)
+
+        call.enqueue(object : Callback<SingleGameResponse> {
+            @SuppressLint("NotifyDataSetChanged")
+            override fun onResponse(call: Call<SingleGameResponse>, response: Response<SingleGameResponse>) {
+                try {
+                    if (response.isSuccessful) {
+                        val game = response.body()?.results
+                        if (game != null) {
+                            val gameObj = Game(
+                                guid = guid,
+                                name = game.name ?: "Unknown Game",
+                                date = game.original_release_date ?: "Unknown Date",
+                                rating = game.original_game_rating?.joinToString { r -> r.name } ?: "N/A",
+                                photo = game.image,
+                                platform = game.platforms?.map { p -> p.name } ?: emptyList(),
+                                genre = game.genres?.map { g -> g.name } ?: emptyList(),
+                                theme = game.themes?.map { t -> t.name } ?: emptyList(),
+                                franchise = game.franchises?.map { f -> f.name } ?: emptyList(),
+                                publishers = game.publishers?.map { p -> p.name } ?: emptyList(),
+                                developer = game.developers?.joinToString { d -> d.name } ?: "Unknown",
+                                alias = game.aliases ?: "None"
+                            )
+                            listOfHighRatedGames.add(gameObj)
+                            Log.d("DETAILS", "Game added: ${gameObj.name}")
+                            highRatedGamesGameAdapter.notifyDataSetChanged()
+                            isHighRatedLoaded = true
+                            checkIfDataLoaded()
+                        } else {
+                            Log.w("DETAILS", "No game found for GUID: $guid")
+                        }
+                    } else {
+                        Log.e("DETAILS", "Failed to fetch game for GUID $guid: ${response.message()}")
+                    }
+                } catch (e: Exception) {
+                    Log.e("DETAILS", "Parsing error for GUID $guid: ${e.message}")
+                }
+            }
+            override fun onFailure(call: Call<SingleGameResponse>, t: Throwable) {
+                Log.e("DETAILS", "Network failure for GUID $guid: ${t.message}")
+            }
+        })
+    }
+
     private fun filterList(query: String?) {
         filteredList.clear()
         if (query.isNullOrEmpty()) {
@@ -274,7 +345,25 @@ class landingFragment : Fragment() {
         )
     }
 
-
+    @SuppressLint("NotifyDataSetChanged")
+    private fun checkIfDataLoaded() {
+        //todo change this
+        if (isHighRatedLoaded && isRandomLoaded) {
+            val cool = view?.findViewById<LinearLayout>(R.id.realContent)
+            shimmerLayout.stopShimmer()
+            shimmerLayout.visibility = View.GONE
+            hrgRecyclerView.visibility = View.VISIBLE
+            rgRecyclerView.visibility = View.VISIBLE
+            recyclerView.visibility = View.VISIBLE
+            if (cool != null) {
+                cool.visibility = View.VISIBLE
+            }
+            arrayAdapter.notifyDataSetChanged()
+            randomGamesGameameAdapter.notifyDataSetChanged()
+             highRatedGamesGameAdapter.notifyDataSetChanged()
+            Log.d("SHIMMER", "All data loaded—shimmer stopped")
+        }
+    }
     private fun abc(game: Game){
 
     }

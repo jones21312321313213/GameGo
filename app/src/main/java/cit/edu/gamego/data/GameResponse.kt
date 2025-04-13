@@ -5,6 +5,21 @@ data class GameApiResponse(
     val results: List<GiantBombGame>
 )
 
+// used in getting the popular games using api
+data class ReviewListResponse(
+    val results: List<GiantBombReview>
+)
+
+data class GiantBombReview(
+    val guid: String,
+    val game: GameInfo?
+)
+
+data class GameInfo(
+    val name: String?,
+    val site_detail_url: String?
+)
+
 // Single Game Data
 data class GiantBombGame(
     val guid: String, // <-- Add this line to get GUID
@@ -14,10 +29,12 @@ data class GiantBombGame(
     val original_game_rating: List<Rating>?
 )
 
+// used in getting the details of a single game
 data class SingleGameResponse(
     val results: GameDetails
 )
 
+// general
 data class GameDetails(
     val name: String?,
     val description: String?,

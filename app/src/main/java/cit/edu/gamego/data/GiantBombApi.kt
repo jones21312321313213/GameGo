@@ -24,5 +24,11 @@ interface GiantBombApi {
         @Query("field_list") fieldList: String = "name,description,image,original_game_rating,developers,similar_games,themes,videos,genres,platforms"
     ): Call<SingleGameResponse>
 
-
+    @GET("reviews/")
+    fun getPopularReviews(
+        @Query("api_key") apiKey: String,
+        @Query("format") format: String = "json",
+        @Query("limit") limit: Int = 5,
+        @Query("field_list") fields: String = "game,guid"
+    ): Call<ReviewListResponse>
 }

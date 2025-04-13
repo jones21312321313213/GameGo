@@ -14,30 +14,31 @@
 
         <FrameLayout
             android:layout_width="289dp"
-            android:layout_height="245dp"
-            android:background="@drawable/rounded_shadow_bg">
+
+            android:layout_height="245dp">
             <!-- Main Image -->
             <ImageView
+                android:background="@color/shimmer_color"
                 android:layout_marginTop="20dp"
                 android:id="@+id/photo_irg"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:layout_gravity="center|top"
-                android:src="@drawable/ye" />
+                android:layout_gravity="center|top" />
 
             <!-- Title Text (Centered at the Top) -->
             <TextView
+                android:background="@color/shimmer_color"
                 android:id="@+id/title_irg"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginTop="180dp"
                 android:gravity="center"
-                android:text="Game Title"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
             <LinearLayout
+                android:background="@color/shimmer_color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|start"
@@ -50,15 +51,14 @@
                 <ImageView
                     android:id="@+id/star_icon"
                     android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:src="@drawable/star" />
+                    android:layout_height="25dp"/>
 
                 <TextView
                     android:id="@+id/ratings_irg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
-                    android:text="1.1"
+                    android:text="   "
                     android:textColor="@android:color/black"
                     android:textSize="14sp"
                     android:textStyle="bold" />

@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-
+        <!-- SearchView stays fixed at the top -->
         <SearchView
             android:id="@+id/searchView"
             android:layout_width="match_parent"
@@ -22,42 +22,110 @@
             android:layout_marginTop="30dp"
             android:layout_marginBottom="16dp"
             android:background="@drawable/searchbar"
-            android:iconifiedByDefault="false"/>
-
+            android:iconifiedByDefault="false" />
 
         <ListView
             android:id="@+id/listview"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <!-- Scrollable Content (RecyclerViews) -->
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#FFFFFF"
-            android:visibility="gone"/>
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- This is your loading shimmer -->
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible">
+
+                    <!-- Fake loading UI only -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <!-- Add shimmer placeholders here -->
+                        <include layout="@layout/shimmer_layout">
+
+                        </include>
+                        <include layout="@layout/shimmer_layout">
+
+                        </include>
+                        <include layout="@layout/shimmer_layout">
+
+                        </include>
+                    </LinearLayout>
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                <!-- This is your actual content -->
+                <LinearLayout
+                    android:id="@+id/realContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Random Games you might like"
-            android:gravity="center"
-            android:textSize="20sp"
-            android:textStyle="bold|italic"
-            />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="High Rated Games"
+                        android:gravity="center"
+                        android:textSize="20sp"
+                        android:textStyle="bold|italic" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/randomGamesRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:clipToPadding="false"
-            android:paddingBottom="20dp"
-            android:scrollbars="horizontal" />
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:visibility="gone"
+                        android:id="@+id/highRatedGamesRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:clipToPadding="false"
+                        android:nestedScrollingEnabled="false"
+                        android:paddingBottom="20dp"
+                        android:scrollbars="horizontal" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="High Rated Games"
+                        android:gravity="center"
+                        android:textSize="20sp"
+                        android:textStyle="bold|italic" />
 
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:visibility="gone"
+                        android:id="@+id/randomGamesRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:clipToPadding="false"
+                        android:nestedScrollingEnabled="false"
+                        android:paddingBottom="20dp"
+                        android:scrollbars="horizontal"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:visibility="gone"
+                        android:id="@+id/recyclerview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false"/>
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
 
     </LinearLayout>
+
+
 
     <!-- Navigation Drawer -->
     <com.google.android.material.navigation.NavigationView

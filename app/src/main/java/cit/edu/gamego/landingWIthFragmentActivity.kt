@@ -103,7 +103,6 @@ class landingWIthFragmentActivity : AppCompatActivity() {
                     putString("email", newEmail)
                 }
             }
-
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, fragment)
                 .addToBackStack(null)

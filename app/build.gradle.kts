@@ -25,7 +25,7 @@ android {
         val localPropertiesFile = rootProject.file("local.properties")
         if(localPropertiesFile.exists()){properties.load(localPropertiesFile.inputStream())}
         val apiKey = properties.getProperty("Giant_Bomb_API_KEY", "")
-        buildConfigField("String","Giant_Bomb_API_KEY","\"$apiKey\"")
+        buildConfigField("String","GIANT_BOMB_API_KEY","\"$apiKey\"")
     }
 
     buildTypes {
@@ -106,6 +106,8 @@ dependencies {
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
 
 
+    //shimmer effect
+    implementation("com.facebook.shimmer:shimmer:0.5.0")
 
 //    // OkHttp (optional but recommended for logging)
 //    implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")

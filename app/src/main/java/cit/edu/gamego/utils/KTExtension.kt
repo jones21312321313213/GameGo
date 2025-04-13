@@ -21,6 +21,69 @@ import cit.edu.gamego.reviewPageActivity
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.annotation.SuppressLint
+import android.util.Log
+import cit.edu.gamego.data.ApiClient
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import cit.edu.gamego.data.GameApiResponse
+import cit.edu.gamego.data.GiantBombGame
+import cit.edu.gamego.data.Image
+import cit.edu.gamego.data.ReviewListResponse
+import cit.edu.gamego.data.SingleGameResponse
+
+@SuppressLint("NotifyDataSetChanged")
+fun Call<GameApiResponse>.enqueueGameList(
+    list: MutableList<Game>,
+    onNotify: () -> Unit
+) {
+    this.enqueue(object : Callback<GameApiResponse> {
+        override fun onResponse(
+            call: Call<GameApiResponse>,
+            response: Response<GameApiResponse>
+        ) {
+            if (response.isSuccessful) {
+                val games = response.body()?.results
+                Log.d("API", "Fetched ${games?.size} games")
+                if (games != null) {
+                    list.clear()
+                    list.addAll(games.map { game ->
+                        Game(
+                            guid = game.guid,
+                            name = game.name ?: "Unknown",
+                            date = game.original_release_date,
+                            rating = "1.1",
+                            photo = game.image,
+                            gameTrailer = """
+                                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/pnSsgRJmsCc?si=Fy9aZVKwThO7lKAi" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            """.trimIndent(),
+                            description = "",
+                            isLiked = false,
+                            platform = emptyList(),
+                            developer = "",
+                            genre = emptyList(),
+                            theme = emptyList(),
+                            franchise = emptyList(),
+                            publishers = emptyList(),
+                            alias = ""
+                        )
+                    })
+                    onNotify()
+                }
+            } else {
+                Log.e("API", "Error: ${response.message()}")
+            }
+        }
+        override fun onFailure(call: Call<GameApiResponse>, t: Throwable) {
+            Log.e("API", "Failed: ${t.message}")
+        }
+    })
+}
+
+fun String.extractGuidFromUrl(): String? {
+    return this.trimEnd('/').split("/").lastOrNull()
+}
 
 fun Context.showConfirmation(message: String) {
     val dialog = Dialog(this)

@@ -140,7 +140,6 @@ class reviewPageActivity : AppCompatActivity() {
         // Load the first fragment by default
         loadFragment(GameDescriptionFragment(),bundle)
 
-
         bundle2 = Bundle().apply {
             putString("name", binding.gameTitleRp.text.toString())
             putString("date", gg?.date)
@@ -168,7 +167,6 @@ class reviewPageActivity : AppCompatActivity() {
                     }
                 }
             }
-
             override fun onTabUnselected(p0: TabLayout.Tab?) {
                 // Handle tab unselection if necessary
             }
@@ -260,7 +258,7 @@ class reviewPageActivity : AppCompatActivity() {
     }
 
     private fun fetchGameDetails(guid: String) {
-        val apiKey = BuildConfig.Giant_Bomb_API_KEY
+        val apiKey = BuildConfig.GIANT_BOMB_API_KEY
         val call = ApiClient.api.getGameByGuid(guid, apiKey)
         call.enqueue(object : Callback<SingleGameResponse> {
             override fun onResponse(call: Call<SingleGameResponse>, response: Response<SingleGameResponse>) {
