@@ -96,7 +96,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="High Rated Games"
+                        android:text="Random Games"
                         android:gravity="center"
                         android:textSize="20sp"
                         android:textStyle="bold|italic" />

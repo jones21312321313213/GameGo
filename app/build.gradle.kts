@@ -109,6 +109,11 @@ dependencies {
     //shimmer effect
     implementation("com.facebook.shimmer:shimmer:0.5.0")
 
+    //Coroutine this if for making 1 second delays in each api request
+
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+
 //    // OkHttp (optional but recommended for logging)
 //    implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
 

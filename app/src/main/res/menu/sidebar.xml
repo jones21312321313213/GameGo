@@ -14,6 +14,7 @@
         android:id="@+id/nav_about_devs"
         android:title="About the Devs"
         android:icon="@drawable/devs" />
+
     <item
         android:id="@+id/nav_settings"
         android:title="Settings"

@@ -13,12 +13,12 @@ class settings : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
-        val back = findViewById<ImageView>(R.id.settings_back_Id);
-
-        back.setOnClickListener{
-            startActivity(
-                Intent(this,activity_landing::class.java)
-            )
-        }
+//        val back = findViewById<ImageView>(R.id.settings_back_Id);
+//
+//        back.setOnClickListener{
+//            startActivity(
+//                Intent(this,activity_landing::class.java)
+//            )
+//        }
     }
 }

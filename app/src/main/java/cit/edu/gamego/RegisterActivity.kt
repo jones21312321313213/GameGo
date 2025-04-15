@@ -23,8 +23,7 @@ class RegisterActivity : Activity() {
 
         val button_signUp = findViewById<TextView>(R.id.register_signup_Id);
         button_signUp.setOnClickListener {
-            val intent = Intent(this,LoginActivity::class.java);//temp
-            startActivity(intent);
+            finish()
         }
 
         val username= findViewById<EditText>(R.id.register_username_Id);

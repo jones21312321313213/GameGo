@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#5e5ef6">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:orientation="horizontal"
+        android:paddingTop="15dp"
+        android:layout_gravity="center">
+
+        <LinearLayout
+            android:layout_width="370dp"
+            android:layout_height="43dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/searchbar"
+            android:backgroundTint="#A9A9A9"
+            android:padding="10dp"/>
+
+        <LinearLayout
+            android:layout_width="355dp"
+            android:layout_height="43dp"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:background="@drawable/searchbar"
+            android:padding="10dp"
+            android:gravity="center">
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="201dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="About The Game"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+
+        <ImageView
+            android:id="@+id/settings_back_Id"
+            android:layout_marginTop="5dp"
+            android:layout_width="76dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="30dp"
+            android:src="@drawable/back_arrow"/>
+
+        <LinearLayout
+            android:backgroundTint="#A9A9A9"
+            android:layout_width="355dp"
+            android:layout_height="397dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/searchbar"
+            android:padding="10dp"/>
+
+        <LinearLayout
+            android:layout_width="359dp"
+            android:layout_height="373dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="70dp"
+            android:background="@drawable/searchbar"
+            android:orientation="vertical"
+            android:paddingTop="20dp">
+
+            <ImageView
+                android:layout_marginTop="5dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:src="@drawable/glogo1"/>
+
+            <TextView
+                android:layout_gravity="center"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:padding="10dp"
+                android:text="GameGo is your personal mobile library for all your favorite games! Organize, track, and explore mobile games across genres with ease. Whether you're managing your backlog, logging playtime, or discovering something new, GameGo keeps your game collection right at your fingertips. Built for gamers, by gamers."
+                android:textSize="13dp" android:textStyle="bold"/>
+
+
+        </LinearLayout>
+    </FrameLayout>
+
+</LinearLayout>

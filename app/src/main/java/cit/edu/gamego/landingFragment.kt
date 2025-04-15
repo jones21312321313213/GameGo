@@ -11,7 +11,6 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.ListView
 import android.widget.SearchView // Use this for the correct SearchView
-import androidx.core.text.HtmlCompat
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,20 +19,18 @@ import cit.edu.gamego.helper.GameListAdapter
 import cit.edu.gamego.helper.GameRecyclerViewAdapterwGlide
 
 import cit.edu.gamego.data.ApiClient
-import cit.edu.gamego.data.GameDetails
-import cit.edu.gamego.data.GiantBombReview
 import cit.edu.gamego.data.Image
 import cit.edu.gamego.data.ReviewListResponse
 import cit.edu.gamego.data.SingleGameResponse
 import cit.edu.gamego.extensions.enqueueGameList
 import cit.edu.gamego.extensions.extractGuidFromUrl
 import cit.edu.gamego.helper.GameRecyclerViewAdapter
-import com.bumptech.glide.Glide
-import cit.edu.gamego.BuildConfig
+import cit.edu.gamego.data.AppCache
 import com.facebook.shimmer.ShimmerFrameLayout
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlinx.coroutines.*
 
 class landingFragment : Fragment() {
     private lateinit var listOfGame: MutableList<Game>
@@ -210,35 +207,46 @@ class landingFragment : Fragment() {
     private fun fetchPopularReviews() {
         val apiKey = BuildConfig.GIANT_BOMB_API_KEY
         val call = ApiClient.api.getPopularReviews(apiKey)
-
         call.enqueue(object : Callback<ReviewListResponse> {
-            @SuppressLint("NotifyDataSetChanged")
             override fun onResponse(call: Call<ReviewListResponse>, response: Response<ReviewListResponse>) {
                 if (response.isSuccessful) {
                     val reviews = response.body()?.results
-                    reviews?.forEach { review ->
-                        val gameGuid = review.game?.site_detail_url
-                        // Now fetch game data directly using the GUID
-                        if (gameGuid != null) {
-                            fetchGameDetails(gameGuid.extractGuidFromUrl().toString())
-                        }
 
+                    // Start coroutine scope for spacing out requests
+                    CoroutineScope(Dispatchers.IO).launch {
+                        reviews?.forEachIndexed { index, review ->
+                            val gameGuid = review.game?.site_detail_url?.extractGuidFromUrl()
+                            if (gameGuid != null) {
+                                fetchGameDetails(gameGuid)
+                                delay(1500L) // Wait 1 second before next request
+                            }
+                        }
                     }
                 } else {
                     Log.e("ApiError", "Error: ${response.errorBody()}")
                 }
             }
-
             override fun onFailure(call: Call<ReviewListResponse>, t: Throwable) {
                 Log.e("ApiError", "Failure: ${t.message}")
             }
         })
     }
 
-
-
     // Modify the function to fetch game details directly for a single GUID
+    @SuppressLint("NotifyDataSetChanged")
     fun fetchGameDetails(guid: String) {
+        // ✅ Step 1: Check if it's already in the cache
+        val cachedGame = AppCache.gameCache[guid]
+        if (cachedGame != null) {
+            Log.d("CACHE", "Game already cached: ${cachedGame.name}")
+            listOfHighRatedGames.add(cachedGame)
+            highRatedGamesGameAdapter.notifyDataSetChanged()
+            isHighRatedLoaded = true
+            checkIfDataLoaded()
+            return  // ❌ Skip API call
+        }
+
+        // ❌ Not cached? Then call the API
         val apiKey = BuildConfig.GIANT_BOMB_API_KEY
         val call = ApiClient.api.getGameByGuid(guid, apiKey)
 
@@ -263,6 +271,10 @@ class landingFragment : Fragment() {
                                 developer = game.developers?.joinToString { d -> d.name } ?: "Unknown",
                                 alias = game.aliases ?: "None"
                             )
+
+                            // ✅ Step 2: Add to cache
+                            AppCache.gameCache[guid] = gameObj
+
                             listOfHighRatedGames.add(gameObj)
                             Log.d("DETAILS", "Game added: ${gameObj.name}")
                             highRatedGamesGameAdapter.notifyDataSetChanged()
@@ -278,6 +290,7 @@ class landingFragment : Fragment() {
                     Log.e("DETAILS", "Parsing error for GUID $guid: ${e.message}")
                 }
             }
+
             override fun onFailure(call: Call<SingleGameResponse>, t: Throwable) {
                 Log.e("DETAILS", "Network failure for GUID $guid: ${t.message}")
             }

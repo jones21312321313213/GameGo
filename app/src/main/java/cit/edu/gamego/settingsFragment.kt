@@ -17,6 +17,13 @@ class settingsFragment : Fragment() {
         val view = inflater.inflate(R.layout.activity_settings, container, false)
         
 
+        val about_game = view.findViewById<ImageView>(R.id.about_the_game_settings)
+
+        about_game.setOnClickListener{
+            startActivity(
+                Intent(requireContext(),about_the_game::class.java)
+            )
+        }
         return view;
     }
 }
