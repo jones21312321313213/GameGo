@@ -33,6 +33,8 @@ import cit.edu.gamego.data.Image
 import cit.edu.gamego.data.ReviewListResponse
 import cit.edu.gamego.data.SingleGameResponse
 
+
+//This is for API call
 @SuppressLint("NotifyDataSetChanged")
 fun Call<GameApiResponse>.enqueueGameList(
     list: MutableList<Game>,
@@ -145,6 +147,7 @@ fun showDeleteDialog(position: Int) {
    print("skibidi")
 }
 
+// temp
 object FavoritesDataHolder {
     var title: String = ""
     var releaseDate: String = ""

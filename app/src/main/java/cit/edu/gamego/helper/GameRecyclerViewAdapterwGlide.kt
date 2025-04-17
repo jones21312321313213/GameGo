@@ -11,7 +11,7 @@ import cit.edu.gamego.R
 import cit.edu.gamego.data.Game
 import com.bumptech.glide.Glide
 
-class GameRecyclerViewAdapterwGlide(
+class  GameRecyclerViewAdapterwGlide(
     private val context: Context,  // Pass the context to determine activity
     private val listOfGame: List<Game>,
     private val onClick: (Game) -> Unit,

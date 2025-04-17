@@ -62,6 +62,34 @@
                         <include layout="@layout/shimmer_layout">
 
                         </include>
+
+                        <include layout="@layout/shimmer_layout">
+
+                        </include>
+                        <include layout="@layout/shimmer_layout">
+
+                        </include>
+                        <include layout="@layout/shimmer_layout">
+
+                        </include>
+                        <include layout="@layout/shimmer_layout">
+
+                        </include>
+                        <include layout="@layout/shimmer_layout">
+
+                        </include>
+                        <include layout="@layout/shimmer_layout">
+
+                        </include>
+                        <include layout="@layout/shimmer_layout">
+
+                        </include>
+                        <include layout="@layout/shimmer_layout">
+
+                        </include>
+                        <include layout="@layout/shimmer_layout">
+
+                        </include>
                     </LinearLayout>
                 </com.facebook.shimmer.ShimmerFrameLayout>
 
@@ -92,6 +120,194 @@
                         android:nestedScrollingEnabled="false"
                         android:paddingBottom="20dp"
                         android:scrollbars="horizontal" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Horror Games"
+                        android:gravity="center"
+                        android:textSize="20sp"
+                        android:textStyle="bold|italic" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:visibility="gone"
+                        android:id="@+id/horrorGamesRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:clipToPadding="false"
+                        android:nestedScrollingEnabled="false"
+                        android:paddingBottom="20dp"
+                        android:scrollbars="horizontal"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Fantasy Games"
+                        android:gravity="center"
+                        android:textSize="20sp"
+                        android:textStyle="bold|italic" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:visibility="gone"
+                        android:id="@+id/fantasyGamesRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:clipToPadding="false"
+                        android:nestedScrollingEnabled="false"
+                        android:paddingBottom="20dp"
+                        android:scrollbars="horizontal"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Sci-fi Games"
+                        android:gravity="center"
+                        android:textSize="20sp"
+                        android:textStyle="bold|italic" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:visibility="gone"
+                        android:id="@+id/sciFiGamesRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:clipToPadding="false"
+                        android:nestedScrollingEnabled="false"
+                        android:paddingBottom="20dp"
+                        android:scrollbars="horizontal"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Adventure Games"
+                        android:gravity="center"
+                        android:textSize="20sp"
+                        android:textStyle="bold|italic" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:visibility="gone"
+                        android:id="@+id/adventureGamesRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:clipToPadding="false"
+                        android:nestedScrollingEnabled="false"
+                        android:paddingBottom="20dp"
+                        android:scrollbars="horizontal"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Romance Games"
+                        android:gravity="center"
+                        android:textSize="20sp"
+                        android:textStyle="bold|italic" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:visibility="gone"
+                        android:id="@+id/romanceGamesRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:clipToPadding="false"
+                        android:nestedScrollingEnabled="false"
+                        android:paddingBottom="20dp"
+                        android:scrollbars="horizontal"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Games Available in Ps4"
+                        android:gravity="center"
+                        android:textSize="20sp"
+                        android:textStyle="bold|italic" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:visibility="gone"
+                        android:id="@+id/ps4GamesRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:clipToPadding="false"
+                        android:nestedScrollingEnabled="false"
+                        android:paddingBottom="20dp"
+                        android:scrollbars="horizontal"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Games available in Xbox one"
+                        android:gravity="center"
+                        android:textSize="20sp"
+                        android:textStyle="bold|italic" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:visibility="gone"
+                        android:id="@+id/xboxOneGamesRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:clipToPadding="false"
+                        android:nestedScrollingEnabled="false"
+                        android:paddingBottom="20dp"
+                        android:scrollbars="horizontal"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Games available in Nintendo Switch"
+                        android:gravity="center"
+                        android:textSize="20sp"
+                        android:textStyle="bold|italic" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:visibility="gone"
+                        android:id="@+id/nintendoSwitchGamesRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:clipToPadding="false"
+                        android:nestedScrollingEnabled="false"
+                        android:paddingBottom="20dp"
+                        android:scrollbars="horizontal"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Games available in pc"
+                        android:gravity="center"
+                        android:textSize="20sp"
+                        android:textStyle="bold|italic" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:visibility="gone"
+                        android:id="@+id/pcGamesRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:clipToPadding="false"
+                        android:nestedScrollingEnabled="false"
+                        android:paddingBottom="20dp"
+                        android:scrollbars="horizontal"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Games available in mobile"
+                        android:gravity="center"
+                        android:textSize="20sp"
+                        android:textStyle="bold|italic" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:visibility="gone"
+                        android:id="@+id/mobileGamesRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:clipToPadding="false"
+                        android:nestedScrollingEnabled="false"
+                        android:paddingBottom="20dp"
+                        android:scrollbars="horizontal"/>
 
                     <TextView
                         android:layout_width="match_parent"

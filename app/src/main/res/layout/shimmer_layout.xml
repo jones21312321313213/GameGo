@@ -14,7 +14,7 @@
 
         <FrameLayout
             android:layout_width="289dp"
-
+            android:background="@color/shimmer_color"
             android:layout_height="245dp">
             <!-- Main Image -->
             <ImageView

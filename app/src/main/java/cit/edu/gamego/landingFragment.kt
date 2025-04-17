@@ -33,22 +33,69 @@ import retrofit2.Response
 import kotlinx.coroutines.*
 
 class landingFragment : Fragment() {
-    private lateinit var listOfGame: MutableList<Game>
     private lateinit var filteredList: MutableList<Game>
     private lateinit var searchView: SearchView
     private lateinit var listView: ListView
+    private lateinit var shimmerLayout: ShimmerFrameLayout
+
     private lateinit var arrayAdapter: GameListAdapter
     private lateinit var randomGamesGameameAdapter: GameRecyclerViewAdapterwGlide
     private lateinit var highRatedGamesGameAdapter: GameRecyclerViewAdapterwGlide
+    private lateinit var ps4GamesGameAdapter: GameRecyclerViewAdapterwGlide
+    private lateinit var xbox1GamesGameAdapter: GameRecyclerViewAdapterwGlide
+    private lateinit var pcGamesGameAdapter: GameRecyclerViewAdapterwGlide
+    private lateinit var nintendoSwitchGamesGameAdapter: GameRecyclerViewAdapterwGlide
+    private lateinit var mobileGamesGameAdapter: GameRecyclerViewAdapterwGlide
+    private lateinit var horrorGamesGameAdapter: GameRecyclerViewAdapterwGlide
+    private lateinit var fantasyGamesGameAdapter: GameRecyclerViewAdapterwGlide
+    private lateinit var sciFiGamesGameAdapter: GameRecyclerViewAdapterwGlide
+    private lateinit var adventureGamesGameAdapter: GameRecyclerViewAdapterwGlide
+    private lateinit var romanceGamesGameAdapter: GameRecyclerViewAdapterwGlide
+
+    private lateinit var listOfGame: MutableList<Game>
     private val listOfRandomGames = mutableListOf<Game>()
     private val listOfHighRatedGames = mutableListOf<Game>()
+    private val listOfPs4Games = mutableListOf<Game>()
+    private val listOfXbox1Games = mutableListOf<Game>()
+    private val listOfPcGames = mutableListOf<Game>()
+    private val listOfNintendoSwitchGames = mutableListOf<Game>()
+    private val listOfMobileGames = mutableListOf<Game>()
+    private val listOfHorroGames = mutableListOf<Game>()
+    private val listOfFantasyGames = mutableListOf<Game>()
+    private val listOfSciFiGames = mutableListOf<Game>()
+    private val listOfAdventureGames = mutableListOf<Game>()
+    private val listOfRomanceGames = mutableListOf<Game>()
+
+    private var isxbox1GamesLoaded =false
+    private var isps4GamesLoaded = false
     private var isHighRatedLoaded = false
     private var isRandomLoaded = false
+    private var isnintendoSwitchLoaded = false
+    private var ispcGamesLoaded = false
+    private var ismobileGamesLoaded = false
+    private var ishorroGamesLoaded = false
+    private var isfantasyGamesLoaded = false
+    private var issciFiGamesLoaded = false
+    private var isadventureGamesLoaded = false
+    private var isromanceGamesLoaded = false
 
-    private lateinit var shimmerLayout: ShimmerFrameLayout
+
+    private val isGameLoaded = BooleanArray(12)
+
+
+    private lateinit var recyclerView: RecyclerView
     private lateinit var hrgRecyclerView: RecyclerView
     private lateinit var rgRecyclerView: RecyclerView
-    private lateinit var recyclerView: RecyclerView
+    private lateinit var ps4RecyclerView: RecyclerView
+    private lateinit var xbox1RecyclerView: RecyclerView
+    private lateinit var nintendoSwitchRecyclerView: RecyclerView
+    private lateinit var pcRecyclerView: RecyclerView
+    private lateinit var mobileRecyclerView: RecyclerView
+    private lateinit var horrorRecyclerView: RecyclerView
+    private lateinit var fantasyRecyclerView: RecyclerView
+    private lateinit var sciFiRecyclerView: RecyclerView
+    private lateinit var adventureRecyclerView: RecyclerView
+    private lateinit var romanceRecyclerView: RecyclerView
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -57,7 +104,6 @@ class landingFragment : Fragment() {
 
         searchView = view.findViewById(R.id.searchView)
         listView = view.findViewById(R.id.listview)
-        fetchPopularReviews()
 
         shimmerLayout = view.findViewById(R.id.shimmer)
         shimmerLayout.startShimmer()
@@ -87,14 +133,40 @@ class landingFragment : Fragment() {
             Game("Elden Ring", "2018", "10.0", Image(R.drawable.eldenring.toString()), eldenRingTrailer, "A dark fantasy masterpiece from FromSoftware and George R.R. Martin.", false, "game_eldenring", listOf("PS4", "PS5", "Xbox", "PC"), "FromSoftware", listOf("RPG", "Soulslike"), listOf("Dark Fantasy"),  listOf("Elden Ring"),listOf("Bandai Namco"), "ER")
         )
 
+        /////
 
-         recyclerView =view.findViewById<RecyclerView>(R.id.recyclerview)
+
+        // finding the recycler view in the layout
+         recyclerView =view.findViewById(R.id.recyclerview)
          rgRecyclerView = view.findViewById(R.id.randomGamesRecyclerView)
          hrgRecyclerView = view.findViewById(R.id.highRatedGamesRecyclerView)
-        hrgRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
-        rgRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+         ps4RecyclerView = view.findViewById(R.id.ps4GamesRecyclerView)
+         xbox1RecyclerView = view.findViewById(R.id.xboxOneGamesRecyclerView)
+         nintendoSwitchRecyclerView = view.findViewById(R.id.nintendoSwitchGamesRecyclerView)
+         pcRecyclerView = view.findViewById(R.id.pcGamesRecyclerView)
+         mobileRecyclerView = view.findViewById(R.id.mobileGamesRecyclerView)
+         horrorRecyclerView = view.findViewById(R.id.horrorGamesRecyclerView)
+         fantasyRecyclerView = view.findViewById(R.id.fantasyGamesRecyclerView)
+         sciFiRecyclerView = view.findViewById(R.id.sciFiGamesRecyclerView)
+         adventureRecyclerView = view.findViewById(R.id.adventureGamesRecyclerView)
+         romanceRecyclerView = view.findViewById(R.id.romanceGamesRecyclerView)
+        // setting up the recycler viewers
 
+         recyclerView.layoutManager = LinearLayoutManager(requireContext())
+         hrgRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+         rgRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+         ps4RecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+         xbox1RecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+         nintendoSwitchRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+         pcRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+         mobileRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+         horrorRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+         fantasyRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+         sciFiRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+         adventureRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+         romanceRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+
+        // setting up the  adapters
         randomGamesGameameAdapter = GameRecyclerViewAdapterwGlide(
             requireContext(),
             listOfRandomGames,
@@ -114,6 +186,106 @@ class landingFragment : Fragment() {
         )
         hrgRecyclerView.adapter = highRatedGamesGameAdapter
 
+        ps4GamesGameAdapter = GameRecyclerViewAdapterwGlide(
+            requireContext(),
+            listOfPs4Games,
+            onClick ={game->
+                moreWGlide(game)
+            }
+        )
+
+        ps4RecyclerView.adapter = ps4GamesGameAdapter
+
+        xbox1GamesGameAdapter = GameRecyclerViewAdapterwGlide(
+            requireContext(),
+            listOfXbox1Games,
+            onClick ={game->
+                moreWGlide(game)
+            }
+        )
+
+        xbox1RecyclerView.adapter = xbox1GamesGameAdapter
+
+        nintendoSwitchGamesGameAdapter = GameRecyclerViewAdapterwGlide(
+            requireContext(),
+            listOfNintendoSwitchGames,
+            onClick ={game->
+                moreWGlide(game)
+            }
+        )
+
+        nintendoSwitchRecyclerView.adapter = nintendoSwitchGamesGameAdapter
+
+        pcGamesGameAdapter = GameRecyclerViewAdapterwGlide(
+            requireContext(),
+            listOfPcGames,
+            onClick ={game->
+                moreWGlide(game)
+            }
+        )
+
+        pcRecyclerView.adapter = pcGamesGameAdapter
+
+        mobileGamesGameAdapter = GameRecyclerViewAdapterwGlide(
+            requireContext(),
+            listOfMobileGames,
+            onClick ={game->
+                moreWGlide(game)
+            }
+        )
+
+        mobileRecyclerView.adapter = mobileGamesGameAdapter
+
+        horrorGamesGameAdapter = GameRecyclerViewAdapterwGlide(
+            requireContext(),
+            listOfHorroGames,
+            onClick ={game->
+                moreWGlide(game)
+            }
+        )
+
+        horrorRecyclerView.adapter = horrorGamesGameAdapter
+
+        fantasyGamesGameAdapter = GameRecyclerViewAdapterwGlide(
+            requireContext(),
+            listOfFantasyGames,
+            onClick ={game->
+                moreWGlide(game)
+            }
+        )
+
+        fantasyRecyclerView.adapter = fantasyGamesGameAdapter
+
+        sciFiGamesGameAdapter = GameRecyclerViewAdapterwGlide(
+            requireContext(),
+            listOfSciFiGames,
+            onClick ={game->
+                moreWGlide(game)
+            }
+        )
+
+        sciFiRecyclerView.adapter = sciFiGamesGameAdapter
+
+        adventureGamesGameAdapter = GameRecyclerViewAdapterwGlide(
+            requireContext(),
+            listOfAdventureGames,
+            onClick ={game->
+                moreWGlide(game)
+            }
+        )
+
+        adventureRecyclerView.adapter = adventureGamesGameAdapter
+
+        romanceGamesGameAdapter = GameRecyclerViewAdapterwGlide(
+            requireContext(),
+            listOfRomanceGames,
+            onClick ={game->
+                moreWGlide(game)
+            }
+        )
+
+        romanceRecyclerView.adapter = romanceGamesGameAdapter
+        // this recyclerview is not for API
         recyclerView.adapter = GameRecyclerViewAdapter(
             requireContext(),
             listOfGame2,
@@ -121,14 +293,26 @@ class landingFragment : Fragment() {
                 more(game)
             }
         )
+
+        // fetching games using API
         fetchRandomGames()
         fetchPopularReviews()
-        //////////////////////////////////////LIST VIEW BELOW
+        fetchPs4PlatformGames()
+        fetchXboxOnePlatformGames()
+        fetchPcPlatformGames()
+        fetchNintendoSwitchPlatformsGames()
+        fetchMobilePlatformGames()
+        fetchHorrorThemeGames()
+        fetchSciFiThemeGames()
+        fetchAdventureThemeGames()
+        fetchFantasyThemeGames()
+        fetchRomanceThemeGames()
+        ////////////////////////////////////// FOr search bar which is a list view
         // Initially hide listView
         listView.visibility = View.GONE
 
         // Sample Data
-        val listOfGame = mutableListOf(
+         listOfGame = mutableListOf(
             Game("YE Quest", "2030", "1.1", Image(R.drawable.ye.toString()), kanyeeee, "The visionary's journey through a surreal rap universe.", false, "game_yequest", listOf("PS5", "PC"), "Yeezy Interactive", listOf("Adventure", "Rhythm"), listOf("Hip-Hop", "Satire"), listOf("YE Series"),listOf("Yeezy Productions"), "YQ"),
             Game("Helldivers 2", "2022", "8.2", Image(R.drawable.helldivers.toString()), helldiversTrailer, "A chaotic co-op shooter fighting for liberty across galaxies.", false, "game_helldivers2", listOf("PS5", "PC"), "Arrowhead Game Studios", listOf("Shooter", "Co-op"), listOf("Sci-fi", "Military"),  listOf("Helldivers"), listOf("PlayStation Studios"),"HD2"),
             Game("Black Myth Wukong", "2024", "9.3", Image(R.drawable.bmw.toString()), bmwTrailer, "An epic retelling of the legendary Monkey King's story.", false, "game_blackmythwukong", listOf("PS5", "PC"), "Game Science", listOf("Action RPG"), listOf("Mythology", "Fantasy"),  listOf("Black Myth"),listOf("Game Science"), "BMW"),
@@ -193,16 +377,137 @@ class landingFragment : Fragment() {
 
         return view;
     }
+
     @SuppressLint("NotifyDataSetChanged")
     private fun fetchRandomGames() {
         val apiKey = BuildConfig.GIANT_BOMB_API_KEY
-        ApiClient.api.getGames(apiKey)
+        val randomOffset = (0..100).random()// for randomizing games
+        ApiClient.api.getGames(apiKey, offset = randomOffset)
             .enqueueGameList(listOfRandomGames) {
                 randomGamesGameameAdapter.notifyDataSetChanged()
                 isRandomLoaded = true
                 checkIfDataLoaded()
             }
     }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun fetchPs4PlatformGames() {
+        val apiKey = BuildConfig.GIANT_BOMB_API_KEY
+        val randomOffset = (0..100).random()// for randomizing games
+        ApiClient.api.getGamesByPlatform(apiKey,offset = randomOffset, filter = "platforms:146")
+            .enqueueGameList(listOfPs4Games) {
+                ps4GamesGameAdapter.notifyDataSetChanged()
+                isps4GamesLoaded = true
+                checkIfDataLoaded()
+            }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun fetchXboxOnePlatformGames() {
+        val apiKey = BuildConfig.GIANT_BOMB_API_KEY
+        val randomOffset = (0..100).random()// for randomizing games
+        ApiClient.api.getGamesByPlatform(apiKey,offset = randomOffset, filter = "platforms:145")
+            .enqueueGameList(listOfXbox1Games) {
+                xbox1GamesGameAdapter.notifyDataSetChanged()
+                isxbox1GamesLoaded = true
+                checkIfDataLoaded()
+            }
+    }
+    @SuppressLint("NotifyDataSetChanged")
+    private fun fetchPcPlatformGames() {
+        val apiKey = BuildConfig.GIANT_BOMB_API_KEY
+        val randomOffset = (0..100).random()// for randomizing games
+        ApiClient.api.getGamesByPlatform(apiKey,offset = randomOffset, filter = "platforms:94")
+            .enqueueGameList(listOfPcGames) {
+                pcGamesGameAdapter.notifyDataSetChanged()
+                ispcGamesLoaded = true
+                checkIfDataLoaded()
+            }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun fetchNintendoSwitchPlatformsGames() {
+        val apiKey = BuildConfig.GIANT_BOMB_API_KEY
+        val randomOffset = (0..100).random()// for randomizing games
+        ApiClient.api.getGamesByPlatform(apiKey,offset = randomOffset, filter = "platforms:157")
+            .enqueueGameList(listOfNintendoSwitchGames) {
+                nintendoSwitchGamesGameAdapter.notifyDataSetChanged()
+                isnintendoSwitchLoaded = true
+                checkIfDataLoaded()
+            }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun fetchMobilePlatformGames() {
+        val apiKey = BuildConfig.GIANT_BOMB_API_KEY
+        val randomOffset = (0..100).random()// for randomizing games
+        ApiClient.api.getGamesByPlatform(apiKey,offset = randomOffset, filter = "platforms:34")
+            .enqueueGameList(listOfMobileGames) {
+                mobileGamesGameAdapter.notifyDataSetChanged()
+                ismobileGamesLoaded = true
+                checkIfDataLoaded()
+            }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun fetchHorrorThemeGames() {
+        val apiKey = BuildConfig.GIANT_BOMB_API_KEY
+        val randomOffset = (0..100).random()// for randomizing games
+        ApiClient.api.getGamesByTheme(apiKey, offset = randomOffset,filter ="themes:1")
+            .enqueueGameList(listOfHorroGames) {
+                horrorGamesGameAdapter.notifyDataSetChanged()
+                ishorroGamesLoaded= true
+                checkIfDataLoaded()
+            }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun fetchFantasyThemeGames() {
+        val apiKey = BuildConfig.GIANT_BOMB_API_KEY
+        val randomOffset = (0..100).random()// for randomizing games
+        ApiClient.api.getGamesByTheme(apiKey, offset = randomOffset,filter ="themes:17")
+            .enqueueGameList(listOfFantasyGames) {
+                fantasyGamesGameAdapter.notifyDataSetChanged()
+                isfantasyGamesLoaded= true
+                checkIfDataLoaded()
+            }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun fetchSciFiThemeGames() {
+        val apiKey = BuildConfig.GIANT_BOMB_API_KEY
+        val randomOffset = (0..100).random()// for randomizing games
+        ApiClient.api.getGamesByTheme(apiKey, offset = randomOffset,filter ="themes:18")
+            .enqueueGameList(listOfSciFiGames) {
+                sciFiGamesGameAdapter.notifyDataSetChanged()
+                issciFiGamesLoaded= true
+                checkIfDataLoaded()
+            }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun fetchAdventureThemeGames() {
+        val apiKey = BuildConfig.GIANT_BOMB_API_KEY
+        val randomOffset = (0..100).random()// for randomizing games
+        ApiClient.api.getGamesByTheme(apiKey, offset = randomOffset,filter ="themes:22")
+            .enqueueGameList(listOfAdventureGames) {
+                adventureGamesGameAdapter.notifyDataSetChanged()
+                isadventureGamesLoaded= true
+                checkIfDataLoaded()
+            }
+    }
+    @SuppressLint("NotifyDataSetChanged")
+    private fun fetchRomanceThemeGames() {
+        val apiKey = BuildConfig.GIANT_BOMB_API_KEY
+        val randomOffset = (0..100).random()// for randomizing games
+        ApiClient.api.getGamesByTheme(apiKey, offset = randomOffset,filter ="themes:33")
+            .enqueueGameList(listOfRomanceGames) {
+                romanceGamesGameAdapter.notifyDataSetChanged()
+                isromanceGamesLoaded= true
+                checkIfDataLoaded()
+            }
+    }
+
     // Modify the function to directly fetch game details using the GUID
     private fun fetchPopularReviews() {
         val apiKey = BuildConfig.GIANT_BOMB_API_KEY
@@ -249,7 +554,6 @@ class landingFragment : Fragment() {
         // ❌ Not cached? Then call the API
         val apiKey = BuildConfig.GIANT_BOMB_API_KEY
         val call = ApiClient.api.getGameByGuid(guid, apiKey)
-
         call.enqueue(object : Callback<SingleGameResponse> {
             @SuppressLint("NotifyDataSetChanged")
             override fun onResponse(call: Call<SingleGameResponse>, response: Response<SingleGameResponse>) {
@@ -358,23 +662,48 @@ class landingFragment : Fragment() {
         )
     }
 
+    // for shimmer
     @SuppressLint("NotifyDataSetChanged")
     private fun checkIfDataLoaded() {
         //todo change this
-        if (isHighRatedLoaded && isRandomLoaded) {
+        if (isHighRatedLoaded && isRandomLoaded && isps4GamesLoaded && isxbox1GamesLoaded
+            && ismobileGamesLoaded && isnintendoSwitchLoaded && ispcGamesLoaded && ishorroGamesLoaded
+            && issciFiGamesLoaded && isfantasyGamesLoaded && isadventureGamesLoaded && isromanceGamesLoaded) {
+
             val cool = view?.findViewById<LinearLayout>(R.id.realContent)
             shimmerLayout.stopShimmer()
             shimmerLayout.visibility = View.GONE
             hrgRecyclerView.visibility = View.VISIBLE
             rgRecyclerView.visibility = View.VISIBLE
             recyclerView.visibility = View.VISIBLE
+            ps4RecyclerView.visibility = View.VISIBLE
+            xbox1RecyclerView.visibility = View.VISIBLE
+            pcRecyclerView.visibility = View.VISIBLE
+            nintendoSwitchRecyclerView.visibility = View.VISIBLE
+            mobileRecyclerView.visibility = View.VISIBLE
+            horrorRecyclerView.visibility = View.VISIBLE
+            fantasyRecyclerView.visibility = View.VISIBLE
+            adventureRecyclerView.visibility = View.VISIBLE
+            sciFiRecyclerView.visibility = View.VISIBLE
+            romanceRecyclerView.visibility = View.VISIBLE
             if (cool != null) {
                 cool.visibility = View.VISIBLE
             }
+            //
             arrayAdapter.notifyDataSetChanged()
             randomGamesGameameAdapter.notifyDataSetChanged()
-             highRatedGamesGameAdapter.notifyDataSetChanged()
-            Log.d("SHIMMER", "All data loaded—shimmer stopped")
+            highRatedGamesGameAdapter.notifyDataSetChanged()
+            ps4GamesGameAdapter.notifyDataSetChanged()
+            xbox1GamesGameAdapter.notifyDataSetChanged()
+            nintendoSwitchGamesGameAdapter.notifyDataSetChanged()
+            pcGamesGameAdapter.notifyDataSetChanged()
+            mobileGamesGameAdapter.notifyDataSetChanged()
+            horrorGamesGameAdapter.notifyDataSetChanged()
+            fantasyGamesGameAdapter.notifyDataSetChanged()
+            sciFiGamesGameAdapter.notifyDataSetChanged()
+            romanceGamesGameAdapter.notifyDataSetChanged()
+            adventureGamesGameAdapter.notifyDataSetChanged()
+            Log.d("SHIMMER", "All data loaded—shimmer stopped")//4 debugging
         }
     }
     private fun abc(game: Game){
