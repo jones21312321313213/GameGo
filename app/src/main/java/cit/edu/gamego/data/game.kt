@@ -19,7 +19,8 @@ data class Game(
     val theme: List<String>? = emptyList(),
     val franchise: List<String>? = emptyList(),
     val publishers: List<String>? = emptyList(),
-    val alias: String? = ""
+    val alias: String? = "",
+    val similarGames: List<String>? = emptyList()
 ) : Serializable
 
 

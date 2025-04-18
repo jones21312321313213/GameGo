@@ -573,7 +573,7 @@ class landingFragment : Fragment() {
                                 franchise = game.franchises?.map { f -> f.name } ?: emptyList(),
                                 publishers = game.publishers?.map { p -> p.name } ?: emptyList(),
                                 developer = game.developers?.joinToString { d -> d.name } ?: "Unknown",
-                                alias = game.aliases ?: "None"
+                                alias = game.aliases ?: "None",
                             )
 
                             // ✅ Step 2: Add to cache
@@ -643,21 +643,22 @@ class landingFragment : Fragment() {
     private fun moreWGlide(game: Game) {
         startActivity(
             Intent(requireContext(), reviewPageActivity::class.java).apply {
-                putExtra("title", game.name)
-                putExtra("date",game.date)
-                putExtra("imageReswGlide", game.photo?.medium_url)
-                putExtra("trailer", game.gameTrailer)
-                putExtra("ratings", game.rating)
-                putExtra("guid", game.guid)
-                putExtra("desc", game.description)
-                putExtra("isLiked", game.isLiked)
-                putExtra("platform", game.platform?.joinToString(", ") ?: "N/A")
-                putExtra("developer", game.developer ?: "N/A")
-                putExtra("genre", game.genre?.joinToString(", ") ?: "N/A")
-                putExtra("theme", game.theme?.joinToString(", ") ?: "N/A")
-                putExtra("franchise", game.franchise?.joinToString(", ") ?: "N/A")
-                putExtra("publishers", game.publishers?.joinToString(", ") ?: "N/A")
-                putExtra("alias", game.alias ?: "N/A")
+                putExtra("guid",game.guid)
+//                putExtra("title", game.name)
+//                putExtra("date",game.date)
+//                putExtra("imageReswGlide", game.photo?.medium_url)
+//                putExtra("trailer", game.gameTrailer)
+//                putExtra("ratings", game.rating)
+//                putExtra("guid", game.guid)
+//                putExtra("desc", game.description)
+//                putExtra("isLiked", game.isLiked)
+//                putExtra("platform", game.platform?.joinToString(", ") ?: "N/A")
+//                putExtra("developer", game.developer ?: "N/A")
+//                putExtra("genre", game.genre?.joinToString(", ") ?: "N/A")
+//                putExtra("theme", game.theme?.joinToString(", ") ?: "N/A")
+//                putExtra("franchise", game.franchise?.joinToString(", ") ?: "N/A")
+//                putExtra("publishers", game.publishers?.joinToString(", ") ?: "N/A")
+//                putExtra("alias", game.alias ?: "N/A")
             }
         )
     }

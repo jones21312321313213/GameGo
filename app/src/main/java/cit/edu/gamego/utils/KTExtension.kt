@@ -68,7 +68,7 @@ fun Call<GameApiResponse>.enqueueGameList(
                             theme = emptyList(),
                             franchise = emptyList(),
                             publishers = emptyList(),
-                            alias = ""
+                            alias = "",
                         )
                     })
                     onNotify()

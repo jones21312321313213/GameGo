@@ -39,7 +39,19 @@ class  GameRecyclerViewAdapterwGlide(
         val item = listOfGame[position]
 
         Glide.with(holder.itemView.context).load(item.photo?.medium_url).into(holder.photo)
-
+//
+//        val imageUrl = item.photo?.medium_url
+//
+//        if (!imageUrl.isNullOrBlank()) {
+//            Glide.with(holder.itemView.context)
+//                .load(imageUrl)
+//                .placeholder(R.drawable.ye) // while loading
+//                .error(R.drawable.aaa)  // if failed
+//                .centerCrop()                        // for clean scaling
+//                .into(holder.photo)
+//        } else {
+//            holder.photo.setImageResource(R.drawable.aaa)
+//        }
         //holder.photo.setImageResource(item.photo.toInt())
         holder.name.text = item.name
         holder.ratings.text = item.rating.toString()

@@ -7,6 +7,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import cit.edu.gamego.GameDescriptionFragment
 import cit.edu.gamego.GameDetailsFragment
 import cit.edu.gamego.GameMediaFragment
+import cit.edu.gamego.GameSimilarGamesFragment
 
 class FragmentPageAdapter(
     fragmentManager: FragmentManager,
@@ -19,7 +20,8 @@ class FragmentPageAdapter(
         return when (position) {
             0 -> GameDescriptionFragment()
             1 -> GameMediaFragment()
-            else -> GameDetailsFragment()
+            2 -> GameDetailsFragment()
+            else -> GameSimilarGamesFragment()
         }
     }
 

@@ -49,11 +49,16 @@ data class GameDetails(
     val publishers: List<Company>?,
     val videos: List<Video>?,
     val themes: List<Theme>?,
-    val similar_games: List<Game>?,
+    val similar_games: List<SimilarGame>?,
     val aliases: String?
 )
 
-
+data class SimilarGame(
+    val id: Int?,
+    val name: String?,
+    val api_detail_url: String?,
+    val site_detail_url: String?
+)
 data class Company(
     val name: String
 )

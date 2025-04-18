@@ -37,7 +37,7 @@ class reviewPageActivity : AppCompatActivity() {
     private var abc: String? = ""
     private var bundle = Bundle()
     private var bundle2 = Bundle()
-    private var bundle3 = Bundle()
+    private var similarGamesBundle = Bundle()
     private lateinit var tabLayout: TabLayout
     private lateinit var frameLayout: FrameLayout
     private var gg: Game? = null
@@ -91,7 +91,6 @@ class reviewPageActivity : AppCompatActivity() {
                 it.getStringExtra("genre")?.let{genre->
                     binding.genreText.text = genre
                 }
-
                 trailer = it.getStringExtra("trailer") ?: ""
                 gg = createGame(it.getStringExtra("title"),it.getStringExtra("date"), it.getStringExtra("ratings"), it.getStringExtra("desc"), it.getBooleanExtra("isLiked", false), it.getStringExtra("platform"), it.getStringExtra("genre"), it.getStringExtra("theme"), it.getStringExtra("franchise"),it.getStringExtra("publishers"),it.getStringExtra("developer"), it.getStringExtra("alias"))
 
@@ -137,9 +136,11 @@ class reviewPageActivity : AppCompatActivity() {
         tabLayout.addTab(tabLayout.newTab().setText("About"))
         tabLayout.addTab(tabLayout.newTab().setText("Media"))
         tabLayout.addTab(tabLayout.newTab().setText("Details"))
+        tabLayout.addTab(tabLayout.newTab().setText("Similar Games"))
         // Load the first fragment by default
         loadFragment(GameDescriptionFragment(),bundle)
 
+        // for local games
         bundle2 = Bundle().apply {
             putString("name", binding.gameTitleRp.text.toString())
             putString("date", gg?.date)
@@ -164,6 +165,7 @@ class reviewPageActivity : AppCompatActivity() {
                         0 -> loadFragment(GameDescriptionFragment(),bundle)  // First tab
                         1 -> loadFragment(GameMediaFragment(),bundle) // Second tab
                         2 -> loadFragment(GameDetailsFragment(),bundle2)
+                        3 -> loadFragment(GameSimilarGamesFragment(),similarGamesBundle)
                     }
                 }
             }
@@ -232,7 +234,7 @@ class reviewPageActivity : AppCompatActivity() {
             franchise = franchise?.split(",") ?: emptyList(),
             publishers = publishers?.split(",")?: emptyList(),
             developer =  developer,
-            alias = alias
+            alias = alias,
         )
     }
     private fun loadFragment(fragment: Fragment, bundle: Bundle) {
@@ -300,6 +302,11 @@ class reviewPageActivity : AppCompatActivity() {
                         val publishers = it.publishers?.joinToString{p -> p.name} ?: "None"
                         // Alias
                         val alias = it.aliases ?: "None"
+
+                        // todo
+                        val similarGames = game.similar_games?.map { it.site_detail_url } ?: emptyList()
+
+
                         gomen = createGame(binding.gameTitleRp.text.toString(),date,"","",false,platforms,genres,themes,franchises,publishers,devs,alias)
                         bundle2 = Bundle().apply {
                             putString("name", binding.gameTitleRp.text.toString())
@@ -312,6 +319,10 @@ class reviewPageActivity : AppCompatActivity() {
                             putString("franchise", gomen?.franchise?.joinToString(", "))
                             putString("publishers", gomen?.publishers?.joinToString(", "))
                             putString("alias", gomen?.alias)
+                        }
+
+                        similarGamesBundle = Bundle().apply{
+                            putString("similarGames", similarGames.joinToString(","))
                         }
                         Log.d("DETAILS", "Devs: $devs | Genres: $genres")
                     }
