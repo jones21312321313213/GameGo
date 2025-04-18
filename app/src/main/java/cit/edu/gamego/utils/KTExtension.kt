@@ -23,6 +23,7 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.annotation.SuppressLint
 import android.util.Log
+import android.widget.ImageView
 import cit.edu.gamego.data.ApiClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -122,16 +123,39 @@ fun Context.showConfirmation(message: String) {
     }
 }
 
-fun WebView.setupAndLoad(trailer: String) {
+@SuppressLint("SetJavaScriptEnabled")
+fun WebView.setupAndLoad(trailer: String, fallbackImageView: ImageView) {
     settings.javaScriptEnabled = true
     settings.domStorageEnabled = true
     settings.cacheMode = WebSettings.LOAD_NO_CACHE
-    settings.mediaPlaybackRequiresUserGesture = false // Allow autoplay
+    settings.mediaPlaybackRequiresUserGesture = false
 
-    webViewClient = WebViewClient() // Prevent opening in external browser
+    webViewClient = object : WebViewClient() {
+        override fun onPageFinished(view: WebView?, url: String?) {
+            super.onPageFinished(view, url)
+
+            evaluateJavascript(
+                """(function() {
+                    var videos = document.getElementsByTagName('video');
+                    return videos.length > 0;
+                })();"""
+            ) { result ->
+                val hasVideo = result == "true"
+
+                if (hasVideo) {
+                    this@setupAndLoad.visibility = View.VISIBLE
+                    fallbackImageView.visibility = View.GONE
+                } else {
+                    this@setupAndLoad.visibility = View.GONE
+                    fallbackImageView.visibility = View.VISIBLE
+                }
+            }
+        }
+    }
 
     loadDataWithBaseURL(null, trailer, "text/html", "utf-8", null)
 }
+
 
 fun EditText.isTextNullOrEmpty(): Boolean {
     return this.text.isNullOrEmpty()

@@ -25,6 +25,7 @@ class GameSimilarGamesFragment : Fragment() {
     private val listOfSimilarGames = mutableListOf<Game>()
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: GameRecyclerViewAdapterwGlide
+    private val MAX_SIMILAR_GAMES = 5
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -68,8 +69,9 @@ class GameSimilarGamesFragment : Fragment() {
     }
 
     private fun fetchGameDetails(guid: String) {
-        val parentGameGuid = arguments?.getString("parentGameGuid") // Make sure this is passed in arguments
+        if(listOfSimilarGames.size >= MAX_SIMILAR_GAMES) return
 
+        val parentGameGuid = arguments?.getString("parentGameGuid") // Make sure this is passed in arguments
         // 💾 Check gameCache first
         AppCache.gameCache[guid]?.let { cachedGame ->
             Log.d("CACHE", "Loaded from game cache: ${cachedGame.name}")

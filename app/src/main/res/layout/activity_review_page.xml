@@ -50,11 +50,25 @@
                 tools:ignore="WebViewLayout">
 
                 <!-- WebView -->
-                <WebView
-                    android:id="@+id/game_webview"
+                <FrameLayout
+                    android:id="@+id/webview_container"
                     android:layout_width="match_parent"
-                    android:layout_height="350dp"
-                    android:layout_marginBottom="50dp" />
+                    android:layout_height="wrap_content">
+
+                    <WebView
+                        android:id="@+id/game_webview"
+                        android:layout_width="match_parent"
+                        android:layout_height="350dp"
+                        android:layout_marginBottom="50dp" />
+
+                    <ImageView
+                        android:id="@+id/fallbackImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ye"
+                        android:visibility="gone"/>
+                </FrameLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"

@@ -41,7 +41,7 @@ class  GameRecyclerViewAdapterwGlide(
         Glide.with(holder.itemView.context).load(item.photo?.medium_url).into(holder.photo)
 //
 //        val imageUrl = item.photo?.medium_url
-//
+//        abcdefghijklmnopqe
 //        if (!imageUrl.isNullOrBlank()) {
 //            Glide.with(holder.itemView.context)
 //                .load(imageUrl)

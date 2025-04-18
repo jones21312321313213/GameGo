@@ -13,6 +13,7 @@ import android.widget.TextView
 import cit.edu.gamego.extensions.setupAndLoad
 import com.bumptech.glide.Glide
 import android.view.animation.AnimationUtils
+import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.HtmlCompat
 import cit.edu.gamego.data.SingleGameResponse
@@ -177,11 +178,10 @@ class reviewPageActivity : AppCompatActivity() {
                 // Handle tab reselection if necessary
             }
         })
-
+        val fallbackk = findViewById<ImageView>(R.id.fallbackImage)
         // ✅ Initialize WebView
         webView = findViewById(R.id.game_webview)
-        webView.setupAndLoad(trailer)
-
+        webView.setupAndLoad(trailer,fallbackk)
 
         binding.backRp.setOnClickListener {
             finish()
@@ -286,6 +286,7 @@ class reviewPageActivity : AppCompatActivity() {
                             Glide.with(this@reviewPageActivity).load(url).into(binding.gamePicRp)
                             abc = url
                         }
+                        trailer  = it.videos?.get(0).toString()
                         // Platform
                         val platforms = it.platforms?.joinToString { p -> p.name } ?: "None"
                         binding.platformText.text = platforms
@@ -302,10 +303,8 @@ class reviewPageActivity : AppCompatActivity() {
                         val publishers = it.publishers?.joinToString{p -> p.name} ?: "None"
                         // Alias
                         val alias = it.aliases ?: "None"
-
-                        // todo
+                        // Similar Games
                         val similarGames = game.similar_games?.map { it.site_detail_url } ?: emptyList()
-
 
                         gomen = createGame(binding.gameTitleRp.text.toString(),date,"","",false,platforms,genres,themes,franchises,publishers,devs,alias)
                         bundle2 = Bundle().apply {
