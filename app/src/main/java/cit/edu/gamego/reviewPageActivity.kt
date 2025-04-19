@@ -300,10 +300,10 @@ class reviewPageActivity : AppCompatActivity() {
                         val alias = it.aliases ?: "None"
                         // Similar Games
                         val similarGames = game.similar_games?.map { it.site_detail_url } ?: emptyList()
+                        // Images relating to the game
+                        val images = game.images?.map{it.medium_url} ?: emptyList()
 
-                        val yuuJimin = it.images?.joinToString{i -> i.medium_url}
-
-                        Log.d("SampleImage","Images: $yuuJimin")
+                        Log.d("SampleImage","Images: $images")
                         gomen = createGame(binding.gameTitleRp.text.toString(),date,"","",false,platforms,genres,themes,franchises,publishers,devs,alias)
                         bundle2 = Bundle().apply {
                             putString("name", binding.gameTitleRp.text.toString())
@@ -322,9 +322,9 @@ class reviewPageActivity : AppCompatActivity() {
                             putString("similarGames", similarGames.joinToString(","))
                         }
 
-//                        fetchImages(guid){
-//                            Log.e("Images", "Failed to fetch images")
-//                        }
+                        imagesBundle = Bundle().apply{
+                            putString("images",images.joinToString(","))
+                        }
 
                     }
                 } else {
@@ -361,41 +361,6 @@ class reviewPageActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<SingleVideoResponse>, t: Throwable) {
-                Log.e("API Failure", t.message ?: "Unknown error")
-                onError()
-            }
-        })
-    }
-
-    private fun fetchImages(guid: String, onError: () -> Unit) {
-        if (guid.isEmpty()) {
-            onError()
-            return
-        }
-
-        val objectId = "3030-$guid" // '3030' = Game object type
-        val apiKey = BuildConfig.GIANT_BOMB_API_KEY
-
-        ApiClient.api.getGameImages(objectId, apiKey, "json").enqueue(object : Callback<ImageResponse> {
-            override fun onResponse(call: Call<ImageResponse>, response: Response<ImageResponse>) {
-                if (response.isSuccessful) {
-                    val images = response.body()?.results
-                    if (!images.isNullOrEmpty()) {
-                        images.forEach {
-                            Log.d("Image URL", "Medium: ${it.medium_url}, Super: ${it.super_url}")
-                        }
-
-
-                    } else {
-                        onError()
-                    }
-                } else {
-                    Log.e("Image Fetch", "Unsuccessful: ${response.code()}")
-                    onError()
-                }
-            }
-
-            override fun onFailure(call: Call<ImageResponse>, t: Throwable) {
                 Log.e("API Failure", t.message ?: "Unknown error")
                 onError()
             }

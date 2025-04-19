@@ -43,12 +43,7 @@ interface GiantBombApi {
         @Query("field_list") fieldList: String = "name,description,image,original_game_rating,developers,similar_games,themes,videos,genres,platforms,images"
     ): Call<SingleGameResponse>
 
-    @GET("images/{guid}/")
-    fun getGameImages(
-        @Path("guid") guid: String,
-        @Query("api_key") apiKey: String,
-        @Query("format") format: String = "json"
-    ): Call<ImageResponse>
+
     @GET("videos/{videoGuid}/")  // Modify to match your API structure
     fun getVideoDetails(
         @Path("videoGuid") videoGuid: String,  // Extract the GUID from the URL dynamically

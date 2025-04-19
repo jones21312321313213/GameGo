@@ -128,5 +128,4 @@ class GameSimilarGamesFragment : Fragment() {
         })
     }
 
-
 }
