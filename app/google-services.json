@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "605245289874",
+    "project_id": "gamego-5912c",
+    "storage_bucket": "gamego-5912c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:605245289874:android:82d886a326ff2986ad3d4b",
+        "android_client_info": {
+          "package_name": "cit.edu.gamego"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5C07t7zI_7J22b8fhhMDhEiuH7p3wMd8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
