@@ -40,12 +40,12 @@ interface GiantBombApi {
         @Path("guid") guid: String,
         @Query("api_key") apiKey: String,
         @Query("format") format: String = "json",
-        @Query("field_list") fieldList: String = "name,description,image,original_game_rating,developers,similar_games,themes,videos,genres,platforms"
+        @Query("field_list") fieldList: String = "name,description,image,original_game_rating,developers,similar_games,themes,videos,genres,platforms,images"
     ): Call<SingleGameResponse>
 
-    @GET("images/{objectId}/")
+    @GET("images/{guid}/")
     fun getGameImages(
-        @Path("objectId") objectId: String,
+        @Path("guid") guid: String,
         @Query("api_key") apiKey: String,
         @Query("format") format: String = "json"
     ): Call<ImageResponse>

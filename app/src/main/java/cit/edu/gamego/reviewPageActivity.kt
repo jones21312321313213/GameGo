@@ -23,6 +23,7 @@ import cit.edu.gamego.extensions.toast
 import cit.edu.gamego.data.ApiClient
 import cit.edu.gamego.data.Game
 import cit.edu.gamego.data.Image
+import cit.edu.gamego.data.ImageResponse
 import cit.edu.gamego.data.SingleVideoResponse
 import cit.edu.gamego.extensions.createGame
 import cit.edu.gamego.extensions.extractGuidFromShowUrl
@@ -43,6 +44,7 @@ class reviewPageActivity : AppCompatActivity() {
     private var bundle = Bundle()
     private var bundle2 = Bundle()
     private var similarGamesBundle = Bundle()
+    private var imagesBundle = Bundle()
     private lateinit var tabLayout: TabLayout
     private lateinit var frameLayout: FrameLayout
     private var gg: Game? = null
@@ -170,7 +172,7 @@ class reviewPageActivity : AppCompatActivity() {
                 if (tab != null) {
                     when (tab.position) {
                         0 -> loadFragment(GameDescriptionFragment(),bundle)  // First tab
-                        1 -> loadFragment(GameMediaFragment(),bundle) // Second tab
+                        1 -> loadFragment(GameMediaFragment(),imagesBundle) // Second tab
                         2 -> loadFragment(GameDetailsFragment(),bundle2)
                         3 -> loadFragment(GameSimilarGamesFragment(),similarGamesBundle)
                     }
@@ -267,7 +269,7 @@ class reviewPageActivity : AppCompatActivity() {
                         }
 
 
-
+                        // this part of the codes gets the backup image and the video for the reviw page
                         it.image?.super_url?.let{url ->
                             abc = url
                             Log.d("SUPER URL DETAILS","Super URL: $abc")
@@ -299,6 +301,9 @@ class reviewPageActivity : AppCompatActivity() {
                         // Similar Games
                         val similarGames = game.similar_games?.map { it.site_detail_url } ?: emptyList()
 
+                        val yuuJimin = it.images?.joinToString{i -> i.medium_url}
+
+                        Log.d("SampleImage","Images: $yuuJimin")
                         gomen = createGame(binding.gameTitleRp.text.toString(),date,"","",false,platforms,genres,themes,franchises,publishers,devs,alias)
                         bundle2 = Bundle().apply {
                             putString("name", binding.gameTitleRp.text.toString())
@@ -312,11 +317,15 @@ class reviewPageActivity : AppCompatActivity() {
                             putString("publishers", gomen?.publishers?.joinToString(", "))
                             putString("alias", gomen?.alias)
                         }
-
+                        //cache this
                         similarGamesBundle = Bundle().apply{
                             putString("similarGames", similarGames.joinToString(","))
                         }
-                        Log.d("DETAILS", "Devs: $devs | Genres: $genres")
+
+//                        fetchImages(guid){
+//                            Log.e("Images", "Failed to fetch images")
+//                        }
+
                     }
                 } else {
                     Log.e("DETAILS", "Error: ${response.message()}")
@@ -358,5 +367,39 @@ class reviewPageActivity : AppCompatActivity() {
         })
     }
 
+    private fun fetchImages(guid: String, onError: () -> Unit) {
+        if (guid.isEmpty()) {
+            onError()
+            return
+        }
+
+        val objectId = "3030-$guid" // '3030' = Game object type
+        val apiKey = BuildConfig.GIANT_BOMB_API_KEY
+
+        ApiClient.api.getGameImages(objectId, apiKey, "json").enqueue(object : Callback<ImageResponse> {
+            override fun onResponse(call: Call<ImageResponse>, response: Response<ImageResponse>) {
+                if (response.isSuccessful) {
+                    val images = response.body()?.results
+                    if (!images.isNullOrEmpty()) {
+                        images.forEach {
+                            Log.d("Image URL", "Medium: ${it.medium_url}, Super: ${it.super_url}")
+                        }
+
+
+                    } else {
+                        onError()
+                    }
+                } else {
+                    Log.e("Image Fetch", "Unsuccessful: ${response.code()}")
+                    onError()
+                }
+            }
+
+            override fun onFailure(call: Call<ImageResponse>, t: Throwable) {
+                Log.e("API Failure", t.message ?: "Unknown error")
+                onError()
+            }
+        })
+    }
 
 }

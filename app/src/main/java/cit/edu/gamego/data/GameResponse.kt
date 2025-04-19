@@ -67,7 +67,8 @@ data class GameDetails(
     val videos: List<Video>?,
     val themes: List<Theme>?,
     val similar_games: List<SimilarGame>?,
-    val aliases: String?
+    val aliases: String?,
+    val images: List<Image>?
 )
 
 
