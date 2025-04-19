@@ -28,6 +28,9 @@ android {
         if(localPropertiesFile.exists()){properties.load(localPropertiesFile.inputStream())}
         val apiKey = properties.getProperty("Giant_Bomb_API_KEY", "")
         buildConfigField("String","GIANT_BOMB_API_KEY","\"$apiKey\"")
+
+        val firebaseDbUrl = properties.getProperty("FIREBASE_DB_URL", "")
+        buildConfigField("String", "FIREBASE_DB_URL", "\"$firebaseDbUrl\"")
     }
 
     buildTypes {

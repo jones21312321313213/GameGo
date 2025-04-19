@@ -66,7 +66,7 @@ class RegisterActivity : Activity() {
             }// aasdsajdjkl
             // Save to Firebase
             val users = Users(username, password, email)
-            database =  FirebaseDatabase.getInstance("https://gamego-5912c-default-rtdb.asia-southeast1.firebasedatabase.app")
+            database =  FirebaseDatabase.getInstance(BuildConfig.FIREBASE_DB_URL)
 
             reference = database.getReference("Users")
 
