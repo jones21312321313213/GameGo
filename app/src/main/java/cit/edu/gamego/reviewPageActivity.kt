@@ -23,6 +23,7 @@ import cit.edu.gamego.extensions.toast
 import cit.edu.gamego.data.ApiClient
 import cit.edu.gamego.data.Game
 import cit.edu.gamego.data.Image
+import cit.edu.gamego.extensions.createGame
 import com.google.android.material.tabs.TabLayout
 import retrofit2.Call
 import retrofit2.Callback
@@ -43,20 +44,22 @@ class reviewPageActivity : AppCompatActivity() {
     private lateinit var frameLayout: FrameLayout
     private var gg: Game? = null
     private var gomen: Game? = null
-
+    private lateinit var fallbackk: ImageView
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_review_page)
+        binding = ActivityReviewPageBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         val gameImg = findViewById<ImageView>(R.id.game_pic_rp)
         val gameTitle = findViewById<TextView>(R.id.game_title_rp)
 
         val rating = findViewById<TextView>(R.id.ratings_tv_rp)
         //val back = findViewById<ImageView>(R.id.back_rp)
+         fallbackk = binding.fallbackImage
+        webView = findViewById(R.id.game_webview)
 
-        binding = ActivityReviewPageBinding.inflate(layoutInflater)
-        setContentView(binding.root)
         val zoomInAnim = AnimationUtils.loadAnimation(this, R.anim.zoom_in)
         val zoomOutAnim = AnimationUtils.loadAnimation(this, R.anim.zoom_out)
 
@@ -70,7 +73,7 @@ class reviewPageActivity : AppCompatActivity() {
             }
         })
 
-        var abc: String? = ""
+
 
         intent?.let {
             val guid = it.getStringExtra("guid") // Get the GUID
@@ -180,8 +183,8 @@ class reviewPageActivity : AppCompatActivity() {
         })
         val fallbackk = findViewById<ImageView>(R.id.fallbackImage)
         // ✅ Initialize WebView
-        webView = findViewById(R.id.game_webview)
-        webView.setupAndLoad(trailer,fallbackk)
+        // webView = findViewById(R.id.game_webview)
+           // webView.setupAndLoad(trailer, fallbackk, abc)
 
         binding.backRp.setOnClickListener {
             finish()
@@ -208,35 +211,7 @@ class reviewPageActivity : AppCompatActivity() {
 
     }
 
-    private fun createGame(title: String?,
-                           date: String?,
-                           ratings: String?,
-                           desc: String?,
-                           isLiked: Boolean,
-                           platform: String?,
-                           genre: String?,
-                           theme: String?,
-                           franchise: String?,
-                           publishers: String?,
-                           developer: String?, alias: String?): Game {
-        return Game(
-            guid = "",
-            name = title ?: "Unknown Game",
-            date = date ?: "Unknown Date", // Set a default value for date or pass from the Intent if needed
-            rating = ratings ?: "0.0", // Default to "0.0" if no rating is provided
-            gameTrailer =  "",
-            photo = Image(""),
-            description = desc,
-            isLiked = isLiked,
-            platform = platform?.split(",") ?: emptyList(),
-            genre = genre?.split(",") ?: emptyList(),
-            theme = theme?.split(",") ?: emptyList(),
-            franchise = franchise?.split(",") ?: emptyList(),
-            publishers = publishers?.split(",")?: emptyList(),
-            developer =  developer,
-            alias = alias,
-        )
-    }
+
     private fun loadFragment(fragment: Fragment, bundle: Bundle) {
         fragment.arguments = bundle
         val transaction = supportFragmentManager.beginTransaction()
@@ -283,10 +258,18 @@ class reviewPageActivity : AppCompatActivity() {
                         binding.ratingsTvRp.text = ratingText
                         // Image
                         it.image?.medium_url?.let { url ->
+                            Log.d("MEDIUM URL DETAILS","Super URL: $url")
                             Glide.with(this@reviewPageActivity).load(url).into(binding.gamePicRp)
-                            abc = url
                         }
-                        trailer  = it.videos?.get(0).toString()
+
+                        trailer = it.videos?.firstOrNull()?.site_detail_url ?: ""
+                        it.image?.super_url?.let{url ->
+                            abc = url
+
+                            webView.setupAndLoad(trailer, fallbackk, abc)
+                            Log.d("SUPER URL DETAILS","Super URL: $abc")
+                        }
+
                         // Platform
                         val platforms = it.platforms?.joinToString { p -> p.name } ?: "None"
                         binding.platformText.text = platforms

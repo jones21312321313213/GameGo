@@ -33,7 +33,7 @@ class Favorites : Activity() {
 //        var img: String = R.drawable.ye.toString()// fallback pic
 
         favoriteGames = mutableListOf(
-            Game("YE Quest", "2030", "1.1", Image(R.drawable.ye.toString()), " ", "The visionary's journey through a surreal rap universe.", false, "game_yequest", listOf("PS5", "PC"), "Yeezy Interactive", listOf("Adventure", "Rhythm"), listOf("Hip-Hop", "Satire"), listOf("YE Series"),listOf("Yeezy Productions"), "YQ"),
+            Game("YE Quest", "2030", "1.1", Image(R.drawable.ye.toString(),""), " ", "The visionary's journey through a surreal rap universe.", false, "game_yequest", listOf("PS5", "PC"), "Yeezy Interactive", listOf("Adventure", "Rhythm"), listOf("Hip-Hop", "Satire"), listOf("YE Series"),listOf("Yeezy Productions"), "YQ"),
             //Game("Helldivers", "2022",2.2, R.drawable.helldivers.toString()),
 //            Game("Black Myth Wukong", "2024",3.3, R.drawable.bmw.toString()),
 //            Game("Monster Hunter World", "2018",4.4, R.drawable.mhw.toString())
@@ -45,7 +45,7 @@ class Favorites : Activity() {
 
         //val releaseDate = FavoritesDataHolder.releaseDate
 
-        favoriteGames.add(Game(name,"2030",rating,Image(img)))
+        favoriteGames.add(Game(name,"2030",rating,Image(img,"")))
 
 
         //favoriteGames.add( Game(name,date,1.1,Image(R.drawable.ye.toString())))

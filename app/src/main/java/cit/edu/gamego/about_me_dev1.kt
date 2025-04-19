@@ -38,11 +38,11 @@ class about_me_dev1 : Activity() {
         val eldenRingTrailer = "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/AKXiKBnzpBQ?si=zBuJ8VqG7Y5gjWOU\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>".trimIndent()
 
         val listOfGame = listOf(
-            Game("Valorant", "2023","6.6", Image(R.drawable.valo.toString()),valorantTrailer),
-            Game("Overwatch 2", "2011","8.8", Image(R.drawable.overwatch2.toString()),overwatchTrailer),
-            Game("Black Myth Wukong", "2024","9.3", Image(R.drawable.bmw.toString()),bmwTrailer),
-            Game("God of War: Ragnarock", "2023","9.9", Image(R.drawable.gowrag.toString()),gowTrailer),
-            Game("Elden Ring", "2018","10.0", Image(R.drawable.eldenring.toString()),eldenRingTrailer)
+            Game("Valorant", "2023","6.6", Image(R.drawable.valo.toString(),""),valorantTrailer),
+            Game("Overwatch 2", "2011","8.8", Image(R.drawable.overwatch2.toString(),""),overwatchTrailer),
+            Game("Black Myth Wukong", "2024","9.3", Image(R.drawable.bmw.toString(),""),bmwTrailer),
+            Game("God of War: Ragnarock", "2023","9.9", Image(R.drawable.gowrag.toString(),""),gowTrailer),
+            Game("Elden Ring", "2018","10.0", Image(R.drawable.eldenring.toString(),""),eldenRingTrailer)
         )
 
         val recyclerView = findViewById<RecyclerView>(R.id.horizontalRecyclerView)

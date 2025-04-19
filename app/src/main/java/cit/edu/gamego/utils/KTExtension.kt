@@ -33,6 +33,7 @@ import cit.edu.gamego.data.GiantBombGame
 import cit.edu.gamego.data.Image
 import cit.edu.gamego.data.ReviewListResponse
 import cit.edu.gamego.data.SingleGameResponse
+import com.bumptech.glide.Glide
 
 
 //This is for API call
@@ -124,16 +125,16 @@ fun Context.showConfirmation(message: String) {
 }
 
 @SuppressLint("SetJavaScriptEnabled")
-fun WebView.setupAndLoad(trailer: String, fallbackImageView: ImageView) {
+fun WebView.setupAndLoad(trailer: String, fallbackImageView: ImageView, super_url: String?) {
     settings.javaScriptEnabled = true
     settings.domStorageEnabled = true
     settings.cacheMode = WebSettings.LOAD_NO_CACHE
     settings.mediaPlaybackRequiresUserGesture = false
 
+    Log.d("VIDEO URL","URL :$trailer")
     webViewClient = object : WebViewClient() {
         override fun onPageFinished(view: WebView?, url: String?) {
             super.onPageFinished(view, url)
-
             evaluateJavascript(
                 """(function() {
                     var videos = document.getElementsByTagName('video');
@@ -148,13 +149,24 @@ fun WebView.setupAndLoad(trailer: String, fallbackImageView: ImageView) {
                 } else {
                     this@setupAndLoad.visibility = View.GONE
                     fallbackImageView.visibility = View.VISIBLE
+
+                    if (!super_url.isNullOrBlank()) {
+                            Glide.with(fallbackImageView.context)
+                                .load(super_url)
+                                .centerCrop()
+                                .into(fallbackImageView)
+                    } else {
+                        // Load a local default image if no super_url provided
+                        fallbackImageView.setImageResource(R.drawable.ye)
+                    }
                 }
             }
         }
     }
-
     loadDataWithBaseURL(null, trailer, "text/html", "utf-8", null)
 }
+
+
 
 
 fun EditText.isTextNullOrEmpty(): Boolean {
@@ -169,6 +181,36 @@ fun Context.toast(message: CharSequence) {
 
 fun showDeleteDialog(position: Int) {
    print("skibidi")
+}
+
+fun createGame(title: String?,
+                       date: String?,
+                       ratings: String?,
+                       desc: String?,
+                       isLiked: Boolean,
+                       platform: String?,
+                       genre: String?,
+                       theme: String?,
+                       franchise: String?,
+                       publishers: String?,
+                       developer: String?, alias: String?): Game {
+    return Game(
+        guid = "",
+        name = title ?: "Unknown Game",
+        date = date ?: "Unknown Date", // Set a default value for date or pass from the Intent if needed
+        rating = ratings ?: "0.0", // Default to "0.0" if no rating is provided
+        gameTrailer =  "",
+        photo = Image("",""),
+        description = desc,
+        isLiked = isLiked,
+        platform = platform?.split(",") ?: emptyList(),
+        genre = genre?.split(",") ?: emptyList(),
+        theme = theme?.split(",") ?: emptyList(),
+        franchise = franchise?.split(",") ?: emptyList(),
+        publishers = publishers?.split(",")?: emptyList(),
+        developer =  developer,
+        alias = alias,
+    )
 }
 
 // temp

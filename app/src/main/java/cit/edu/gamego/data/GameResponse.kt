@@ -82,7 +82,8 @@ data class Theme(
     val name: String
 )
 data class Image(
-    val medium_url: String
+    val medium_url: String,
+    val super_url: String
 )
 data class Rating(
     val name: String

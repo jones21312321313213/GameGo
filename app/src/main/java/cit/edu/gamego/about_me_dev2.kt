@@ -35,11 +35,11 @@ class about_me_dev2 : Activity() {
         val eldenRingTrailer = "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/AKXiKBnzpBQ?si=zBuJ8VqG7Y5gjWOU\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>".trimIndent()
 
         val listOfGame = listOf(
-            Game("Counter Strike 2", "2023","6.6", Image(R.drawable.cs2.toString()),cs2Trailer),
-            Game("DOTA 2", "2011","8.8", Image(R.drawable.dota.toString()),dota2Trailer),
-            Game("Black Myth Wukong", "2024","9.3", Image(R.drawable.bmw.toString()),bmwTrailer),
-            Game("God of War: Ragnarock", "2018","9.9", Image(R.drawable.gowrag.toString()),gowTrailer),
-            Game("Elden Ring", "2018","10.0", Image(R.drawable.eldenring.toString()),eldenRingTrailer)
+            Game("Counter Strike 2", "2023","6.6", Image(R.drawable.cs2.toString(),""),cs2Trailer),
+            Game("DOTA 2", "2011","8.8", Image(R.drawable.dota.toString(),""),dota2Trailer),
+            Game("Black Myth Wukong", "2024","9.3", Image(R.drawable.bmw.toString(),""),bmwTrailer),
+            Game("God of War: Ragnarock", "2018","9.9", Image(R.drawable.gowrag.toString(),""),gowTrailer),
+            Game("Elden Ring", "2018","10.0", Image(R.drawable.eldenring.toString(),""),eldenRingTrailer)
         )
 
 

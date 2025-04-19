@@ -25,6 +25,7 @@
         android:fillViewport="true">
 
         <LinearLayout
+            android:id="@+id/rp_background"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -64,9 +65,8 @@
                     <ImageView
                         android:id="@+id/fallbackImage"
                         android:layout_width="match_parent"
-                        android:layout_height="200dp"
+                        android:layout_height="350dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/ye"
                         android:visibility="gone"/>
                 </FrameLayout>
 
@@ -164,7 +164,7 @@
                     android:layout_marginStart="10dp"
                     android:textStyle="bold"
                     android:textSize="20sp"
-                    android:text="GiantBomb Rating:" />
+                    android:text=" Rating:" />
 
                 <TextView
                     android:id="@+id/ratings_tv_rp"
@@ -175,12 +175,6 @@
                     android:textSize="20sp"
                     android:text="N/A" />
 
-                <ImageView
-                    android:id="@+id/star"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:layout_marginStart="8dp"
-                    android:background="@drawable/star" />
 
                 <!-- Spacer to push the heart to the end -->
                 <View
