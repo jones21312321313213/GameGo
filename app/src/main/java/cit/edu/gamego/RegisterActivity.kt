@@ -63,7 +63,7 @@ class RegisterActivity : Activity() {
             if (cpass != password) {
                 toast("Passwords do not match")
                 return@setOnClickListener
-            }// wow
+            }// aasdsajdjkl
             // Save to Firebase
             val users = Users(username, password, email)
             database =  FirebaseDatabase.getInstance("https://gamego-5912c-default-rtdb.asia-southeast1.firebasedatabase.app")
