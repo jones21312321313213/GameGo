@@ -89,6 +89,17 @@ fun String.extractGuidFromUrl(): String? {
     return this.trimEnd('/').split("/").lastOrNull()
 }
 
+fun String.extractGuidFromShowUrl(): String? {
+    val segments = this.trimEnd('/').split("/")
+    return if (segments.size >= 2) {
+        val maybeGuid = segments[segments.size - 2]
+        if (maybeGuid.matches(Regex("\\d+-\\d+"))) maybeGuid else null
+    } else {
+        null
+    }
+}
+
+
 fun Context.showConfirmation(message: String) {
     val dialog = Dialog(this)
     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -131,15 +142,18 @@ fun WebView.setupAndLoad(trailer: String, fallbackImageView: ImageView, super_ur
     settings.cacheMode = WebSettings.LOAD_NO_CACHE
     settings.mediaPlaybackRequiresUserGesture = false
 
-    Log.d("VIDEO URL","URL :$trailer")
+    Log.d("setUpANDLOAD URL", "URL: $trailer")
+
     webViewClient = object : WebViewClient() {
         override fun onPageFinished(view: WebView?, url: String?) {
             super.onPageFinished(view, url)
+
             evaluateJavascript(
                 """(function() {
-                    var videos = document.getElementsByTagName('video');
-                    return videos.length > 0;
-                })();"""
+                var videos = document.getElementsByTagName('video');
+                var iframes = document.getElementsByTagName('iframe');
+                return videos.length > 0 || iframes.length > 0;
+            })();"""
             ) { result ->
                 val hasVideo = result == "true"
 
@@ -151,20 +165,21 @@ fun WebView.setupAndLoad(trailer: String, fallbackImageView: ImageView, super_ur
                     fallbackImageView.visibility = View.VISIBLE
 
                     if (!super_url.isNullOrBlank()) {
-                            Glide.with(fallbackImageView.context)
-                                .load(super_url)
-                                .centerCrop()
-                                .into(fallbackImageView)
+                        Glide.with(fallbackImageView.context)
+                            .load(super_url)
+                            .centerCrop()
+                            .into(fallbackImageView)
                     } else {
-                        // Load a local default image if no super_url provided
                         fallbackImageView.setImageResource(R.drawable.ye)
                     }
                 }
             }
         }
     }
-    loadDataWithBaseURL(null, trailer, "text/html", "utf-8", null)
+    // 👉 Use loadUrl here instead of loadDataWithBaseURL
+    loadUrl(trailer)
 }
+
 
 
 

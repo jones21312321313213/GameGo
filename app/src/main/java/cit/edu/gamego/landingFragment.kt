@@ -295,7 +295,7 @@ class landingFragment : Fragment() {
         )
 
         // fetching games using API
-        fetchRandomGames()
+ //       fetchRandomGames()
         fetchPopularReviews()
 //        fetchPs4PlatformGames()
 //        fetchXboxOnePlatformGames()

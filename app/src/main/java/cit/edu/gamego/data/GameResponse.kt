@@ -34,6 +34,23 @@ data class SingleGameResponse(
     val results: GameDetails
 )
 
+data class SingleVideoResponse(
+    val results:  List<VideoDetails>
+)
+
+data class ImageResponse(
+    val results: List<Image>
+)
+data class VideoDetails(
+    val api_detail_url: String?,
+    val deck: String?,
+    val embed_player: String?, // <- This is the URL you want for WebView
+    val guid: String?,
+    val id: Int?,
+    val length_seconds: Int?,
+    val name: String?,
+    val site_detail_url: String?,
+)
 // general
 data class GameDetails(
     val name: String?,
@@ -52,6 +69,8 @@ data class GameDetails(
     val similar_games: List<SimilarGame>?,
     val aliases: String?
 )
+
+
 
 data class SimilarGame(
     val id: Int?,

@@ -23,7 +23,10 @@ import cit.edu.gamego.extensions.toast
 import cit.edu.gamego.data.ApiClient
 import cit.edu.gamego.data.Game
 import cit.edu.gamego.data.Image
+import cit.edu.gamego.data.SingleVideoResponse
 import cit.edu.gamego.extensions.createGame
+import cit.edu.gamego.extensions.extractGuidFromShowUrl
+import cit.edu.gamego.extensions.extractGuidFromUrl
 import com.google.android.material.tabs.TabLayout
 import retrofit2.Call
 import retrofit2.Callback
@@ -234,6 +237,7 @@ class reviewPageActivity : AppCompatActivity() {
         abstract fun onDoubleClick(v: View?)
     }
 
+
     private fun fetchGameDetails(guid: String) {
         val apiKey = BuildConfig.GIANT_BOMB_API_KEY
         val call = ApiClient.api.getGameByGuid(guid, apiKey)
@@ -258,16 +262,22 @@ class reviewPageActivity : AppCompatActivity() {
                         binding.ratingsTvRp.text = ratingText
                         // Image
                         it.image?.medium_url?.let { url ->
-                            Log.d("MEDIUM URL DETAILS","Super URL: $url")
+                            Log.d("MEDIUM URL DETAILS","MEDIUM URL: $url")
                             Glide.with(this@reviewPageActivity).load(url).into(binding.gamePicRp)
                         }
 
-                        trailer = it.videos?.firstOrNull()?.site_detail_url ?: ""
+
+
                         it.image?.super_url?.let{url ->
                             abc = url
-
-                            webView.setupAndLoad(trailer, fallbackk, abc)
                             Log.d("SUPER URL DETAILS","Super URL: $abc")
+                            val videoGuid = it.videos?.firstOrNull()?.site_detail_url?.extractGuidFromShowUrl() ?: ""
+
+                            Log.d("Video GUID", "Extracted GUID: $videoGuid")
+                            fetchVideoDetails(videoGuid) {
+                                // Handle error case here
+                                Log.e("Video Error", "Failed to fetch video details")
+                            }
                         }
 
                         // Platform
@@ -317,4 +327,36 @@ class reviewPageActivity : AppCompatActivity() {
             }
         })
     }
+
+    private fun fetchVideoDetails(videoGuid: String, onError: () -> Unit) {
+        if (videoGuid.isEmpty()) {
+            onError()
+            return
+        }
+        val apiKey = BuildConfig.GIANT_BOMB_API_KEY
+        ApiClient.api.getVideoDetails(videoGuid, apiKey, "json").enqueue(object : Callback<SingleVideoResponse> {
+            override fun onResponse(call: Call<SingleVideoResponse>, response: Response<SingleVideoResponse>) {
+                if (response.isSuccessful) {
+                    val embedUrl = response.body()?.results?.firstOrNull()?.embed_player
+                    if (!embedUrl.isNullOrEmpty()) {
+                        trailer = embedUrl
+                        Log.d("Video URL", "Embed URL: $embedUrl")
+                        Log.d("Video URL after extraction","Super URL: $trailer")
+                        webView.setupAndLoad(trailer, fallbackk, abc)
+                    } else {
+                        onError()
+                    }
+                } else {
+                    onError()
+                }
+            }
+
+            override fun onFailure(call: Call<SingleVideoResponse>, t: Throwable) {
+                Log.e("API Failure", t.message ?: "Unknown error")
+                onError()
+            }
+        })
+    }
+
+
 }
