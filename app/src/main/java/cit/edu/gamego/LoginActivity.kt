@@ -4,111 +4,91 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
-
-
-//import androidx.appcompat.app.AppCompatActivity
-//import retrofit2.*
-//import retrofit2.converter.gson.GsonConverterFactory
-//import retrofit2.http.*
-
-//import java.util.Properties
-//import java.io.File
-//import java.io.FileInputStream
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.database.FirebaseDatabase
 
 class LoginActivity : Activity() {
+
+    private lateinit var rootView: View
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.login_f3);
+        setContentView(R.layout.login_f3)
 
-
-        val et_username = findViewById<EditText>(R.id.login_username_Id);
-        val et_password = findViewById<EditText>(R.id.login_pass_Id);
-        var et_email: String? = null
-
+        rootView = findViewById(android.R.id.content) // root view for Snackbar
+        rootView.post {
+            Snackbar.make(rootView, "Test Snackbar", Snackbar.LENGTH_LONG).show()
+        }
+        val et_username = findViewById<EditText>(R.id.login_username_Id)
+        val et_password = findViewById<EditText>(R.id.login_pass_Id)
 
         intent?.let {
-            it.getStringExtra("username")?.let {username ->
+            it.getStringExtra("username")?.let { username ->
                 et_username.setText(username)
             }
-
-            it.getStringExtra("password")?.let {password ->
+            it.getStringExtra("password")?.let { password ->
                 et_password.setText(password)
             }
-
-            it.getStringExtra("email")?.let{
-                et_email = it
-            }
         }
 
-        val button_register = findViewById<TextView>(R.id.login_signup_Id);
+        val button_register = findViewById<TextView>(R.id.login_signup_Id)
         button_register.setOnClickListener {
-            Log.e("CSIT 284", "absolute cinema");
-            val intent = Intent(this,RegisterActivity::class.java);//temp
-            startActivity(intent);
+            Log.e("CSIT 284", "absolute cinema")
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+            finish()
         }
 
-        val btnMain = findViewById<Button>(R.id.login_Id);
+        val btnMain = findViewById<Button>(R.id.login_Id)
         btnMain.setOnClickListener {
-            if (et_username.text.toString().isNullOrEmpty()|| et_password.text.toString().isNullOrEmpty()) {
-                Toast.makeText(this,"Username and pass is empty",Toast.LENGTH_LONG).show();
+            if (et_username.text.toString().isNullOrEmpty() || et_password.text.toString().isNullOrEmpty()) {
+                showSnackbar("Username and password is empty")
                 return@setOnClickListener
             }
-            startActivity(
-                Intent(this,landingWIthFragmentActivity::class.java).apply {
-                    putExtra("username", et_username.text.toString());
-                    putExtra("password", et_password.text.toString());
-                    putExtra("email", et_email);
-                }
-            )
-            finish()
+            loginUser(et_username.text.toString(), et_password.text.toString())
         }
     }
 
+    private fun loginUser(username: String, password: String) {
+        if (username.isEmpty() || password.isEmpty()) {
+            showSnackbar("Enter username and password")
+            return
+        }
 
-    // OAuth 2.0 CALLBACKS
-//    override fun onResume() {
-//        super.onResume()
-//
-//        intent?.data?.let { uri ->
-//            if (uri.toString().startsWith("yourapp://callback")) {
-//                val code = uri.getQueryParameter("code")
-//                if (code != null) {
-//                    exchangeCodeForToken(code)
-//                }
-//            }
-//        }
-//    }
-//
-//    private fun exchangeCodeForToken(code: String) {
-//        val retrofit = Retrofit.Builder()
-//            .baseUrl("https://github.com/")
-//            .addConverterFactory(GsonConverterFactory.create())
-//            .build()
-//
-//        val service = retrofit.create(OAuthApi::class.java)
-//        val call = service.getAccessToken(
-//            "your_client_id",
-//            "your_client_secret",
-//            code,
-//            "yourapp://callback"
-//        )
-//
-//        call.enqueue(object : Callback<AccessTokenResponse> {
-//            override fun onResponse(call: Call<AccessTokenResponse>, response: Response<AccessTokenResponse>) {
-//                if (response.isSuccessful) {
-//                    val accessToken = response.body()?.accessToken
-//                    Log.d("OAuth", "Access Token: $accessToken")
-//                    // Use this token for authenticated requests
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<AccessTokenResponse>, t: Throwable) {
-//                Log.e("OAuth", "Error: ${t.message}")
-//            }
-//        })
-//    }
+        val database = FirebaseDatabase.getInstance(BuildConfig.FIREBASE_DB_URL)
+        val reference = database.getReference("Users")
+
+        reference.child(username).get().addOnSuccessListener { dataSnapshot ->
+            if (dataSnapshot.exists()) {
+                val dbPassword = dataSnapshot.child("password").value.toString()
+                val email = dataSnapshot.child("email").value.toString()
+
+                if (password == dbPassword) {
+                    showSnackbar("Login successful")
+                    startActivity(
+                        Intent(this, landingWIthFragmentActivity::class.java).apply {
+                            putExtra("username", username)
+                            putExtra("email", email)
+                        }
+                    )
+                    finish()
+                } else {
+                    showSnackbar("Incorrect password")
+                }
+            } else {
+                showSnackbar("User not found")
+            }
+        }.addOnFailureListener {
+            showSnackbar("Login failed. Try again.")
+            Log.e("Firebase Error", "Error: ${it.message}")
+        }
+    }
+
+    private fun showSnackbar(message: String) {
+        Snackbar.make(rootView, message, Snackbar.LENGTH_SHORT).show()
+    }
 }
