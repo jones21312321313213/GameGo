@@ -32,6 +32,11 @@ import retrofit2.Callback
 import retrofit2.Response
 import kotlinx.coroutines.*
 
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+
+
 class landingFragment : Fragment() {
     private lateinit var filteredList: MutableList<Game>
     private lateinit var searchView: SearchView
@@ -537,61 +542,64 @@ class landingFragment : Fragment() {
         })
     }
 
+    // there is an error in here which when u go to another fragment and go back to this fragment it will esxsit
     // Modify the function to fetch game details directly for a single GUID
-    @SuppressLint("NotifyDataSetChanged")
     fun fetchGameDetails(guid: String) {
         // ✅ Step 1: Check if it's already in the cache
         val cachedGame = AppCache.gameCache[guid]
         if (cachedGame != null) {
             Log.d("CACHE", "Game already cached: ${cachedGame.name}")
             listOfHighRatedGames.add(cachedGame)
-            highRatedGamesGameAdapter.notifyDataSetChanged()
-            isHighRatedLoaded = true
-            checkIfDataLoaded()
-            return  // ❌ Skip API call
+            viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
+                highRatedGamesGameAdapter.notifyDataSetChanged()
+                isHighRatedLoaded = true
+                checkIfDataLoaded()
+            }
+            return
         }
 
-        // ❌ Not cached? Then call the API
         val apiKey = BuildConfig.GIANT_BOMB_API_KEY
         val call = ApiClient.api.getGameByGuid(guid, apiKey)
         call.enqueue(object : Callback<SingleGameResponse> {
-            @SuppressLint("NotifyDataSetChanged")
             override fun onResponse(call: Call<SingleGameResponse>, response: Response<SingleGameResponse>) {
-                try {
-                    if (response.isSuccessful) {
-                        val game = response.body()?.results
-                        if (game != null) {
-                            val gameObj = Game(
-                                guid = guid,
-                                name = game.name ?: "Unknown Game",
-                                date = game.original_release_date ?: "Unknown Date",
-                                rating = game.original_game_rating?.joinToString { r -> r.name } ?: "N/A",
-                                photo = game.image,
-                                platform = game.platforms?.map { p -> p.name } ?: emptyList(),
-                                genre = game.genres?.map { g -> g.name } ?: emptyList(),
-                                theme = game.themes?.map { t -> t.name } ?: emptyList(),
-                                franchise = game.franchises?.map { f -> f.name } ?: emptyList(),
-                                publishers = game.publishers?.map { p -> p.name } ?: emptyList(),
-                                developer = game.developers?.joinToString { d -> d.name } ?: "Unknown",
-                                alias = game.aliases ?: "None",
-                            )
+                viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
+                    try {
+                        if (!isAdded) return@launch  // ❗ Prevent accessing views if fragment is gone
 
-                            // ✅ Step 2: Add to cache
-                            AppCache.gameCache[guid] = gameObj
+                        if (response.isSuccessful) {
+                            val game = response.body()?.results
+                            if (game != null) {
+                                val gameObj = Game(
+                                    guid = guid,
+                                    name = game.name ?: "Unknown Game",
+                                    date = game.original_release_date ?: "Unknown Date",
+                                    rating = game.original_game_rating?.joinToString { r -> r.name } ?: "N/A",
+                                    photo = game.image,
+                                    platform = game.platforms?.map { p -> p.name } ?: emptyList(),
+                                    genre = game.genres?.map { g -> g.name } ?: emptyList(),
+                                    theme = game.themes?.map { t -> t.name } ?: emptyList(),
+                                    franchise = game.franchises?.map { f -> f.name } ?: emptyList(),
+                                    publishers = game.publishers?.map { p -> p.name } ?: emptyList(),
+                                    developer = game.developers?.joinToString { d -> d.name } ?: "Unknown",
+                                    alias = game.aliases ?: "None",
+                                )
 
-                            listOfHighRatedGames.add(gameObj)
-                            Log.d("DETAILS", "Game added: ${gameObj.name}")
-                            highRatedGamesGameAdapter.notifyDataSetChanged()
-                            isHighRatedLoaded = true
-                            checkIfDataLoaded()
+                                AppCache.gameCache[guid] = gameObj
+                                listOfHighRatedGames.add(gameObj)
+                                Log.d("DETAILS", "Game added: ${gameObj.name}")
+
+                                highRatedGamesGameAdapter.notifyDataSetChanged()
+                                isHighRatedLoaded = true
+                                checkIfDataLoaded()
+                            } else {
+                                Log.w("DETAILS", "No game found for GUID: $guid")
+                            }
                         } else {
-                            Log.w("DETAILS", "No game found for GUID: $guid")
+                            Log.e("DETAILS", "Failed to fetch game for GUID $guid: ${response.message()}")
                         }
-                    } else {
-                        Log.e("DETAILS", "Failed to fetch game for GUID $guid: ${response.message()}")
+                    } catch (e: Exception) {
+                        Log.e("DETAILS", "Parsing error for GUID $guid: ${e.message}")
                     }
-                } catch (e: Exception) {
-                    Log.e("DETAILS", "Parsing error for GUID $guid: ${e.message}")
                 }
             }
 
@@ -600,6 +608,7 @@ class landingFragment : Fragment() {
             }
         })
     }
+
 
     private fun filterList(query: String?) {
         filteredList.clear()
@@ -650,47 +659,52 @@ class landingFragment : Fragment() {
     // for shimmers
     @SuppressLint("NotifyDataSetChanged")
     private fun checkIfDataLoaded() {
-        //tmp ang OR ||
         if (isHighRatedLoaded || isRandomLoaded || isps4GamesLoaded || isxbox1GamesLoaded
             || ismobileGamesLoaded || isnintendoSwitchLoaded || ispcGamesLoaded || ishorroGamesLoaded
-            || issciFiGamesLoaded || isfantasyGamesLoaded || isadventureGamesLoaded || isromanceGamesLoaded) {
+            || issciFiGamesLoaded || isfantasyGamesLoaded || isadventureGamesLoaded || isromanceGamesLoaded
+        ) {
+            requireActivity().runOnUiThread {
+                val cool = view?.findViewById<LinearLayout>(R.id.realContent)
 
-            val cool = view?.findViewById<LinearLayout>(R.id.realContent)
-            shimmerLayout.stopShimmer()
-            shimmerLayout.visibility = View.GONE
-            hrgRecyclerView.visibility = View.VISIBLE
-            rgRecyclerView.visibility = View.VISIBLE
-            recyclerView.visibility = View.VISIBLE
-            ps4RecyclerView.visibility = View.VISIBLE
-            xbox1RecyclerView.visibility = View.VISIBLE
-            pcRecyclerView.visibility = View.VISIBLE
-            nintendoSwitchRecyclerView.visibility = View.VISIBLE
-            mobileRecyclerView.visibility = View.VISIBLE
-            horrorRecyclerView.visibility = View.VISIBLE
-            fantasyRecyclerView.visibility = View.VISIBLE
-            adventureRecyclerView.visibility = View.VISIBLE
-            sciFiRecyclerView.visibility = View.VISIBLE
-            romanceRecyclerView.visibility = View.VISIBLE
-            if (cool != null) {
-                cool.visibility = View.VISIBLE
+                shimmerLayout.stopShimmer()
+                shimmerLayout.visibility = View.GONE
+
+                hrgRecyclerView.visibility = View.VISIBLE
+                rgRecyclerView.visibility = View.VISIBLE
+                recyclerView.visibility = View.VISIBLE
+//                ps4RecyclerView.visibility = View.VISIBLE
+//                xbox1RecyclerView.visibility = View.VISIBLE
+//                pcRecyclerView.visibility = View.VISIBLE
+//                nintendoSwitchRecyclerView.visibility = View.VISIBLE
+//                mobileRecyclerView.visibility = View.VISIBLE
+//                horrorRecyclerView.visibility = View.VISIBLE
+//                fantasyRecyclerView.visibility = View.VISIBLE
+//                adventureRecyclerView.visibility = View.VISIBLE
+//                sciFiRecyclerView.visibility = View.VISIBLE
+//                romanceRecyclerView.visibility = View.VISIBLE
+
+                cool?.visibility = View.VISIBLE
+
+                // notify all the adapters
+                arrayAdapter.notifyDataSetChanged()
+                randomGamesGameameAdapter.notifyDataSetChanged()
+                highRatedGamesGameAdapter.notifyDataSetChanged()
+//                ps4GamesGameAdapter.notifyDataSetChanged()
+//                xbox1GamesGameAdapter.notifyDataSetChanged()
+//                nintendoSwitchGamesGameAdapter.notifyDataSetChanged()
+//                pcGamesGameAdapter.notifyDataSetChanged()
+//                mobileGamesGameAdapter.notifyDataSetChanged()
+//                horrorGamesGameAdapter.notifyDataSetChanged()
+//                fantasyGamesGameAdapter.notifyDataSetChanged()
+//                sciFiGamesGameAdapter.notifyDataSetChanged()
+//                romanceGamesGameAdapter.notifyDataSetChanged()
+//                adventureGamesGameAdapter.notifyDataSetChanged()
+
+                Log.d("SHIMMER", "All data loaded—shimmer stopped")
             }
-            //
-            arrayAdapter.notifyDataSetChanged()
-            randomGamesGameameAdapter.notifyDataSetChanged()
-            highRatedGamesGameAdapter.notifyDataSetChanged()
-            ps4GamesGameAdapter.notifyDataSetChanged()
-            xbox1GamesGameAdapter.notifyDataSetChanged()
-            nintendoSwitchGamesGameAdapter.notifyDataSetChanged()
-            pcGamesGameAdapter.notifyDataSetChanged()
-            mobileGamesGameAdapter.notifyDataSetChanged()
-            horrorGamesGameAdapter.notifyDataSetChanged()
-            fantasyGamesGameAdapter.notifyDataSetChanged()
-            sciFiGamesGameAdapter.notifyDataSetChanged()
-            romanceGamesGameAdapter.notifyDataSetChanged()
-            adventureGamesGameAdapter.notifyDataSetChanged()
-            Log.d("SHIMMER", "All data loaded—shimmer stopped")//4 debugging
         }
     }
+
     private fun abc(game: Game){
 
     }
