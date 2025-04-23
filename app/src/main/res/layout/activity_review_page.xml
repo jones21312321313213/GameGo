@@ -36,7 +36,7 @@
                 android:id="@+id/game_title_rp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Title"
+                android:text=" "
                 android:textSize="35sp"
                 android:textStyle="bold"
                 android:gravity="center"
@@ -99,53 +99,60 @@
                     </FrameLayout>
 
                     <!-- Container for Platform & Genre -->
-                    <LinearLayout
-                        android:layout_width="0dp"
+                    <ScrollView
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
+                        android:fillViewport="true"
+                        android:background="#99000000"
                         android:padding="12dp"
-                        android:elevation="4dp"
-                        android:gravity="center"
-                        android:background="#99000000">
+                        android:elevation="4dp">
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Platform:"
-                            android:textSize="16sp"
-                            android:textColor="@android:color/white"
-                            android:textStyle="bold"
-                            android:paddingBottom="4dp" />
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center">
 
-                        <TextView
-                            android:id="@+id/platform_text"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Sample, Sample"
-                            android:textSize="16sp"
-                            android:textColor="@android:color/white"
-                            android:textStyle="bold"
-                            android:paddingBottom="4dp" />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Platform:"
+                                android:textSize="16sp"
+                                android:textColor="@android:color/white"
+                                android:textStyle="bold"
+                                android:paddingBottom="4dp" />
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Genre:"
-                            android:textSize="16sp"
-                            android:textColor="@android:color/white"
-                            android:textStyle="bold"
-                            android:paddingBottom="4dp" />
+                            <TextView
+                                android:id="@+id/platform_text"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text=" "
+                                android:textSize="16sp"
+                                android:textColor="@android:color/white"
+                                android:textStyle="bold"
+                                android:paddingBottom="4dp" />
 
-                        <TextView
-                            android:id="@+id/genre_text"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Sample, sample"
-                            android:textSize="16sp"
-                            android:textColor="@android:color/white"
-                            android:textStyle="bold" />
-                    </LinearLayout>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Genre:"
+                                android:textSize="16sp"
+                                android:textColor="@android:color/white"
+                                android:textStyle="bold"
+                                android:paddingBottom="4dp" />
+
+                            <TextView
+                                android:id="@+id/genre_text"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text=" "
+                                android:textSize="16sp"
+                                android:textColor="@android:color/white"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+                    </ScrollView>
+
                 </LinearLayout>
             </LinearLayout>
 

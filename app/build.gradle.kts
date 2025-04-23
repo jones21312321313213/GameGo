@@ -124,6 +124,11 @@ dependencies {
     // for UI thread
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
 
+    //Firebase auth
+    implementation("com.google.firebase:firebase-auth-ktx")
+    implementation("com.google.firebase:firebase-auth-ktx:22.3.1")
+    implementation("com.google.firebase:firebase-database-ktx:20.3.0")
+
 //    // OkHttp (optional but recommended for logging)
 //    implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
 

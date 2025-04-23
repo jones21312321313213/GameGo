@@ -35,7 +35,6 @@ class landingWIthFragmentActivity : AppCompatActivity() {
         // Retrieve intent data from login or previous activity
         intent?.let {
             et_uname = it.getStringExtra("username")
-            et_upass = it.getStringExtra("password")
             et_uemail = it.getStringExtra("email")
         }
 
@@ -68,7 +67,6 @@ class landingWIthFragmentActivity : AppCompatActivity() {
                 R.id.nav_profile -> ProfilePicFragment().apply {
                     arguments = Bundle().apply {
                         putString("username", et_uname)
-                        putString("password", et_upass)
                         putString("email", et_uemail)
                     }
                 }

@@ -45,7 +45,7 @@ class RegisterActivity : Activity() {
 //        val email = findViewById<EditText>(R.id.register_email_Id)
 //        val cpass = findViewById<EditText>(R.id.register_confirmpass_Id)
 //        val btnRegister = findViewById<Button>(R.id.register_btn_Id);
-// <><><><><><><><><><><><><><Game>
+// <
 
 
         binding.registerBtnId.setOnClickListener {
@@ -54,7 +54,6 @@ class RegisterActivity : Activity() {
             email = binding.registerEmailId.text.toString()
             cpass = binding.registerConfirmpassId.text.toString()
 
-            // Validation
             if (username.isEmpty() || password.isEmpty() || email.isEmpty() || cpass.isEmpty()) {
                 toast("Fill out the form completely")
                 return@setOnClickListener
@@ -63,40 +62,36 @@ class RegisterActivity : Activity() {
             if (cpass != password) {
                 toast("Passwords do not match")
                 return@setOnClickListener
-            }// aasdsajdjkl
-            // Save to Firebase
-            val users = Users(username, password, email)
-            database =  FirebaseDatabase.getInstance(BuildConfig.FIREBASE_DB_URL)
+            }
 
+            val userData = Users(username, password, email)
+            database = FirebaseDatabase.getInstance(BuildConfig.FIREBASE_DB_URL)
             reference = database.getReference("Users")
 
-            reference.child(username).setValue(users).addOnCompleteListener { task ->
+            // You can either use `username` as the key (if you enforce uniqueness)
+            // Or use push() to auto-generate a unique ID
+            val newUserRef = reference.push()  // <-- unique key auto-generated
+            newUserRef.setValue(userData).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    // Clear form
                     binding.registerUsernameId.setText("")
                     binding.registerConfirmpassId.setText("")
                     binding.registerPassId.setText("")
                     binding.registerEmailId.setText("")
 
-                    // Notify and redirect
-                    toast("Registration successful")
+                    toast("User registered successfully")
 
-                    // Send to LoginActivity with extras
-                    startActivity(
-                        Intent(this, LoginActivity::class.java).apply {
-                            putExtra("username", username)
-                            putExtra("password", password)
-                            putExtra("email", email)
-                        }
-                    )
+                    startActivity(Intent(this, LoginActivity::class.java).apply {
+                        putExtra("username", username)
+                        putExtra("password", password)
+                        putExtra("email", email)
+                    })
                     finish()
                 } else {
-                    Log.e("Firebase Error", "Error: ${task.exception?.message}")
+                    Log.e("Firebase Error", "Data save failed: ${task.exception?.message}")
                     toast("Registration failed. Try again.")
                 }
             }
         }
-
 
     }
 

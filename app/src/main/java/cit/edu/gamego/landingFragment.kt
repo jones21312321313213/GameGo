@@ -562,47 +562,38 @@ class landingFragment : Fragment() {
         val call = ApiClient.api.getGameByGuid(guid, apiKey)
         call.enqueue(object : Callback<SingleGameResponse> {
             override fun onResponse(call: Call<SingleGameResponse>, response: Response<SingleGameResponse>) {
-                viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
-                    try {
-                        if (!isAdded) return@launch  // ❗ Prevent accessing views if fragment is gone
+                if (!isAdded || view == null) return // ✅ early exit if fragment is gone
 
-                        if (response.isSuccessful) {
-                            val game = response.body()?.results
-                            if (game != null) {
-                                val gameObj = Game(
-                                    guid = guid,
-                                    name = game.name ?: "Unknown Game",
-                                    date = game.original_release_date ?: "Unknown Date",
-                                    rating = game.original_game_rating?.joinToString { r -> r.name } ?: "N/A",
-                                    photo = game.image,
-                                    platform = game.platforms?.map { p -> p.name } ?: emptyList(),
-                                    genre = game.genres?.map { g -> g.name } ?: emptyList(),
-                                    theme = game.themes?.map { t -> t.name } ?: emptyList(),
-                                    franchise = game.franchises?.map { f -> f.name } ?: emptyList(),
-                                    publishers = game.publishers?.map { p -> p.name } ?: emptyList(),
-                                    developer = game.developers?.joinToString { d -> d.name } ?: "Unknown",
-                                    alias = game.aliases ?: "None",
-                                )
+                val game = response.body()?.results
+                if (response.isSuccessful && game != null) {
+                    val gameObj = Game(
+                        guid = guid,
+                        name = game.name ?: "Unknown Game",
+                        date = game.original_release_date ?: "Unknown Date",
+                        rating = game.original_game_rating?.joinToString { it.name } ?: "N/A",
+                        photo = game.image,
+                        platform = game.platforms?.map { it.name } ?: emptyList(),
+                        genre = game.genres?.map { it.name } ?: emptyList(),
+                        theme = game.themes?.map { it.name } ?: emptyList(),
+                        franchise = game.franchises?.map { it.name } ?: emptyList(),
+                        publishers = game.publishers?.map { it.name } ?: emptyList(),
+                        developer = game.developers?.joinToString { it.name } ?: "Unknown",
+                        alias = game.aliases ?: "None"
+                    )
 
-                                AppCache.gameCache[guid] = gameObj
-                                listOfHighRatedGames.add(gameObj)
-                                Log.d("DETAILS", "Game added: ${gameObj.name}")
+                    AppCache.gameCache[guid] = gameObj
+                    listOfHighRatedGames.add(gameObj)
 
-                                highRatedGamesGameAdapter.notifyDataSetChanged()
-                                isHighRatedLoaded = true
-                                checkIfDataLoaded()
-                            } else {
-                                Log.w("DETAILS", "No game found for GUID: $guid")
-                            }
-                        } else {
-                            Log.e("DETAILS", "Failed to fetch game for GUID $guid: ${response.message()}")
-                        }
-                    } catch (e: Exception) {
-                        Log.e("DETAILS", "Parsing error for GUID $guid: ${e.message}")
+                    // ✅ Only touch views on safe thread & lifecycle
+                    if (isAdded && view != null) {
+                        highRatedGamesGameAdapter.notifyDataSetChanged()
+                        isHighRatedLoaded = true
+                        checkIfDataLoaded()
                     }
+                } else {
+                    Log.w("DETAILS", "Failed response or null body for GUID: $guid")
                 }
             }
-
             override fun onFailure(call: Call<SingleGameResponse>, t: Throwable) {
                 Log.e("DETAILS", "Network failure for GUID $guid: ${t.message}")
             }

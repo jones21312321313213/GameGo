@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
 class LoginActivity : Activity() {
@@ -62,31 +63,44 @@ class LoginActivity : Activity() {
         val database = FirebaseDatabase.getInstance(BuildConfig.FIREBASE_DB_URL)
         val reference = database.getReference("Users")
 
-        reference.child(username).get().addOnSuccessListener { dataSnapshot ->
+        // Query for the username
+        reference.orderByChild("username").equalTo(username).get().addOnSuccessListener { dataSnapshot ->
             if (dataSnapshot.exists()) {
-                val dbPassword = dataSnapshot.child("password").value.toString()
-                val email = dataSnapshot.child("email").value.toString()
+                // Iterate through results (should only be one for a username)
+                for (userSnapshot in dataSnapshot.children) {
+                    val userData = userSnapshot.value as? HashMap<*, *>
+                    val dbPassword = userData?.get("password")?.toString() ?: ""
+                    val email = userData?.get("email")?.toString() ?: ""
+                    val dbUsername = userData?.get("username")?.toString() ?: ""
+                    val uid = userSnapshot.key
 
-                if (password == dbPassword) {
-                    showSnackbar("Login successful")
-                    startActivity(
-                        Intent(this, landingWIthFragmentActivity::class.java).apply {
-                            putExtra("username", username)
-                            putExtra("email", email)
-                        }
-                    )
-                    finish()
-                } else {
-                    showSnackbar("Incorrect password")
+                    if (password == dbPassword) {
+                        showSnackbar("Login successful")
+                        startActivity(
+                            Intent(this, landingWIthFragmentActivity::class.java).apply {
+                                putExtra("username", dbUsername)
+                                putExtra("email", email)
+                                putExtra("uid", uid)
+                            }
+                        )
+                        finish()
+                    } else {
+                        showSnackbar("Incorrect password")
+                    }
+                    return@addOnSuccessListener
                 }
+                showSnackbar("User data not found")
             } else {
                 showSnackbar("User not found")
             }
         }.addOnFailureListener {
             showSnackbar("Login failed. Try again.")
             Log.e("Firebase Error", "Error: ${it.message}")
+            Log.d("LoginDebug", "Attempting to login with username: $username")
         }
     }
+
+
 
     private fun showSnackbar(message: String) {
         Snackbar.make(rootView, message, Snackbar.LENGTH_SHORT).show()

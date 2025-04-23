@@ -3,6 +3,7 @@ package cit.edu.gamego
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,33 +12,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 
+//continue this; fetching data would still not work 
 class ProfilePicFragment : Fragment() {
     private var currentPassword: String = ""
     private var isHidden = true
-
-    // temp
-    private val editProfileLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            val data = result.data
-            val newUsername = data?.getStringExtra("new_username") ?: ""
-            val newPassword = data?.getStringExtra("new_password") ?: ""
-            val newEmail = data?.getStringExtra("new_email") ?: ""
-            val newPhone = data?.getStringExtra("new_phone")?:""
-            // ✅ Update the password variable
-            if (newPassword.isNotEmpty()) {
-                currentPassword = newPassword
-            }
-
-            // Update UI with new data
-            view?.findViewById<TextView>(R.id.username_tv)?.text = newUsername
-            view?.findViewById<TextView>(R.id.email_tv)?.text = newEmail
-            view?.findViewById<TextView>(R.id.name_tv)?.text = newUsername
-            view?.findViewById<TextView>(R.id.email_view_tv)?.text = newEmail
-            view?.findViewById<TextView>(R.id.phonenumber_tv)?.text = newPhone
-            view?.findViewById<TextView>(R.id.password_tv)?.text = "*".repeat(currentPassword.length) // ✅ Show hidden password by default
-        }
-    }
+    private val auth = FirebaseAuth.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,19 +34,39 @@ class ProfilePicFragment : Fragment() {
         val pass = view.findViewById<TextView>(R.id.password_tv)
         val show_pass = view.findViewById<ImageView>(R.id.show_password)
 
-        // ✅ Get initial password and store it
-        currentPassword = arguments?.getString("password") ?: ""
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+            val userId = currentUser.uid
+            val dbRef = FirebaseDatabase.getInstance().getReference("Users").child(userId)
 
-        val username = arguments?.getString("username") ?: ""
-        val emailText = arguments?.getString("email") ?: ""
+            dbRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        val username = snapshot.child("username").getValue(String::class.java) ?: ""
+                        val emailVal = snapshot.child("email").getValue(String::class.java) ?: ""
+                        val password = snapshot.child("password").getValue(String::class.java) ?: ""
 
-        name.text = username
-        usern1.text = username
-        email1.text = emailText
-        email.text = emailText
-        pass.text = "*".repeat(currentPassword.length) // ✅ Show hidden password initially
+                        // set data to views
+                        currentPassword = password
+                        usern1.text = username
+                        name.text = username
+                        email1.text = emailVal
+                        email.text = emailVal
+                        pass.text = "*".repeat(currentPassword.length)
+                    } else {
+                        Log.e("FIREBASE", "User data not found in database")
+                    }
+                }
 
-        // ✅ Toggle password visibility using latest password
+                override fun onCancelled(error: DatabaseError) {
+                    Log.e("FIREBASE", "Failed to read: ${error.message}")
+                }
+            })
+        } else {
+            Log.e("AUTH", "No user is currently logged in")
+            // Handle case when no user is logged in (redirect to login screen?)
+        }
+
         show_pass.setOnClickListener {
             pass.text = if (isHidden) currentPassword else "*".repeat(currentPassword.length)
             isHidden = !isHidden
@@ -73,8 +75,9 @@ class ProfilePicFragment : Fragment() {
         val btnEdit = view.findViewById<Button>(R.id.edit_Id)
         btnEdit.setOnClickListener {
             val intent = Intent(requireContext(), EditProfilePicture::class.java)
-            editProfileLauncher.launch(intent)
+            startActivity(intent)
         }
+
         return view
     }
 }
