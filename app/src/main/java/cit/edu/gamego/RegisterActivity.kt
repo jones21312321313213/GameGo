@@ -64,33 +64,45 @@ class RegisterActivity : Activity() {
                 return@setOnClickListener
             }
 
-            val userData = Users(username, password, email)
+            //val userData = Users(username, password, email)
             database = FirebaseDatabase.getInstance(BuildConfig.FIREBASE_DB_URL)
             reference = database.getReference("Users")
 
-            // You can either use `username` as the key (if you enforce uniqueness)
-            // Or use push() to auto-generate a unique ID
-            val newUserRef = reference.push()  // <-- unique key auto-generated
-            newUserRef.setValue(userData).addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    binding.registerUsernameId.setText("")
-                    binding.registerConfirmpassId.setText("")
-                    binding.registerPassId.setText("")
-                    binding.registerEmailId.setText("")
 
-                    toast("User registered successfully")
+            val auth = com.google.firebase.auth.FirebaseAuth.getInstance()
 
-                    startActivity(Intent(this, LoginActivity::class.java).apply {
-                        putExtra("username", username)
-                        putExtra("password", password)
-                        putExtra("email", email)
-                    })
-                    finish()
-                } else {
-                    Log.e("Firebase Error", "Data save failed: ${task.exception?.message}")
-                    toast("Registration failed. Try again.")
+            auth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener { authTask ->
+                    if (authTask.isSuccessful) {
+                        val currentUser = auth.currentUser
+                        val uid = currentUser?.uid ?: reference.push().key!!
+
+                        val userData = Users(username, password, email)
+                        reference.child(uid).setValue(userData).addOnCompleteListener { dbTask ->
+                            if (dbTask.isSuccessful) {
+                                binding.registerUsernameId.setText("")
+                                binding.registerConfirmpassId.setText("")
+                                binding.registerPassId.setText("")
+                                binding.registerEmailId.setText("")
+
+                                toast("User registered successfully")
+
+                                startActivity(Intent(this, LoginActivity::class.java).apply {
+                                    putExtra("username", username)
+                                    putExtra("password", password)
+                                    putExtra("email", email)
+                                })
+                                finish()
+                            } else {
+                                Log.e("Firebase Error", "DB save failed: ${dbTask.exception?.message}")
+                                toast("Registration failed. Try again.")
+                            }
+                        }
+                    } else {
+                        Log.e("Firebase Auth", "Auth failed: ${authTask.exception?.message}")
+                        toast("Authentication failed: ${authTask.exception?.message}")
+                    }
                 }
-            }
         }
 
     }

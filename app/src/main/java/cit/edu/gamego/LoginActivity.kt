@@ -63,10 +63,8 @@ class LoginActivity : Activity() {
         val database = FirebaseDatabase.getInstance(BuildConfig.FIREBASE_DB_URL)
         val reference = database.getReference("Users")
 
-        // Query for the username
         reference.orderByChild("username").equalTo(username).get().addOnSuccessListener { dataSnapshot ->
             if (dataSnapshot.exists()) {
-                // Iterate through results (should only be one for a username)
                 for (userSnapshot in dataSnapshot.children) {
                     val userData = userSnapshot.value as? HashMap<*, *>
                     val dbPassword = userData?.get("password")?.toString() ?: ""
@@ -75,30 +73,37 @@ class LoginActivity : Activity() {
                     val uid = userSnapshot.key
 
                     if (password == dbPassword) {
-                        showSnackbar("Login successful")
-                        startActivity(
-                            Intent(this, landingWIthFragmentActivity::class.java).apply {
-                                putExtra("username", dbUsername)
-                                putExtra("email", email)
-                                putExtra("uid", uid)
+                        // 🔥 Firebase Auth login with email + password
+                        FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
+                            .addOnSuccessListener {
+                                showSnackbar("Login successful 🎯")
+                                startActivity(
+                                    Intent(this, landingWIthFragmentActivity::class.java).apply {
+                                        putExtra("username", dbUsername)
+                                        putExtra("email", email)
+                                        putExtra("uid", uid)
+                                    }
+                                )
+                                finish()
                             }
-                        )
-                        finish()
+                            .addOnFailureListener {
+                                Log.e("AUTH", "FirebaseAuth login failed: ${it.message}")
+                                showSnackbar("Login failed at auth level: ${it.message}")
+                            }
                     } else {
                         showSnackbar("Incorrect password")
                     }
                     return@addOnSuccessListener
                 }
-                showSnackbar("User data not found")
             } else {
                 showSnackbar("User not found")
             }
         }.addOnFailureListener {
             showSnackbar("Login failed. Try again.")
             Log.e("Firebase Error", "Error: ${it.message}")
-            Log.d("LoginDebug", "Attempting to login with username: $username")
         }
     }
+
 
 
 

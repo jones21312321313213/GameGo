@@ -190,14 +190,7 @@ fun EditText.isTextNullOrEmpty(): Boolean {
 
 
 fun Context.toast(message: CharSequence) {
-    if (this is Activity) {
-        this.runOnUiThread {
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-        }
-    } else {
-        // fallback: might not show if context is suppressed
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
+    return Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 }
 
 

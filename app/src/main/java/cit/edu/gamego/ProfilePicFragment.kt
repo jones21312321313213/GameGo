@@ -10,10 +10,12 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import cit.edu.gamego.extensions.toast
 
 //continue this; fetching data would still not work 
 class ProfilePicFragment : Fragment() {
@@ -35,9 +37,12 @@ class ProfilePicFragment : Fragment() {
         val show_pass = view.findViewById<ImageView>(R.id.show_password)
 
         val currentUser = auth.currentUser
+
         if (currentUser != null) {
-            val userId = currentUser.uid
-            val dbRef = FirebaseDatabase.getInstance().getReference("Users").child(userId)
+            val uid = currentUser.uid
+            val dbRef = FirebaseDatabase.getInstance(BuildConfig.FIREBASE_DB_URL)
+                .getReference("Users")
+                .child(uid)
 
             dbRef.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -46,25 +51,25 @@ class ProfilePicFragment : Fragment() {
                         val emailVal = snapshot.child("email").getValue(String::class.java) ?: ""
                         val password = snapshot.child("password").getValue(String::class.java) ?: ""
 
-                        // set data to views
+                        // Assign to views
                         currentPassword = password
                         usern1.text = username
                         name.text = username
                         email1.text = emailVal
                         email.text = emailVal
-                        pass.text = "*".repeat(currentPassword.length)
+                        pass.text = "*".repeat(password.length)
                     } else {
-                        Log.e("FIREBASE", "User data not found in database")
+                        Log.e("FIREBASE", "User data not found for UID: $uid")
                     }
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    Log.e("FIREBASE", "Failed to read: ${error.message}")
+                    Log.e("FIREBASE", "DB read failed: ${error.message}")
                 }
             })
         } else {
-            Log.e("AUTH", "No user is currently logged in")
-            // Handle case when no user is logged in (redirect to login screen?)
+            Log.e("AUTH", "No user is logged in")
+            startActivity(Intent(requireContext(), LoginActivity::class.java))
         }
 
         show_pass.setOnClickListener {
