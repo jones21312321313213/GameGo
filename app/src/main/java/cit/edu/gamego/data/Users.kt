@@ -4,7 +4,7 @@ data class Users(
     val username: String = "",
     val password: String = "",
     val email: String = "",
-    val listOfLikedGames: List<String> = emptyList()
+    val favorites: List<String> = emptyList()
 ){
 
 }

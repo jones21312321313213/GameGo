@@ -150,10 +150,10 @@ fun WebView.setupAndLoad(trailer: String, fallbackImageView: ImageView, super_ur
 
             evaluateJavascript(
                 """(function() {
-                var videos = document.getElementsByTagName('video');
-                var iframes = document.getElementsByTagName('iframe');
-                return videos.length > 0 || iframes.length > 0;
-            })();"""
+                    var videos = document.getElementsByTagName('video');
+                    var iframes = document.getElementsByTagName('iframe');
+                    return videos.length > 0 || iframes.length > 0;
+                })();"""
             ) { result ->
                 val hasVideo = result == "true"
 
@@ -164,19 +164,21 @@ fun WebView.setupAndLoad(trailer: String, fallbackImageView: ImageView, super_ur
                     this@setupAndLoad.visibility = View.GONE
                     fallbackImageView.visibility = View.VISIBLE
 
-                    if (!super_url.isNullOrBlank()) {
-                        Glide.with(fallbackImageView.context)
-                            .load(super_url)
-                            .centerCrop()
-                            .into(fallbackImageView)
-                    } else {
-                        fallbackImageView.setImageResource(R.drawable.ye)
+                    val safeContext = fallbackImageView.context
+                    if (safeContext is Activity && !safeContext.isFinishing && !safeContext.isDestroyed) {
+                        if (!super_url.isNullOrBlank()) {
+                            Glide.with(safeContext)
+                                .load(super_url)
+                                .centerCrop()
+                                .into(fallbackImageView)
+                        } else {
+                            fallbackImageView.setImageResource(R.drawable.ye)
+                        }
                     }
                 }
             }
         }
     }
-    // 👉 Use loadUrl here instead of loadDataWithBaseURL
     loadUrl(trailer)
 }
 

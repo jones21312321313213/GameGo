@@ -22,16 +22,19 @@ import cit.edu.gamego.extensions.FavoritesDataHolder
 import cit.edu.gamego.extensions.toast
 import cit.edu.gamego.data.ApiClient
 import cit.edu.gamego.data.Game
-import cit.edu.gamego.data.Image
-import cit.edu.gamego.data.ImageResponse
 import cit.edu.gamego.data.SingleVideoResponse
 import cit.edu.gamego.extensions.createGame
 import cit.edu.gamego.extensions.extractGuidFromShowUrl
 import cit.edu.gamego.extensions.extractGuidFromUrl
 import com.google.android.material.tabs.TabLayout
+
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FieldValue
 
 class reviewPageActivity : AppCompatActivity() {
 
@@ -50,7 +53,7 @@ class reviewPageActivity : AppCompatActivity() {
     private var gg: Game? = null
     private var gomen: Game? = null
     private lateinit var fallbackk: ImageView
-
+    private var gameGuid: String = ""
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,6 +85,7 @@ class reviewPageActivity : AppCompatActivity() {
 
         intent?.let {
             val guid = it.getStringExtra("guid") // Get the GUID
+            gameGuid = guid.toString()
             if (guid.isNullOrBlank()) {
                 // No GUID, use local data from the Intent
                 it.getStringExtra("title")?.let { title ->
@@ -195,19 +199,36 @@ class reviewPageActivity : AppCompatActivity() {
             finish()
         }
 
+        val db = FirebaseFirestore.getInstance()
+        val userId = FirebaseAuth.getInstance().currentUser?.uid ?: "default_user"
+
+        //continue this it wont add he guid in the firebase
+            // Define the game data to be added (only guid and name)
+        val favoriteGame = hashMapOf(
+            "guid" to gameGuid,                          // Game GUID
+            "name" to binding.gameTitleRp.text.toString()  // Game name
+        )
         binding.heart.setOnClickListener {
             if (isLiked) {
+                // Unheart - remove game from user's favorites array
+                db.collection("Users")
+                    .document(userId)
+                    .update("favorites", FieldValue.arrayRemove(favoriteGame))
+                    .addOnSuccessListener { toast("Removed from favorites") }
+                    .addOnFailureListener { toast("Error removing favorite") }
+
                 binding.heart.setImageResource(R.drawable.baseline_favorite_border_24)
-                toast("removed game from favorites")
             } else {
+                // Heart - add game to user's favorites array
+                db.collection("Users")
+                    .document(userId)
+                    .update("favorites", FieldValue.arrayUnion(favoriteGame))
+                    .addOnSuccessListener { toast("Added to favorites") }
+                    .addOnFailureListener { toast("Error adding favorite") }
+
                 binding.heart.setImageResource(R.drawable.baseline_favorite_24)
                 binding.insideHeard.startAnimation(zoomInAnim)
                 binding.insideHeard.startAnimation(zoomOutAnim)
-
-                FavoritesDataHolder.title =  binding.gameTitleRp.text.toString()
-                FavoritesDataHolder.releaseDate = "21"
-                FavoritesDataHolder.imageRes = abc.toString()
-                toast("added game to favorites")
             }
 
             binding.heart.startAnimation(zoomInAnim)

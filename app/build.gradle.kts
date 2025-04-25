@@ -125,9 +125,17 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
 
     //Firebase auth
-    implementation("com.google.firebase:firebase-auth-ktx")
-    implementation("com.google.firebase:firebase-auth-ktx:22.3.1")
-    implementation("com.google.firebase:firebase-database-ktx:20.3.0")
+    //implementation("com.google.firebase:firebase-auth-ktx")
+//    implementation("com.google.firebase:firebase-auth-ktx:22.3.1")
+//    implementation("com.google.firebase:firebase-database-ktx:20.3.0")
+//    implementation("com.google.firebase:firebase-firestore-ktx:24.10.3")
+    // Add BoM to manage Firebase versions
+        implementation(enforcedPlatform("com.google.firebase:firebase-bom:32.7.3"))
+
+    // Firebase modules (no version numbers needed)
+        implementation("com.google.firebase:firebase-auth-ktx")
+        implementation("com.google.firebase:firebase-database-ktx")
+        implementation("com.google.firebase:firebase-firestore-ktx")
 
 //    // OkHttp (optional but recommended for logging)
 //    implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
