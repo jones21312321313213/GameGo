@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.ListView
+import android.widget.ProgressBar
 import android.widget.SearchView // Use this for the correct SearchView
 
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -46,6 +47,7 @@ class landingFragment : Fragment() {
     private lateinit var searchView: SearchView
     private lateinit var listView: ListView
     private lateinit var shimmerLayout: ShimmerFrameLayout
+    private lateinit var progressBar: ProgressBar
 
     private lateinit var arrayAdapter: GameListAdapter
     private lateinit var randomGamesGameameAdapter: GameRecyclerViewAdapterwGlide
@@ -334,7 +336,7 @@ class landingFragment : Fragment() {
              Game("Elden Ring", "2018", "10.0", Image(R.drawable.eldenring.toString(),R.drawable.eldenring.toString()), eldenRingTrailer, "A dark fantasy masterpiece from FromSoftware and George R.R. Martin.", false, "game_eldenring", listOf("PS4", "PS5", "Xbox", "PC"), "FromSoftware", listOf("RPG", "Soulslike"), listOf("Dark Fantasy"),  listOf("Elden Ring"),listOf("Bandai Namco"), "ER")
          )
 
-
+         progressBar = view.findViewById(R.id.progressBar)
         filteredList = listOfGame.toMutableList()
 
         // Initialize Adapter
@@ -352,17 +354,7 @@ class landingFragment : Fragment() {
         listView.adapter = arrayAdapter
 
 
-        ////////////////////////////SEARCH VIWE BELOW
-        searchView.setOnClickListener {
-            searchView.isIconified = false
-        }
-
-        // Show ListView when clicking SearchView
-        searchView.setOnQueryTextFocusChangeListener { _, hasFocus ->
-            listView.visibility = if (hasFocus) View.VISIBLE else View.GONE
-        }
-
-        // SearchView Listener
+        // Show ProgressBar while searching
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 searchView.clearFocus()
@@ -371,17 +363,20 @@ class landingFragment : Fragment() {
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (!newText.isNullOrEmpty()) {
-                    fetchSearchedGames(newText) // api call
-                    listView.visibility = View.VISIBLE
+                    progressBar.visibility = View.VISIBLE // Show ProgressBar
+                    listView.visibility = View.GONE // Hide ListView until results are ready
+                    fetchSearchedGames(newText) // Fetch search results
                 } else {
-                    listView.visibility = View.GONE
+                    listView.visibility = View.GONE // Hide ListView when there's no query
+                    progressBar.visibility = View.GONE // Hide ProgressBar when there's no query
                 }
                 return true
             }
         })
 
         searchView.setOnCloseListener {
-            listView.visibility = View.GONE // Hide ListView
+            listView.visibility = View.GONE // Hide ListView when search is closed
+            progressBar.visibility = View.GONE // Hide ProgressBar
             false
         }
 
@@ -396,25 +391,36 @@ class landingFragment : Fragment() {
                 override fun onResponse(call: Call<SearchResponse>, response: Response<SearchResponse>) {
                     if (response.isSuccessful) {
                         val games = response.body()?.results ?: emptyList()
-
                         filteredList.clear()
                         filteredList.addAll(games.map { it.toGame() }) // 👈 map API models to your Game model if needed
                         arrayAdapter.notifyDataSetChanged()
+
+                        // Hide ProgressBar and show ListView after data is fetched
+                        progressBar.visibility = View.GONE
+                        listView.visibility = View.VISIBLE // Show ListView with results
                     } else {
-                        // handle empty case
+                        // Handle empty case or failed response
                         filteredList.clear()
                         arrayAdapter.notifyDataSetChanged()
+
+                        // Hide ProgressBar and show ListView if no results
+                        progressBar.visibility = View.GONE
+                        listView.visibility = View.VISIBLE // You may still want to show an empty list here
                     }
                 }
 
                 override fun onFailure(call: Call<SearchResponse>, t: Throwable) {
-                    // handle error
+                    // Handle error (e.g., network failure)
                     filteredList.clear()
                     arrayAdapter.notifyDataSetChanged()
+
+                    // Hide ProgressBar and show ListView if there's an error
+                    progressBar.visibility = View.GONE
+                    listView.visibility = View.VISIBLE // You may want to show a message instead of an empty list
                 }
             })
     }
-    // continue this
+    //in the search try to make it that at least half of the images loads before showing
 
 
 

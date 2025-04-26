@@ -63,6 +63,7 @@ class Favorites : Activity() {
         //favoriteGames.add( Game(name,date,1.1,Image(R.drawable.ye.toString())))
 
 
+        //CHANGE THIS TO RECYCLER VIEW LATER
         arrayAdapter = GameListAdapter(this, favoriteGames,
             onClickMore = { game -> more(game) },
             onClickItem = { game ->
@@ -70,6 +71,7 @@ class Favorites : Activity() {
                 abc(game)
             },
             onLongPress = { position -> showDeleteDialog(position) })
+
         listView.adapter = arrayAdapter
 
         val btnBack = findViewById<ImageView>(R.id.fav_back)
