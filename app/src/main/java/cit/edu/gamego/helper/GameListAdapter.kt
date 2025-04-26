@@ -13,20 +13,22 @@ import cit.edu.gamego.data.Game
 import cit.edu.gamego.extensions.setupAndLoad
 import com.bumptech.glide.Glide
 
-class GameListAdapter (
+class GameListAdapter(
     val context: Context,
     val listOfGame: List<Game>,
     val onClickMore: (game: Game) -> Unit,
     val onClickItem: (game: Game) -> Unit,
     val onLongPress: (position: Int) -> Unit
-): BaseAdapter(){
+) : BaseAdapter() {
+
     override fun getCount(): Int = listOfGame.size
 
     override fun getItem(position: Int): Any = listOfGame[position]
 
     override fun getItemId(position: Int): Long = position.toLong()
-    override fun getView(position: Int, contentView: View?, parent: ViewGroup?): View {
-        val view = contentView ?: LayoutInflater.from(context).inflate(
+
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+        val view = convertView ?: LayoutInflater.from(context).inflate(
             R.layout.item_listview_game,
             parent,
             false
@@ -35,34 +37,32 @@ class GameListAdapter (
         val photo = view.findViewById<ImageView>(R.id.imageview_photo)
         val name = view.findViewById<TextView>(R.id.textview_name)
         val more = view.findViewById<ImageView>(R.id.iv_more)
+
         val game = listOfGame[position]
 
-
-        //added here
+        // Handle the image loading logic here
         val imageStr = game.photo?.medium_url ?: "placeholder"
 
         if (imageStr.startsWith("http")) {
             // Load from URL using Glide
             Glide.with(context)
                 .load(imageStr)
-                .placeholder(R.drawable.ye)
-                .error(R.drawable.ye)
+                .placeholder(R.drawable.ye) // Show placeholder while loading
+                .error(R.drawable.ye) // Show error placeholder if image fails to load
                 .into(photo)
         } else {
-            // Load from drawable by name
+            // If the imageStr is not a URL, it could be a local drawable name
             val resId = context.resources.getIdentifier(imageStr, "drawable", context.packageName)
             if (resId != 0) {
-                photo.setImageResource(resId)
+                photo.setImageResource(resId) // Load from drawable
             } else {
-                photo.setImageResource(R.drawable.ye) // fallback if drawable not found
+                photo.setImageResource(R.drawable.ye) // Fallback if the drawable doesn't exist
             }
         }
-        "${game.name} ${game.date}".also { name.text = it }
-        // this is jsut name.text = "${game.name} ${game.date}" but ide wants it to be lke at top
 
+        name.text = "${game.name} ${game.date}"
 
-
-        more.setOnClickListener{
+        more.setOnClickListener {
             onClickMore(game)
         }
 
@@ -74,6 +74,7 @@ class GameListAdapter (
             onLongPress(position)
             true
         }
+
         return view
     }
 }

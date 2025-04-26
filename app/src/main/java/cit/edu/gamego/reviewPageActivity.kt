@@ -92,10 +92,10 @@ class reviewPageActivity : AppCompatActivity() {
                 it.getStringExtra("title")?.let { title ->
                     binding.gameTitleRp.text = title
                 }
-                it.getStringExtra("imageRes")?.let { imageRes ->
-                    // Use local image resource (assuming it's an integer)
-                    binding.gamePicRp.setImageResource(imageRes.toInt())
-                }
+                //go back to this
+//                it.getStringExtra("imageRes")?.let { imageRes ->
+//                    binding.gamePicRp.setImageResource(imageRes.toString())
+//                }
                 it.getStringExtra("ratings" )?.let { ratings ->
                     binding.ratingsTvRp.text = ratings
                 }

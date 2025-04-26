@@ -59,4 +59,12 @@ interface GiantBombApi {
         @Query("limit") limit: Int = 5,
         @Query("field_list") fields: String = "game,guid"
     ): Call<ReviewListResponse>
+
+    @GET("search/")
+    fun searchGames(
+        @Query("api_key") apiKey: String,
+        @Query("format") format: String = "json",
+        @Query("query") query: String,
+        @Query("resources") resources: String = "game"
+    ): Call<SearchResponse>
 }

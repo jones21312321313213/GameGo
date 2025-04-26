@@ -24,6 +24,7 @@ import cit.edu.gamego.data.ReviewListResponse
 import cit.edu.gamego.data.SingleGameResponse
 import cit.edu.gamego.extensions.enqueueGameList
 import cit.edu.gamego.extensions.extractGuidFromUrl
+import cit.edu.gamego.extensions.toGame
 import cit.edu.gamego.helper.GameRecyclerViewAdapter
 import cit.edu.gamego.data.AppCache
 import com.facebook.shimmer.ShimmerFrameLayout
@@ -33,6 +34,9 @@ import retrofit2.Response
 import kotlinx.coroutines.*
 
 import androidx.lifecycle.lifecycleScope
+import cit.edu.gamego.data.GameResult
+import cit.edu.gamego.data.GiantBombApi
+import cit.edu.gamego.data.SearchResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -340,7 +344,7 @@ class landingFragment : Fragment() {
             onClickMore = { game -> more(game) },
             onClickItem = { game ->
                 // Do not add the same game again, just highlight/select it
-                abc(game)
+                moreWGlide(game)
             },
             onLongPress = { position -> showDeleteDialog(position) }
         )
@@ -361,20 +365,21 @@ class landingFragment : Fragment() {
         // SearchView Listener
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                filterList(query)
                 searchView.clearFocus()
                 return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                filterList(newText)
-                if (newText.isNullOrEmpty()) {
-                    searchView.isIconified = true // Collapse SearchView when cleared
+                if (!newText.isNullOrEmpty()) {
+                    fetchSearchedGames(newText) // api call
+                    listView.visibility = View.VISIBLE
+                } else {
                     listView.visibility = View.GONE
                 }
                 return true
             }
         })
+
         searchView.setOnCloseListener {
             listView.visibility = View.GONE // Hide ListView
             false
@@ -382,6 +387,36 @@ class landingFragment : Fragment() {
 
         return view;
     }
+
+    private fun fetchSearchedGames(query: String) {
+        val apiKey = BuildConfig.GIANT_BOMB_API_KEY
+
+        ApiClient.api.searchGames(apiKey = apiKey, query = query)
+            .enqueue(object : Callback<SearchResponse> {
+                override fun onResponse(call: Call<SearchResponse>, response: Response<SearchResponse>) {
+                    if (response.isSuccessful) {
+                        val games = response.body()?.results ?: emptyList()
+
+                        filteredList.clear()
+                        filteredList.addAll(games.map { it.toGame() }) // 👈 map API models to your Game model if needed
+                        arrayAdapter.notifyDataSetChanged()
+                    } else {
+                        // handle empty case
+                        filteredList.clear()
+                        arrayAdapter.notifyDataSetChanged()
+                    }
+                }
+
+                override fun onFailure(call: Call<SearchResponse>, t: Throwable) {
+                    // handle error
+                    filteredList.clear()
+                    arrayAdapter.notifyDataSetChanged()
+                }
+            })
+    }
+    // continue this
+
+
 
     @SuppressLint("NotifyDataSetChanged")
     private fun fetchRandomGames() {
@@ -562,7 +597,7 @@ class landingFragment : Fragment() {
         val call = ApiClient.api.getGameByGuid(guid, apiKey)
         call.enqueue(object : Callback<SingleGameResponse> {
             override fun onResponse(call: Call<SingleGameResponse>, response: Response<SingleGameResponse>) {
-                if (!isAdded || view == null) return // ✅ early exit if fragment is gone
+                if (!isAdded || view == null) return //  early exit if fragment is gone
 
                 val game = response.body()?.results
                 if (response.isSuccessful && game != null) {

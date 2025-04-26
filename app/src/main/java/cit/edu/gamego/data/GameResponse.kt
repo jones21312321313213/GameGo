@@ -71,7 +71,15 @@ data class GameDetails(
     val images: List<Image>?
 )
 
+data class SearchResponse(
+    val results: List<GameResult>
+)
 
+data class GameResult(
+    val guid: String,
+    val name: String,
+    val image: Image
+)
 
 data class SimilarGame(
     val id: Int?,

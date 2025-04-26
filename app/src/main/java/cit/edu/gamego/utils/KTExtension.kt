@@ -29,6 +29,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import cit.edu.gamego.data.GameApiResponse
+import cit.edu.gamego.data.GameResult
 import cit.edu.gamego.data.GiantBombGame
 import cit.edu.gamego.data.Image
 import cit.edu.gamego.data.ReviewListResponse
@@ -183,9 +184,16 @@ fun WebView.setupAndLoad(trailer: String, fallbackImageView: ImageView, super_ur
 }
 
 
-
-
-
+ fun GameResult.toGame(): Game {
+    return Game(
+        guid = this.guid,
+        name = this.name,
+        photo = Image(
+            this.image?.medium_url ?: "",
+            this.image?.super_url ?: ""
+        )
+    )
+}
 fun EditText.isTextNullOrEmpty(): Boolean {
     return this.text.isNullOrEmpty()
 }
