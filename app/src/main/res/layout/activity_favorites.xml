@@ -62,9 +62,6 @@
 
 
 
-
-
-
     </FrameLayout>
     <LinearLayout android:layout_width="match_parent" android:layout_height="10dp" android:orientation="horizontal" android:gravity="center_vertical" android:background="#c430c5"> </LinearLayout>
     <LinearLayout android:layout_width="match_parent" android:layout_height="10dp" android:orientation="horizontal" android:gravity="center_vertical" android:background="#a23fd5"> </LinearLayout>

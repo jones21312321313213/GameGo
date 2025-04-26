@@ -3,6 +3,7 @@ package cit.edu.gamego
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.ListView
@@ -10,10 +11,19 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
+import cit.edu.gamego.data.ApiClient
+import cit.edu.gamego.data.AppCache
 import cit.edu.gamego.data.Game
 import cit.edu.gamego.data.Image
+import cit.edu.gamego.data.SingleGameResponse
 import cit.edu.gamego.extensions.FavoritesDataHolder
 import cit.edu.gamego.helper.GameListAdapter
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class Favorites : Activity() {
 
@@ -84,4 +94,6 @@ class Favorites : Activity() {
     private fun showDeleteDialog(position: Int) {
         // Implement delete logic
     }
+
+
 }

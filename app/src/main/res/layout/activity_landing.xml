@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#5e5ef6">
+    android:background="#000000">
 
     <!-- Main Content Layout -->
     <LinearLayout
@@ -106,6 +106,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="High Rated Games"
+                        android:textColor="@android:color/white"
                         android:gravity="center"
                         android:textSize="20sp"
                         android:textStyle="bold|italic" />
@@ -124,6 +125,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Horror Games"
+                        android:textColor="@android:color/white"
                         android:gravity="center"
                         android:textSize="20sp"
                         android:textStyle="bold|italic" />
@@ -143,6 +145,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Fantasy Games"
+                        android:textColor="@android:color/white"
                         android:gravity="center"
                         android:textSize="20sp"
                         android:textStyle="bold|italic" />
@@ -162,6 +165,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Sci-fi Games"
+                        android:textColor="@android:color/white"
                         android:gravity="center"
                         android:textSize="20sp"
                         android:textStyle="bold|italic" />
@@ -181,6 +185,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Adventure Games"
+                        android:textColor="@android:color/white"
                         android:gravity="center"
                         android:textSize="20sp"
                         android:textStyle="bold|italic" />
@@ -200,6 +205,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Romance Games"
+                        android:textColor="@android:color/white"
                         android:gravity="center"
                         android:textSize="20sp"
                         android:textStyle="bold|italic" />
@@ -218,6 +224,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Games Available in Ps4"
+                        android:textColor="@android:color/white"
                         android:gravity="center"
                         android:textSize="20sp"
                         android:textStyle="bold|italic" />
@@ -237,6 +244,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Games available in Xbox one"
+                        android:textColor="@android:color/white"
                         android:gravity="center"
                         android:textSize="20sp"
                         android:textStyle="bold|italic" />
@@ -256,6 +264,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Games available in Nintendo Switch"
+                        android:textColor="@android:color/white"
                         android:gravity="center"
                         android:textSize="20sp"
                         android:textStyle="bold|italic" />
@@ -275,6 +284,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Games available in pc"
+                        android:textColor="@android:color/white"
                         android:gravity="center"
                         android:textSize="20sp"
                         android:textStyle="bold|italic" />
@@ -294,6 +304,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Games available in mobile"
+                        android:textColor="@android:color/white"
                         android:gravity="center"
                         android:textSize="20sp"
                         android:textStyle="bold|italic" />
@@ -313,6 +324,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Random Games"
+                        android:textColor="@android:color/white"
                         android:gravity="center"
                         android:textSize="20sp"
                         android:textStyle="bold|italic" />

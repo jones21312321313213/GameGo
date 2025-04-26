@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="bottom|start"
-    android:background="#5E5EF6">
+    android:background="#000000">
 
 
     <ImageView
@@ -116,7 +116,7 @@
             android:layout_width="250dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
-            android:backgroundTint="#0AEAF1"
+            android:backgroundTint="#E1E1E1"
             android:layout_marginBottom="10dp"
             android:text="Login"
             android:textSize="18sp"
@@ -212,7 +212,7 @@
             android:layout_gravity="top|end"
             android:fontFamily="sans-serif"
             android:text="Sign Up"
-            android:textColor="#0AEAF1"
+            android:textColor="#FF0000"
             android:textSize="16dp"
             android:textStyle="bold" />
 

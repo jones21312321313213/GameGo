@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:background="@drawable/cflogout_corner"
-        android:backgroundTint="#9D9DFF"
+        android:backgroundTint="#6f6969"
         android:gravity="center"
         android:orientation="vertical">
 

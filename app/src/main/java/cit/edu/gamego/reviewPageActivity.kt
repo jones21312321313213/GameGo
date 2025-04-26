@@ -257,7 +257,7 @@ class reviewPageActivity : AppCompatActivity() {
             }
         }
     }
-    
+
     private fun loadFragment(fragment: Fragment, bundle: Bundle) {
         fragment.arguments = bundle
         val transaction = supportFragmentManager.beginTransaction()

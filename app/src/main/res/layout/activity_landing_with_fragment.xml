@@ -6,7 +6,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#5e5ef6"
+    android:background="#000000"
     tools:context=".activity_landing">
 
     <!-- Main Content Layout -->

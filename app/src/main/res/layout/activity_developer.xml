@@ -4,149 +4,157 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#5e5ef6">
-    
+    android:background="#000000">
+
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:background="@drawable/redtrans"
+        android:layout_height="match_parent">
+        <FrameLayout android:layout_width="match_parent" android:layout_marginTop="50dp" android:layout_height="500dp" android:orientation="horizontal" android:paddingTop="15dp" android:layout_gravity="center" >
 
-    <LinearLayout android:layout_width="match_parent" android:layout_height="10dp" android:layout_marginTop="50dp" android:orientation="horizontal" android:gravity="center_vertical" android:background="#804fe6"> </LinearLayout>
-    <FrameLayout android:layout_width="match_parent" android:layout_height="500dp" android:orientation="horizontal" android:paddingTop="15dp" android:layout_gravity="center" android:background="#e620b4">
+            <EditText
+                android:layout_width="370dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/searchbar"
+                android:backgroundTint="#A9A9A9"
+                android:padding="10dp"/>
 
-        <EditText
-            android:layout_width="370dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/searchbar"
-            android:backgroundTint="#A9A9A9"
-            android:padding="10dp"/>
-        <EditText
-            android:layout_width="355dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/searchbar"
-            android:fontFamily="sans-serif"
-            android:text="About the Developers"
-            android:textAlignment="center"
-            android:textStyle="bold"
-            android:padding="10dp"/>
+            <EditText
+                android:layout_width="355dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/searchbar"
+                android:fontFamily="sans-serif"
+                android:text="About the Developers"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:padding="10dp"
+                android:focusable="false"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:inputType="none"/>
 
-<!--        <ImageView-->
-<!--            android:id="@+id/abme_devs_back"-->
-<!--            android:layout_marginTop="5dp"-->
-<!--            android:layout_width="76dp"-->
-<!--            android:layout_height="35dp"-->
-<!--            android:layout_marginLeft="30dp"-->
-<!--            android:src="@drawable/back_arrow"/>-->
+            <!--        <ImageView-->
+            <!--            android:id="@+id/abme_devs_back"-->
+            <!--            android:layout_marginTop="5dp"-->
+            <!--            android:layout_width="76dp"-->
+            <!--            android:layout_height="35dp"-->
+            <!--            android:layout_marginLeft="30dp"-->
+            <!--            android:src="@drawable/back_arrow"/>-->
 
-        <EditText
-            android:backgroundTint="#A9A9A9"
-            android:layout_width="355dp"
-            android:layout_height="397dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="60dp"
-            android:background="@drawable/searchbar"
-            android:padding="10dp"/>
-
-        <LinearLayout
-            android:layout_width="359dp"
-            android:layout_height="373dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="70dp"
-            android:background="@drawable/searchbar"
-            android:orientation="horizontal"
-            android:paddingTop="20dp">
+            <EditText
+                android:backgroundTint="#FF0000"
+                android:layout_width="355dp"
+                android:layout_height="397dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="60dp"
+                android:background="@drawable/searchbar"
+                android:padding="10dp"/>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="359dp"
+                android:layout_height="373dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="70dp"
+                android:backgroundTint="@color/black"
+                android:background="@drawable/searchbar"
                 android:orientation="horizontal"
-                android:gravity="center"
-                android:padding="20dp">
+                android:paddingTop="20dp">
 
-                <!--  Archival  -->
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="8dp"
+                    android:orientation="horizontal"
                     android:gravity="center"
-                    android:orientation="vertical">
+                    android:padding="20dp">
 
-                    <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="75dp"
-                        android:src="@drawable/avatar1"/>
-
-                    <TextView
+                    <!--  Archival  -->
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:fontFamily="sans-serif"
-                        android:padding="10dp"
-                        android:textColor="@color/black"
-                        android:text="Archival"
-                        android:textSize="20dp"
-                        android:textStyle="bold"
-                        android:textAlignment="center"/>
+                        android:layout_marginVertical="8dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
-                    <Button
-                        android:id="@+id/about_me_archival"
-                        android:layout_width="120dp"
-                        android:layout_height="50dp"
-                        android:background="@drawable/button_corner"
-                        android:backgroundTint="#FDEB27"
-                        android:fontFamily="sans-serif"
-                        android:padding="10dp"
-                        android:text="About me"
-                        android:textAlignment="center"
-                        android:textSize="12dp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-                <!--  Space between  -->
-                <View android:layout_width="3dp" android:layout_height="match_parent" android:layout_marginVertical="8dp" android:background="#808080" android:layout_marginStart="30dp" android:layout_marginEnd="30dp"/>
-                <!--  Black line  -->
-                <!--  Arco  -->
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="8dp"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                        <ImageView
+                            android:layout_width="80dp"
+                            android:layout_height="75dp"
+                            android:src="@drawable/avatar2hite"/>
 
-                    <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="75dp"
-                        android:src="@drawable/avatar1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:fontFamily="sans-serif"
+                            android:padding="10dp"
+                            android:textColor="@color/white"
+                            android:text="Archival"
+                            android:textSize="20dp"
+                            android:textStyle="bold"
+                            android:textAlignment="center"/>
 
-                    <TextView
+                        <Button
+                            android:id="@+id/about_me_archival"
+                            android:layout_width="120dp"
+                            android:layout_height="50dp"
+                            android:background="@drawable/button_corner"
+                            android:backgroundTint="#F2E2B1"
+                            android:fontFamily="sans-serif"
+                            android:padding="10dp"
+                            android:text="About me"
+                            android:textAlignment="center"
+                            android:textSize="12dp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+                    <!--  Space between  -->
+                    <View android:layout_width="3dp" android:layout_height="match_parent" android:layout_marginVertical="8dp" android:background="#808080" android:layout_marginStart="30dp" android:layout_marginEnd="30dp"/>
+                    <!--  Black line  -->
+                    <!--  Arco  -->
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:fontFamily="sans-serif"
-                        android:padding="10dp"
-                        android:textColor="@color/black"
-                        android:text="Arco"
-                        android:textSize="20dp"
-                        android:textStyle="bold"
-                        android:textAlignment="center"/>
-                    <Button
-                        android:id="@+id/about_me_arco"
-                        android:layout_width="120dp"
-                        android:layout_height="50dp"
-                        android:background="@drawable/button_corner"
-                        android:backgroundTint="#FDEB27"
-                        android:fontFamily="sans-serif"
-                        android:padding="10dp"
-                        android:text="About me"
-                        android:textAlignment="center"
-                        android:textSize="12dp"
-                        android:textStyle="bold" />
+                        android:layout_marginVertical="8dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="80dp"
+                            android:layout_height="75dp"
+                            android:src="@drawable/avatar2hite"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:fontFamily="sans-serif"
+                            android:padding="10dp"
+                            android:textColor="@color/white"
+                            android:text="Arco"
+                            android:textSize="20dp"
+                            android:textStyle="bold"
+                            android:textAlignment="center"/>
+                        <Button
+                            android:id="@+id/about_me_arco"
+                            android:layout_width="120dp"
+                            android:layout_height="50dp"
+                            android:background="@drawable/button_corner"
+                            android:backgroundTint="#F2E2B1"
+                            android:fontFamily="sans-serif"
+                            android:padding="10dp"
+                            android:text="About me"
+                            android:textAlignment="center"
+                            android:textSize="12dp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
+        </FrameLayout>
+
     </FrameLayout>
-    <LinearLayout android:layout_width="match_parent" android:layout_height="10dp" android:orientation="horizontal" android:gravity="center_vertical" android:background="#c430c5"> </LinearLayout>
-    <LinearLayout android:layout_width="match_parent" android:layout_height="10dp" android:orientation="horizontal" android:gravity="center_vertical" android:background="#a23fd5"> </LinearLayout>
-    <LinearLayout android:layout_width="match_parent" android:layout_height="10dp" android:orientation="horizontal" android:gravity="center_vertical" android:background="#804fe6"> </LinearLayout>
+
+
+
 </LinearLayout>

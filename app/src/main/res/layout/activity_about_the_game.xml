@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#5e5ef6">
+    android:background="#000000">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -63,7 +63,7 @@
             android:src="@drawable/back_arrow"/>
 
         <LinearLayout
-            android:backgroundTint="#A9A9A9"
+            android:backgroundTint="#FF0000"
             android:layout_width="355dp"
             android:layout_height="397dp"
             android:layout_gravity="center_horizontal"
@@ -78,6 +78,7 @@
             android:layout_marginTop="70dp"
             android:background="@drawable/searchbar"
             android:orientation="vertical"
+            android:backgroundTint="@color/black"
             android:paddingTop="20dp">
 
             <ImageView
@@ -85,7 +86,7 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_gravity="center"
-                android:src="@drawable/glogo1"/>
+                android:src="@drawable/logo2"/>
 
             <TextView
                 android:layout_gravity="center"
@@ -93,6 +94,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
                 android:padding="10dp"
+                android:textColor="@color/white"
                 android:text="GameGo is your personal mobile library for all your favorite games! Organize, track, and explore mobile games across genres with ease. Whether you're managing your backlog, logging playtime, or discovering something new, GameGo keeps your game collection right at your fingertips. Built for gamers, by gamers."
                 android:textSize="13dp" android:textStyle="bold"/>
 

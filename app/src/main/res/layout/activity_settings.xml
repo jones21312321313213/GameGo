@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#5e5ef6">
+    android:background="#000000">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -71,68 +71,9 @@
             android:orientation="vertical"
             android:paddingTop="20dp">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="8dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="45dp"
-                    android:layout_marginLeft="15dp"
-                    android:src="@drawable/avatar1"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="117dp"
-                    android:fontFamily="sans-serif"
-                    android:padding="10dp"
-                    android:text="Account"
-                    android:textSize="20dp"
-                    android:textStyle="bold"/>
 
-                <ImageView
-                    android:id="@+id/account_settings"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:layout_marginLeft="15dp"
-                    android:rotation="180"
-                    android:src="@drawable/back1"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="8dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="45dp"
-                    android:layout_marginLeft="15dp"
-                    android:src="@drawable/dev"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif"
-                    android:padding="10dp"
-                    android:text="About the developers"
-                    android:textSize="20dp" android:textStyle="bold"/>
-
-                <ImageView
-                    android:id="@+id/dev_setting"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:layout_marginLeft="15dp"
-                    android:rotation="180"
-                    android:src="@drawable/back1"/>
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
