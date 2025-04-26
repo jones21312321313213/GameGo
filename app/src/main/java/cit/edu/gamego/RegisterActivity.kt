@@ -77,7 +77,10 @@ class RegisterActivity : Activity() {
                         val currentUser = auth.currentUser
                         val uid = currentUser?.uid ?: reference.push().key!!
 
-                        val userData = Users(username, password, email, emptyList())
+                        val favorites: List<String> = listOf(" ")
+                        val userData = Users(username, password, email, favorites)
+
+                        Log.d("UserData", userData.toString())
                         reference.child(uid).setValue(userData).addOnCompleteListener { dbTask ->
                             if (dbTask.isSuccessful) {
                                 binding.registerUsernameId.setText("")

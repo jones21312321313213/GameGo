@@ -34,6 +34,7 @@ import retrofit2.Response
 
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FieldValue
 
 class reviewPageActivity : AppCompatActivity() {
@@ -199,45 +200,64 @@ class reviewPageActivity : AppCompatActivity() {
             finish()
         }
 
-        val db = FirebaseFirestore.getInstance()
-        val userId = FirebaseAuth.getInstance().currentUser?.uid ?: "default_user"
 
-        //continue this it wont add he guid in the firebase
-            // Define the game data to be added (only guid and name)
-        val favoriteGame = hashMapOf(
-            "guid" to gameGuid,                          // Game GUID
-            "name" to binding.gameTitleRp.text.toString()  // Game name
-        )
-        binding.heart.setOnClickListener {
-            if (isLiked) {
-                // Unheart - remove game from user's favorites array
-                db.collection("Users")
-                    .document(userId)
-                    .update("favorites", FieldValue.arrayRemove(favoriteGame))
-                    .addOnSuccessListener { toast("Removed from favorites") }
-                    .addOnFailureListener { toast("Error removing favorite") }
+        val auth = FirebaseAuth.getInstance()
+        val currentUser = auth.currentUser
 
-                binding.heart.setImageResource(R.drawable.baseline_favorite_border_24)
-            } else {
-                // Heart - add game to user's favorites array
-                db.collection("Users")
-                    .document(userId)
-                    .update("favorites", FieldValue.arrayUnion(favoriteGame))
-                    .addOnSuccessListener { toast("Added to favorites") }
-                    .addOnFailureListener { toast("Error adding favorite") }
+        if (currentUser != null) {
+            val uid = currentUser.uid
+            val dbRef = FirebaseDatabase.getInstance(BuildConfig.FIREBASE_DB_URL)
+                .getReference("Users")
+                .child(uid)
 
-                binding.heart.setImageResource(R.drawable.baseline_favorite_24)
-                binding.insideHeard.startAnimation(zoomInAnim)
-                binding.insideHeard.startAnimation(zoomOutAnim)
+            val favoritesRef = dbRef.child("favorites")
+
+            binding.heart.setOnClickListener {
+                favoritesRef.get().addOnSuccessListener { snapshot ->
+                    // Convert snapshot to a map of pushId to gameGuid
+                    val favoritesMap = snapshot.value as? Map<String, String> ?: emptyMap()
+
+                    if (isLiked) {
+                        // UNHEART: Remove game by finding the key with matching gameGuid
+                        val keyToRemove = favoritesMap.entries.find { it.value == gameGuid }?.key
+
+                        if (keyToRemove != null) {
+                            favoritesRef.child(keyToRemove).removeValue()
+                                .addOnSuccessListener {
+                                    toast("Removed from favorites")
+                                    binding.heart.setImageResource(R.drawable.baseline_favorite_border_24)
+                                    binding.heart.startAnimation(zoomInAnim)
+                                    isLiked = false
+                                }
+                                .addOnFailureListener {
+                                    toast("Error removing favorite")
+                                }
+                        } else {
+                            toast("Favorite not found")
+                        }
+                    } else {
+                        // HEART: Add game using Firebase's push() for automatic ID generation
+                        val newFavoriteRef = favoritesRef.push()
+                        newFavoriteRef.setValue(gameGuid)
+                            .addOnSuccessListener {
+                                toast("Added to favorites")
+                                binding.heart.setImageResource(R.drawable.baseline_favorite_24)
+                                binding.insideHeard.startAnimation(zoomInAnim)
+                                binding.insideHeard.startAnimation(zoomOutAnim)
+                                binding.heart.startAnimation(zoomInAnim)
+                                isLiked = true
+                            }
+                            .addOnFailureListener {
+                                toast("Error adding favorite")
+                            }
+                    }
+                }.addOnFailureListener {
+                    toast("Failed to load favorites")
+                }
             }
-
-            binding.heart.startAnimation(zoomInAnim)
-            isLiked = !isLiked
         }
-
     }
-
-
+    
     private fun loadFragment(fragment: Fragment, bundle: Bundle) {
         fragment.arguments = bundle
         val transaction = supportFragmentManager.beginTransaction()
