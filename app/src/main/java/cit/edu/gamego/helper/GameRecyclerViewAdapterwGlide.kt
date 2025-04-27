@@ -15,8 +15,7 @@ class  GameRecyclerViewAdapterwGlide(
     private val context: Context,  // Pass the context to determine activity
     private val listOfGame: List<Game>,
     private val onClick: (Game) -> Unit,
-    private val isAlternativeLayout: Boolean = false, // Flag for layout selection
-    private val isAnotherLayoutOption: Boolean = false // Flag for the second alternative layout
+    private val isAlternativeLayout: Boolean = false // Flag for layout selection
 ) : RecyclerView.Adapter<GameRecyclerViewAdapterwGlide.ItemViewHolder>() {
 
     class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -29,11 +28,7 @@ class  GameRecyclerViewAdapterwGlide(
         // Condition to choose between default layout, first alternative, and second alternative layout
         val layoutId = when {
             isAlternativeLayout -> {
-                if (isAnotherLayoutOption) {
-                    R.layout.item_devs_fav_game //teemp
-                } else {
-                    R.layout.item_devs_fav_game // First alternative layout
-                }
+                R.layout.item_devs_fav_game // First alternative layout
             }
             else -> {
                 R.layout.item_recyclerview_game // Default layout
