@@ -4,7 +4,8 @@ data class Users(
     val username: String = "",
     val password: String = "",
     val email: String = "",
-    val favorites: List<String> = emptyList()
+    val favorites: List<String> = emptyList(),
+    val profilePicUrl: String = ""
 ){
 
 }

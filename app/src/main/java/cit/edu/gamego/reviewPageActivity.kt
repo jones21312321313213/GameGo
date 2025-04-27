@@ -113,33 +113,8 @@ class reviewPageActivity : AppCompatActivity() {
                 fetchGameDetails(guid)
             }
         }
-        // temp
-        val title = binding.gameTitleRp.text.toString().trim()
-        val gameRev = when {
-            title.equals("Ye Quest", ignoreCase = true) ->
-                "This game explores how Kanye takes inspiration from controversial figures to make music."
-            title.equals("Black Myth Wukong", ignoreCase = true) ->
-                "An action RPG where players control a monkey warrior inspired by Journey to the West."
-            title.equals("Monster Hunter: World", ignoreCase = true) ->
-                "Embark on the ultimate hunting experience, tracking and battling massive creatures."
-            title.equals("Helldivers 2", ignoreCase = true) ->
-                "A cooperative third-person shooter where players defend Super Earth from alien threats."
-            title.equals("DOTA 2", ignoreCase = true) ->
-                "A competitive MOBA where two teams of five heroes battle to destroy the enemy’s Ancient."
-            title.equals("League of Legends", ignoreCase = true) ->
-                "A fast-paced MOBA where champions with unique abilities fight to control Summoner’s Rift."
-            title.equals("Counter Strike 2", ignoreCase = true) ->
-                "A tactical first-person shooter where teams compete in bomb defusal and hostage rescue modes."
-            title.equals("God of War: Ragnarok", ignoreCase = true) ->
-                "A mythological action-adventure game following Kratos and Atreus on their Norse journey."
-            title.equals("Valorant", ignoreCase = true) ->
-                "A tactical shooter where agents with unique abilities battle in intense 5v5 matches."
-            title.equals("Elden Ring", ignoreCase = true) ->
-                "An open-world action RPG where players explore the Lands Between and battle formidable foes."
-            else -> " "
-        }
-        gg?.description = gameRev
-        bundle.putString("review", gameRev)
+
+
 
         ////////////////////////////////////////////////
         // Initialize the TabLayout and FrameLayout
@@ -209,10 +184,30 @@ class reviewPageActivity : AppCompatActivity() {
             val dbRef = FirebaseDatabase.getInstance(BuildConfig.FIREBASE_DB_URL)
                 .getReference("Users")
                 .child(uid)
-
-            val favoritesRef = dbRef.child("favorites")
+                .child("favorites")
+            //checking if this game is already in favorites
+            dbRef.get().addOnSuccessListener { snapshot ->
+                val favoritesMap = snapshot.value as? Map<String, String> ?: emptyMap()
+                val isGameLiked = favoritesMap.containsValue(gameGuid) // Check if gameGuid is in favorites
+                // Update UI based on whether the game is liked
+                if (isGameLiked) {
+                    binding.heart.setImageResource(R.drawable.baseline_favorite_24) // Set heart to red
+                    isLiked = true
+                } else {
+                    binding.heart.setImageResource(R.drawable.baseline_favorite_border_24) // Set heart to empty
+                    isLiked = false
+                }
+            }.addOnFailureListener {
+                toast("Failed to load favorites")
+            }
 
             binding.heart.setOnClickListener {
+                // Fetch favorites reference from Firebase
+                val favoritesRef = FirebaseDatabase.getInstance(BuildConfig.FIREBASE_DB_URL)
+                    .getReference("Users")
+                    .child(currentUser?.uid ?: return@setOnClickListener)
+                    .child("favorites")
+
                 favoritesRef.get().addOnSuccessListener { snapshot ->
                     // Convert snapshot to a map of pushId to gameGuid
                     val favoritesMap = snapshot.value as? Map<String, String> ?: emptyMap()
@@ -255,6 +250,7 @@ class reviewPageActivity : AppCompatActivity() {
                     toast("Failed to load favorites")
                 }
             }
+
         }
     }
 
@@ -279,7 +275,6 @@ class reviewPageActivity : AppCompatActivity() {
         }
         abstract fun onDoubleClick(v: View?)
     }
-
 
     private fun fetchGameDetails(guid: String) {
         val apiKey = BuildConfig.GIANT_BOMB_API_KEY

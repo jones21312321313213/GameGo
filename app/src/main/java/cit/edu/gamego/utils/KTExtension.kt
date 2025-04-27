@@ -24,6 +24,7 @@ import android.webkit.WebViewClient
 import android.annotation.SuppressLint
 import android.util.Log
 import android.widget.ImageView
+import androidx.fragment.app.Fragment
 import cit.edu.gamego.data.ApiClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -90,6 +91,8 @@ fun String.extractGuidFromUrl(): String? {
     return this.trimEnd('/').split("/").lastOrNull()
 }
 
+// this is for videos since their URL is like https://giantbomb/videos/(video guid)/(randomnumber)
+// we do not want to get the random number
 fun String.extractGuidFromShowUrl(): String? {
     val segments = this.trimEnd('/').split("/")
     return if (segments.size >= 2) {
@@ -183,7 +186,22 @@ fun WebView.setupAndLoad(trailer: String, fallbackImageView: ImageView, super_ur
     loadUrl(trailer)
 }
 
+// both will go from curent act/fragment to reviewPageActivity
+fun Context.moreWithGlide(game: Game) {
+    val intent = Intent(this, reviewPageActivity::class.java).apply {
+        putExtra("guid", game.guid)
+    }
+    startActivity(intent)
+}
 
+fun Fragment.moreWithGlideFragment(game: Game) {
+    val intent = Intent(requireContext(), reviewPageActivity::class.java).apply {
+        putExtra("guid", game.guid)
+    }
+    startActivity(intent)
+}
+
+// this will show the images,name of the games in the seach view
  fun GameResult.toGame(): Game {
     return Game(
         guid = this.guid,
@@ -208,6 +226,7 @@ fun showDeleteDialog(position: Int) {
    print("skibidi")
 }
 
+// used in fetchGame details or api calls that will individually get games GUID and make them as a game
 fun createGame(title: String?,
                        date: String?,
                        ratings: String?,
@@ -222,8 +241,8 @@ fun createGame(title: String?,
     return Game(
         guid = "",
         name = title ?: "Unknown Game",
-        date = date ?: "Unknown Date", // Set a default value for date or pass from the Intent if needed
-        rating = ratings ?: "0.0", // Default to "0.0" if no rating is provided
+        date = date ?: "Unknown Date",
+        rating = ratings ?: "0.0",
         gameTrailer =  "",
         photo = Image("",""),
         description = desc,

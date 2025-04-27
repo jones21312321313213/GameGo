@@ -15,7 +15,8 @@ class  GameRecyclerViewAdapterwGlide(
     private val context: Context,  // Pass the context to determine activity
     private val listOfGame: List<Game>,
     private val onClick: (Game) -> Unit,
-    private val isAlternativeLayout: Boolean = false // Flag for layout selection
+    private val isAlternativeLayout: Boolean = false, // Flag for layout selection
+    private val isAnotherLayoutOption: Boolean = false // Flag for the second alternative layout
 ) : RecyclerView.Adapter<GameRecyclerViewAdapterwGlide.ItemViewHolder>() {
 
     class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -25,34 +26,29 @@ class  GameRecyclerViewAdapterwGlide(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val layoutId = if (isAlternativeLayout) {
-            R.layout.item_devs_fav_game // Use alternative layout
-        } else {
-            R.layout.item_recyclerview_game // Default layout
+        // Condition to choose between default layout, first alternative, and second alternative layout
+        val layoutId = when {
+            isAlternativeLayout -> {
+                if (isAnotherLayoutOption) {
+                    R.layout.item_devs_fav_game //teemp
+                } else {
+                    R.layout.item_devs_fav_game // First alternative layout
+                }
+            }
+            else -> {
+                R.layout.item_recyclerview_game // Default layout
+            }
         }
 
         val view = LayoutInflater.from(parent.context).inflate(layoutId, parent, false)
         return ItemViewHolder(view)
     }
 
+
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = listOfGame[position]
 
         Glide.with(holder.itemView.context).load(item.photo?.medium_url).into(holder.photo)
-//
-//        val imageUrl = item.photo?.medium_url
-//        abcdefghijklmnopqe
-//        if (!imageUrl.isNullOrBlank()) {
-//            Glide.with(holder.itemView.context)
-//                .load(imageUrl)
-//                .placeholder(R.drawable.ye) // while loading
-//                .error(R.drawable.aaa)  // if failed
-//                .centerCrop()                        // for clean scaling
-//                .into(holder.photo)
-//        } else {
-//            holder.photo.setImageResource(R.drawable.aaa)
-//        }
-        //holder.photo.setImageResource(item.photo.toInt())
         holder.name.text = item.name
         holder.ratings.text = item.rating.toString()
 

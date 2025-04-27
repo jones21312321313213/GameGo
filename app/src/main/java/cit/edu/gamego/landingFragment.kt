@@ -38,6 +38,7 @@ import androidx.lifecycle.lifecycleScope
 import cit.edu.gamego.data.GameResult
 import cit.edu.gamego.data.GiantBombApi
 import cit.edu.gamego.data.SearchResponse
+import cit.edu.gamego.extensions.moreWithGlideFragment
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -182,7 +183,7 @@ class landingFragment : Fragment() {
             requireContext(),
             listOfRandomGames,
             onClick ={game->
-                moreWGlide(game)
+                moreWithGlideFragment(game)
             }
         )
 
@@ -192,7 +193,7 @@ class landingFragment : Fragment() {
             requireContext(),
             listOfHighRatedGames,
             onClick ={game->
-                moreWGlide(game)
+                moreWithGlideFragment(game)
             }
         )
         hrgRecyclerView.adapter = highRatedGamesGameAdapter
@@ -201,7 +202,7 @@ class landingFragment : Fragment() {
             requireContext(),
             listOfPs4Games,
             onClick ={game->
-                moreWGlide(game)
+                moreWithGlideFragment(game)
             }
         )
 
@@ -211,7 +212,7 @@ class landingFragment : Fragment() {
             requireContext(),
             listOfXbox1Games,
             onClick ={game->
-                moreWGlide(game)
+                moreWithGlideFragment(game)
             }
         )
 
@@ -221,7 +222,7 @@ class landingFragment : Fragment() {
             requireContext(),
             listOfNintendoSwitchGames,
             onClick ={game->
-                moreWGlide(game)
+                moreWithGlideFragment(game)
             }
         )
 
@@ -231,7 +232,7 @@ class landingFragment : Fragment() {
             requireContext(),
             listOfPcGames,
             onClick ={game->
-                moreWGlide(game)
+                moreWithGlideFragment(game)
             }
         )
 
@@ -241,7 +242,7 @@ class landingFragment : Fragment() {
             requireContext(),
             listOfMobileGames,
             onClick ={game->
-                moreWGlide(game)
+                moreWithGlideFragment(game)
             }
         )
 
@@ -251,7 +252,7 @@ class landingFragment : Fragment() {
             requireContext(),
             listOfHorroGames,
             onClick ={game->
-                moreWGlide(game)
+                moreWithGlideFragment(game)
             }
         )
 
@@ -261,7 +262,7 @@ class landingFragment : Fragment() {
             requireContext(),
             listOfFantasyGames,
             onClick ={game->
-                moreWGlide(game)
+                moreWithGlideFragment(game)
             }
         )
 
@@ -271,7 +272,7 @@ class landingFragment : Fragment() {
             requireContext(),
             listOfSciFiGames,
             onClick ={game->
-                moreWGlide(game)
+                moreWithGlideFragment(game)
             }
         )
 
@@ -281,7 +282,7 @@ class landingFragment : Fragment() {
             requireContext(),
             listOfAdventureGames,
             onClick ={game->
-                moreWGlide(game)
+                moreWithGlideFragment(game)
             }
         )
 
@@ -291,7 +292,7 @@ class landingFragment : Fragment() {
             requireContext(),
             listOfRomanceGames,
             onClick ={game->
-                moreWGlide(game)
+                moreWithGlideFragment(game)
             }
         )
 
@@ -306,23 +307,13 @@ class landingFragment : Fragment() {
         )
 
         // fetching games using API
- //       fetchRandomGames()
-        fetchPopularReviews()
-//        fetchPs4PlatformGames()
-//        fetchXboxOnePlatformGames()
-//        fetchPcPlatformGames()
-//        fetchNintendoSwitchPlatformsGames()
-//        fetchMobilePlatformGames()
-//        fetchHorrorThemeGames()
-//        fetchSciFiThemeGames()
-//        fetchAdventureThemeGames()
-//        fetchFantasyThemeGames()
-//        fetchRomanceThemeGames()
+        fetchAllGames()
+
         ////////////////////////////////////// FOr search bar which is a list view
         // Initially hide listView
         listView.visibility = View.GONE
 
-        // Sample Data
+        // Sample Data temp
          listOfGame = mutableListOf(
              Game("YE Quest", "2030", "1.1", Image(R.drawable.ye.toString(), R.drawable.ye.toString()), kanyeeee, "The visionary's journey through a surreal rap universe.", false, "game_yequest", listOf("PS5", "PC"), "Yeezy Interactive", listOf("Adventure", "Rhythm"), listOf("Hip-Hop", "Satire"), listOf("YE Series"),listOf("Yeezy Productions"), "YQ"),
              Game("Helldivers 2", "2022", "8.2", Image(R.drawable.helldivers.toString(),R.drawable.helldivers.toString()), helldiversTrailer, "A chaotic co-op shooter fighting for liberty across galaxies.", false, "game_helldivers2", listOf("PS5", "PC"), "Arrowhead Game Studios", listOf("Shooter", "Co-op"), listOf("Sci-fi", "Military"),  listOf("Helldivers"), listOf("PlayStation Studios"),"HD2"),
@@ -345,8 +336,8 @@ class landingFragment : Fragment() {
             filteredList,
             onClickMore = { game -> more(game) },
             onClickItem = { game ->
-                // Do not add the same game again, just highlight/select it
-                moreWGlide(game)
+
+                moreWithGlideFragment(game)
             },
             onLongPress = { position -> showDeleteDialog(position) }
         )
@@ -363,24 +354,39 @@ class landingFragment : Fragment() {
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (!newText.isNullOrEmpty()) {
-                    progressBar.visibility = View.VISIBLE // Show ProgressBar
-                    listView.visibility = View.GONE // Hide ListView until results are ready
+                    progressBar.visibility = View.VISIBLE
+                    listView.visibility = View.GONE
                     fetchSearchedGames(newText) // Fetch search results
                 } else {
-                    listView.visibility = View.GONE // Hide ListView when there's no query
-                    progressBar.visibility = View.GONE // Hide ProgressBar when there's no query
+                    listView.visibility = View.GONE
+                    progressBar.visibility = View.GONE
                 }
                 return true
             }
         })
 
         searchView.setOnCloseListener {
-            listView.visibility = View.GONE // Hide ListView when search is closed
-            progressBar.visibility = View.GONE // Hide ProgressBar
+            listView.visibility = View.GONE
+            progressBar.visibility = View.GONE
             false
         }
 
         return view;
+    }
+
+    private fun fetchAllGames(){
+//       fetchRandomGames()
+          fetchPopularReviews()
+//        fetchPs4PlatformGames()
+//        fetchXboxOnePlatformGames()
+//        fetchPcPlatformGames()
+//        fetchNintendoSwitchPlatformsGames()
+//        fetchMobilePlatformGames()
+//        fetchHorrorThemeGames()
+//        fetchSciFiThemeGames()
+//        fetchAdventureThemeGames()
+//        fetchFantasyThemeGames()
+//        fetchRomanceThemeGames()
     }
 
     private fun fetchSearchedGames(query: String) {
@@ -681,13 +687,6 @@ class landingFragment : Fragment() {
     }
 
 
-    private fun moreWGlide(game: Game) {
-        startActivity(
-            Intent(requireContext(), reviewPageActivity::class.java).apply {
-                putExtra("guid",game.guid)
-            }
-        )
-    }
     // for shimmers
     @SuppressLint("NotifyDataSetChanged")
     private fun checkIfDataLoaded() {
