@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import cit.edu.gamego.R
 import cit.edu.gamego.data.Game
 import com.bumptech.glide.Glide
+import android.util.Patterns
 
 class GameRecyclerViewAdapter(
     private val context: Context,  // Pass the context to determine activity
@@ -21,14 +22,13 @@ class GameRecyclerViewAdapter(
     class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val photo: ImageView = view.findViewById(R.id.photo_irg)
         val name: TextView = view.findViewById(R.id.title_irg)
-        val ratings: TextView = view.findViewById(R.id.ratings_irg)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val layoutId = if (isAlternativeLayout) {
             R.layout.item_devs_fav_game // Use alternative layout
         } else {
-            R.layout.item_recyclerview_game // Default layout
+            R.layout.items_favorites // Default layout
         }
 
         val view = LayoutInflater.from(parent.context).inflate(layoutId, parent, false)
@@ -37,14 +37,26 @@ class GameRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = listOfGame[position]
-        holder.photo.setImageResource(item.photo?.medium_url!!.toInt())
+
+        // Check if the medium_url is a valid URL
+        val url = item.photo?.medium_url
+        if (url != null && Patterns.WEB_URL.matcher(url).matches()) {
+            // If it's a valid URL, load it with Glide
+            Glide.with(holder.itemView.context)
+                .load(url) // Load image from URL
+                .into(holder.photo)
+        } else {
+            // Handle case where it's not a valid URL (e.g., a default image or error image)
+            holder.photo.setImageResource(item.photo?.medium_url!!.toInt()) // Replace with your default image
+        }
+
         holder.name.text = item.name
-        holder.ratings.text = item.rating.toString()
 
         holder.itemView.setOnClickListener {
             onClick(item)
         }
     }
+
 
     override fun getItemCount(): Int = listOfGame.size
 }

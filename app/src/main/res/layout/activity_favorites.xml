@@ -1,26 +1,37 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#5e5ef6">
+    android:background="#000000">
 
+    <!-- Fragment container -->
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <LinearLayout android:layout_width="match_parent" android:layout_height="10dp" android:layout_marginTop="50dp" android:orientation="horizontal" android:gravity="center_vertical" android:background="#804fe6"> </LinearLayout>
-    <FrameLayout android:layout_width="match_parent" android:layout_height="500dp" android:orientation="horizontal" android:paddingTop="15dp" android:layout_gravity="center" android:background="#e620b4">
+    <!-- Content Section -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="550dp"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal"
+        android:paddingTop="15dp"
+        android:layout_gravity="center">
 
+        <!-- Search bar -->
         <EditText
             android:layout_width="370dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/searchbar"
             android:backgroundTint="#A9A9A9"
-            android:padding="10dp"/>
+            android:padding="10dp" />
+
+        <!-- Favorites title -->
         <EditText
             android:layout_width="355dp"
             android:layout_height="wrap_content"
@@ -30,41 +41,40 @@
             android:text="Favorites"
             android:textAlignment="center"
             android:textStyle="bold"
-            android:padding="10dp"/>
+            android:padding="10dp" />
 
-                <ImageView
-                    android:id="@+id/fav_back"
-                    android:layout_marginTop="5dp"
-                    android:layout_width="76dp"
-                    android:layout_height="35dp"
-                    android:layout_marginLeft="30dp"
-                    android:src="@drawable/back_arrow"/>
+        <!-- Back button -->
+        <ImageView
+            android:id="@+id/fav_back"
+            android:layout_width="76dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="30dp"
+            android:src="@drawable/back_arrow" />
 
-    <!-- change this to recycler view later        -->
+        <!-- RecyclerView section -->
         <LinearLayout
             android:layout_width="355dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="55dp"
+            android:layout_marginTop="100dp"
             android:orientation="vertical"
             android:background="@drawable/fav_background"
             android:elevation="10dp">
-
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewFav"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
                 android:clipToPadding="false"
-                android:paddingBottom="20dp"/>
+                android:paddingBottom="20dp" />
 
         </LinearLayout>
 
-
-
     </FrameLayout>
-    <LinearLayout android:layout_width="match_parent" android:layout_height="10dp" android:orientation="horizontal" android:gravity="center_vertical" android:background="#c430c5"> </LinearLayout>
-    <LinearLayout android:layout_width="match_parent" android:layout_height="10dp" android:orientation="horizontal" android:gravity="center_vertical" android:background="#a23fd5"> </LinearLayout>
-    <LinearLayout android:layout_width="match_parent" android:layout_height="10dp" android:orientation="horizontal" android:gravity="center_vertical" android:background="#804fe6"> </LinearLayout>
+
 </LinearLayout>

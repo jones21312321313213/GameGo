@@ -17,10 +17,8 @@ import cit.edu.gamego.data.AppCache
 import cit.edu.gamego.data.Game
 import cit.edu.gamego.data.Image
 import cit.edu.gamego.data.SingleGameResponse
-import cit.edu.gamego.extensions.FavoritesDataHolder
 import cit.edu.gamego.extensions.moreWithGlide
-import cit.edu.gamego.helper.GameListAdapter
-import cit.edu.gamego.helper.GameRecyclerViewAdapterwGlide
+import cit.edu.gamego.helper.GameRecyclerViewAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -38,7 +36,7 @@ class Favorites : Activity() {
 
     private lateinit var recyclerView: RecyclerView
     private val favoriteGames: MutableList<Game> = mutableListOf()
-    private lateinit var recyclerViewAdapter: GameRecyclerViewAdapterwGlide
+    private lateinit var recyclerViewAdapter: GameRecyclerViewAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favorites)
@@ -54,7 +52,7 @@ class Favorites : Activity() {
 //        val img = FavoritesDataHolder.imageRes ?: R.drawable.ye.toString()
 
 
-        recyclerViewAdapter = GameRecyclerViewAdapterwGlide(
+        recyclerViewAdapter = GameRecyclerViewAdapter(
             this,
             favoriteGames,
             onClick ={game->

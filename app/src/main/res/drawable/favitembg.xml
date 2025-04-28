@@ -1,0 +1,6 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Semi-transparent red color: #80FF0000 (80 is alpha for 50% transparency, FF0000 is red) -->
+    <solid android:color="#80FF0000"/>
+    <corners android:radius="50dp"/>
+    <elevation android:value="4dp"/>
+</shape>
