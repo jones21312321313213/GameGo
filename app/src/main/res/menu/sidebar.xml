@@ -9,10 +9,10 @@
         android:id="@+id/nav_profile"
         android:title="Profile"
         android:icon="@drawable/avatar1"/>
-
+    
     <item
-        android:id="@+id/nav_about_devs"
-        android:title="About the Devs"
+        android:id="@+id/nav_advance_search"
+        android:title="Advance Search"
         android:icon="@drawable/devs" />
 
     <item
