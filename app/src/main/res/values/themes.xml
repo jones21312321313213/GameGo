@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+<!--go back to here -->
     <style name="Theme.GameGo" parent="Theme.Material3.Light.NoActionBar">
         <!-- Primary Color for Buttons -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/white</item>
+<!--        <item name="colorPrimary">@color/purple_500</item>-->
+<!--        <item name="colorPrimaryVariant">@color/purple_700</item>-->
+<!--             <item name="colorOnPrimary">@color/white</item>-->
+
+        <item name="colorPrimary">@color/soft_red</item>
+        <item name="colorPrimaryVariant">@color/deep_red</item>
+        <item name="colorOnPrimary">@color/on_red</item>
 
         <!-- Ensure Buttons Use the Primary Theme -->
         <item name="android:buttonStyle">@style/Widget.AppCompat.Button</item>
@@ -15,6 +19,8 @@
 
     </style>
 
+<!--    this one at the bottom was the original b4 the redesigning -->
+<!--    <style name="Theme.GameGo" parent="Theme.Material3.Light.NoActionBar">-->
 
 
     <!-- Custom Material Button Style -->

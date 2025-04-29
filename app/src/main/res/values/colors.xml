@@ -8,4 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="shimmer_color">#BFBDBD</color>
+    <color name="soft_red">#D32F2F</color>         <!-- Primary -->
+    <color name="deep_red">#B71C1C</color>         <!-- Primary Variant -->
+    <color name="on_red">#FFFFFF</color>          <!-- Text on red background -->
+
 </resources>
