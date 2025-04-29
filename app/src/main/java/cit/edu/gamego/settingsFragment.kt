@@ -28,7 +28,7 @@ class settingsFragment : Fragment() {
 
         about_devs.setOnClickListener{
             startActivity(
-                Intent(requireContext(),developerFragment::class.java)
+                Intent(requireContext(),activity_developer::class.java)
             )
         }
         return view;

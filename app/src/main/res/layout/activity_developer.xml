@@ -36,13 +36,13 @@
                 android:cursorVisible="false"
                 android:inputType="none"/>
 
-            <!--        <ImageView-->
-            <!--            android:id="@+id/abme_devs_back"-->
-            <!--            android:layout_marginTop="5dp"-->
-            <!--            android:layout_width="76dp"-->
-            <!--            android:layout_height="35dp"-->
-            <!--            android:layout_marginLeft="30dp"-->
-            <!--            android:src="@drawable/back_arrow"/>-->
+                    <ImageView
+                        android:id="@+id/abme_devs_back"
+                        android:layout_marginTop="5dp"
+                        android:layout_width="76dp"
+                        android:layout_height="35dp"
+                        android:layout_marginLeft="30dp"
+                        android:src="@drawable/back_arrow"/>
 
             <EditText
                 android:backgroundTint="#FF0000"

@@ -9,11 +9,11 @@
         android:id="@+id/nav_profile"
         android:title="Profile"
         android:icon="@drawable/avatar1"/>
-    
+
     <item
         android:id="@+id/nav_advance_search"
         android:title="Advance Search"
-        android:icon="@drawable/devs" />
+        android:icon="@drawable/searchh" />
 
     <item
         android:id="@+id/nav_settings"
@@ -24,7 +24,5 @@
         android:id="@+id/nav_logout"
         android:title="Logout"
         android:icon="@drawable/logoutpic"/>
-
-
 
 </menu>
