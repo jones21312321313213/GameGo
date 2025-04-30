@@ -27,7 +27,7 @@
 
         <!-- ProgressBar (Initially Hidden) -->
         <ProgressBar
-            android:id="@+id/progressBar"
+            android:id="@+id/progressBarSearch"
             style="?android:attr/progressBarStyleLarge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -42,14 +42,7 @@
             android:visibility="gone"/>
     </LinearLayout>
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#000000"
-        android:fillViewport="true"
-        tools:context=".advance_search">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -77,143 +70,6 @@
             app:selectionRequired="false"
             app:chipSpacing="8dp">
 
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#f71818"
-                android:id="@+id/action"
-                android:text="Action"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:checkable="true"/>
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#f71818"
-                android:id="@+id/action_adventure"
-                android:text="Action-Adventure"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:checkable="true"/>
-
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#f71818"
-                android:id="@+id/MMORPG"
-                android:text="MMORPG"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:checkable="true"/>
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#f71818"
-                android:id="@+id/FPS"
-                android:text="FPS"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:checkable="true"/>
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#f71818"
-                android:id="@+id/Platformer"
-                android:text="Platformer"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:checkable="true"/>
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#f71818"
-                android:id="@+id/Fighting"
-                android:text="Fighting"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:checkable="true"/>
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#f71818"
-                android:id="@+id/driving_racing"
-                android:text="Driving/Racing"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:checkable="true"/>
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#f71818"
-                android:id="@+id/Sports"
-                android:text="Sports"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:checkable="true"/>
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#f71818"
-                android:id="@+id/Simulation"
-                android:text="Simulation"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:checkable="true"/>
-
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#f71818"
-                android:id="@+id/strategy"
-                android:text="Strategy"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:checkable="true"/>
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#f71818"
-                android:id="@+id/puzzle"
-                android:text="Puzzle"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:checkable="true"/>
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#f71818"
-                android:id="@+id/role_playing"
-                android:text="Role Playing"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:checkable="true"/>
-
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#f71818"
-                android:id="@+id/Shooter"
-                android:text="Shooter"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:checkable="true"/>
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#f71818"
-                android:id="@+id/gambling"
-                android:text="Gambling"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:checkable="true"/>
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#f71818"
-                android:id="@+id/MOBA"
-                android:text="MOBA"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:checkable="true"/>
 
         </com.google.android.material.chip.ChipGroup>
 
@@ -240,143 +96,6 @@
             app:selectionRequired="false"
             app:chipSpacing="8dp">
 
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#f71818"
-                android:id="@+id/horror"
-                android:text="Horror"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:checkable="true"/>
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#f71818"
-                android:id="@+id/fantasy"
-                android:text="Fantasy"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:checkable="true"/>
-
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#f71818"
-                android:id="@+id/scifi"
-                android:text="Sci-fi"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:checkable="true"/>
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#f71818"
-                android:id="@+id/dating"
-                android:text="Dating"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:checkable="true"/>
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#f71818"
-                android:id="@+id/comedy"
-                android:text="Comedy"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:checkable="true"/>
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#f71818"
-                android:id="@+id/ww2"
-                android:text="WWII"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:checkable="true"/>
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#f71818"
-                android:id="@+id/espionage"
-                android:text="Espionage"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:checkable="true"/>
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#f71818"
-                android:id="@+id/modern_military"
-                android:text="Modern Military"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:checkable="true"/>
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#f71818"
-                android:id="@+id/crime"
-                android:text="Crime"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:checkable="true"/>
-
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#f71818"
-                android:id="@+id/anime"
-                android:text="Anime"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:checkable="true"/>
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#f71818"
-                android:id="@+id/martial_arts"
-                android:text="Martial Arts"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:checkable="true"/>
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#f71818"
-                android:id="@+id/superhero"
-                android:text="Superhero"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:checkable="true"/>
-
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#f71818"
-                android:id="@+id/medieval"
-                android:text="Medieval"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:checkable="true"/>
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#f71818"
-                android:id="@+id/prehistoric"
-                android:text="Pre Historic"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:checkable="true"/>
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#f71818"
-                android:id="@+id/aquatic"
-                android:text="Aquatic"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:checkable="true"/>
 
         </com.google.android.material.chip.ChipGroup>
 
@@ -402,153 +121,36 @@
             app:selectionRequired="false"
             app:chipSpacing="8dp">
 
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#f71818"
-                android:id="@+id/pc"
-                android:text="Pc"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:checkable="true"/>
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#f71818"
-                android:id="@+id/linux"
-                android:text="Linux"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:checkable="true"/>
-
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#f71818"
-                android:id="@+id/ps4"
-                android:text="Ps4"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:checkable="true"/>
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#f71818"
-                android:id="@+id/xbox_one"
-                android:text="xbox one"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:checkable="true"/>
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#f71818"
-                android:id="@+id/nswitch"
-                android:text="Switch"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:checkable="true"/>
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#f71818"
-                android:id="@+id/nes"
-                android:text="NES"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:checkable="true"/>
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#f71818"
-                android:id="@+id/ps3"
-                android:text="Ps3"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:checkable="true"/>
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#f71818"
-                android:id="@+id/xbox_360"
-                android:text="xbox 360"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:checkable="true"/>
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#f71818"
-                android:id="@+id/wii"
-                android:text="Wii"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:checkable="true"/>
-
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#f71818"
-                android:id="@+id/android"
-                android:text="Android"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:checkable="true"/>
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#f71818"
-                android:id="@+id/iphone"
-                android:text="iPhone"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:checkable="true"/>
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#f71818"
-                android:id="@+id/iPad"
-                android:text="iPad"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:checkable="true"/>
-
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#f71818"
-                android:id="@+id/vita"
-                android:text="Vita"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:checkable="true"/>
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#f71818"
-                android:id="@+id/gamecube"
-                android:text="gamecube"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:checkable="true"/>
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#f71818"
-                android:id="@+id/mac"
-                android:text="Mac"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:checkable="true"/>
-
         </com.google.android.material.chip.ChipGroup>
 
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:id="@+id/recyclerViewFav"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:clipToPadding="false"/>-->
+        <Button
+            android:id="@+id/searchButton"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:backgroundTint="#E1E1E1"
+            android:layout_marginBottom="10dp"
+            android:text="search"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:layout_marginVertical="20dp"
+            android:paddingVertical="10dp"
+            android:background="@drawable/button_corner"/>
 
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:clipToPadding="false"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone" />
     </LinearLayout>
-    </ScrollView>
 
 </LinearLayout>

@@ -75,6 +75,12 @@ data class SearchResponse(
     val results: List<GameResult>
 )
 
+data class FilterChipItem(
+    val name: String,
+    val id: Int,
+    val guid: String
+)
+
 data class GameResult(
     val guid: String,
     val name: String,
