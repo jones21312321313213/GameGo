@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#000000">
+    android:background="@drawable/aboutgame">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,7 +19,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="match_parent"
         android:orientation="horizontal"
         android:paddingTop="15dp"
         android:layout_gravity="center">
@@ -63,42 +63,35 @@
             android:src="@drawable/back_arrow"/>
 
         <LinearLayout
-            android:backgroundTint="#FF0000"
-            android:layout_width="355dp"
-            android:layout_height="397dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="60dp"
-            android:background="@drawable/searchbar"
-            android:padding="10dp"/>
-
-        <LinearLayout
             android:layout_width="359dp"
-            android:layout_height="373dp"
+            android:layout_height="450dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="120dp"
             android:background="@drawable/searchbar"
+            android:backgroundTint="#2B2B2B"
             android:orientation="vertical"
-            android:backgroundTint="@color/black"
             android:paddingTop="20dp">
 
             <ImageView
-                android:layout_marginTop="5dp"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_gravity="center"
-                android:src="@drawable/logo2"/>
+                android:layout_marginBottom="15dp"
+                android:src="@drawable/logo2" />
 
             <TextView
-                android:layout_gravity="center"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:fontFamily="sans-serif"
-                android:padding="10dp"
-                android:textColor="@color/white"
+                android:layout_marginTop="20dp"
+                android:justificationMode="inter_word"
+                android:padding="16dp"
                 android:text="GameGo is your personal mobile library for all your favorite games! Organize, track, and explore mobile games across genres with ease. Whether you're managing your backlog, logging playtime, or discovering something new, GameGo keeps your game collection right at your fingertips. Built for gamers, by gamers."
-                android:textSize="13dp" android:textStyle="bold"/>
-
-
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:lineSpacingExtra="4dp"
+                android:textStyle="bold" />
         </LinearLayout>
     </FrameLayout>
 

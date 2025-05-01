@@ -4,13 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#000000">
+    android:background="@drawable/editprofilebg">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="#6E6E6E"
         android:gravity="center">
 
         <FrameLayout
@@ -25,12 +24,14 @@
                 android:layout_width="50dp"
                 android:layout_height="40dp"
                 android:layout_gravity="start"
+                android:background="#FFFFFF"
                 android:src="@drawable/back_arrow"/>
 
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="40dp"
                 android:layout_gravity="end"
+                android:background="#FFFFFF"
                 android:src="@drawable/settings"/>
 
         </FrameLayout>
@@ -106,7 +107,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
-                android:background="#000000">
+                android:background="@android:color/transparent">
 
                 <FrameLayout
                     android:layout_width="match_parent"
@@ -145,7 +146,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:layout_marginTop="10dp"
-                android:background="#000000">
+                android:background="@android:color/transparent">
 
                 <FrameLayout
                     android:layout_width="match_parent"
@@ -183,7 +184,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:layout_marginTop="10dp"
-                android:background="#000000">
+                android:background="@android:color/transparent">
 
                 <FrameLayout
                     android:layout_width="match_parent"
@@ -221,7 +222,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:layout_marginTop="10dp"
-                android:background="#000000">
+                android:background="@android:color/transparent">
 
                 <FrameLayout
                     android:layout_width="match_parent"
@@ -261,7 +262,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:layout_marginTop="10dp"
-                android:background="#000000">
+                android:background="@android:color/transparent">
 
                 <FrameLayout
                     android:layout_width="match_parent"

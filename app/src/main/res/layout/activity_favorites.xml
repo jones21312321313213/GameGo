@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#000000">
+    android:background="@drawable/game_config">
 
     <!-- Fragment container -->
     <FrameLayout
@@ -17,10 +17,10 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="550dp"
+        android:layout_gravity="center"
         android:layout_marginTop="50dp"
         android:orientation="horizontal"
-        android:paddingTop="15dp"
-        android:layout_gravity="center">
+        android:paddingTop="15dp">
 
         <!-- Search bar -->
         <EditText
@@ -38,18 +38,23 @@
             android:layout_gravity="center_horizontal"
             android:background="@drawable/searchbar"
             android:fontFamily="sans-serif"
+            android:padding="10dp"
             android:text="Favorites"
             android:textAlignment="center"
             android:textStyle="bold"
-            android:padding="10dp" />
+            android:focusable="false"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:inputType="none" />
+
 
         <!-- Back button -->
         <ImageView
             android:id="@+id/fav_back"
             android:layout_width="76dp"
             android:layout_height="35dp"
-            android:layout_marginTop="5dp"
             android:layout_marginLeft="30dp"
+            android:layout_marginTop="5dp"
             android:src="@drawable/back_arrow" />
 
         <!-- RecyclerView section -->
@@ -58,17 +63,17 @@
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="100dp"
-            android:orientation="vertical"
             android:background="@drawable/fav_background"
-            android:elevation="10dp">
+            android:elevation="10dp"
+            android:orientation="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewFav"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
                 android:layout_marginBottom="20dp"
                 android:clipToPadding="false"
                 android:paddingBottom="20dp" />

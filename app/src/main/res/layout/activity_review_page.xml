@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".reviewPageActivity"
-    android:background="@drawable/gradient_bg">
+    android:background="@drawable/reviewbg">
 
     <!-- Back Button -->
     <ImageView
@@ -103,7 +103,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:fillViewport="true"
-                        android:background="#99000000"
+                        android:background="#FF2400"
                         android:padding="12dp"
                         android:elevation="4dp">
 

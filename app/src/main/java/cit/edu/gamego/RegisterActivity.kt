@@ -48,6 +48,12 @@ class RegisterActivity : Activity() {
 // <
 
 
+        binding.registerSignupId.setOnClickListener{
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
         binding.registerBtnId.setOnClickListener {
             username = binding.registerUsernameId.text.toString()
             password = binding.registerPassId.text.toString()
