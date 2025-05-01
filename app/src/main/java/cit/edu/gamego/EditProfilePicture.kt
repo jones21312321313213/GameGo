@@ -30,7 +30,6 @@ import com.google.firebase.database.*
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 
-import com.google.firebase.storage.FirebaseStorage
 import java.io.File
 import java.io.FileOutputStream
 
@@ -171,20 +170,7 @@ class EditProfilePicture : AppCompatActivity() {
         }
     }
 
-    fun saveProfilePicToFirestore(uid: String?, imageUrl: String) {
-        if (uid == null) return
 
-        val firestore = FirebaseFirestore.getInstance()
-        val userDocRef = firestore.collection("users").document(uid)
-
-        userDocRef.set(mapOf("profile_picture" to imageUrl), SetOptions.merge())
-            .addOnSuccessListener {
-                Toast.makeText(this, "Profile picture updated in Firestore", Toast.LENGTH_SHORT).show()
-            }
-            .addOnFailureListener {
-                Toast.makeText(this, "Failed to save to Firestore: ${it.message}", Toast.LENGTH_SHORT).show()
-            }
-    }
 
 
 }

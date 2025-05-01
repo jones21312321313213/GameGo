@@ -39,7 +39,6 @@ import com.google.firebase.firestore.FieldValue
 
 class reviewPageActivity : AppCompatActivity() {
 
-    private lateinit var webView: WebView  // ✅ Declare webView properly
 
     private lateinit var binding: ActivityReviewPageBinding
     private var isLiked = false
@@ -67,7 +66,6 @@ class reviewPageActivity : AppCompatActivity() {
         val rating = findViewById<TextView>(R.id.ratings_tv_rp)
         //val back = findViewById<ImageView>(R.id.back_rp)
          fallbackk = binding.fallbackImage
-        webView = findViewById(R.id.game_webview)
 
         val zoomInAnim = AnimationUtils.loadAnimation(this, R.anim.zoom_in)
         val zoomOutAnim = AnimationUtils.loadAnimation(this, R.anim.zoom_out)
@@ -309,14 +307,7 @@ class reviewPageActivity : AppCompatActivity() {
                         // this part of the codes gets the backup image and the video for the reviw page
                         it.image?.super_url?.let{url ->
                             abc = url
-                            Log.d("SUPER URL DETAILS","Super URL: $abc")
-                            val videoGuid = it.videos?.firstOrNull()?.site_detail_url?.extractGuidFromShowUrl() ?: ""
-
-                            Log.d("Video GUID", "Extracted GUID: $videoGuid")
-                            fetchVideoDetails(videoGuid) {
-                                // Handle error case here
-                                Log.e("Video Error", "Failed to fetch video details")
-                            }
+                           Glide.with(this@reviewPageActivity).load(url).into(binding.fallbackImage)
                         }
 
 
@@ -376,34 +367,6 @@ class reviewPageActivity : AppCompatActivity() {
         })
     }
 
-    private fun fetchVideoDetails(videoGuid: String, onError: () -> Unit) {
-        if (videoGuid.isEmpty()) {
-            onError()
-            return
-        }
-        val apiKey = BuildConfig.GIANT_BOMB_API_KEY
-        ApiClient.api.getVideoDetails(videoGuid, apiKey, "json").enqueue(object : Callback<SingleVideoResponse> {
-            override fun onResponse(call: Call<SingleVideoResponse>, response: Response<SingleVideoResponse>) {
-                if (response.isSuccessful) {
-                    val embedUrl = response.body()?.results?.firstOrNull()?.embed_player
-                    if (!embedUrl.isNullOrEmpty()) {
-                        trailer = embedUrl
-                        Log.d("Video URL", "Embed URL: $embedUrl")
-                        Log.d("Video URL after extraction","Super URL: $trailer")
-                        webView.setupAndLoad(trailer, fallbackk, abc)
-                    } else {
-                        onError()
-                    }
-                } else {
-                    onError()
-                }
-            }
 
-            override fun onFailure(call: Call<SingleVideoResponse>, t: Throwable) {
-                Log.e("API Failure", t.message ?: "Unknown error")
-                onError()
-            }
-        })
-    }
 
 }
