@@ -12,6 +12,7 @@ import android.widget.LinearLayout
 import android.widget.ListView
 import android.widget.ProgressBar
 import android.widget.SearchView // Use this for the correct SearchView
+import androidx.lifecycle.Lifecycle
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -58,11 +59,7 @@ class landingFragment : Fragment() {
     private lateinit var pcGamesGameAdapter: GameRecyclerViewAdapterwGlide
     private lateinit var nintendoSwitchGamesGameAdapter: GameRecyclerViewAdapterwGlide
     private lateinit var mobileGamesGameAdapter: GameRecyclerViewAdapterwGlide
-    private lateinit var horrorGamesGameAdapter: GameRecyclerViewAdapterwGlide
-    private lateinit var fantasyGamesGameAdapter: GameRecyclerViewAdapterwGlide
-    private lateinit var sciFiGamesGameAdapter: GameRecyclerViewAdapterwGlide
-    private lateinit var adventureGamesGameAdapter: GameRecyclerViewAdapterwGlide
-    private lateinit var romanceGamesGameAdapter: GameRecyclerViewAdapterwGlide
+
 
     private lateinit var listOfGame: MutableList<Game>
     private val listOfRandomGames = mutableListOf<Game>()
@@ -72,11 +69,7 @@ class landingFragment : Fragment() {
     private val listOfPcGames = mutableListOf<Game>()
     private val listOfNintendoSwitchGames = mutableListOf<Game>()
     private val listOfMobileGames = mutableListOf<Game>()
-    private val listOfHorroGames = mutableListOf<Game>()
-    private val listOfFantasyGames = mutableListOf<Game>()
-    private val listOfSciFiGames = mutableListOf<Game>()
-    private val listOfAdventureGames = mutableListOf<Game>()
-    private val listOfRomanceGames = mutableListOf<Game>()
+
 
     private var isxbox1GamesLoaded =false
     private var isps4GamesLoaded = false
@@ -85,11 +78,7 @@ class landingFragment : Fragment() {
     private var isnintendoSwitchLoaded = false
     private var ispcGamesLoaded = false
     private var ismobileGamesLoaded = false
-    private var ishorroGamesLoaded = false
-    private var isfantasyGamesLoaded = false
-    private var issciFiGamesLoaded = false
-    private var isadventureGamesLoaded = false
-    private var isromanceGamesLoaded = false
+
 
 
     private val isGameLoaded = BooleanArray(12)
@@ -103,11 +92,7 @@ class landingFragment : Fragment() {
     private lateinit var nintendoSwitchRecyclerView: RecyclerView
     private lateinit var pcRecyclerView: RecyclerView
     private lateinit var mobileRecyclerView: RecyclerView
-    private lateinit var horrorRecyclerView: RecyclerView
-    private lateinit var fantasyRecyclerView: RecyclerView
-    private lateinit var sciFiRecyclerView: RecyclerView
-    private lateinit var adventureRecyclerView: RecyclerView
-    private lateinit var romanceRecyclerView: RecyclerView
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -135,11 +120,7 @@ class landingFragment : Fragment() {
          nintendoSwitchRecyclerView = view.findViewById(R.id.nintendoSwitchGamesRecyclerView)
          pcRecyclerView = view.findViewById(R.id.pcGamesRecyclerView)
          mobileRecyclerView = view.findViewById(R.id.mobileGamesRecyclerView)
-         horrorRecyclerView = view.findViewById(R.id.horrorGamesRecyclerView)
-         fantasyRecyclerView = view.findViewById(R.id.fantasyGamesRecyclerView)
-         sciFiRecyclerView = view.findViewById(R.id.sciFiGamesRecyclerView)
-         adventureRecyclerView = view.findViewById(R.id.adventureGamesRecyclerView)
-         romanceRecyclerView = view.findViewById(R.id.romanceGamesRecyclerView)
+
         // setting up the recycler viewers
 
          recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -150,11 +131,7 @@ class landingFragment : Fragment() {
          nintendoSwitchRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
          pcRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
          mobileRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
-         horrorRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
-         fantasyRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
-         sciFiRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
-         adventureRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
-         romanceRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+
 
         // setting up the  adapters
         randomGamesGameameAdapter = GameRecyclerViewAdapterwGlide(
@@ -226,55 +203,6 @@ class landingFragment : Fragment() {
 
         mobileRecyclerView.adapter = mobileGamesGameAdapter
 
-        horrorGamesGameAdapter = GameRecyclerViewAdapterwGlide(
-            requireContext(),
-            listOfHorroGames,
-            onClick ={game->
-                moreWithGlideFragment(game)
-            }
-        )
-
-        horrorRecyclerView.adapter = horrorGamesGameAdapter
-
-        fantasyGamesGameAdapter = GameRecyclerViewAdapterwGlide(
-            requireContext(),
-            listOfFantasyGames,
-            onClick ={game->
-                moreWithGlideFragment(game)
-            }
-        )
-
-        fantasyRecyclerView.adapter = fantasyGamesGameAdapter
-
-        sciFiGamesGameAdapter = GameRecyclerViewAdapterwGlide(
-            requireContext(),
-            listOfSciFiGames,
-            onClick ={game->
-                moreWithGlideFragment(game)
-            }
-        )
-
-        sciFiRecyclerView.adapter = sciFiGamesGameAdapter
-
-        adventureGamesGameAdapter = GameRecyclerViewAdapterwGlide(
-            requireContext(),
-            listOfAdventureGames,
-            onClick ={game->
-                moreWithGlideFragment(game)
-            }
-        )
-
-        adventureRecyclerView.adapter = adventureGamesGameAdapter
-
-        romanceGamesGameAdapter = GameRecyclerViewAdapterwGlide(
-            requireContext(),
-            listOfRomanceGames,
-            onClick ={game->
-                moreWithGlideFragment(game)
-            }
-        )
-
-        romanceRecyclerView.adapter = romanceGamesGameAdapter
 
 
         // fetching games using API
@@ -343,11 +271,7 @@ class landingFragment : Fragment() {
 //        fetchPcPlatformGames()
 //        fetchNintendoSwitchPlatformsGames()
 //        fetchMobilePlatformGames()
-//        fetchHorrorThemeGames()
-//        fetchSciFiThemeGames()
-//        fetchAdventureThemeGames()
-//        fetchFantasyThemeGames()
-//        fetchRomanceThemeGames()
+
     }
 
     private fun fetchSearchedGames(query: String) {
@@ -396,7 +320,7 @@ class landingFragment : Fragment() {
         val apiKey = BuildConfig.GIANT_BOMB_API_KEY
         val randomOffset = (0..100).random()// for randomizing games
         ApiClient.api.getGames(apiKey, offset = randomOffset)
-            .enqueueGameList(listOfRandomGames) {
+            .enqueueGameList(viewLifecycleOwner,listOfRandomGames) {
                 randomGamesGameameAdapter.notifyDataSetChanged()
                 isRandomLoaded = true
                 checkIfDataLoaded()
@@ -408,7 +332,7 @@ class landingFragment : Fragment() {
         val apiKey = BuildConfig.GIANT_BOMB_API_KEY
         val randomOffset = (0..100).random()// for randomizing games
         ApiClient.api.getGamesByPlatform(apiKey,offset = randomOffset, filter = "platforms:146")
-            .enqueueGameList(listOfPs4Games) {
+            .enqueueGameList(viewLifecycleOwner,listOfPs4Games) {
                 ps4GamesGameAdapter.notifyDataSetChanged()
                 isps4GamesLoaded = true
                 checkIfDataLoaded()
@@ -420,7 +344,7 @@ class landingFragment : Fragment() {
         val apiKey = BuildConfig.GIANT_BOMB_API_KEY
         val randomOffset = (0..100).random()// for randomizing games
         ApiClient.api.getGamesByPlatform(apiKey,offset = randomOffset, filter = "platforms:145")
-            .enqueueGameList(listOfXbox1Games) {
+            .enqueueGameList(viewLifecycleOwner,listOfXbox1Games) {
                 xbox1GamesGameAdapter.notifyDataSetChanged()
                 isxbox1GamesLoaded = true
                 checkIfDataLoaded()
@@ -431,7 +355,7 @@ class landingFragment : Fragment() {
         val apiKey = BuildConfig.GIANT_BOMB_API_KEY
         val randomOffset = (0..100).random()// for randomizing games
         ApiClient.api.getGamesByPlatform(apiKey,offset = randomOffset, filter = "platforms:94")
-            .enqueueGameList(listOfPcGames) {
+            .enqueueGameList(viewLifecycleOwner,listOfPcGames) {
                 pcGamesGameAdapter.notifyDataSetChanged()
                 ispcGamesLoaded = true
                 checkIfDataLoaded()
@@ -443,7 +367,7 @@ class landingFragment : Fragment() {
         val apiKey = BuildConfig.GIANT_BOMB_API_KEY
         val randomOffset = (0..100).random()// for randomizing games
         ApiClient.api.getGamesByPlatform(apiKey,offset = randomOffset, filter = "platforms:157")
-            .enqueueGameList(listOfNintendoSwitchGames) {
+            .enqueueGameList(viewLifecycleOwner,listOfNintendoSwitchGames) {
                 nintendoSwitchGamesGameAdapter.notifyDataSetChanged()
                 isnintendoSwitchLoaded = true
                 checkIfDataLoaded()
@@ -454,72 +378,19 @@ class landingFragment : Fragment() {
     private fun fetchMobilePlatformGames() {
         val apiKey = BuildConfig.GIANT_BOMB_API_KEY
         val randomOffset = (0..100).random()// for randomizing games
-        ApiClient.api.getGamesByPlatform(apiKey,offset = randomOffset, filter = "platforms:34")
-            .enqueueGameList(listOfMobileGames) {
+        ApiClient.api.getGamesByPlatform(apiKey,offset = randomOffset, filter = "platforms:123")
+            .enqueueGameList(viewLifecycleOwner,listOfMobileGames) {
                 mobileGamesGameAdapter.notifyDataSetChanged()
                 ismobileGamesLoaded = true
                 checkIfDataLoaded()
             }
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    private fun fetchHorrorThemeGames() {
-        val apiKey = BuildConfig.GIANT_BOMB_API_KEY
-        val randomOffset = (0..100).random()// for randomizing games
-        ApiClient.api.getGamesByTheme(apiKey, offset = randomOffset,filter ="themes:1")
-            .enqueueGameList(listOfHorroGames) {
-                horrorGamesGameAdapter.notifyDataSetChanged()
-                ishorroGamesLoaded= true
-                checkIfDataLoaded()
-            }
-    }
 
-    @SuppressLint("NotifyDataSetChanged")
-    private fun fetchFantasyThemeGames() {
-        val apiKey = BuildConfig.GIANT_BOMB_API_KEY
-        val randomOffset = (0..100).random()// for randomizing games
-        ApiClient.api.getGamesByTheme(apiKey, offset = randomOffset,filter ="themes:17")
-            .enqueueGameList(listOfFantasyGames) {
-                fantasyGamesGameAdapter.notifyDataSetChanged()
-                isfantasyGamesLoaded= true
-                checkIfDataLoaded()
-            }
-    }
 
-    @SuppressLint("NotifyDataSetChanged")
-    private fun fetchSciFiThemeGames() {
-        val apiKey = BuildConfig.GIANT_BOMB_API_KEY
-        val randomOffset = (0..100).random()// for randomizing games
-        ApiClient.api.getGamesByTheme(apiKey, offset = randomOffset,filter ="themes:18")
-            .enqueueGameList(listOfSciFiGames) {
-                sciFiGamesGameAdapter.notifyDataSetChanged()
-                issciFiGamesLoaded= true
-                checkIfDataLoaded()
-            }
-    }
 
-    @SuppressLint("NotifyDataSetChanged")
-    private fun fetchAdventureThemeGames() {
-        val apiKey = BuildConfig.GIANT_BOMB_API_KEY
-        val randomOffset = (0..100).random()// for randomizing games
-        ApiClient.api.getGamesByTheme(apiKey, offset = randomOffset,filter ="themes:22")
-            .enqueueGameList(listOfAdventureGames) {
-                adventureGamesGameAdapter.notifyDataSetChanged()
-                isadventureGamesLoaded= true
-                checkIfDataLoaded()
-            }
-    }
-    @SuppressLint("NotifyDataSetChanged")
-    private fun fetchRomanceThemeGames() {
-        val apiKey = BuildConfig.GIANT_BOMB_API_KEY
-        val randomOffset = (0..100).random()// for randomizing games
-        ApiClient.api.getGamesByTheme(apiKey, offset = randomOffset,filter ="themes:33")
-            .enqueueGameList(listOfRomanceGames) {
-                romanceGamesGameAdapter.notifyDataSetChanged()
-                isromanceGamesLoaded= true
-                checkIfDataLoaded()
-            }
-    }
+
+
 
     // Modify the function to directly fetch game details using the GUID
     private fun fetchPopularReviews() {
@@ -558,7 +429,12 @@ class landingFragment : Fragment() {
         if (cachedGame != null) {
             Log.d("CACHE", "Game already cached: ${cachedGame.name}")
             listOfHighRatedGames.add(cachedGame)
-            viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
+
+            // Check if fragment is still alive and has a view
+            if (!isAdded || view == null) return
+
+            viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+                if (!isAdded || view == null) return@launchWhenStarted
                 highRatedGamesGameAdapter.notifyDataSetChanged()
                 isHighRatedLoaded = true
                 checkIfDataLoaded()
@@ -568,9 +444,10 @@ class landingFragment : Fragment() {
 
         val apiKey = BuildConfig.GIANT_BOMB_API_KEY
         val call = ApiClient.api.getGameByGuid(guid, apiKey)
+
         call.enqueue(object : Callback<SingleGameResponse> {
             override fun onResponse(call: Call<SingleGameResponse>, response: Response<SingleGameResponse>) {
-                if (!isAdded || view == null) return //  early exit if fragment is gone
+                if (!isAdded || view == null) return // Early exit if fragment is gone
 
                 val game = response.body()?.results
                 if (response.isSuccessful && game != null) {
@@ -592,8 +469,11 @@ class landingFragment : Fragment() {
                     AppCache.gameCache[guid] = gameObj
                     listOfHighRatedGames.add(gameObj)
 
-                    // ✅ Only touch views on safe thread & lifecycle
-                    if (isAdded && view != null) {
+                    // Check again before updating UI
+                    if (!isAdded || view == null) return
+
+                    viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+                        if (!isAdded || view == null) return@launchWhenStarted
                         highRatedGamesGameAdapter.notifyDataSetChanged()
                         isHighRatedLoaded = true
                         checkIfDataLoaded()
@@ -602,6 +482,7 @@ class landingFragment : Fragment() {
                     Log.w("DETAILS", "Failed response or null body for GUID: $guid")
                 }
             }
+
             override fun onFailure(call: Call<SingleGameResponse>, t: Throwable) {
                 Log.e("DETAILS", "Network failure for GUID $guid: ${t.message}")
             }
@@ -636,8 +517,7 @@ class landingFragment : Fragment() {
     @SuppressLint("NotifyDataSetChanged")
     private fun checkIfDataLoaded() {
         if (isHighRatedLoaded || isRandomLoaded || isps4GamesLoaded || isxbox1GamesLoaded
-            || ismobileGamesLoaded || isnintendoSwitchLoaded || ispcGamesLoaded || ishorroGamesLoaded
-            || issciFiGamesLoaded || isfantasyGamesLoaded || isadventureGamesLoaded || isromanceGamesLoaded
+            || ismobileGamesLoaded || isnintendoSwitchLoaded || ispcGamesLoaded
         ) {
             requireActivity().runOnUiThread {
                 val cool = view?.findViewById<LinearLayout>(R.id.realContent)
@@ -648,33 +528,25 @@ class landingFragment : Fragment() {
                 hrgRecyclerView.visibility = View.VISIBLE
                 rgRecyclerView.visibility = View.VISIBLE
                 recyclerView.visibility = View.VISIBLE
+//
 //                ps4RecyclerView.visibility = View.VISIBLE
 //                xbox1RecyclerView.visibility = View.VISIBLE
 //                pcRecyclerView.visibility = View.VISIBLE
 //                nintendoSwitchRecyclerView.visibility = View.VISIBLE
 //                mobileRecyclerView.visibility = View.VISIBLE
-//                horrorRecyclerView.visibility = View.VISIBLE
-//                fantasyRecyclerView.visibility = View.VISIBLE
-//                adventureRecyclerView.visibility = View.VISIBLE
-//                sciFiRecyclerView.visibility = View.VISIBLE
-//                romanceRecyclerView.visibility = View.VISIBLE
+
 
                 cool?.visibility = View.VISIBLE
 
                 // notify all the adapters
                 arrayAdapter.notifyDataSetChanged()
-                randomGamesGameameAdapter.notifyDataSetChanged()
+//                randomGamesGameameAdapter.notifyDataSetChanged()
                 highRatedGamesGameAdapter.notifyDataSetChanged()
 //                ps4GamesGameAdapter.notifyDataSetChanged()
 //                xbox1GamesGameAdapter.notifyDataSetChanged()
 //                nintendoSwitchGamesGameAdapter.notifyDataSetChanged()
 //                pcGamesGameAdapter.notifyDataSetChanged()
 //                mobileGamesGameAdapter.notifyDataSetChanged()
-//                horrorGamesGameAdapter.notifyDataSetChanged()
-//                fantasyGamesGameAdapter.notifyDataSetChanged()
-//                sciFiGamesGameAdapter.notifyDataSetChanged()
-//                romanceGamesGameAdapter.notifyDataSetChanged()
-//                adventureGamesGameAdapter.notifyDataSetChanged()
 
                 Log.d("SHIMMER", "All data loaded—shimmer stopped")
             }

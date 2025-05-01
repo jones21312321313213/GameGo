@@ -105,6 +105,7 @@ class reviewPageActivity : AppCompatActivity() {
                 it.getStringExtra("genre")?.let{genre->
                     binding.genreText.text = genre
                 }
+
                 trailer = it.getStringExtra("trailer") ?: ""
                 gg = createGame(it.getStringExtra("title"),it.getStringExtra("date"), it.getStringExtra("ratings"), it.getStringExtra("desc"), it.getBooleanExtra("isLiked", false), it.getStringExtra("platform"), it.getStringExtra("genre"), it.getStringExtra("theme"), it.getStringExtra("franchise"),it.getStringExtra("publishers"),it.getStringExtra("developer"), it.getStringExtra("alias"))
 
@@ -318,6 +319,7 @@ class reviewPageActivity : AppCompatActivity() {
                             }
                         }
 
+
                         // Platform
                         val platforms = it.platforms?.joinToString { p -> p.name } ?: "None"
                         binding.platformText.text = platforms
@@ -328,6 +330,7 @@ class reviewPageActivity : AppCompatActivity() {
                         val devs = it.developers?.joinToString { d -> d.name } ?: "Unknown"
                         // Theme
                         val themes = it.themes?.joinToString { t -> t.name } ?: "None"
+                        binding.themeText.text = themes
                         // Franchise
                         val franchises = it.franchises?.joinToString { f -> f.name } ?: "None"
                         //Publishers

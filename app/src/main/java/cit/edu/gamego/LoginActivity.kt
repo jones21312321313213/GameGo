@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.TextAttribute
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -41,6 +42,14 @@ class LoginActivity : Activity() {
             Log.e("CSIT 284", "absolute cinema")
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
+            finish()
+        }
+
+        val forgot_password = findViewById<TextView>(R.id.forgotPasswordText)
+        forgot_password.setOnClickListener{
+            startActivity(
+                Intent(this,forget_password::class.java)
+            )
             finish()
         }
 

@@ -25,6 +25,8 @@ import android.annotation.SuppressLint
 import android.util.Log
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.lifecycleScope
 import cit.edu.gamego.data.ApiClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -41,6 +43,7 @@ import com.bumptech.glide.Glide
 //This is for API call
 @SuppressLint("NotifyDataSetChanged")
 fun Call<GameApiResponse>.enqueueGameList(
+    lifecycleOwner: LifecycleOwner, // Pass the LifecycleOwner (Fragment or Activity)
     list: MutableList<Game>,
     onNotify: () -> Unit
 ) {
@@ -75,17 +78,24 @@ fun Call<GameApiResponse>.enqueueGameList(
                             alias = "",
                         )
                     })
-                    onNotify()
+
+                    // ✅ Safely run the UI update within the lifecycleOwner's lifecycleScope
+                    lifecycleOwner.lifecycleScope.launchWhenStarted {
+                        onNotify() // Trigger the UI update
+                    }
                 }
             } else {
                 Log.e("API", "Error: ${response.message()}")
             }
         }
+
         override fun onFailure(call: Call<GameApiResponse>, t: Throwable) {
             Log.e("API", "Failed: ${t.message}")
         }
     })
 }
+
+
 
 fun String.extractGuidFromUrl(): String? {
     return this.trimEnd('/').split("/").lastOrNull()

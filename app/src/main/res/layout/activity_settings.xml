@@ -15,17 +15,12 @@
         android:orientation="horizontal"
         android:gravity="center">
 
-        <ImageView
-            android:layout_width="150dp"
-            android:layout_height="75dp"
-            android:layout_gravity="center"
-            android:src="@drawable/logo2" />
     </LinearLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="500dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="80dp"
         android:orientation="horizontal"
         android:paddingTop="15dp"
         android:layout_gravity="center">

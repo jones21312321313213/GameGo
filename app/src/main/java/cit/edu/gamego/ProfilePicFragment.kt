@@ -77,12 +77,6 @@ class ProfilePicFragment : Fragment() {
             isHidden = !isHidden
         }
 
-        val btnEdit = view.findViewById<Button>(R.id.edit_Id)
-        btnEdit.setOnClickListener {
-            val intent = Intent(requireContext(), EditProfilePicture::class.java)
-            startActivity(intent)
-        }
-
         return view
     }
 }

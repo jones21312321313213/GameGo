@@ -21,12 +21,12 @@ class ProfilePictureActivity : Activity() {
 //        }
 
         //pop up of confirmation logout
-        val btnEdit = findViewById<Button>(R.id.edit_Id);
-        btnEdit.setOnClickListener{
-            startActivity(
-                Intent(this,EditProfilePicture::class.java)
-            )
-        }
+//        val btnEdit = findViewById<Button>(R.id.edit_Id);
+//        btnEdit.setOnClickListener{
+//            startActivity(
+//                Intent(this,EditProfilePicture::class.java)
+//            )
+//        }
 //
 //        btnEdit.setOnClickListener{
 //            val message = "Are you sure you want to logout?"

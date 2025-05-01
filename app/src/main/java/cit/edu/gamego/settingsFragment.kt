@@ -19,6 +19,7 @@ class settingsFragment : Fragment() {
 
         val about_game = view.findViewById<ImageView>(R.id.about_the_game_settings)
         val about_devs = view.findViewById<ImageView>(R.id.about_devs)
+        val edit_profile = view.findViewById<ImageView>(R.id.edit_profilepic_settings)
 
         about_game.setOnClickListener{
             startActivity(
@@ -29,6 +30,12 @@ class settingsFragment : Fragment() {
         about_devs.setOnClickListener{
             startActivity(
                 Intent(requireContext(),activity_developer::class.java)
+            )
+        }
+
+        edit_profile.setOnClickListener{
+            startActivity(
+                Intent(requireContext(),EditProfilePicture::class.java)
             )
         }
         return view;

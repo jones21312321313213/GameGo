@@ -1,19 +1,24 @@
 package cit.edu.gamego.data
 
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
 // Define API interface for Retrofit
 interface GiantBombApi {
-    @GET("games")
+    @GET("games/")
     fun getGames(
         @Query("api_key") apiKey: String,
         @Query("format") format: String = "json",
-        @Query("limit") limit: Int = 15,
+        @Query("filter") filter: String? = null,
+        @Query("field_list") fieldList: String = "name,image,guid,themes,genres",
+        @Query("limit") limit: Int = 50,
         @Query("offset") offset: Int = 0
     ): Call<GameApiResponse>
+
+
 
     @GET("games")
     fun getGamesByPlatform(
@@ -84,9 +89,16 @@ interface GiantBombApi {
         @Query("format") format: String = "json",
         @Query("filter") filter: String,
         @Query("field_list") fieldList: String = "name,image,guid",
-        @Query("limit") limit: Int = 15,
+        @Query("limit") limit: Int = 100,
         @Query("offset") offset: Int = 0
     ): Call<GameApiResponse>
 
+
+    @GET("games")
+    suspend fun getGamesByCombinedFilters(
+        @Query("api_key") apiKey: String,
+        @Query("filter") filter: String,
+        @Query("limit") limit: Int = 15
+    ): Response<GameApiResponse>
 
 }

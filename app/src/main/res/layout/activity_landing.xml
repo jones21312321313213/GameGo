@@ -65,6 +65,7 @@
 <!--            android:layout_width="match_parent"-->
 <!--            android:layout_height="wrap_content"/>-->
         <!-- Scrollable Content (RecyclerViews) -->
+        
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -133,105 +134,7 @@
                         android:nestedScrollingEnabled="false"
                         android:paddingBottom="20dp"
                         android:scrollbars="horizontal" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Horror Games"
-                        android:textColor="@android:color/white"
-                        android:gravity="center"
-                        android:textSize="20sp"
-                        android:textStyle="bold|italic" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:visibility="gone"
-                        android:id="@+id/horrorGamesRecyclerView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:clipToPadding="false"
-                        android:nestedScrollingEnabled="false"
-                        android:paddingBottom="20dp"
-                        android:scrollbars="horizontal"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Fantasy Games"
-                        android:textColor="@android:color/white"
-                        android:gravity="center"
-                        android:textSize="20sp"
-                        android:textStyle="bold|italic" />
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:visibility="gone"
-                        android:id="@+id/fantasyGamesRecyclerView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:clipToPadding="false"
-                        android:nestedScrollingEnabled="false"
-                        android:paddingBottom="20dp"
-                        android:scrollbars="horizontal"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Sci-fi Games"
-                        android:textColor="@android:color/white"
-                        android:gravity="center"
-                        android:textSize="20sp"
-                        android:textStyle="bold|italic" />
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:visibility="gone"
-                        android:id="@+id/sciFiGamesRecyclerView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:clipToPadding="false"
-                        android:nestedScrollingEnabled="false"
-                        android:paddingBottom="20dp"
-                        android:scrollbars="horizontal"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Adventure Games"
-                        android:textColor="@android:color/white"
-                        android:gravity="center"
-                        android:textSize="20sp"
-                        android:textStyle="bold|italic" />
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:visibility="gone"
-                        android:id="@+id/adventureGamesRecyclerView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:clipToPadding="false"
-                        android:nestedScrollingEnabled="false"
-                        android:paddingBottom="20dp"
-                        android:scrollbars="horizontal"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Romance Games"
-                        android:textColor="@android:color/white"
-                        android:gravity="center"
-                        android:textSize="20sp"
-                        android:textStyle="bold|italic" />
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:visibility="gone"
-                        android:id="@+id/romanceGamesRecyclerView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:clipToPadding="false"
-                        android:nestedScrollingEnabled="false"
-                        android:paddingBottom="20dp"
-                        android:scrollbars="horizontal"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

@@ -134,7 +134,7 @@
 
                             <TextView
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="20dp"
                                 android:text="Genre:"
                                 android:textSize="16sp"
                                 android:textColor="@android:color/white"
@@ -150,6 +150,24 @@
                                 android:textColor="@android:color/white"
                                 android:textStyle="bold" />
 
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Theme:"
+                                android:textSize="16sp"
+                                android:textColor="@android:color/white"
+                                android:textStyle="bold"
+                                android:paddingBottom="4dp" />
+
+                            <TextView
+                                android:id="@+id/theme_text"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text=" "
+                                android:textSize="16sp"
+                                android:textColor="@android:color/white"
+                                android:textStyle="bold"
+                                android:paddingBottom="4dp" />
                         </LinearLayout>
                     </ScrollView>
 

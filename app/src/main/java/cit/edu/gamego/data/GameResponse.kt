@@ -22,12 +22,26 @@ data class GameInfo(
 
 // Single Game Data
 data class GiantBombGame(
-    val guid: String, // <-- Add this line to get GUID
+    val guid: String,
     val name: String?,
     val original_release_date: String?,
     val image: Image?,
-    val original_game_rating: List<Rating>?
+    val original_game_rating: List<Rating>?,
+    val genres: List<Genre2>? = null,  // newly added
+    val themes: List<Theme2>? = null   //  newly added
 )
+///
+
+data class Genre2(
+    val id: Int,        // ID of the genre (matches the selected genre IDs)
+    val name: String    // Name of the genre
+)
+
+data class Theme2(
+    val id: Int,        // ID of the theme (matches the selected theme IDs)
+    val name: String    // Name of the theme
+)
+///
 
 // used in getting the details of a single game
 data class SingleGameResponse(

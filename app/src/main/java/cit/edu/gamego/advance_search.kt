@@ -7,12 +7,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LifecycleOwner
 import cit.edu.gamego.data.ApiClient
 import cit.edu.gamego.data.FilterChipItem
 import cit.edu.gamego.data.Game
 import cit.edu.gamego.data.GameApiResponse
 import cit.edu.gamego.databinding.FragmentAdvanceSearchBinding
+import cit.edu.gamego.extensions.enqueueGameList
 import cit.edu.gamego.extensions.moreWithGlideFragment
 import cit.edu.gamego.helper.GameListAdapter
 import com.google.android.material.chip.Chip
@@ -111,7 +114,7 @@ class advance_search : Fragment() {
         binding.searchButton.setOnClickListener {
             val filterQuery = buildFilterQuery()
             if (filterQuery.isNotEmpty()) {
-                fetchSearchedGames(filterQuery)
+                fetchSearchedGames(filterQuery,viewLifecycleOwner)
             } else {
                 listOfSearchedGames.clear()
                 arrayAdapter.notifyDataSetChanged()
@@ -152,128 +155,116 @@ class advance_search : Fragment() {
         }
     }
 
-    private fun buildFilterQuery(): String {
-        val genreFilters = genreChips.filter { selectedFilters.contains(it.guid) }.map { "genres:${it.id}" }
-        val themeFilters = themeChips.filter { selectedFilters.contains(it.guid) }.map { "themes:${it.id}" }
-        val platformFilters = platformChips.filter { selectedFilters.contains(it.guid) }.map { "platforms:${it.id}" }
-        return (genreFilters + themeFilters + platformFilters).joinToString(",")
-    }
-
-    private fun fetchSearchedGames(filter: String) {
+    @SuppressLint("NotifyDataSetChanged")
+    private fun fetchSearchedGames(filter: String, lifecycleOwner: LifecycleOwner) {
         binding.progressBar.visibility = View.VISIBLE
         binding.listView.visibility = View.GONE
         listOfSearchedGames.clear()
         arrayAdapter.notifyDataSetChanged()
 
-        val filters = filter.split(",")
-        val platformFilters = filters.filter { it.startsWith("platforms:") }
-        val themeFilters = filters.filter { it.startsWith("themes:") }
-        val genreFilters = filters.filter { it.startsWith("genres:") }
+        val apiKey = BuildConfig.GIANT_BOMB_API_KEY
+        val randomOffset = (0..100).random()
 
-        pendingApiCalls = platformFilters.size + themeFilters.size + genreFilters.size
+        Log.d("AdvancedSearch", "Filter applied: $filter")  // Debugging the filter applied
 
-        if (pendingApiCalls == 0) {
-            binding.progressBar.visibility = View.GONE
-            binding.listView.visibility = View.VISIBLE
-            return
+        var apiUrl: String
+
+        when {
+            filter.startsWith("platforms:") -> {
+                // Extracting platform IDs, e.g., "platforms:1,platforms:2"
+                val platformFilters = filter.split(",")
+                platformFilters.forEach { platformFilter ->
+                    val platformId = platformFilter.substringAfter("platforms:").toIntOrNull()
+                    if (platformId != null) {
+                        apiUrl = "https://www.giantbomb.com/api/games/?api_key=$apiKey&offset=$randomOffset&filter=platforms:$platformId"
+                        Log.d("AdvancedSearch", "Requesting platform games: $apiUrl") // Log the URL
+
+                        ApiClient.api.getGamesByPlatform(
+                            apiKey = apiKey,
+                            offset = randomOffset,
+                            filter = "platforms:$platformId"
+                        ).enqueueGameList(lifecycleOwner, listOfSearchedGames) {
+                            handleApiResponse()
+                        }
+                    }
+                }
+            }
+
+            filter.startsWith("genres:") -> {
+                // Extracting genre IDs, e.g., "genres:1,genres:2"
+                val genreFilters = filter.split(",")
+                genreFilters.forEach { genreFilter ->
+                    val genreId = genreFilter.substringAfter("genres:").toIntOrNull()
+                    if (genreId != null) {
+                        apiUrl = "https://www.giantbomb.com/api/games/?api_key=$apiKey&offset=$randomOffset&filter=genres:$genreId"
+                        Log.d("AdvancedSearch", "Requesting genre games: $apiUrl") // Log the URL
+
+                        ApiClient.api.getGamesByGenre(
+                            apiKey = apiKey,
+                            offset = randomOffset,
+                            filter = "genres:$genreId"
+                        ).enqueueGameList(lifecycleOwner, listOfSearchedGames) {
+                            handleApiResponse()
+                        }
+                    }
+                }
+            }
+
+            filter.startsWith("themes:") -> {
+                // Extracting theme IDs, e.g., "themes:1,themes:2"
+                val themeFilters = filter.split(",")
+                themeFilters.forEach { themeFilter ->
+                    val themeId = themeFilter.substringAfter("themes:").toIntOrNull()
+                    if (themeId != null) {
+                        apiUrl = "https://www.giantbomb.com/api/games/?api_key=$apiKey&offset=$randomOffset&filter=themes:$themeId"
+                        Log.d("AdvancedSearch", "Requesting theme games: $apiUrl") // Log the URL
+
+                        ApiClient.api.getGamesByTheme(
+                            apiKey = apiKey,
+                            offset = randomOffset,
+                            filter = "themes:$themeId"
+                        ).enqueueGameList(lifecycleOwner, listOfSearchedGames) {
+                            handleApiResponse()
+                        }
+                    }
+                }
+            }
+
+            else -> {
+                Log.e("fetchSearchedGames", "Unsupported filter format: $filter")
+                binding.progressBar.visibility = View.GONE
+            }
         }
+    }
 
-        // Clear previous results when starting new search
-        listOfSearchedGames.clear()
+
+    private fun buildFilterQuery(): String {
+        val genreFilters = genreChips.filter { selectedFilters.contains(it.guid) }.map { "genres:${it.id}" }
+        val themeFilters = themeChips.filter { selectedFilters.contains(it.guid) }.map { "themes:${it.id}" }
+        val platformFilters = platformChips.filter { selectedFilters.contains(it.guid) }.map { "platforms:${it.id}" }
+
+        val filterQuery = (genreFilters + themeFilters + platformFilters).joinToString(",")
+        Log.d("AdvancedSearch", "Generated filter query: $filterQuery")  // Debugging the generated filter query
+        return filterQuery
+    }
+
+
+
+
+    private fun handleApiResponse() {
+        // Check if no games were found
+        if (listOfSearchedGames.isEmpty()) {
+            Toast.makeText(
+                context,
+                "No games found for the selected filter(s)",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
         arrayAdapter.notifyDataSetChanged()
-
-        // For debugging - log the actual filters being sent
-        Log.d("AdvanceSearch", "Platform filters: $platformFilters")
-        Log.d("AdvanceSearch", "Theme filters: $themeFilters")
-        Log.d("AdvanceSearch", "Genre filters: $genreFilters")
-
-        // Make sure we're using the correct filter format
-        platformFilters.forEach { filterStr ->
-            val platformId = filterStr.substringAfter("platforms:").toIntOrNull() ?: return@forEach
-            val call = ApiClient.api.getGamesByPlatform(
-                apiKey = BuildConfig.GIANT_BOMB_API_KEY,
-                filter = "platforms:$platformId",
-                limit = 15
-            )
-            Log.d("AdvanceSearch", "Making platform call: ${call.request()}")
-            call.enqueue(createApiCallback("Platform"))
-        }
-
-        themeFilters.forEach { filterStr ->
-            val themeId = filterStr.substringAfter("themes:").toIntOrNull() ?: return@forEach
-            val call = ApiClient.api.getGamesByTheme(
-                apiKey = BuildConfig.GIANT_BOMB_API_KEY,
-                filter = "themes:$themeId",
-                limit = 15
-            )
-            Log.d("AdvanceSearch", "Making theme call: ${call.request()}")
-            call.enqueue(createApiCallback("Theme"))
-        }
-
-        genreFilters.forEach { filterStr ->
-            val genreId = filterStr.substringAfter("genres:").toIntOrNull() ?: return@forEach
-            val call = ApiClient.api.getGamesByGenre(
-                apiKey = BuildConfig.GIANT_BOMB_API_KEY,
-                filter = "genres:$genreId",
-                limit = 15
-            )
-            Log.d("AdvanceSearch", "Making genre call: ${call.request()}")
-            call.enqueue(createApiCallback("Genre"))
-        }
+        binding.progressBar.visibility = View.GONE
+        binding.listView.visibility = View.VISIBLE
     }
 
-    private fun createApiCallback(filterType: String): Callback<GameApiResponse> {
-        return object : Callback<GameApiResponse> {
-            override fun onResponse(call: Call<GameApiResponse>, response: Response<GameApiResponse>) {
-                pendingApiCalls--
-                if (response.isSuccessful) {
-                    val games = response.body()?.results ?: emptyList()
-                    Log.d("AdvanceSearch", "Received ${games.size} $filterType games")
-
-                    val newGames = games.mapNotNull { gameResult ->
-                        try {
-                            Game(
-                                guid = gameResult.guid ?: "",
-                                name = gameResult.name?.toString() ?: "Unknown",
-                                photo = gameResult.image
-                            )
-                        } catch (e: Exception) {
-                            Log.e("AdvanceSearch", "Error mapping game: ${e.message}")
-                            null
-                        }
-                    }
-
-                    newGames.forEach { newGame ->
-                        if (!listOfSearchedGames.any { it.guid == newGame.guid }) {
-                            listOfSearchedGames.add(newGame)
-                        }
-                    }
-                } else {
-                    Log.e("AdvanceSearch", "$filterType API Error: ${response.code()} - ${response.errorBody()?.string()}")
-                }
-
-                if (pendingApiCalls == 0) {
-                    updateUIAfterFetch()
-                }
-            }
-
-            override fun onFailure(call: Call<GameApiResponse>, t: Throwable) {
-                pendingApiCalls--
-                Log.e("AdvanceSearch", "$filterType API Failed: ${t.message}")
-                if (pendingApiCalls == 0) {
-                    updateUIAfterFetch()
-                }
-            }
-        }
-    }
-
-    private fun updateUIAfterFetch() {
-        requireActivity().runOnUiThread {
-            binding.progressBar.visibility = View.GONE
-            arrayAdapter.notifyDataSetChanged()
-            binding.listView.visibility = View.VISIBLE
-        }
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()
