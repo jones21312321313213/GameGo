@@ -227,11 +227,75 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:text="Games available in Ps3"
+                        android:textColor="@android:color/white"
+                        android:gravity="center"
+                        android:textSize="20sp"
+                        android:textStyle="bold|italic" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:visibility="gone"
+                        android:id="@+id/ps3GamesRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:clipToPadding="false"
+                        android:nestedScrollingEnabled="false"
+                        android:paddingBottom="20dp"
+                        android:scrollbars="horizontal"/>
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Games available in NES"
+                        android:textColor="@android:color/white"
+                        android:gravity="center"
+                        android:textSize="20sp"
+                        android:textStyle="bold|italic" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:visibility="gone"
+                        android:id="@+id/nesGamesRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:clipToPadding="false"
+                        android:nestedScrollingEnabled="false"
+                        android:paddingBottom="20dp"
+                        android:scrollbars="horizontal"/>
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Games available in xbox360"
+                        android:textColor="@android:color/white"
+                        android:gravity="center"
+                        android:textSize="20sp"
+                        android:textStyle="bold|italic" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:visibility="gone"
+                        android:id="@+id/xbox360GamesRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:clipToPadding="false"
+                        android:nestedScrollingEnabled="false"
+                        android:paddingBottom="20dp"
+                        android:scrollbars="horizontal"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:text="Random Games"
                         android:textColor="@android:color/white"
                         android:gravity="center"
                         android:textSize="20sp"
                         android:textStyle="bold|italic" />
+
+
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:visibility="gone"

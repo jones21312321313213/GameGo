@@ -24,8 +24,7 @@
                 android:layout_width="50dp"
                 android:layout_height="40dp"
                 android:layout_gravity="start"
-                android:background="#FFFFFF"
-                android:src="@drawable/back_arrow"/>
+                android:src="@drawable/back_arrow_white"/>
 
             <ImageView
                 android:layout_width="50dp"

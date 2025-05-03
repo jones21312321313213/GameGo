@@ -32,37 +32,12 @@
                 android:layout_height="30dp"
                 android:layout_marginTop="180dp"
                 android:gravity="center"
-                android:text="Game Title"
+                android:text=" "
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|start"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="20dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
 
-                <!-- Star Icon -->
-                <ImageView
-                    android:id="@+id/star_icon"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:src="@drawable/star" />
-
-                <TextView
-                    android:id="@+id/ratings_irg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
-                    android:text="1.1"
-                    android:textColor="@android:color/black"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
         </FrameLayout>
 
     </LinearLayout>

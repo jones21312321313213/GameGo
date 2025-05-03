@@ -46,7 +46,9 @@ class ProfilePicFragment : Fragment() {
                     if (snapshot.exists()) {
                         val username = snapshot.child("username").getValue(String::class.java) ?: ""
                         val emailVal = snapshot.child("email").getValue(String::class.java) ?: ""
-                        val favorites = snapshot.child("favorites").getValue(object : GenericTypeIndicator<List<String>>() {}) ?: emptyList()
+                        val favoritesMap = snapshot.child("favorites").getValue(object : GenericTypeIndicator<Map<String, String>>() {})
+                        val favorites = favoritesMap?.values?.toList() ?: emptyList()
+
 
                         // Assign values to views
                         usern1.text = username

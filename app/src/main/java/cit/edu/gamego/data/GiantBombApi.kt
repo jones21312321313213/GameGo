@@ -30,23 +30,6 @@ interface GiantBombApi {
     ): Call<GameApiResponse>
 
 
-    @GET("games")
-    fun getGamesByTheme(
-        @Query("api_key") apiKey: String,
-        @Query("format") format: String = "json",
-        @Query("limit") limit: Int = 15,
-        @Query("offset") offset: Int = 0,
-        @Query("filter") filter: String // e.g., "themes:1"
-    ): Call<GameApiResponse>
-
-    @GET("games")
-    fun getGamesByGenre(
-        @Query("api_key") apiKey: String,
-        @Query("format") format: String = "json",
-        @Query("limit") limit: Int = 15,
-        @Query("offset") offset: Int = 0,
-        @Query("filter") filter: String // e.g., "genres:1"
-    ): Call<GameApiResponse>
 
     // used to get specified game data
     @GET("game/{guid}/")
@@ -71,6 +54,7 @@ interface GiantBombApi {
         @Query("api_key") apiKey: String,
         @Query("format") format: String = "json",
         @Query("limit") limit: Int = 5,
+        @Query("offset") offset: Int = 0,
         @Query("field_list") fields: String = "game,guid"
     ): Call<ReviewListResponse>
 

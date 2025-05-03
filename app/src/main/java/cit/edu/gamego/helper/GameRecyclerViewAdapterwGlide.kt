@@ -21,7 +21,6 @@ class  GameRecyclerViewAdapterwGlide(
     class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val photo: ImageView = view.findViewById(R.id.photo_irg)
         val name: TextView = view.findViewById(R.id.title_irg)
-        val ratings: TextView = view.findViewById(R.id.ratings_irg)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
@@ -45,7 +44,6 @@ class  GameRecyclerViewAdapterwGlide(
 
         Glide.with(holder.itemView.context).load(item.photo?.medium_url).into(holder.photo)
         holder.name.text = item.name
-        holder.ratings.text = item.rating.toString()
 
         holder.itemView.setOnClickListener {
             onClick(item)

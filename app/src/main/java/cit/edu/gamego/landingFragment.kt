@@ -61,6 +61,9 @@ class landingFragment : Fragment() {
     private lateinit var nintendoSwitchGamesGameAdapter: GameRecyclerViewAdapterwGlide
     private lateinit var mobileGamesGameAdapter: GameRecyclerViewAdapterwGlide
 
+    private lateinit var ps3GamesGameAdapter: GameRecyclerViewAdapterwGlide
+    private lateinit var nesGamesGameAdapter: GameRecyclerViewAdapterwGlide
+    private lateinit var xbox360GameAdapter: GameRecyclerViewAdapterwGlide
 
     private lateinit var listOfGame: MutableList<Game>
     private val listOfRandomGames = mutableListOf<Game>()
@@ -71,6 +74,10 @@ class landingFragment : Fragment() {
     private val listOfNintendoSwitchGames = mutableListOf<Game>()
     private val listOfMobileGames = mutableListOf<Game>()
 
+    private val listOfNESGames = mutableListOf<Game>()
+    private val listOfXbox360Games = mutableListOf<Game>()
+    private val listOfPs3Games = mutableListOf<Game>()
+
 
     private var isxbox1GamesLoaded =false
     private var isps4GamesLoaded = false
@@ -80,10 +87,14 @@ class landingFragment : Fragment() {
     private var ispcGamesLoaded = false
     private var ismobileGamesLoaded = false
 
+    private var isps3GamesLoaded = false
+    private var isNESGamesLoaded = false
+    private var isxbox360GamesLoaded = false
 
 
-    private val isGameLoaded = BooleanArray(12)
 
+    private val coroutineScope = CoroutineScope(Dispatchers.Main)
+    private var searchJob: Job? = null
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var hrgRecyclerView: RecyclerView
@@ -93,6 +104,10 @@ class landingFragment : Fragment() {
     private lateinit var nintendoSwitchRecyclerView: RecyclerView
     private lateinit var pcRecyclerView: RecyclerView
     private lateinit var mobileRecyclerView: RecyclerView
+
+    private lateinit var xbo360RecyclerView: RecyclerView
+    private lateinit var ps3RecyclerView: RecyclerView
+    private lateinit var nesRecyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -121,7 +136,9 @@ class landingFragment : Fragment() {
          nintendoSwitchRecyclerView = view.findViewById(R.id.nintendoSwitchGamesRecyclerView)
          pcRecyclerView = view.findViewById(R.id.pcGamesRecyclerView)
          mobileRecyclerView = view.findViewById(R.id.mobileGamesRecyclerView)
-
+         xbo360RecyclerView =  view.findViewById(R.id.xbox360GamesRecyclerView)
+         ps3RecyclerView = view.findViewById(R.id.ps3GamesRecyclerView)
+         nesRecyclerView =  view.findViewById(R.id.nesGamesRecyclerView)
         // setting up the recycler viewers
 
          recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -132,7 +149,9 @@ class landingFragment : Fragment() {
          nintendoSwitchRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
          pcRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
          mobileRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
-
+         xbo360RecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+         nesRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+         ps3RecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
 
         // setting up the  adapters
         randomGamesGameameAdapter = GameRecyclerViewAdapterwGlide(
@@ -205,17 +224,51 @@ class landingFragment : Fragment() {
         mobileRecyclerView.adapter = mobileGamesGameAdapter
 
 
+        ps3GamesGameAdapter = GameRecyclerViewAdapterwGlide(
+            requireContext(),
+            listOfPs3Games,
+            onClick ={game->
+                moreWithGlideFragment(game)
+            }
+        )
+
+        ps3RecyclerView.adapter = ps3GamesGameAdapter
+
+
+
+        xbox360GameAdapter = GameRecyclerViewAdapterwGlide(
+            requireContext(),
+            listOfXbox360Games,
+            onClick ={game->
+                moreWithGlideFragment(game)
+            }
+        )
+
+        xbo360RecyclerView.adapter = xbox360GameAdapter
+
+        nesGamesGameAdapter = GameRecyclerViewAdapterwGlide(
+            requireContext(),
+            listOfNESGames,
+            onClick ={game->
+                moreWithGlideFragment(game)
+            }
+        )
+
+       nesRecyclerView.adapter = nesGamesGameAdapter
+
+
 
         // fetching games using API
-        // go back to here
-        fetchAllGames()
-        swipeRefreshLayout.setOnRefreshListener {
-            // Call your API to fetch new data
-            fetchAllGames()
 
-            // Once data is fetched and UI is updated, hide the refresh indicator
+        fetchAllGames()
+
+        // when swiping up it will reset shimmer and hide recyucler views
+        swipeRefreshLayout.setOnRefreshListener {
+            resetShimmerAndReload()
+            // Stop the refresh icon after a short delay (optional)
             swipeRefreshLayout.isRefreshing = false
         }
+
 
         listOfGame = mutableListOf(
             Game("YE Quest", "2030", "1.1", Image(R.drawable.ye.toString(), R.drawable.ye.toString()), " ", "The visionary's journey through a surreal rap universe.", false, "game_yequest", listOf("PS5", "PC"), "Yeezy Interactive", listOf("Adventure", "Rhythm"), listOf("Hip-Hop", "Satire"), listOf("YE Series"),listOf("Yeezy Productions"), "YQ")
@@ -251,10 +304,16 @@ class landingFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
+                searchJob?.cancel()
                 if (!newText.isNullOrEmpty()) {
-                    progressBar.visibility = View.VISIBLE
+
                     listView.visibility = View.GONE
-                    fetchSearchedGames(newText) // Fetch search results
+
+                    searchJob = coroutineScope.launch {
+                        delay(500) // Wait for 2 seconds
+                        progressBar.visibility = View.VISIBLE
+                        fetchSearchedGames(newText)
+                    }
                 } else {
                     listView.visibility = View.GONE
                     progressBar.visibility = View.GONE
@@ -274,12 +333,16 @@ class landingFragment : Fragment() {
 
     private fun fetchAllGames(){
 //       fetchRandomGames()
-          fetchPopularReviews()
+        fetchPopularReviews()
 //        fetchPs4PlatformGames()
 //        fetchXboxOnePlatformGames()
 //        fetchPcPlatformGames()
 //        fetchNintendoSwitchPlatformsGames()
 //        fetchMobilePlatformGames()
+//
+//        fetchNESPlatformGames()
+//        fetchXbox360PlatformGames()
+//        fetchPs3PlatformGames()
 
     }
 
@@ -292,31 +355,26 @@ class landingFragment : Fragment() {
                     if (response.isSuccessful) {
                         val games = response.body()?.results ?: emptyList()
                         filteredList.clear()
-                        filteredList.addAll(games.map { it.toGame() }) // 👈 map API models to your Game model if needed
+                        filteredList.addAll(games.map { it.toGame() })
                         arrayAdapter.notifyDataSetChanged()
 
-                        // Hide ProgressBar and show ListView after data is fetched
                         progressBar.visibility = View.GONE
-                        listView.visibility = View.VISIBLE // Show ListView with results
+                        listView.visibility = View.VISIBLE
                     } else {
-                        // Handle empty case or failed response
                         filteredList.clear()
                         arrayAdapter.notifyDataSetChanged()
 
-                        // Hide ProgressBar and show ListView if no results
                         progressBar.visibility = View.GONE
-                        listView.visibility = View.VISIBLE // You may still want to show an empty list here
+                        listView.visibility = View.VISIBLE
                     }
                 }
 
                 override fun onFailure(call: Call<SearchResponse>, t: Throwable) {
-                    // Handle error (e.g., network failure)
                     filteredList.clear()
                     arrayAdapter.notifyDataSetChanged()
 
-                    // Hide ProgressBar and show ListView if there's an error
                     progressBar.visibility = View.GONE
-                    listView.visibility = View.VISIBLE // You may want to show a message instead of an empty list
+                    listView.visibility = View.VISIBLE
                 }
             })
     }
@@ -399,12 +457,57 @@ class landingFragment : Fragment() {
 
 
 
+    @SuppressLint("NotifyDataSetChanged")
+    private fun fetchNESPlatformGames() {
+        val apiKey = BuildConfig.GIANT_BOMB_API_KEY
+        val randomOffset = (0..100).random()// for randomizing games
+        ApiClient.api.getGamesByPlatform(apiKey,offset = randomOffset, filter = "platforms:21")
+            .enqueueGameList(viewLifecycleOwner,listOfNESGames) {
+                nesGamesGameAdapter.notifyDataSetChanged()
+                isNESGamesLoaded = true
+                checkIfDataLoaded()
+            }
+    }
+
+
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun fetchPs3PlatformGames() {
+        val apiKey = BuildConfig.GIANT_BOMB_API_KEY
+        val randomOffset = (0..100).random()// for randomizing games
+        ApiClient.api.getGamesByPlatform(apiKey,offset = randomOffset, filter = "platforms:35")
+            .enqueueGameList(viewLifecycleOwner,listOfPs3Games) {
+                ps3GamesGameAdapter.notifyDataSetChanged()
+                isps3GamesLoaded = true
+                checkIfDataLoaded()
+            }
+    }
+
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun fetchXbox360PlatformGames() {
+        val apiKey = BuildConfig.GIANT_BOMB_API_KEY
+        val randomOffset = (0..100).random()// for randomizing games
+        ApiClient.api.getGamesByPlatform(apiKey,offset = randomOffset, filter = "platforms:20")
+            .enqueueGameList(viewLifecycleOwner,listOfXbox360Games) {
+                xbox360GameAdapter.notifyDataSetChanged()
+                isxbox360GamesLoaded = true
+                checkIfDataLoaded()
+            }
+    }
+
+
+
+
+
+
 
 
     // Modify the function to directly fetch game details using the GUID
     private fun fetchPopularReviews() {
         val apiKey = BuildConfig.GIANT_BOMB_API_KEY
-        val call = ApiClient.api.getPopularReviews(apiKey)
+        val randomOffset = (0..100).random()// for randomizing games
+        val call = ApiClient.api.getPopularReviews(apiKey,offset = randomOffset)
         call.enqueue(object : Callback<ReviewListResponse> {
             override fun onResponse(call: Call<ReviewListResponse>, response: Response<ReviewListResponse>) {
                 if (response.isSuccessful) {
@@ -526,7 +629,7 @@ class landingFragment : Fragment() {
     @SuppressLint("NotifyDataSetChanged")
     private fun checkIfDataLoaded() {
         if (isHighRatedLoaded || isRandomLoaded || isps4GamesLoaded || isxbox1GamesLoaded
-            || ismobileGamesLoaded || isnintendoSwitchLoaded || ispcGamesLoaded
+            || ismobileGamesLoaded || isnintendoSwitchLoaded || ispcGamesLoaded || isNESGamesLoaded || isxbox360GamesLoaded || isps3GamesLoaded
         ) {
             requireActivity().runOnUiThread {
                 val cool = view?.findViewById<LinearLayout>(R.id.realContent)
@@ -537,30 +640,79 @@ class landingFragment : Fragment() {
                 hrgRecyclerView.visibility = View.VISIBLE
                 rgRecyclerView.visibility = View.VISIBLE
                 recyclerView.visibility = View.VISIBLE
-//
+
 //                ps4RecyclerView.visibility = View.VISIBLE
 //                xbox1RecyclerView.visibility = View.VISIBLE
 //                pcRecyclerView.visibility = View.VISIBLE
 //                nintendoSwitchRecyclerView.visibility = View.VISIBLE
 //                mobileRecyclerView.visibility = View.VISIBLE
+//                nesRecyclerView.visibility = View.VISIBLE
+//                xbo360RecyclerView.visibility = View.VISIBLE
+//                ps3RecyclerView.visibility = View.VISIBLE
 
 
                 cool?.visibility = View.VISIBLE
 
                 // notify all the adapters
                 arrayAdapter.notifyDataSetChanged()
-//                randomGamesGameameAdapter.notifyDataSetChanged()
+                randomGamesGameameAdapter.notifyDataSetChanged()
                 highRatedGamesGameAdapter.notifyDataSetChanged()
 //                ps4GamesGameAdapter.notifyDataSetChanged()
 //                xbox1GamesGameAdapter.notifyDataSetChanged()
 //                nintendoSwitchGamesGameAdapter.notifyDataSetChanged()
 //                pcGamesGameAdapter.notifyDataSetChanged()
 //                mobileGamesGameAdapter.notifyDataSetChanged()
+//
+//                nesGamesGameAdapter.notifyDataSetChanged()
+//                xbox360GameAdapter.notifyDataSetChanged()
+//                ps3GamesGameAdapter.notifyDataSetChanged()
 
                 Log.d("SHIMMER", "All data loaded—shimmer stopped")
             }
         }
     }
+
+
+    private fun resetShimmerAndReload() {
+        // Reset all loading flags
+        isHighRatedLoaded = false
+//        isRandomLoaded = false
+//        isps4GamesLoaded = false
+//        isxbox1GamesLoaded = false
+//        ismobileGamesLoaded = false
+//        isnintendoSwitchLoaded = false
+//        ispcGamesLoaded = false
+//        isNESGamesLoaded = false
+//        isps3GamesLoaded = false
+//        isxbox360GamesLoaded = false
+
+
+        hrgRecyclerView.visibility = View.GONE
+        rgRecyclerView.visibility = View.GONE
+        recyclerView.visibility = View.GONE
+//         ps4RecyclerView.visibility = View.GONE
+//         xbox1RecyclerView.visibility = View.GONE
+//         mobileRecyclerView.visibility = View.GONE
+//         nintendoSwitchRecyclerView.visibility = View.GONE
+//         pcRecyclerView.visibility = View.GONE
+//        nesRecyclerView.visibility = View.GONE
+//        xbo360RecyclerView.visibility = View.GONE
+//        ps3RecyclerView.visibility = View.GONE
+
+        // Show shimmer
+        shimmerLayout.visibility = View.VISIBLE
+        shimmerLayout.startShimmer()
+
+        //  hiding  the real content container
+        view?.findViewById<LinearLayout>(R.id.realContent)?.visibility = View.GONE
+
+        // w8 3sec b4 refetching
+        CoroutineScope(Dispatchers.Main).launch {
+            delay(3000L) // 3 seconds
+            fetchAllGames()
+        }
+    }
+
 
     private fun abc(game: Game){
 

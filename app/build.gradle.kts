@@ -96,7 +96,7 @@ dependencies {
     implementation(libs.androidx.appcompat)
 
     //bottom nav view
-    implementation("com.google.android.material:material:1.1.0")
+    //implementation("com.google.android.material:material:1.1.0")
 
     //Recycler view
     implementation("androidx.recyclerview:recyclerview:1.2.1")
@@ -135,6 +135,10 @@ dependencies {
     //Refresh layoout
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 
+    //sticky
+    implementation("androidx.coordinatorlayout:coordinatorlayout:1.2.0")
+    implementation("com.google.android.material:material:1.6.1")
+    implementation("androidx.appcompat:appcompat:1.3.1")
 //    // OkHttp (optional but recommended for logging)
 //    implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
 

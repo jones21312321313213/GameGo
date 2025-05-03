@@ -2,6 +2,7 @@ package cit.edu.gamego
 
 
 import android.annotation.SuppressLint
+import android.graphics.Rect
 import android.os.Bundle
 import android.webkit.WebView
 import android.util.Log
@@ -14,6 +15,9 @@ import cit.edu.gamego.extensions.setupAndLoad
 import com.bumptech.glide.Glide
 import android.view.animation.AnimationUtils
 import android.webkit.WebViewClient
+import android.widget.Button
+import android.widget.LinearLayout
+import android.widget.ScrollView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.HtmlCompat
 import cit.edu.gamego.data.SingleGameResponse
@@ -60,25 +64,55 @@ class reviewPageActivity : AppCompatActivity() {
         //setContentView(R.layout.activity_review_page)
         binding = ActivityReviewPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val gameImg = findViewById<ImageView>(R.id.game_pic_rp)
-        val gameTitle = findViewById<TextView>(R.id.game_title_rp)
 
-        val rating = findViewById<TextView>(R.id.ratings_tv_rp)
         //val back = findViewById<ImageView>(R.id.back_rp)
          fallbackk = binding.fallbackImage
+
+
 
         val zoomInAnim = AnimationUtils.loadAnimation(this, R.anim.zoom_in)
         val zoomOutAnim = AnimationUtils.loadAnimation(this, R.anim.zoom_out)
 
-        binding.gamePicRp.setOnClickListener(object : DoubleClickListener() {
+        binding.fallbackImage.setOnClickListener(object : DoubleClickListener() {
             override fun onDoubleClick(v: View?) {
+                binding.insideHeard.visibility = View.VISIBLE
                 binding.heart.setImageResource(R.drawable.baseline_favorite_24)
+                binding.insideHeard.bringToFront()
                 binding.heart.startAnimation(zoomInAnim)
                 binding.insideHeard.startAnimation(zoomInAnim)
                 binding.insideHeard.startAnimation(zoomOutAnim)
                 isLiked = true
             }
         })
+
+
+        val scrollView = findViewById<ScrollView>(R.id.scrollView)
+        val scrollUpButton = findViewById<Button>(R.id.scrollUpButton)
+        val ratings = findViewById<LinearLayout>(R.id.ratings)
+
+        scrollView.viewTreeObserver.addOnScrollChangedListener {
+            val rect = Rect()
+            val isVisible = ratings.getLocalVisibleRect(rect)
+
+            if (!isVisible) {
+                // 'ratings' is not visible
+                scrollUpButton.bringToFront()
+                scrollUpButton.invalidate() // Refresh the view to apply changes
+                scrollUpButton.requestLayout() // Request a layout pass
+                scrollUpButton.visibility = View.VISIBLE
+            } else {
+                // 'ratings' is fully visible
+                scrollUpButton.visibility = View.GONE
+            }
+        }
+
+        scrollUpButton.setOnClickListener {
+            // Scroll to the 'ratings' view
+            scrollView.post {
+                scrollView.smoothScrollTo(0, scrollView.top)
+            }
+        }
+
 
 
 
@@ -187,8 +221,8 @@ class reviewPageActivity : AppCompatActivity() {
             //checking if this game is already in favorites
             dbRef.get().addOnSuccessListener { snapshot ->
                 val favoritesMap = snapshot.value as? Map<String, String> ?: emptyMap()
-                val isGameLiked = favoritesMap.containsValue(gameGuid) // Check if gameGuid is in favorites
-                // Update UI based on whether the game is liked
+                val isGameLiked = favoritesMap.containsValue(gameGuid)
+
                 if (isGameLiked) {
                     binding.heart.setImageResource(R.drawable.baseline_favorite_24) // Set heart to red
                     isLiked = true
@@ -230,6 +264,7 @@ class reviewPageActivity : AppCompatActivity() {
                             toast("Favorite not found")
                         }
                     } else {
+
                         // HEART: Add game using Firebase's push() for automatic ID generation
                         val newFavoriteRef = favoritesRef.push()
                         newFavoriteRef.setValue(gameGuid)
@@ -300,7 +335,7 @@ class reviewPageActivity : AppCompatActivity() {
                         // Image
                         it.image?.medium_url?.let { url ->
                             Log.d("MEDIUM URL DETAILS","MEDIUM URL: $url")
-                            Glide.with(this@reviewPageActivity).load(url).into(binding.gamePicRp)
+                            Glide.with(this@reviewPageActivity).load(url).into(binding.fallbackImage)
                         }
 
 

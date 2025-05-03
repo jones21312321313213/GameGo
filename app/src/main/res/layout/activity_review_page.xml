@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".reviewPageActivity"
     android:background="@drawable/advancesearchbg">
-
     <!-- Back Button -->
     <ImageView
         android:id="@+id/back_rp"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_margin="16dp"
-        android:src="@drawable/back_arrow" />
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/back_arrow_white" />
 
     <!-- Scrollable Content -->
     <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_marginTop="80dp"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="match_parent"
         android:fillViewport="true">
 
         <LinearLayout
@@ -31,6 +31,8 @@
             android:orientation="vertical"
             android:padding="16dp">
 
+
+
             <!-- Game Title -->
             <TextView
                 android:id="@+id/game_title_rp"
@@ -38,6 +40,7 @@
                 android:layout_height="wrap_content"
                 android:text=" "
                 android:textSize="35sp"
+                android:textColor="@android:color/white"
                 android:textStyle="bold"
                 android:gravity="center"
                 android:layout_gravity="center_horizontal"
@@ -50,130 +53,148 @@
                 android:orientation="vertical"
                 tools:ignore="WebViewLayout">
 
-
                 <FrameLayout
                     android:id="@+id/webview_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
+                    <!-- Main Image -->
                     <ImageView
                         android:id="@+id/fallbackImage"
                         android:layout_width="match_parent"
                         android:layout_height="350dp"
                         android:layout_gravity="center"
                         android:scaleType="fitCenter" />
+
+                    <!-- Heart Icon -->
+                    <ImageView
+                        android:id="@+id/insideHeard"
+                        android:layout_width="250dp"
+                        android:layout_height="200dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/baseline_favorite_white"
+                        android:visibility="invisible" />
+
                 </FrameLayout>
 
                 <LinearLayout
+                    android:layout_marginTop="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:weightSum="3">
 
-                    <FrameLayout
-                        android:layout_width="200dp"
-                        android:layout_height="200dp">
-
-                        <ImageView
-                            android:id="@+id/insideHeard"
-                            android:layout_width="90dp"
-                            android:layout_height="90dp"
-                            android:visibility="invisible"
-                            android:layout_gravity="center"
-                            android:src="@drawable/baseline_favorite_white" />
-
-                        <ImageView
-                            android:id="@+id/game_pic_rp"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:adjustViewBounds="true"
-                            android:contentDescription="Game Image"
-                            android:scaleType="centerInside"
-                            android:layout_marginEnd="16dp" />
-                    </FrameLayout>
-
-                    <!-- Container for Platform & Genre -->
-                    <ScrollView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:fillViewport="true"
-                        android:background="#FF2400"
+                    <!-- First box: Platform -->
+                    <LinearLayout
+                        android:id="@+id/platform"
+                        android:layout_width="0dp"
+                        android:layout_height="200dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="8dp"
+                        android:background="#A45A52"
                         android:padding="12dp"
-                        android:elevation="4dp">
+                        android:elevation="4dp"
+                        android:orientation="vertical">
 
-                        <LinearLayout
+                        <TextView
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center">
+                            android:layout_height="wrap_content"
+                            android:text="Platform"
+                            android:layout_gravity="top"
+                            android:textSize="16sp"
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold"
+                            android:paddingBottom="4dp" />
 
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Platform:"
-                                android:textSize="16sp"
-                                android:textColor="@android:color/white"
-                                android:textStyle="bold"
-                                android:paddingBottom="4dp" />
+                        <TextView
+                            android:id="@+id/platform_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textSize="12sp"
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold"
+                            android:justificationMode="inter_word"
+                            android:paddingBottom="4dp" />
+                    </LinearLayout>
 
-                            <TextView
-                                android:id="@+id/platform_text"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text=" "
-                                android:textSize="16sp"
-                                android:textColor="@android:color/white"
-                                android:textStyle="bold"
-                                android:paddingBottom="4dp" />
+                    <!-- Second box: Genre -->
+                    <LinearLayout
+                        android:id="@+id/genre"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="8dp"
+                        android:background="#A45A52"
+                        android:padding="12dp"
+                        android:elevation="4dp"
+                        android:orientation="vertical">
 
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="20dp"
-                                android:text="Genre:"
-                                android:textSize="16sp"
-                                android:textColor="@android:color/white"
-                                android:textStyle="bold"
-                                android:paddingBottom="4dp" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Genre"
+                            android:textSize="16sp"
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold"
+                            android:paddingBottom="4dp" />
 
-                            <TextView
-                                android:id="@+id/genre_text"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text=" "
-                                android:textSize="16sp"
-                                android:textColor="@android:color/white"
-                                android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/genre_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text=" "
+                            android:textSize="12sp"
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold"
+                            android:justificationMode="inter_word"
+                            android:paddingBottom="4dp" />
+                    </LinearLayout>
 
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Theme:"
-                                android:textSize="16sp"
-                                android:textColor="@android:color/white"
-                                android:textStyle="bold"
-                                android:paddingBottom="4dp" />
+                    <!-- Third box: Theme -->
+                    <LinearLayout
+                        android:id="@+id/theme"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="#A45A52"
+                        android:padding="12dp"
+                        android:elevation="4dp"
+                        android:orientation="vertical">
 
-                            <TextView
-                                android:id="@+id/theme_text"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text=" "
-                                android:textSize="16sp"
-                                android:textColor="@android:color/white"
-                                android:textStyle="bold"
-                                android:paddingBottom="4dp" />
-                        </LinearLayout>
-                    </ScrollView>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Theme:"
+                            android:textSize="16sp"
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold"
+                            android:paddingBottom="4dp" />
+
+                        <TextView
+                            android:id="@+id/theme_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text=" "
+                            android:textSize="12sp"
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold"
+                            android:justificationMode="inter_word"
+                            android:paddingBottom="4dp" />
+                    </LinearLayout>
 
                 </LinearLayout>
+
             </LinearLayout>
 
             <!-- IDGB Rating Label -->
             <LinearLayout
+                android:id="@+id/ratings"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:background="#80E620B4"
+                android:background="#d8d8d8"
                 android:orientation="horizontal"
                 android:gravity="center_vertical">
 
@@ -182,18 +203,23 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:textStyle="bold"
+                    android:textColor="@android:color/black"
                     android:textSize="20sp"
                     android:text=" Rating:" />
 
                 <TextView
                     android:id="@+id/ratings_tv_rp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="210dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:textStyle="bold"
                     android:textSize="20sp"
-                    android:text="N/A" />
 
+                    android:textColor="@android:color/black"
+                    android:text="N/A"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:singleLine="true"/>
 
                 <!-- Spacer to push the heart to the end -->
                 <View
@@ -209,30 +235,40 @@
                     android:layout_marginEnd="16dp"
                     android:src="@drawable/baseline_favorite_border_24" />
             </LinearLayout>
-            <!--             Review Section -->
 
-
+            <!-- Review Section -->
             <com.google.android.material.tabs.TabLayout
-               android:layout_marginTop="20dp"
+                android:layout_marginTop="20dp"
                 android:id="@+id/tabLayout"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 app:tabMode="fixed"
                 app:tabIndicatorGravity="stretch"
                 app:tabIndicatorAnimationMode="elastic"
-                app:tabSelectedTextColor="@color/black"
+                android:textColor="@android:color/black"
                 app:tabIndicatorColor="@null"
                 app:tabGravity="fill"
-                android:background="#db88ee"
+                android:background="#d8d8d8"
                 app:tabIndicator="@drawable/tab_indicator" />
 
             <!-- FrameLayout to hold fragments -->
             <FrameLayout
                 android:id="@+id/frameLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-            <!-- Bottom Navigation (Scrollable with Content) -->
+                android:layout_height="wrap_content" />
+
         </LinearLayout>
     </ScrollView>
-</LinearLayout>
+
+    <!-- Scroll Up Button -->
+    <Button
+        android:id="@+id/scrollUpButton"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:text="Up"
+        android:textSize="14sp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="120dp"
+        android:visibility="gone"
+        android:layout_marginEnd="16dp"/>
+</FrameLayout>
