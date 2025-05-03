@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".reviewPageActivity"
-    android:background="@drawable/reviewbg">
+    android:background="@drawable/advancesearchbg">
 
     <!-- Back Button -->
     <ImageView

@@ -7,15 +7,18 @@
 <!--        <item name="colorPrimaryVariant">@color/purple_700</item>-->
 <!--             <item name="colorOnPrimary">@color/white</item>-->
 
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
         <item name="colorPrimary">@color/soft_red</item>
         <item name="colorPrimaryVariant">@color/deep_red</item>
         <item name="colorOnPrimary">@color/on_red</item>
 
-        <!-- Ensure Buttons Use the Primary Theme -->
-        <item name="android:buttonStyle">@style/Widget.AppCompat.Button</item>
+<!--        &lt;!&ndash; Ensure Buttons Use the Primary Theme &ndash;&gt;-->
+<!--        <item name="android:buttonStyle">@style/Widget.AppCompat.Button</item>-->
 
-        <!-- Force Material 3 Buttons to Use Custom Colors -->
-        <item name="materialButtonStyle">@style/CustomMaterialButton</item>
+<!--        &lt;!&ndash; Force Material 3 Buttons to Use Custom Colors &ndash;&gt;-->
+<!--        <item name="materialButtonStyle">@style/CustomMaterialButton</item>-->
 
     </style>
 

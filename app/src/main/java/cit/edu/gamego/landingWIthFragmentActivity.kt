@@ -70,7 +70,6 @@ class landingWIthFragmentActivity : AppCompatActivity() {
                         putString("email", et_uemail)
                     }
                 }
-                R.id.nav_advance_search -> advance_search()
                 R.id.nav_settings -> settingsFragment()
                 else -> landingFragment()
             }

@@ -19,8 +19,6 @@ import cit.edu.gamego.extensions.toast
 
 //continue this; fetching data would still not work 
 class ProfilePicFragment : Fragment() {
-    private var currentPassword: String = ""
-    private var isHidden = true
     private val auth = FirebaseAuth.getInstance()
 
     override fun onCreateView(
@@ -33,8 +31,7 @@ class ProfilePicFragment : Fragment() {
         val email1 = view.findViewById<TextView>(R.id.email_tv)
         val name = view.findViewById<TextView>(R.id.name_tv)
         val email = view.findViewById<TextView>(R.id.email_view_tv)
-        val pass = view.findViewById<TextView>(R.id.password_tv)
-        val show_pass = view.findViewById<ImageView>(R.id.show_password)
+        val savedGamesTv = view.findViewById<TextView>(R.id.saved_games)
 
         val currentUser = auth.currentUser
 
@@ -49,15 +46,16 @@ class ProfilePicFragment : Fragment() {
                     if (snapshot.exists()) {
                         val username = snapshot.child("username").getValue(String::class.java) ?: ""
                         val emailVal = snapshot.child("email").getValue(String::class.java) ?: ""
-                        val password = snapshot.child("password").getValue(String::class.java) ?: ""
+                        val favorites = snapshot.child("favorites").getValue(object : GenericTypeIndicator<List<String>>() {}) ?: emptyList()
 
-                        // Assign to views
-                        currentPassword = password
+                        // Assign values to views
                         usern1.text = username
                         name.text = username
                         email1.text = emailVal
                         email.text = emailVal
-                        pass.text = "*".repeat(password.length)
+
+                        // Display the number of saved games
+                        savedGamesTv.text = "${favorites.size - 1} saved games"
                     } else {
                         Log.e("FIREBASE", "User data not found for UID: $uid")
                     }
@@ -72,11 +70,7 @@ class ProfilePicFragment : Fragment() {
             startActivity(Intent(requireContext(), LoginActivity::class.java))
         }
 
-        show_pass.setOnClickListener {
-            pass.text = if (isHidden) currentPassword else "*".repeat(currentPassword.length)
-            isHidden = !isHidden
-        }
-
         return view
     }
 }
+
