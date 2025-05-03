@@ -36,6 +36,7 @@ import retrofit2.Response
 import kotlinx.coroutines.*
 
 import androidx.lifecycle.lifecycleScope
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import cit.edu.gamego.data.GameResult
 import cit.edu.gamego.data.GiantBombApi
 import cit.edu.gamego.data.SearchResponse
@@ -105,7 +106,7 @@ class landingFragment : Fragment() {
         shimmerLayout = view.findViewById(R.id.shimmer)
         shimmerLayout.startShimmer()
         // temp
-
+        val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipeRefreshLayout)
 
 
         /////
@@ -206,7 +207,15 @@ class landingFragment : Fragment() {
 
 
         // fetching games using API
+        // go back to here
         fetchAllGames()
+        swipeRefreshLayout.setOnRefreshListener {
+            // Call your API to fetch new data
+            fetchAllGames()
+
+            // Once data is fetched and UI is updated, hide the refresh indicator
+            swipeRefreshLayout.isRefreshing = false
+        }
 
         listOfGame = mutableListOf(
             Game("YE Quest", "2030", "1.1", Image(R.drawable.ye.toString(), R.drawable.ye.toString()), " ", "The visionary's journey through a surreal rap universe.", false, "game_yequest", listOf("PS5", "PC"), "Yeezy Interactive", listOf("Adventure", "Rhythm"), listOf("Hip-Hop", "Satire"), listOf("YE Series"),listOf("Yeezy Productions"), "YQ")

@@ -50,16 +50,18 @@
                 android:orientation="vertical"
                 tools:ignore="WebViewLayout">
 
-                <!-- WebView -->
+
                 <FrameLayout
                     android:id="@+id/webview_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
                     <ImageView
                         android:id="@+id/fallbackImage"
                         android:layout_width="match_parent"
                         android:layout_height="350dp"
-                        android:scaleType="centerCrop"/>
+                        android:layout_gravity="center"
+                        android:scaleType="fitCenter" />
                 </FrameLayout>
 
                 <LinearLayout

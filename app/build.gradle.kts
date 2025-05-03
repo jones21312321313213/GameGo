@@ -132,6 +132,8 @@ dependencies {
         implementation("com.google.firebase:firebase-storage-ktx")
 
 
+    //Refresh layoout
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 
 //    // OkHttp (optional but recommended for logging)
 //    implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
