@@ -16,8 +16,9 @@ import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import cit.edu.gamego.extensions.toast
+import com.bumptech.glide.Glide
 
-//continue this; fetching data would still not work 
+//continue this; fetching data would still not work
 class ProfilePicFragment : Fragment() {
     private val auth = FirebaseAuth.getInstance()
 
@@ -32,6 +33,7 @@ class ProfilePicFragment : Fragment() {
         val name = view.findViewById<TextView>(R.id.name_tv)
         val email = view.findViewById<TextView>(R.id.email_view_tv)
         val savedGamesTv = view.findViewById<TextView>(R.id.saved_games)
+        val pp = view.findViewById<ImageView>(R.id.profilePic)
 
         val currentUser = auth.currentUser
 
@@ -48,7 +50,17 @@ class ProfilePicFragment : Fragment() {
                         val emailVal = snapshot.child("email").getValue(String::class.java) ?: ""
                         val favoritesMap = snapshot.child("favorites").getValue(object : GenericTypeIndicator<Map<String, String>>() {})
                         val favorites = favoritesMap?.values?.toList() ?: emptyList()
+                        val profilePicUrl = snapshot.child("profilePicUrl").getValue(String::class.java)
 
+                        // Set profile image with Glide, with error handling
+                        if (!profilePicUrl.isNullOrEmpty()) {
+                            Glide.with(this@ProfilePicFragment)
+                                .load(profilePicUrl)
+                                .placeholder(R.drawable.mew)
+                                .error(R.drawable.ye)
+                                .circleCrop()
+                                .into(pp)
+                        }
 
                         // Assign values to views
                         usern1.text = username
@@ -56,20 +68,22 @@ class ProfilePicFragment : Fragment() {
                         email1.text = emailVal
                         email.text = emailVal
 
-                        // Display the number of saved games
                         savedGamesTv.text = "${favorites.size - 1} saved games"
                     } else {
                         Log.e("FIREBASE", "User data not found for UID: $uid")
+                        Toast.makeText(requireContext(), "No data found for this user", Toast.LENGTH_SHORT).show()
                     }
                 }
 
                 override fun onCancelled(error: DatabaseError) {
                     Log.e("FIREBASE", "DB read failed: ${error.message}")
+                    Toast.makeText(requireContext(), "Error fetching data: ${error.message}", Toast.LENGTH_SHORT).show()
                 }
             })
         } else {
             Log.e("AUTH", "No user is logged in")
             startActivity(Intent(requireContext(), LoginActivity::class.java))
+            requireActivity().finish()
         }
 
         return view

@@ -31,6 +31,9 @@ android {
 
         val firebaseDbUrl = properties.getProperty("FIREBASE_DB_URL", "")
         buildConfigField("String", "FIREBASE_DB_URL", "\"$firebaseDbUrl\"")
+
+        val imgbb = properties.getProperty("IMGBB_API_KEY","")
+        buildConfigField("String","IMGBB_API_KEY","\"$imgbb\"")
     }
 
     buildTypes {
@@ -139,6 +142,12 @@ dependencies {
     implementation("androidx.coordinatorlayout:coordinatorlayout:1.2.0")
     implementation("com.google.android.material:material:1.6.1")
     implementation("androidx.appcompat:appcompat:1.3.1")
+
+    //imgbb
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+
+
+
 //    // OkHttp (optional but recommended for logging)
 //    implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
 

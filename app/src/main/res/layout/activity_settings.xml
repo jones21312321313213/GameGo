@@ -127,7 +127,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
                     android:padding="10dp"
-                    android:text="Edit Profile"
+                    android:text="Change password         "
                     android:textSize="20dp"
                     android:textStyle="bold"/>
 
@@ -135,8 +135,8 @@
                     android:id="@+id/edit_profilepic_settings"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
-                    android:layout_marginLeft="110dp"
                     android:rotation="180"
+                    android:layout_marginLeft="4dp"
                     android:src="@drawable/back1"/>
 
             </LinearLayout>
@@ -159,7 +159,8 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
                     android:padding="10dp"
-                    android:text="Game Configurations"
+                    android:text="App Configurations   "
+                    android:layout_marginEnd="2dp"
                     android:textSize="20dp"
                     android:textStyle="bold"/>
 
@@ -201,6 +202,38 @@
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:layout_marginLeft="13dp"
+                    android:rotation="180"
+                    android:src="@drawable/back1"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/aaa" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:padding="10dp"
+                    android:text="Edit profile picture     "
+                    android:textSize="20dp"
+                    android:textStyle="bold"/>
+
+                <ImageView
+                    android:id="@+id/edit_profilepic"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="17dp"
                     android:rotation="180"
                     android:src="@drawable/back1"/>
 

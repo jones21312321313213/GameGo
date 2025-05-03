@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/aboutgame"
+    tools:context=".game_config">
+
+    <!-- Top spacing -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <!-- Header bar -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="15dp"
+        android:layout_gravity="center">
+
+        <LinearLayout
+            android:layout_width="370dp"
+            android:layout_height="43dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/searchbar"
+            android:backgroundTint="#A9A9A9"
+            android:padding="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:fontFamily="sans-serif"
+            android:text="Game Config"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#000000" />
+
+        <ImageView
+            android:id="@+id/settings_back_Id"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="start"
+            android:src="@drawable/back_arrow" />
+    </FrameLayout>
+
+    <!-- Scrollable content -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/searchbar"
+            android:backgroundTint="#2B2B2B"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:layout_margin="20dp">
+
+            <!-- App Logo -->
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:src="@drawable/logo2" />
+
+            <!-- Intro Text (kept at 16sp) -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:layout_marginBottom="24dp"
+                android:justificationMode="inter_word"
+                android:text="GameGo is your personal mobile library for all your favorite games! Organize, track, and explore mobile games across genres with ease."
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:lineSpacingExtra="4dp"
+                android:textStyle="bold" />
+
+            <!-- Tech stack section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:divider="?android:attr/dividerVertical"
+                android:showDividers="middle"
+                android:dividerPadding="10dp">
+
+                <!-- Android Studio -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Created in Android Studio"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp" />
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/android_studio"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- Kotlin -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Language: Kotlin"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp" />
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/kotlin"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- AVD -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="AVD used: Pixel 6 (API 35)"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp" />
+                <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/pixel6"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- Giant Bomb -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:autoLink="web"
+                    android:text="Game data from GiantBomb:\nhttps://www.giantbomb.com"
+                    android:textColor="#ffffff"
+                    android:textAlignment="center"
+                    android:textSize="20sp" />
+                <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/giantbomb_logo"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- Firebase -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:autoLink="web"
+                    android:text="Database: Firebase\nhttps://firebase.google.com"
+                    android:textColor="#ffffff"
+                    android:textAlignment="center"
+                    android:textSize="20sp" />
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/firebase_logo"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- GitHub -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:autoLink="web"
+                    android:text="GitHub Repository:\nhttps://github.com/jones21312321313213/GameGo.git"
+                    android:textColor="#ffffff"
+                    android:textAlignment="center"
+                    android:textSize="20sp" />
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/github_logo"
+                    android:layout_marginBottom="24dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

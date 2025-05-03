@@ -38,8 +38,6 @@ class EditProfilePicture : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.edit_profile_picture)
 
-        val name = findViewById<TextView>(R.id.edit_displayUserName_Id)
-        val email = findViewById<TextView>(R.id.edit_displayEmail_Id)
         val newPass = findViewById<EditText>(R.id.newpass_Id)
         val confirmPass = findViewById<EditText>(R.id.edit_confirmpass_Id)
 
@@ -56,11 +54,8 @@ class EditProfilePicture : AppCompatActivity() {
             dbRef.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
-                        val username = snapshot.child("username").getValue(String::class.java) ?: ""
-                        val emailVal = snapshot.child("email").getValue(String::class.java) ?: ""
 
-                        name.setText(username)
-                        email.setText(emailVal)
+                        Log.d("EXIXST", "IT IS WRITTEN")
                     } else {
                         Log.e("FIREBASE", "User data not found for UID: $uid")
                     }

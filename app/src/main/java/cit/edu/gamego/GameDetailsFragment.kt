@@ -22,7 +22,6 @@ class GameDetailsFragment : Fragment() {
         val genre = view?.findViewById<TextView>(R.id.gd_genre_tv)
         val theme = view?.findViewById<TextView>(R.id.gd_theme_tv)
         val franchises = view?.findViewById<TextView>(R.id.gd_franchises_tv)
-        val alias = view?.findViewById<TextView>(R.id.gd_aliases_tv)
 
         arguments?.let { bundle ->
             name?.text = bundle.getString("name")
@@ -33,7 +32,6 @@ class GameDetailsFragment : Fragment() {
             genre?.text = bundle.getString("genre")
             theme?.text = bundle.getString("theme")
             franchises?.text = bundle.getString("franchise")
-            alias?.text = bundle.getString("alias")
         }
         return view
     }

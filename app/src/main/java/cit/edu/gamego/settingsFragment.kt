@@ -1,7 +1,6 @@
 package cit.edu.gamego
 
 import android.content.Intent
-import androidx.fragment.app.viewModels
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -19,8 +18,8 @@ class settingsFragment : Fragment() {
 
         val about_game = view.findViewById<ImageView>(R.id.about_the_game_settings)
         val about_devs = view.findViewById<ImageView>(R.id.about_devs)
-        val edit_profile = view.findViewById<ImageView>(R.id.edit_profilepic_settings)
-
+        val edit_password = view.findViewById<ImageView>(R.id.edit_profilepic_settings)
+        val edit_profilepicture = view.findViewById<ImageView>(R.id.edit_profilepic)
         about_game.setOnClickListener{
             startActivity(
                 Intent(requireContext(),about_the_game::class.java)
@@ -33,9 +32,15 @@ class settingsFragment : Fragment() {
             )
         }
 
-        edit_profile.setOnClickListener{
+        edit_password.setOnClickListener{
             startActivity(
                 Intent(requireContext(),EditProfilePicture::class.java)
+            )
+        }
+
+        edit_profilepicture.setOnClickListener{
+            startActivity(
+                Intent(requireContext(),ChangeProfilePic::class.java)
             )
         }
         return view;

@@ -332,17 +332,17 @@ class landingFragment : Fragment() {
     }
 
     private fun fetchAllGames(){
-//       fetchRandomGames()
+        fetchRandomGames()
         fetchPopularReviews()
-//        fetchPs4PlatformGames()
-//        fetchXboxOnePlatformGames()
-//        fetchPcPlatformGames()
-//        fetchNintendoSwitchPlatformsGames()
-//        fetchMobilePlatformGames()
-//
-//        fetchNESPlatformGames()
-//        fetchXbox360PlatformGames()
-//        fetchPs3PlatformGames()
+        fetchPs4PlatformGames()
+        fetchXboxOnePlatformGames()
+        fetchPcPlatformGames()
+        fetchNintendoSwitchPlatformsGames()
+        fetchMobilePlatformGames()
+
+        fetchNESPlatformGames()
+        fetchXbox360PlatformGames()
+        fetchPs3PlatformGames()
 
     }
 
@@ -629,7 +629,7 @@ class landingFragment : Fragment() {
     @SuppressLint("NotifyDataSetChanged")
     private fun checkIfDataLoaded() {
         if (isHighRatedLoaded || isRandomLoaded || isps4GamesLoaded || isxbox1GamesLoaded
-            || ismobileGamesLoaded || isnintendoSwitchLoaded || ispcGamesLoaded || isNESGamesLoaded || isxbox360GamesLoaded || isps3GamesLoaded
+            || ismobileGamesLoaded ||  isnintendoSwitchLoaded || ispcGamesLoaded || isNESGamesLoaded || isxbox360GamesLoaded || isps3GamesLoaded
         ) {
             requireActivity().runOnUiThread {
                 val cool = view?.findViewById<LinearLayout>(R.id.realContent)
@@ -641,14 +641,14 @@ class landingFragment : Fragment() {
                 rgRecyclerView.visibility = View.VISIBLE
                 recyclerView.visibility = View.VISIBLE
 
-//                ps4RecyclerView.visibility = View.VISIBLE
-//                xbox1RecyclerView.visibility = View.VISIBLE
-//                pcRecyclerView.visibility = View.VISIBLE
-//                nintendoSwitchRecyclerView.visibility = View.VISIBLE
-//                mobileRecyclerView.visibility = View.VISIBLE
-//                nesRecyclerView.visibility = View.VISIBLE
-//                xbo360RecyclerView.visibility = View.VISIBLE
-//                ps3RecyclerView.visibility = View.VISIBLE
+                ps4RecyclerView.visibility = View.VISIBLE
+                xbox1RecyclerView.visibility = View.VISIBLE
+                pcRecyclerView.visibility = View.VISIBLE
+                nintendoSwitchRecyclerView.visibility = View.VISIBLE
+                mobileRecyclerView.visibility = View.VISIBLE
+                nesRecyclerView.visibility = View.VISIBLE
+                xbo360RecyclerView.visibility = View.VISIBLE
+                ps3RecyclerView.visibility = View.VISIBLE
 
 
                 cool?.visibility = View.VISIBLE
@@ -657,15 +657,15 @@ class landingFragment : Fragment() {
                 arrayAdapter.notifyDataSetChanged()
                 randomGamesGameameAdapter.notifyDataSetChanged()
                 highRatedGamesGameAdapter.notifyDataSetChanged()
-//                ps4GamesGameAdapter.notifyDataSetChanged()
-//                xbox1GamesGameAdapter.notifyDataSetChanged()
-//                nintendoSwitchGamesGameAdapter.notifyDataSetChanged()
-//                pcGamesGameAdapter.notifyDataSetChanged()
-//                mobileGamesGameAdapter.notifyDataSetChanged()
-//
-//                nesGamesGameAdapter.notifyDataSetChanged()
-//                xbox360GameAdapter.notifyDataSetChanged()
-//                ps3GamesGameAdapter.notifyDataSetChanged()
+                ps4GamesGameAdapter.notifyDataSetChanged()
+                xbox1GamesGameAdapter.notifyDataSetChanged()
+                nintendoSwitchGamesGameAdapter.notifyDataSetChanged()
+                pcGamesGameAdapter.notifyDataSetChanged()
+                mobileGamesGameAdapter.notifyDataSetChanged()
+
+                nesGamesGameAdapter.notifyDataSetChanged()
+                xbox360GameAdapter.notifyDataSetChanged()
+                ps3GamesGameAdapter.notifyDataSetChanged()
 
                 Log.d("SHIMMER", "All data loaded—shimmer stopped")
             }
@@ -676,28 +676,28 @@ class landingFragment : Fragment() {
     private fun resetShimmerAndReload() {
         // Reset all loading flags
         isHighRatedLoaded = false
-//        isRandomLoaded = false
-//        isps4GamesLoaded = false
-//        isxbox1GamesLoaded = false
-//        ismobileGamesLoaded = false
-//        isnintendoSwitchLoaded = false
-//        ispcGamesLoaded = false
-//        isNESGamesLoaded = false
-//        isps3GamesLoaded = false
-//        isxbox360GamesLoaded = false
+        isRandomLoaded = false
+        isps4GamesLoaded = false
+        isxbox1GamesLoaded = false
+        ismobileGamesLoaded = false
+        isnintendoSwitchLoaded = false
+        ispcGamesLoaded = false
+        isNESGamesLoaded = false
+        isps3GamesLoaded = false
+        isxbox360GamesLoaded = false
 
 
         hrgRecyclerView.visibility = View.GONE
         rgRecyclerView.visibility = View.GONE
         recyclerView.visibility = View.GONE
-//         ps4RecyclerView.visibility = View.GONE
-//         xbox1RecyclerView.visibility = View.GONE
-//         mobileRecyclerView.visibility = View.GONE
-//         nintendoSwitchRecyclerView.visibility = View.GONE
-//         pcRecyclerView.visibility = View.GONE
-//        nesRecyclerView.visibility = View.GONE
-//        xbo360RecyclerView.visibility = View.GONE
-//        ps3RecyclerView.visibility = View.GONE
+         ps4RecyclerView.visibility = View.GONE
+         xbox1RecyclerView.visibility = View.GONE
+         mobileRecyclerView.visibility = View.GONE
+         nintendoSwitchRecyclerView.visibility = View.GONE
+         pcRecyclerView.visibility = View.GONE
+        nesRecyclerView.visibility = View.GONE
+        xbo360RecyclerView.visibility = View.GONE
+        ps3RecyclerView.visibility = View.GONE
 
         // Show shimmer
         shimmerLayout.visibility = View.VISIBLE
