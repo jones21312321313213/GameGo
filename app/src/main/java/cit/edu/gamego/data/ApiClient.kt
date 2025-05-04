@@ -14,4 +14,6 @@ object ApiClient {
             .build()
             .create(GiantBombApi::class.java)
     }
+
+
 }

@@ -33,10 +33,7 @@ class landingWIthFragmentActivity : AppCompatActivity() {
         }
 
         // Retrieve intent data from login or previous activity
-        intent?.let {
-            et_uname = it.getStringExtra("username")
-            et_uemail = it.getStringExtra("email")
-        }
+
 
         val fav = findViewById<ImageView>(R.id.faves)
         fav.setOnClickListener {

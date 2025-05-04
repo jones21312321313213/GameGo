@@ -1,5 +1,6 @@
 package cit.edu.gamego
 
+
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -10,6 +11,7 @@ import cit.edu.gamego.extensions.toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.rejowan.cutetoast.CuteToast
 
 class RegisterActivity : Activity() {
     private lateinit var binding: RegisterF3Binding
@@ -38,12 +40,13 @@ class RegisterActivity : Activity() {
             val cpass = binding.registerConfirmpassId.text.toString().trim()
 
             if (username.isEmpty() || email.isEmpty() || password.isEmpty() || cpass.isEmpty()) {
-                toast("Please complete all fields")
+
+                CuteToast.ct(this, "Please complete all fields", CuteToast.LENGTH_SHORT, CuteToast.WARN, true).show();
                 return@setOnClickListener
             }
 
             if (password != cpass) {
-                toast("Passwords do not match")
+                CuteToast.ct(this, "Passwords do not match", CuteToast.LENGTH_SHORT, CuteToast.ERROR, true).show();
                 return@setOnClickListener
             }
 
@@ -58,21 +61,20 @@ class RegisterActivity : Activity() {
                                 favorites = listOf(""),
                                 profilePicUrl = " "
                             )
-
                             reference.child(uid).setValue(userData)
                                 .addOnCompleteListener { dbTask ->
                                     if (dbTask.isSuccessful) {
-                                        toast("User registered successfully")
+                                        CuteToast.ct(this, "User registered successfully", CuteToast.LENGTH_SHORT, CuteToast.HAPPY, true).show();
                                         clearFields()
                                         startActivity(Intent(this, LoginActivity::class.java))
                                         finish()
                                     } else {
-                                        toast("Failed to save user data")
+                                        CuteToast.ct(this, "Failed to save user data", CuteToast.LENGTH_SHORT, CuteToast.ERROR, true).show();
                                     }
                                 }
                         }
                     } else {
-                        toast("Registration failed: ${authTask.exception?.message}")
+                        CuteToast.ct(this, "Registration failed: ${authTask.exception?.message}", CuteToast.LENGTH_SHORT, CuteToast.ERROR, true).show();
                     }
                 }
         }

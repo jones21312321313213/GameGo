@@ -30,6 +30,19 @@ interface GiantBombApi {
     ): Call<GameApiResponse>
 
 
+//        @GET("games")
+//        suspend fun getGamesByPlatform(
+//            @Query("api_key") apiKey: String,
+//            @Query("format") format: String = "json",
+//            @Query("limit") limit: Int = 15,
+//            @Query("offset") offset: Int = 0,
+//            @Query("filter") filter: String
+//        ): Response<GameApiResponse> // Return a Response object, not Call
+
+
+
+
+
 
     // used to get specified game data
     @GET("game/{guid}/")
@@ -37,16 +50,8 @@ interface GiantBombApi {
         @Path("guid") guid: String,
         @Query("api_key") apiKey: String,
         @Query("format") format: String = "json",
-        @Query("field_list") fieldList: String = "name,description,image,original_game_rating,developers,similar_games,themes,videos,genres,platforms,images"
+        @Query("field_list") fieldList: String = "name,description,image,original_game_rating,developers,similar_games,themes,videos,genres,platforms,images,original_release_date"
     ): Call<SingleGameResponse>
-
-
-    @GET("videos/{videoGuid}/")  // Modify to match your API structure
-    fun getVideoDetails(
-        @Path("videoGuid") videoGuid: String,  // Extract the GUID from the URL dynamically
-        @Query("api_key") apiKey: String,
-        @Query("format") format: String
-    ): Call<SingleVideoResponse>
 
 
     @GET("reviews/")

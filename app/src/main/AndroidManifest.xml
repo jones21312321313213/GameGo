@@ -16,13 +16,10 @@
         android:theme="@style/Theme.GameGo"
         tools:targetApi="31">
         <activity
-            android:name=".game_config"
+            android:name=".GameConfigActivity"
             android:exported="false" />
         <activity
             android:name=".ChangeProfilePic"
-            android:exported="false" />
-        <activity
-            android:name=".new_password"
             android:exported="false" />
         <activity
             android:name=".forget_password"

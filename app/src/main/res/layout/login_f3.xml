@@ -1,188 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:id="@+id/loginRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="bottom|start"
     android:background="@drawable/redwave">
 
-    <!-- Logo ImageView (Fixed at the top) -->
+    <!-- Main content container -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:paddingTop="30dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
+        <!-- Top Logo -->
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="400dp"
-            android:src="@drawable/logo"
-            android:contentDescription="Logo"/>
+            android:contentDescription="Logo"
+            android:src="@drawable/logo" />
 
-    </LinearLayout>
+        <!-- Scrollable content -->
 
-    <!-- ScrollView for the rest of the content -->
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        <!-- Welcome text -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="-40dp"
+            android:fontFamily="sans-serif"
+            android:layout_gravity="center"
+            android:text="Welcome"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-        <!-- LinearLayout for all other content -->
+        <!-- EditText fields -->
+        <LinearLayout
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/login_username_Id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_background"
+                android:fontFamily="sans-serif-black"
+                android:hint="Enter username"
+                android:maxLines="1"
+                android:padding="15dp"
+                android:singleLine="true" />
+
+            <EditText
+                android:id="@+id/login_pass_Id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/edittext_background"
+                android:fontFamily="sans-serif-black"
+                android:hint="Enter password"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:padding="15dp"
+                android:singleLine="true" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/forgotPasswordText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:fontFamily="sans-serif"
+                    android:text="Forgot Password?"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <!-- Transition Button OUTSIDE scroll area -->
+        <com.royrodriguez.transitionbutton.TransitionButton
+            android:id="@+id/login_Id"
+            android:layout_width="250dp"
+            android:layout_marginTop="10dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center|bottom"
+            android:layout_marginBottom="30dp"
+            android:background="#bdc7d8"
+            android:src="#bdc7d8"
+            android:text="Login"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:backgroundTint="#bdc7d8"/>
+        <!-- Sign Up Prompt -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-            <!-- Welcome Text -->
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="21dp"
-                android:layout_gravity="start"
-                android:layout_marginHorizontal="70dp"
-                android:layout_marginBottom="10dp"
+                android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
-                android:gravity="start"
-                android:text="Welcome"
+                android:text="Don’t have an account yet?"
                 android:textColor="#FFFFFF"
-                android:textSize="20dp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
-            <!-- LinearLayout for EditText fields -->
-            <LinearLayout
-                android:layout_width="280dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="vertical"
-                android:layout_marginVertical="8dp">
-
-                <EditText
-                    android:id="@+id/login_username_Id"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/edittext_background"
-                    android:fontFamily="sans-serif-black"
-                    android:hint="Enter username"
-                    android:padding="15dp"
-                    android:maxLines="1"
-                    android:lines="1"
-                    android:singleLine="true"/>
-
-                <EditText
-                    android:id="@+id/login_pass_Id"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
-                    android:background="@drawable/edittext_background"
-                    android:fontFamily="sans-serif-black"
-                    android:inputType="textPassword"
-                    android:hint="Enter password"
-                    android:padding="15dp"
-                    android:maxLines="1"
-                    android:lines="1"
-                    android:singleLine="true"/>
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:id="@+id/forgotPasswordText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="end"
-                        android:fontFamily="sans-serif"
-                        android:text="Forgot Password?"
-                        android:textColor="#FFFFFF"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-                </FrameLayout>
-            </LinearLayout>
-
-            <!-- Login Button -->
-            <LinearLayout
+            <TextView
+                android:id="@+id/login_signup_Id"
                 android:layout_width="wrap_content"
-                android:layout_height="70dp"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:layout_marginTop="30dp">
-
-                <Button
-                    android:id="@+id/login_Id"
-                    android:layout_width="250dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    android:backgroundTint="#E1E1E1"
-                    android:layout_marginBottom="10dp"
-                    android:text="Login"
-                    android:textSize="18sp"
-                    android:textColor="@color/white"
-                    android:layout_marginVertical="20dp"
-                    android:paddingVertical="10dp"
-                    android:background="@drawable/button_corner"/>
-
-            </LinearLayout>
-
-            <!-- OR Text -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="21dp"
-                    android:layout_gravity="start"
-                    android:fontFamily="sans-serif-black"
-                    android:gravity="center"
-                    android:text="─────────── OR ───────────"
-                    android:textColor="#FFFFFF"
-                    android:textSize="14dp"
-                    android:textStyle="bold"
-                    />
-            </LinearLayout>
-
-            <!-- Social Media Login Buttons -->
-
-
-            <!-- Sign Up Text -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_marginTop="10dp">
-
-                <TextView
-                    android:layout_width="190dp"
-                    android:layout_height="25dp"
-                    android:layout_gravity="top|start"
-                    android:layout_marginEnd="50dp"
-                    android:fontFamily="sans-serif"
-                    android:text="Dont have an account yet?"
-                    android:textColor="#FFFFFF"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
-
-
-                <TextView
-                    android:id="@+id/login_signup_Id"
-                    android:layout_width="70dp"
-                    android:layout_height="25dp"
-                    android:layout_gravity="top|end"
-                    android:fontFamily="sans-serif"
-                    android:text="Sign Up"
-                    android:textColor="#FF0000"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
-            </LinearLayout>
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="sans-serif"
+                android:text="Sign Up"
+                android:textColor="#FF0000"
+                android:textSize="16sp"
+                android:textStyle="bold" />
         </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+    </LinearLayout>
+
+
+</FrameLayout>

@@ -29,6 +29,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
+import com.rejowan.cutetoast.CuteToast
 
 import java.io.File
 import java.io.FileOutputStream
@@ -84,12 +85,12 @@ class EditProfilePicture : AppCompatActivity() {
             val confirmPassword = confirmPass.text.toString()
 
             if (newPassword != confirmPassword) {
-                Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show()
+                CuteToast.ct(this, "Passwords do not match", CuteToast.LENGTH_SHORT, CuteToast.WARN, true).show();
                 return@setOnClickListener
             }
 
             if (newPassword.length < 6) {
-                Toast.makeText(this, "Password must be at least 6 characters", Toast.LENGTH_SHORT).show()
+                CuteToast.ct(this, "Password must be at least 6 characters", CuteToast.LENGTH_SHORT, CuteToast.WARN, true).show();
                 return@setOnClickListener
             }
 
@@ -98,7 +99,7 @@ class EditProfilePicture : AppCompatActivity() {
                 val message = "Are you sure you want to change your password?"
                 showSaveConfirmationPopUp(message, newPassword, currentUser)
             } else {
-                Toast.makeText(this, "No authenticated user found", Toast.LENGTH_SHORT).show()
+                CuteToast.ct(this, "User not found", CuteToast.LENGTH_SHORT, CuteToast.WARN, true).show();
             }
         }
 

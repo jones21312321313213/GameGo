@@ -1,35 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-<!--go back to here -->
-    <style name="Theme.GameGo" parent="Theme.Material3.Light.NoActionBar">
-        <!-- Primary Color for Buttons -->
-<!--        <item name="colorPrimary">@color/purple_500</item>-->
-<!--        <item name="colorPrimaryVariant">@color/purple_700</item>-->
-<!--             <item name="colorOnPrimary">@color/white</item>-->
 
+    <style name="Theme.GameGo" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Disable Action Bar and Title -->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
 
-        <item name="colorPrimary">@color/soft_red</item>
+        <!-- Primary Color for Buttons -->
+        <item name="colorPrimary">@color/soft_red</item> <!-- Your desired primary color -->
         <item name="colorPrimaryVariant">@color/deep_red</item>
-        <item name="colorOnPrimary">@color/on_red</item>
+        <item name="colorOnPrimary">@color/on_red</item> <!-- Text color on primary color (e.g., white) -->
 
-<!--        &lt;!&ndash; Ensure Buttons Use the Primary Theme &ndash;&gt;-->
-<!--        <item name="android:buttonStyle">@style/Widget.AppCompat.Button</item>-->
+        <!-- Ensure Buttons Use the Primary Theme -->
+        <item name="android:buttonStyle">@style/Widget.AppCompat.Button</item>
 
-<!--        &lt;!&ndash; Force Material 3 Buttons to Use Custom Colors &ndash;&gt;-->
-<!--        <item name="materialButtonStyle">@style/CustomMaterialButton</item>-->
+        <!-- Force Material 3 Buttons to Use Custom Colors -->
+        <item name="materialButtonStyle">@style/CustomMaterialButton</item>
 
     </style>
 
-<!--    this one at the bottom was the original b4 the redesigning -->
-<!--    <style name="Theme.GameGo" parent="Theme.Material3.Light.NoActionBar">-->
-
-
     <!-- Custom Material Button Style -->
-<!--    <style name="CustomMaterialButton" parent="Widget.Material3.Button">-->
-<!--        <item name="android:backgroundTint">?attr/colorPrimary</item>-->
-<!--        <item name="android:textColor">?attr/colorOnPrimary</item>-->
-<!--    </style>-->
+    <style name="CustomMaterialButton" parent="Widget.Material3.Button">
+        <item name="android:backgroundTint">?attr/colorPrimary</item> <!-- Use the primary color for the button's background -->
+        <item name="android:textColor">?attr/colorOnPrimary</item> <!-- Use the text color set for primary color -->
+    </style>
 
 </resources>

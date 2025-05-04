@@ -2,21 +2,31 @@ package cit.edu.gamego
 
 import android.app.Activity
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.FrameLayout
+import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat
+import cit.edu.gamego.extensions.toast
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-
+import com.rejowan.cutetoast.CuteToast
+import com.royrodriguez.transitionbutton.TransitionButton
+import android.graphics.Color
 class LoginActivity : Activity() {
-
     private lateinit var rootView: View
     private lateinit var auth: FirebaseAuth
+    private lateinit var transitionButton: TransitionButton // Declare TransitionButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +34,12 @@ class LoginActivity : Activity() {
         FirebaseApp.initializeApp(this)
         auth = FirebaseAuth.getInstance()
         rootView = findViewById(android.R.id.content)
+
+
+        transitionButton = findViewById(R.id.login_Id) // Initialize the TransitionButton
+
+        transitionButton.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FF0000")) // Red tint
+        transitionButton.setTextColor(Color.parseColor("#FFFFFF")) // White text
 
         val etUsername = findViewById<EditText>(R.id.login_username_Id) // Change to username input
         val etPassword = findViewById<EditText>(R.id.login_pass_Id)
@@ -44,20 +60,27 @@ class LoginActivity : Activity() {
             finish()
         }
 
-        findViewById<Button>(R.id.login_Id).setOnClickListener {
+        transitionButton.setOnClickListener {
             val username = etUsername.text.toString().trim().replace("\\s".toRegex(), "")
             val password = etPassword.text.toString().trim()
 
             if (username.isEmpty() || password.isEmpty()) {
-                showSnackbar("Username and password cannot be empty")
+                CuteToast.ct(this, "Username and password cannot be empty", CuteToast.LENGTH_SHORT, CuteToast.WARN, true).show();
                 return@setOnClickListener
             }
+
+            // Start the loading animation when the button is clicked
+            transitionButton.startAnimation()
 
             loginUser(username, password)
         }
     }
 
     private fun loginUser(username: String, password: String) {
+        // Resize the button to match the root layout
+
+
+
         val database = FirebaseDatabase.getInstance(BuildConfig.FIREBASE_DB_URL)
         val reference = database.getReference("Users")
 
@@ -74,31 +97,43 @@ class LoginActivity : Activity() {
                             val uid = auth.currentUser?.uid ?: return@addOnSuccessListener
                             val usernameFetched = userData?.get("username")?.toString() ?: ""
 
-                            showSnackbar("Login successful 🎯")
+                            val rootLayout = findViewById<FrameLayout>(R.id.loginRoot)
+                            val layoutParams = transitionButton.layoutParams
+                            layoutParams.width = rootLayout.width
+                            layoutParams.height = rootLayout.height
+                            transitionButton.layoutParams = layoutParams
 
-                            // Navigate to the landing screen
-                            startActivity(Intent(this, landingWIthFragmentActivity::class.java).apply {
-                                putExtra("username", usernameFetched)
-                                putExtra("email", email)
-                                putExtra("uid", uid)
-                            })
-                            finish()
+                            transitionButton.stopAnimation(
+                                TransitionButton.StopAnimationStyle.EXPAND
+                            ) {
+                                // Navigate to landing screen
+                                startActivity(
+                                    Intent(this, landingWIthFragmentActivity::class.java).apply {
+                                        putExtra("uid", uid)
+                                        addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                                    }
+                                )
+                                finish()
+                            }
                         }
                         .addOnFailureListener {
-                            showSnackbar("Login failed. Please check your credentials and try again.")
+                            CuteToast.ct(this, "Login failed. Please check your credentials and try again.", CuteToast.LENGTH_SHORT, CuteToast.SAD, true).show();
                             Log.e("AUTH", "Login error: ${it.message}")
+                            // Stop animation with a shake if login fails
+                            transitionButton.stopAnimation(TransitionButton.StopAnimationStyle.SHAKE, null)
                         }
                 } else {
-                    showSnackbar("User not found with that username")
+                    // Show a message if user is not found and trigger shake animation
+                    CuteToast.ct(this, "User not found with that username", CuteToast.LENGTH_SHORT, CuteToast.SAD, true).show();
+                    transitionButton.stopAnimation(TransitionButton.StopAnimationStyle.SHAKE, null)
                 }
             }
             .addOnFailureListener {
-                showSnackbar("Error fetching user data")
+                CuteToast.ct(this, "Error fetching user dat", CuteToast.LENGTH_SHORT, CuteToast.SAD, true).show();
                 Log.e("Firebase Error", "Error: ${it.message}")
+                // Stop animation with a shake if fetching user data fails
+                transitionButton.stopAnimation(TransitionButton.StopAnimationStyle.SHAKE, null)
             }
     }
 
-    private fun showSnackbar(message: String) {
-        Snackbar.make(rootView, message, Snackbar.LENGTH_SHORT).show()
-    }
 }

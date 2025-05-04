@@ -40,6 +40,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FieldValue
+import com.rejowan.cutetoast.CuteToast
 
 class reviewPageActivity : AppCompatActivity() {
 
@@ -192,17 +193,13 @@ class reviewPageActivity : AppCompatActivity() {
                 }
             }
             override fun onTabUnselected(p0: TabLayout.Tab?) {
-                // Handle tab unselection if necessary
+                //
             }
 
             override fun onTabReselected(p0: TabLayout.Tab?) {
-                // Handle tab reselection if necessary
+                //
             }
         })
-        val fallbackk = findViewById<ImageView>(R.id.fallbackImage)
-        // ✅ Initialize WebView
-        // webView = findViewById(R.id.game_webview)
-           // webView.setupAndLoad(trailer, fallbackk, abc)
 
         binding.backRp.setOnClickListener {
             finish()
@@ -252,7 +249,7 @@ class reviewPageActivity : AppCompatActivity() {
                         if (keyToRemove != null) {
                             favoritesRef.child(keyToRemove).removeValue()
                                 .addOnSuccessListener {
-                                    toast("Removed from favorites")
+                                    CuteToast.ct(this, "Removed from Favorites", CuteToast.LENGTH_SHORT, CuteToast.DELETE, true).show();
                                     binding.heart.setImageResource(R.drawable.baseline_favorite_border_24)
                                     binding.heart.startAnimation(zoomInAnim)
                                     isLiked = false
@@ -261,7 +258,7 @@ class reviewPageActivity : AppCompatActivity() {
                                     toast("Error removing favorite")
                                 }
                         } else {
-                            toast("Favorite not found")
+                            CuteToast.ct(this, "Favorite not found", CuteToast.LENGTH_SHORT, CuteToast.WARN, true).show();
                         }
                     } else {
 
@@ -269,7 +266,7 @@ class reviewPageActivity : AppCompatActivity() {
                         val newFavoriteRef = favoritesRef.push()
                         newFavoriteRef.setValue(gameGuid)
                             .addOnSuccessListener {
-                                toast("Added to favorites")
+                                CuteToast.ct(this, "Added to favorites", CuteToast.LENGTH_SHORT, CuteToast.SUCCESS, true).show();
                                 binding.heart.setImageResource(R.drawable.baseline_favorite_24)
                                 binding.insideHeard.startAnimation(zoomInAnim)
                                 binding.insideHeard.startAnimation(zoomOutAnim)
@@ -277,11 +274,13 @@ class reviewPageActivity : AppCompatActivity() {
                                 isLiked = true
                             }
                             .addOnFailureListener {
-                                toast("Error adding favorite")
+                                Log.e("FAVORITES", "Error adding favorite")
+
                             }
                     }
                 }.addOnFailureListener {
-                    toast("Failed to load favorites")
+                    Log.e("FAVORITES", "Failed to load into faav" )
+
                 }
             }
 
@@ -329,6 +328,7 @@ class reviewPageActivity : AppCompatActivity() {
                         loadFragment(GameDescriptionFragment(),bundle)
                         //
                         val date = it.original_release_date?: "Unknown Date"
+
                         // Rating
                         val ratingText = it.original_game_rating?.joinToString { r -> r.name } ?: "N/A"
                         binding.ratingsTvRp.text = ratingText

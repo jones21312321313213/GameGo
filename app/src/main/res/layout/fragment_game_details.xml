@@ -78,8 +78,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=" "
-                        android:textSize="11sp"
-                        android:textColor="#555" />
+                        android:textColor="#555"
+                        android:textSize="11sp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
             <!-- Just duplicate the CardView block above and change the content for Platform, Developer, etc. -->

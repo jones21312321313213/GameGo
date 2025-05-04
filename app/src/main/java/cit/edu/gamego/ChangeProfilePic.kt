@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Base64
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
@@ -12,11 +13,12 @@ import androidx.appcompat.app.AppCompatActivity
 import cit.edu.gamego.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.rejowan.cutetoast.CuteToast
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
 
-class ChangeProfilePic : AppCompatActivity() {
+class ChangeProfilePic : Activity() {
 
     private lateinit var imageView: ImageView
     private lateinit var chooseImage: Button
@@ -45,13 +47,10 @@ class ChangeProfilePic : AppCompatActivity() {
         uploadImage.setOnClickListener {
             imageUri?.let {
                 uploadToImgBB(it)
-            } ?: Toast.makeText(this, "Please select an image first", Toast.LENGTH_SHORT).show()
+            } ?: CuteToast.ct(this, "Please select and image first", CuteToast.LENGTH_SHORT, CuteToast.WARN, true).show();
         }
 
         back.setOnClickListener{
-            startActivity(
-                Intent(this,settingsFragment::class.java)
-            )
             finish()
         }
 
@@ -90,7 +89,7 @@ class ChangeProfilePic : AppCompatActivity() {
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 runOnUiThread {
-                    Toast.makeText(this@ChangeProfilePic, "Upload failed: ${e.message}", Toast.LENGTH_SHORT).show()
+                    Log.e("PROFILE_UPLOAD", "Upload failed: \${e.message")
                 }
             }
 
@@ -112,13 +111,14 @@ class ChangeProfilePic : AppCompatActivity() {
                 .getReference("Users").child(userId)
             databaseReference.child("profilePicUrl").setValue(url)
                 .addOnSuccessListener {
-                    Toast.makeText(this, "Profile picture URL saved to database", Toast.LENGTH_SHORT).show()
+                    CuteToast.ct(this, "Profile picture URL saved to database", CuteToast.LENGTH_SHORT, CuteToast.SUCCESS, true).show();
                 }
                 .addOnFailureListener { exception ->
-                    Toast.makeText(this, "Failed to save URL: ${exception.message}", Toast.LENGTH_SHORT).show()
+                    Log.e("PROFILE_UPLOAD", "Upload failed: ${exception.message}")
+
                 }
         } else {
-            Toast.makeText(this, "User not authenticated", Toast.LENGTH_SHORT).show()
+            CuteToast.ct(this, "User not found", CuteToast.LENGTH_SHORT, CuteToast.WARN, true).show();
         }
     }
 }

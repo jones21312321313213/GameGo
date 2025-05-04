@@ -1,5 +1,6 @@
 package cit.edu.gamego
 
+
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -17,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import cit.edu.gamego.extensions.toast
 import com.bumptech.glide.Glide
+import com.rejowan.cutetoast.CuteToast
 
 //continue this; fetching data would still not work
 class ProfilePicFragment : Fragment() {
@@ -71,19 +73,18 @@ class ProfilePicFragment : Fragment() {
                         savedGamesTv.text = "${favorites.size - 1} saved games"
                     } else {
                         Log.e("FIREBASE", "User data not found for UID: $uid")
-                        Toast.makeText(requireContext(), "No data found for this user", Toast.LENGTH_SHORT).show()
+                        CuteToast.ct(requireContext(), "No data found for this user", CuteToast.LENGTH_SHORT, CuteToast.ERROR, true).show();
                     }
                 }
 
                 override fun onCancelled(error: DatabaseError) {
                     Log.e("FIREBASE", "DB read failed: ${error.message}")
-                    Toast.makeText(requireContext(), "Error fetching data: ${error.message}", Toast.LENGTH_SHORT).show()
                 }
             })
         } else {
-            Log.e("AUTH", "No user is logged in")
-            startActivity(Intent(requireContext(), LoginActivity::class.java))
-            requireActivity().finish()
+           Log.e("AUTH", "No user is logged in")
+//            startActivity(Intent(requireContext(), LoginActivity::class.java))
+//            requireActivity().finish()
         }
 
         return view

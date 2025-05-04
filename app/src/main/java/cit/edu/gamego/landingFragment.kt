@@ -385,25 +385,28 @@ class landingFragment : Fragment() {
     @SuppressLint("NotifyDataSetChanged")
     private fun fetchRandomGames() {
         val apiKey = BuildConfig.GIANT_BOMB_API_KEY
-        val randomOffset = (0..100).random()// for randomizing games
+        val randomOffset = (0..100).random() // for randomizing games
         ApiClient.api.getGames(apiKey, offset = randomOffset)
-            .enqueueGameList(viewLifecycleOwner,listOfRandomGames) {
+            .enqueueGameList(viewLifecycleOwner, listOfRandomGames) {
+                // Notify the adapter to update the UI when data is fetched
                 randomGamesGameameAdapter.notifyDataSetChanged()
                 isRandomLoaded = true
                 checkIfDataLoaded()
             }
     }
 
+
+
     @SuppressLint("NotifyDataSetChanged")
     private fun fetchPs4PlatformGames() {
-        val apiKey = BuildConfig.GIANT_BOMB_API_KEY
-        val randomOffset = (0..100).random()// for randomizing games
-        ApiClient.api.getGamesByPlatform(apiKey,offset = randomOffset, filter = "platforms:146")
-            .enqueueGameList(viewLifecycleOwner,listOfPs4Games) {
-                ps4GamesGameAdapter.notifyDataSetChanged()
-                isps4GamesLoaded = true
-                checkIfDataLoaded()
-            }
+            val apiKey = BuildConfig.GIANT_BOMB_API_KEY
+            val randomOffset = (0..100).random()// for randomizing games
+            ApiClient.api.getGamesByPlatform(apiKey,offset = randomOffset, filter = "platforms:146")
+                .enqueueGameList(viewLifecycleOwner,listOfPs4Games) {
+                        ps4GamesGameAdapter.notifyDataSetChanged()
+                        isps4GamesLoaded = true
+                        checkIfDataLoaded()
+                }
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -495,11 +498,6 @@ class landingFragment : Fragment() {
                 checkIfDataLoaded()
             }
     }
-
-
-
-
-
 
 
 

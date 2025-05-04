@@ -9,8 +9,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import cit.edu.gamego.data.Game
 import androidx.recyclerview.widget.RecyclerView
 import cit.edu.gamego.data.Image
+import cit.edu.gamego.extensions.moreWithGlide
 import cit.edu.gamego.helper.GameRecyclerViewAdapter
 import cit.edu.gamego.helper.GameRecyclerViewAdapterwGlide
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
 
 
 class about_me_dev2 : Activity() {
@@ -22,6 +25,13 @@ class about_me_dev2 : Activity() {
 
 
         val abmetv = findViewById<TextView>(R.id.abmetv2)
+        val pic = findViewById<ImageView>(R.id.pic)
+
+        Glide.with(this)
+            .load(R.drawable.juswa)  // Replace with the actual image URL or resource ID
+            .transform(CircleCrop())  // Apply CircleCrop transformation
+            .into(pic)
+
 
         val message = """
         Hello! I am Joshua D. Arco, one of the developers of this app.I was born on July 15 2004,and I am currently 20 years old. I live in Naga City,Cebu,Philippines, and I am currently studying at Cebu Institute of Technology - University (CIT-U), pursuing a Bachelor's degree in Computer Science.
@@ -36,11 +46,11 @@ class about_me_dev2 : Activity() {
 
         // continue this tom
         val listOfGame = listOf(
-            Game("Counter Strike 2", "2023","6.6", Image(R.drawable.cs2.toString(),""),cs2Trailer),
-            Game("DOTA 2", "2011","8.8", Image(R.drawable.dota.toString(),""),dota2Trailer),
-            Game("Black Myth Wukong", "2024","9.3", Image(R.drawable.bmw.toString(),""),bmwTrailer),
-            Game("God of War: Ragnarock", "2018","9.9", Image(R.drawable.gowrag.toString(),""),gowTrailer),
-            Game("Elden Ring", "2018","10.0", Image(R.drawable.eldenring.toString(),""),eldenRingTrailer)
+            Game("Counter Strike 2", "2023","6.6", Image(R.drawable.cs2.toString(),""),cs2Trailer,"",false,"3030-88779"),
+            Game("DOTA 2", "2011","8.8", Image(R.drawable.dota.toString(),""),dota2Trailer,"",false,"3030-32887"),
+            Game("Black Myth Wukong", "2024","9.3", Image(R.drawable.bmw.toString(),""),bmwTrailer,"",false,"3030-80279"),
+            Game("God of War: Ragnarock", "2018","9.9", Image(R.drawable.gowrag.toString(),""),gowTrailer,"",false,"3030-80643"),
+            Game("Elden Ring", "2018","10.0", Image(R.drawable.eldenring.toString(),""),eldenRingTrailer,"",false,"3030-79403")
         )
 
 
@@ -52,14 +62,7 @@ class about_me_dev2 : Activity() {
             this,
             listOfGame,
             onClick = {game ->
-                startActivity(
-                    Intent(this,reviewPageActivity::class.java).apply{
-                        putExtra("title",game.name)
-                        putExtra("imageRes",game.photo?.medium_url)
-                        putExtra("ratings",game.rating)
-                        putExtra("trailer",game.gameTrailer)
-                    }
-                )
+                moreWithGlide(game)
             }, isAlternativeLayout = true
         )
 

@@ -20,6 +20,14 @@ class settingsFragment : Fragment() {
         val about_devs = view.findViewById<ImageView>(R.id.about_devs)
         val edit_password = view.findViewById<ImageView>(R.id.edit_profilepic_settings)
         val edit_profilepicture = view.findViewById<ImageView>(R.id.edit_profilepic)
+        val game_config=  view.findViewById<ImageView>(R.id.gmae_config_settings)
+
+        game_config.setOnClickListener{
+            startActivity(
+                Intent(requireContext(),GameConfigActivity::class.java)
+            )
+        }
+
         about_game.setOnClickListener{
             startActivity(
                 Intent(requireContext(),about_the_game::class.java)

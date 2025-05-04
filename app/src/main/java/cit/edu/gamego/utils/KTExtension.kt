@@ -14,7 +14,6 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import cit.edu.gamego.LoginActivity
 import cit.edu.gamego.R
 import cit.edu.gamego.data.Game
 import cit.edu.gamego.reviewPageActivity
@@ -27,6 +26,7 @@ import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
+import cit.edu.gamego.LoginActivity
 import cit.edu.gamego.data.ApiClient
 import retrofit2.Call
 import retrofit2.Callback

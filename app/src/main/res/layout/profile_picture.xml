@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/dragonbackground"
+    android:background="@drawable/forget_pass_bg"
     tools:context=".ProfilePicFragment">
 
 
