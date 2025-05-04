@@ -260,7 +260,9 @@ class landingFragment : Fragment() {
 
         // fetching games using API
 
-        fetchAllGames()
+        viewLifecycleOwner.lifecycleScope.launch {
+            fetchAllGames()
+        }
 
         // when swiping up it will reset shimmer and hide recyucler views
         swipeRefreshLayout.setOnRefreshListener {
@@ -384,16 +386,17 @@ class landingFragment : Fragment() {
 
     @SuppressLint("NotifyDataSetChanged")
     private fun fetchRandomGames() {
+        if (!isAdded || view == null) return // avoid crashing if view is destroyed
         val apiKey = BuildConfig.GIANT_BOMB_API_KEY
-        val randomOffset = (0..100).random() // for randomizing games
+        val randomOffset = (0..100).random()
         ApiClient.api.getGames(apiKey, offset = randomOffset)
             .enqueueGameList(viewLifecycleOwner, listOfRandomGames) {
-                // Notify the adapter to update the UI when data is fetched
                 randomGamesGameameAdapter.notifyDataSetChanged()
                 isRandomLoaded = true
                 checkIfDataLoaded()
             }
     }
+
 
 
 
@@ -705,10 +708,12 @@ class landingFragment : Fragment() {
         view?.findViewById<LinearLayout>(R.id.realContent)?.visibility = View.GONE
 
         // w8 3sec b4 refetching
-        CoroutineScope(Dispatchers.Main).launch {
-            delay(3000L) // 3 seconds
+        viewLifecycleOwner.lifecycleScope.launch {
+            delay(3000L)
+            if (!isAdded || view == null) return@launch
             fetchAllGames()
         }
+
     }
 
 

@@ -24,6 +24,7 @@ import android.annotation.SuppressLint
 import android.util.Log
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import cit.edu.gamego.LoginActivity
@@ -38,12 +39,12 @@ import cit.edu.gamego.data.Image
 import cit.edu.gamego.data.ReviewListResponse
 import cit.edu.gamego.data.SingleGameResponse
 import com.bumptech.glide.Glide
-
+import kotlinx.coroutines.launch
 
 //This is for API call
 @SuppressLint("NotifyDataSetChanged")
 fun Call<GameApiResponse>.enqueueGameList(
-    lifecycleOwner: LifecycleOwner, // Pass the LifecycleOwner (Fragment or Activity)
+    lifecycleOwner: LifecycleOwner,
     list: MutableList<Game>,
     onNotify: () -> Unit
 ) {
@@ -79,9 +80,10 @@ fun Call<GameApiResponse>.enqueueGameList(
                         )
                     })
 
-                    // ✅ Safely run the UI update within the lifecycleOwner's lifecycleScope
-                    lifecycleOwner.lifecycleScope.launchWhenStarted {
-                        onNotify() // Trigger the UI update
+                    if (lifecycleOwner.lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) {
+                        lifecycleOwner.lifecycleScope.launch {
+                            onNotify()
+                        }
                     }
                 }
             } else {

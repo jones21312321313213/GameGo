@@ -14,9 +14,7 @@ class GameConfigActivity : Activity() {
 
 
         back.setOnClickListener{
-            startActivity(
-                Intent(this,settingsFragment::class.java)
-            )
+
             finish()
         }
     }
