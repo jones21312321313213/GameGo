@@ -94,7 +94,7 @@ class ChangeProfilePic : Activity() {
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 runOnUiThread {
-                    Log.e("PROFILE_UPLOAD", "Upload failed: \${e.message")
+                    CuteToast.ct(this@ChangeProfilePic, "Upload Failed", CuteToast.LENGTH_SHORT, CuteToast.ERROR, true).show();
                 }
             }
 

@@ -82,12 +82,12 @@
 
                 <Button
                     android:id="@+id/upload_image"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/button_corner"
                     android:backgroundTint="@color/soft_red"
-                    android:layout_width="150dp"
-                    android:textColor="@color/white"
-                    android:layout_height="wrap_content"
-                    android:text="Upload image" />
+                    android:text="Upload image"
+                    android:textColor="@color/white" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

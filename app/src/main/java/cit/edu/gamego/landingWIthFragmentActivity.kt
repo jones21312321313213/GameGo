@@ -56,7 +56,6 @@ class landingWIthFragmentActivity : AppCompatActivity() {
         navView.setNavigationItemSelectedListener { menuItem ->
             if (menuItem.itemId == R.id.nav_logout) {
                 showConfirmation("Are you sure you want to log out")
-                finish()
                 return@setNavigationItemSelectedListener true
             }
             val fragment: Fragment = when (menuItem.itemId) {

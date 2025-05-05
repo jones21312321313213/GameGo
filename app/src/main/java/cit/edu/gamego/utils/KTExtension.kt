@@ -24,6 +24,8 @@ import android.annotation.SuppressLint
 import android.util.Log
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
@@ -117,6 +119,10 @@ fun String.extractGuidFromShowUrl(): String? {
 
 
 fun Context.showConfirmation(message: String) {
+    if (this is Fragment && !this.isAdded) {
+        return // Prevent showing the dialog if the fragment is not added
+    }
+
     val dialog = Dialog(this)
     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
     dialog.setCancelable(false)
@@ -142,14 +148,28 @@ fun Context.showConfirmation(message: String) {
 
     btnYes.setOnClickListener {
         Toast.makeText(this, "Logged out", Toast.LENGTH_LONG).show()
+
         val intent = Intent(this, LoginActivity::class.java)
+
+        // Clearing the back stack and start a new task ( will prevent the user from going back)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
         startActivity(intent)
+
+        if (this is Activity) {
+            finish()
+        }
+
+        dialog.dismiss()
     }
 
     btnNo.setOnClickListener {
         dialog.dismiss()
     }
 }
+
+
+
 
 @SuppressLint("SetJavaScriptEnabled")
 fun WebView.setupAndLoad(trailer: String, fallbackImageView: ImageView, super_url: String?) {
