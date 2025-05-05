@@ -62,11 +62,10 @@ class reviewPageActivity : AppCompatActivity() {
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_review_page)
+
         binding = ActivityReviewPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //val back = findViewById<ImageView>(R.id.back_rp)
          fallbackk = binding.fallbackImage
 
 
@@ -96,19 +95,19 @@ class reviewPageActivity : AppCompatActivity() {
             val isVisible = ratings.getLocalVisibleRect(rect)
 
             if (!isVisible) {
-                // 'ratings' is not visible
+
                 scrollUpButton.bringToFront()
-                scrollUpButton.invalidate() // Refresh the view to apply changes
-                scrollUpButton.requestLayout() // Request a layout pass
+                scrollUpButton.invalidate()
+                scrollUpButton.requestLayout()
                 scrollUpButton.visibility = View.VISIBLE
             } else {
-                // 'ratings' is fully visible
+
                 scrollUpButton.visibility = View.GONE
             }
         }
 
         scrollUpButton.setOnClickListener {
-            // Scroll to the 'ratings' view
+
             scrollView.post {
                 scrollView.smoothScrollTo(0, scrollView.top)
             }

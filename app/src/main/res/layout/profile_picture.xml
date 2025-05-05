@@ -24,8 +24,7 @@
             android:layout_marginBottom="50dp"
             android:background="@drawable/pfp"
             android:scaleType="centerCrop"
-            android:clipToOutline="true"
-            android:src="@drawable/mew" />
+            android:clipToOutline="true" />
 
         <!-- edit circle    ?-->
         <TextView
@@ -35,7 +34,7 @@
             android:layout_gravity="center"
             android:fontFamily="sans-serif"
             android:layout_marginTop="72dp"
-            android:text="Jcole21"
+            android:text=" "
             android:textColor="#ffffff"
             android:textSize="30sp"
             android:textStyle="bold"
@@ -48,7 +47,7 @@
             android:layout_gravity="center"
             android:fontFamily="sans-serif"
             android:layout_marginTop="109dp"
-            android:text="jcole@gmail.com"
+            android:text=" "
             android:textColor="#FFFFFF"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -94,7 +93,7 @@
                         android:layout_marginTop="15dp"
                         android:background="@drawable/profilepiceditcircle"
                         android:fontFamily="sans-serif"
-                        android:text="Jermain Cole"
+                        android:text=" "
                         android:textColor="#838383"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -129,7 +128,7 @@
                         android:layout_gravity="center"
                         android:layout_marginTop="15dp"
                         android:fontFamily="sans-serif"
-                        android:text="jcole@gmail.com"
+                        android:text=" "
                         android:textColor="#838383"
                         android:textSize="20sp"
                         android:background="@drawable/profilepiceditcircle"

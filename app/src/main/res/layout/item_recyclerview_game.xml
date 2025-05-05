@@ -16,7 +16,7 @@
             android:layout_width="289dp"
             android:layout_height="245dp"
             android:background="@drawable/rounded_shadow_bg">
-            <!-- Main Image -->
+
             <ImageView
                 android:layout_marginTop="20dp"
                 android:id="@+id/photo_irg"
@@ -25,7 +25,7 @@
                 android:layout_gravity="center|top"
                 android:src="@drawable/ye" />
 
-            <!-- Title Text (Centered at the Top) -->
+
             <TextView
                 android:id="@+id/title_irg"
                 android:layout_width="match_parent"

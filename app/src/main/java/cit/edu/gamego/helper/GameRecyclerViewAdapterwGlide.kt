@@ -12,10 +12,10 @@ import cit.edu.gamego.data.Game
 import com.bumptech.glide.Glide
 
 class  GameRecyclerViewAdapterwGlide(
-    private val context: Context,  // Pass the context to determine activity
+    private val context: Context,
     private val listOfGame: List<Game>,
     private val onClick: (Game) -> Unit,
-    private val isAlternativeLayout: Boolean = false // Flag for layout selection
+    private val isAlternativeLayout: Boolean = false
 ) : RecyclerView.Adapter<GameRecyclerViewAdapterwGlide.ItemViewHolder>() {
 
     class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -24,13 +24,13 @@ class  GameRecyclerViewAdapterwGlide(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        // Condition to choose between default layout, first alternative, and second alternative layout
+
         val layoutId = when {
             isAlternativeLayout -> {
-                R.layout.item_devs_fav_game // First alternative layout
+                R.layout.item_devs_fav_game
             }
             else -> {
-                R.layout.item_recyclerview_game // Default layout
+                R.layout.item_recyclerview_game
             }
         }
 

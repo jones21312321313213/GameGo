@@ -47,10 +47,6 @@ class Favorites : Activity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
 
-//        val name = FavoritesDataHolder.title
-//        val rating = FavoritesDataHolder.rating
-//        val img = FavoritesDataHolder.imageRes ?: R.drawable.ye.toString()
-
 
         recyclerViewAdapter = GameRecyclerViewAdapter(
             this,

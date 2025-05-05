@@ -28,13 +28,13 @@ class activity_developer : Activity() {
         val b = findViewById<ImageView>(R.id.pic2);
 
         Glide.with(this)
-            .load(R.drawable.archi)  // Replace with the actual image URL or resource ID
-            .transform(CircleCrop())  // Apply CircleCrop transformation
+            .load(R.drawable.archi)
+            .transform(CircleCrop())
             .into(ab)
 
         Glide.with(this)
-            .load(R.drawable.juswa)  // Replace with the actual image URL or resource ID
-            .transform(CircleCrop())  // Apply CircleCrop transformation
+            .load(R.drawable.juswa)
+            .transform(CircleCrop())
             .into(b)
 
         abme_archival.setOnClickListener {

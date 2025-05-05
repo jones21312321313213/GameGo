@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide
 import android.util.Patterns
 
 class GameRecyclerViewAdapter(
-    private val context: Context,  // Pass the context to determine activity
+    private val context: Context,
     private val listOfGame: List<Game>,
     private val onClick: (Game) -> Unit,
     private val isAlternativeLayout: Boolean = false // Flag for layout selection
@@ -26,9 +26,9 @@ class GameRecyclerViewAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val layoutId = if (isAlternativeLayout) {
-            R.layout.item_devs_fav_game // Use alternative layout
+            R.layout.item_devs_fav_game
         } else {
-            R.layout.items_favorites // Default layout
+            R.layout.items_favorites
         }
 
         val view = LayoutInflater.from(parent.context).inflate(layoutId, parent, false)
@@ -41,13 +41,13 @@ class GameRecyclerViewAdapter(
         // Check if the medium_url is a valid URL
         val url = item.photo?.medium_url
         if (url != null && Patterns.WEB_URL.matcher(url).matches()) {
-            // If it's a valid URL, load it with Glide
+
             Glide.with(holder.itemView.context)
-                .load(url) // Load image from URL
+                .load(url)
                 .into(holder.photo)
         } else {
-            // Handle case where it's not a valid URL (e.g., a default image or error image)
-            holder.photo.setImageResource(item.photo?.medium_url!!.toInt()) // Replace with your default image
+
+            holder.photo.setImageResource(item.photo?.medium_url!!.toInt())
         }
 
         holder.name.text = item.name

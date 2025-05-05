@@ -1,0 +1,7 @@
+<!-- res/drawable/rounded_red_transparent.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <!-- Semi-transparent solid red -->
+    <solid android:color="#ABFF0000" /> <!-- 88 = ~53% opacity, FF0000 = pure red -->
+    <corners android:radius="16dp" />
+</shape>

@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/landingbg">
 
-    <!-- Main Content Layout -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -19,7 +18,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <!-- Search View -->
             <SearchView
                 android:id="@+id/searchView"
                 android:layout_width="match_parent"
@@ -30,7 +28,7 @@
                 android:background="@drawable/searchbar"
                 android:iconifiedByDefault="false" />
 
-            <!-- ProgressBar (Initially Hidden) -->
+
             <ProgressBar
                 android:id="@+id/progressBar"
                 style="?android:attr/progressBarStyleLarge"
@@ -39,7 +37,7 @@
                 android:layout_gravity="center_horizontal"
                 android:visibility="gone" />
 
-            <!-- ListView -->
+
             <ListView
                 android:id="@+id/listview"
                 android:layout_width="match_parent"
@@ -53,7 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <!-- Scrollable Content (RecyclerViews) -->
+
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -65,19 +63,19 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <!-- This is your loading shimmer -->
+
                 <com.facebook.shimmer.ShimmerFrameLayout
                     android:id="@+id/shimmer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:visibility="visible">
 
-                    <!-- Fake loading UI only -->
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
-                        <!-- Add shimmer placeholders here -->
+
                         <include layout="@layout/shimmer_layout">
 
                         </include>
@@ -95,7 +93,6 @@
                     </LinearLayout>
                 </com.facebook.shimmer.ShimmerFrameLayout>
 
-                <!-- This is your actual content -->
                 <LinearLayout
                     android:id="@+id/realContent"
                     android:layout_width="match_parent"
@@ -286,28 +283,6 @@
                         android:paddingBottom="20dp"
                         android:scrollbars="horizontal"/>
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Random Games"
-                        android:textColor="@android:color/white"
-                        android:gravity="center"
-                        android:textSize="20sp"
-                        android:textStyle="bold|italic" />
-
-
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:visibility="gone"
-                        android:id="@+id/randomGamesRecyclerView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:clipToPadding="false"
-                        android:nestedScrollingEnabled="false"
-                        android:paddingBottom="20dp"
-                        android:scrollbars="horizontal"/>
-
                     <androidx.recyclerview.widget.RecyclerView
                         android:visibility="gone"
                         android:id="@+id/recyclerview"
@@ -326,7 +301,7 @@
 
 
 
-    <!-- Navigation Drawer -->
+
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"

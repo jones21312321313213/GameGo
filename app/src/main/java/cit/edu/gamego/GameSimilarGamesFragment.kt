@@ -30,7 +30,7 @@ class GameSimilarGamesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
         val view = inflater.inflate(R.layout.fragment_game_similar_games, container, false)
         recyclerView = view.findViewById(R.id.horizontalRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -72,20 +72,20 @@ class GameSimilarGamesFragment : Fragment() {
         if(listOfSimilarGames.size >= MAX_SIMILAR_GAMES) return
 
         val parentGameGuid = arguments?.getString("parentGameGuid") // Make sure this is passed in arguments
-        // 💾 Check gameCache first
+
         AppCache.gameCache[guid]?.let { cachedGame ->
             Log.d("CACHE", "Loaded from game cache: ${cachedGame.name}")
             listOfSimilarGames.add(cachedGame)
             adapter.notifyItemInserted(listOfSimilarGames.size - 1)
 
-            // Optionally cache this in similarGamesCache under parent
+
             if (parentGameGuid != null) {
                 val updatedList = (AppCache.similarGamesCache[parentGameGuid] ?: emptyList()) + cachedGame
                 AppCache.similarGamesCache[parentGameGuid] = updatedList
             }
             return
         }
-        // 🔑 If not cached, fetch from API
+
         val apiKey = BuildConfig.GIANT_BOMB_API_KEY
         val call = ApiClient.api.getGameByGuid(guid, apiKey)
 

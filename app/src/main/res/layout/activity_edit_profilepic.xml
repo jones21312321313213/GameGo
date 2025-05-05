@@ -10,17 +10,18 @@
     android:background="@drawable/forget_pass_bg"
     tools:context=".ChangeProfilePic">
 
-    <!-- Back Arrow -->
+    <!-- Fixed Top Section -->
     <ImageView
         android:id="@+id/back_rp"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_margin="16dp"
-        android:layout_marginBottom="120dp"
+        android:layout_marginBottom="60dp"
         android:layout_gravity="start"
         android:src="@drawable/back_arrow_white" />
 
     <LinearLayout
+        android:layout_marginTop="-10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -38,44 +39,56 @@
         android:layout_height="wrap_content"
         android:text="Level up your profile"
         android:textSize="34sp"
+        android:layout_marginBottom="10dp"
         android:textColor="@color/white"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="16dp"/>
+        android:layout_gravity="center_horizontal"/>
 
-    <!-- Centered Profile Image -->
-    <ImageView
-        android:id="@+id/image_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_gravity="center" />
+    <!-- Scrollable Section -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
 
-    <!-- Horizontal layout for buttons -->
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="100dp">
-
-        <Button
-            android:background="@drawable/button_corner"
-            android:id="@+id/choose_image"
-            android:backgroundTint="@color/soft_red"
-            android:layout_width="150dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:text="Choose image"
-            android:layout_marginEnd="8dp" />
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
 
-        <Button
-            android:id="@+id/upload_image"
-            android:background="@drawable/button_corner"
-            android:backgroundTint="@color/soft_red"
-            android:layout_width="150dp"
-            android:textColor="@color/white"
-            android:layout_height="wrap_content"
-            android:text="Upload image" />
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/image_view"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="40dp" />
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="40dp">
+
+                <Button
+                    android:id="@+id/choose_image"
+                    android:background="@drawable/button_corner"
+                    android:backgroundTint="@color/soft_red"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="Choose image"
+                    android:layout_marginEnd="8dp" />
+
+                <Button
+                    android:id="@+id/upload_image"
+                    android:background="@drawable/button_corner"
+                    android:backgroundTint="@color/soft_red"
+                    android:layout_width="150dp"
+                    android:textColor="@color/white"
+                    android:layout_height="wrap_content"
+                    android:text="Upload image" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

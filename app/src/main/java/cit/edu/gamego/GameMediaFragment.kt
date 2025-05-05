@@ -28,7 +28,7 @@ class GameMediaFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
         val view = inflater.inflate(R.layout.fragment_media, container, false)
 
         val tempImageList: List<String> =
@@ -36,9 +36,9 @@ class GameMediaFragment : Fragment() {
 
         recyclerView = view.findViewById(R.id.horizontalRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        // Populate listOfImages with Game objects containing the image URLs
+
         tempImageList.forEach { img ->
-            // Create a Game object with the necessary data
+
             val game = Game(
                 name = "",
                 description = "",
@@ -49,8 +49,6 @@ class GameMediaFragment : Fragment() {
             listOfImages.add(game)
         }
 
-        // Initialize the adapter
-        // Change the layout of this later
         adapter = GameMediaRecyclerViewAdapter(
              requireContext(),
             listOfImages,

@@ -9,11 +9,11 @@
         </shape>
     </item>
 
-    <!-- Main Card Layer (White Background) -->
+    <!-- Semi-transparent Soft Snow Layer -->
     <item android:top="4dp" android:left="4dp">
         <shape android:shape="rectangle">
             <corners android:radius="20dp"/>
-            <solid android:color="@android:color/white"/>
+            <solid android:color="#D9F0F0F0"/> <!-- Soft, muted snow with opacity -->
         </shape>
     </item>
 

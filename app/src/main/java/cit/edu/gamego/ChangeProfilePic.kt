@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import cit.edu.gamego.R
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.rejowan.cutetoast.CuteToast
@@ -65,7 +66,11 @@ class ChangeProfilePic : Activity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == IMAGE_PICK_CODE && resultCode == Activity.RESULT_OK) {
             imageUri = data?.data
-            imageView.setImageURI(imageUri)
+            Glide.with(this)
+                .load(imageUri)
+                .circleCrop()
+                .into(imageView)
+
         }
     }
 

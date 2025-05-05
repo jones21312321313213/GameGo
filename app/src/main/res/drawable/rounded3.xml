@@ -1,0 +1,7 @@
+<!-- res/drawable/rounded_white_transparent.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <!-- Semi-transparent snow white -->
+    <solid android:color="#E2FFFFFF" /> <!-- 88 = ~53% opacity, FFFFFF = white -->
+    <corners android:radius="16dp" />
+</shape>

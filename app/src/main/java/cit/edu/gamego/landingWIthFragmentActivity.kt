@@ -25,14 +25,14 @@ class landingWIthFragmentActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_landing_with_fragment)
 
-        // Load the initial fragment
+
         if (supportFragmentManager.findFragmentById(R.id.fragment_container) == null) {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, landingFragment())
                 .commit()
         }
 
-        // Retrieve intent data from login or previous activity
+
 
 
         val fav = findViewById<ImageView>(R.id.faves)
@@ -44,7 +44,6 @@ class landingWIthFragmentActivity : AppCompatActivity() {
         navView = findViewById(R.id.nav_view)
         val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.toolbar)
 
-        //supportActionBar?.title = ""
         setSupportActionBar(toolbar)
 
         val toggle = ActionBarDrawerToggle(
@@ -57,6 +56,7 @@ class landingWIthFragmentActivity : AppCompatActivity() {
         navView.setNavigationItemSelectedListener { menuItem ->
             if (menuItem.itemId == R.id.nav_logout) {
                 showConfirmation("Are you sure you want to log out")
+                finish()
                 return@setNavigationItemSelectedListener true
             }
             val fragment: Fragment = when (menuItem.itemId) {

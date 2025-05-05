@@ -64,7 +64,6 @@ class ProfilePicFragment : Fragment() {
                                 .into(pp)
                         }
 
-                        // Assign values to views
                         usern1.text = username
                         name.text = username
                         email1.text = emailVal

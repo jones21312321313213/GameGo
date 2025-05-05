@@ -45,11 +45,11 @@
 
             <LinearLayout
                 android:layout_width="359dp"
-                android:layout_height="373dp"
+                android:layout_height="255dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="70dp"
+                android:layout_marginTop="120dp"
                 android:backgroundTint="#2B2B2B"
-                android:background="@drawable/searchbar"
+                android:background="@drawable/rounded"
                 android:orientation="horizontal"
                 android:paddingTop="20dp">
 
@@ -63,8 +63,7 @@
                     <!--  Archival  -->
                     <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginVertical="8dp"
+                        android:layout_height="200dp"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -88,9 +87,9 @@
                         <Button
                             android:id="@+id/about_me_archival"
                             android:layout_width="120dp"
-                            android:layout_height="50dp"
+                            android:layout_height="40dp"
                             android:background="@drawable/button_corner"
-                            android:backgroundTint="#F2E2B1"
+                            android:backgroundTint="#FF0000"
                             android:fontFamily="sans-serif"
                             android:padding="10dp"
                             android:text="About me"
@@ -105,7 +104,7 @@
                     <!--  Arco  -->
                     <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="200dp"
                         android:layout_marginVertical="8dp"
                         android:gravity="center"
                         android:orientation="vertical">
@@ -130,9 +129,9 @@
                         <Button
                             android:id="@+id/about_me_arco"
                             android:layout_width="120dp"
-                            android:layout_height="50dp"
+                            android:layout_height="40dp"
                             android:background="@drawable/button_corner"
-                            android:backgroundTint="#F2E2B1"
+                            android:backgroundTint="#FF0000"
                             android:fontFamily="sans-serif"
                             android:padding="10dp"
                             android:text="About me"

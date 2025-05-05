@@ -31,8 +31,8 @@ class about_me_dev1 : Activity() {
         val pic = findViewById<ImageView>(R.id.pic)
 
         Glide.with(this)
-            .load(R.drawable.archi)  // Replace with the actual image URL or resource ID
-            .transform(CircleCrop())  // Apply CircleCrop transformation
+            .load(R.drawable.archi)
+            .transform(CircleCrop())
             .into(pic)
 
         val message = """

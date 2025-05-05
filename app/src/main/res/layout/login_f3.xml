@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/loginRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/redwave">
+    android:background="@drawable/redwave"
+    android:fillViewport="true">
 
-    <!-- Main content container -->
+    <!-- ScrollView can only have one direct child -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="40dp">
 
         <!-- Top Logo -->
         <ImageView
@@ -18,8 +20,6 @@
             android:layout_height="400dp"
             android:contentDescription="Logo"
             android:src="@drawable/logo" />
-
-        <!-- Scrollable content -->
 
         <!-- Welcome text -->
         <TextView
@@ -83,25 +83,25 @@
             </FrameLayout>
         </LinearLayout>
 
-        <!-- Transition Button OUTSIDE scroll area -->
+        <!-- Login Button -->
         <com.royrodriguez.transitionbutton.TransitionButton
             android:id="@+id/login_Id"
             android:layout_width="250dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="25dp"
             android:layout_height="50dp"
-            android:layout_gravity="center|bottom"
-            android:layout_marginBottom="30dp"
+            android:layout_gravity="center"
             android:background="#bdc7d8"
             android:src="#bdc7d8"
             android:text="Login"
             android:textColor="@color/white"
             android:textSize="18sp"
-            android:backgroundTint="#bdc7d8"/>
+            android:backgroundTint="#bdc7d8" />
+
         <!-- Sign Up Prompt -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -126,6 +126,4 @@
                 android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
-
-
-</FrameLayout>
+</ScrollView>

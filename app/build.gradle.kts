@@ -90,10 +90,10 @@ dependencies {
     implementation("androidx.cardview:cardview:1.0.0")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
     implementation("androidx.coordinatorlayout:coordinatorlayout:1.2.0")
-    implementation("androidx.appcompat:appcompat:1.6.1") // upgraded version
+    implementation("androidx.appcompat:appcompat:1.6.1")
 
     // Material Components
-    implementation("com.google.android.material:material:1.11.0") // use the latest stable
+    implementation("com.google.android.material:material:1.11.0")
 
     // Navigation
     implementation(libs.androidx.navigation.fragment.ktx)
@@ -112,12 +112,10 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
-    // Optional logging for debugging:
-    // implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
 
     // Glide for image loading
     implementation("com.github.bumptech.glide:glide:4.16.0")
-    annotationProcessor("com.github.bumptech.glide:compiler:4.16.0") // matched versions
+    annotationProcessor("com.github.bumptech.glide:compiler:4.16.0") 
 
     // Shimmer effect
     implementation("com.facebook.shimmer:shimmer:0.5.0")

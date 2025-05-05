@@ -23,6 +23,8 @@ import com.google.firebase.database.FirebaseDatabase
 import com.rejowan.cutetoast.CuteToast
 import com.royrodriguez.transitionbutton.TransitionButton
 import android.graphics.Color
+import android.widget.ScrollView
+
 class LoginActivity : Activity() {
     private lateinit var rootView: View
     private lateinit var auth: FirebaseAuth
@@ -91,13 +93,13 @@ class LoginActivity : Activity() {
                     val userData = dataSnapshot.children.first().value as? Map<*, *>
                     val email = userData?.get("email")?.toString() ?: ""
 
-                    // Now use the email to log in the user via FirebaseAuth
+
                     auth.signInWithEmailAndPassword(email, password)
                         .addOnSuccessListener {
                             val uid = auth.currentUser?.uid ?: return@addOnSuccessListener
                             val usernameFetched = userData?.get("username")?.toString() ?: ""
 
-                            val rootLayout = findViewById<FrameLayout>(R.id.loginRoot)
+                            val rootLayout = findViewById<ScrollView>(R.id.loginRoot)
                             val layoutParams = transitionButton.layoutParams
                             layoutParams.width = rootLayout.width
                             layoutParams.height = rootLayout.height
@@ -106,7 +108,7 @@ class LoginActivity : Activity() {
                             transitionButton.stopAnimation(
                                 TransitionButton.StopAnimationStyle.EXPAND
                             ) {
-                                // Navigate to landing screen
+
                                 startActivity(
                                     Intent(this, landingWIthFragmentActivity::class.java).apply {
                                         putExtra("uid", uid)
@@ -119,11 +121,10 @@ class LoginActivity : Activity() {
                         .addOnFailureListener {
                             CuteToast.ct(this, "Login failed. Please check your credentials and try again.", CuteToast.LENGTH_SHORT, CuteToast.SAD, true).show();
                             Log.e("AUTH", "Login error: ${it.message}")
-                            // Stop animation with a shake if login fails
                             transitionButton.stopAnimation(TransitionButton.StopAnimationStyle.SHAKE, null)
                         }
                 } else {
-                    // Show a message if user is not found and trigger shake animation
+
                     CuteToast.ct(this, "User not found with that username", CuteToast.LENGTH_SHORT, CuteToast.SAD, true).show();
                     transitionButton.stopAnimation(TransitionButton.StopAnimationStyle.SHAKE, null)
                 }
@@ -131,7 +132,7 @@ class LoginActivity : Activity() {
             .addOnFailureListener {
                 CuteToast.ct(this, "Error fetching user dat", CuteToast.LENGTH_SHORT, CuteToast.SAD, true).show();
                 Log.e("Firebase Error", "Error: ${it.message}")
-                // Stop animation with a shake if fetching user data fails
+
                 transitionButton.stopAnimation(TransitionButton.StopAnimationStyle.SHAKE, null)
             }
     }

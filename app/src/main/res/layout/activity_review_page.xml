@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".reviewPageActivity"
     android:background="@drawable/advancesearchbg">
-    <!-- Back Button -->
+
     <ImageView
         android:id="@+id/back_rp"
         android:layout_width="50dp"
@@ -16,7 +16,7 @@
         android:layout_marginBottom="20dp"
         android:src="@drawable/back_arrow_white" />
 
-    <!-- Scrollable Content -->
+
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_marginTop="80dp"
@@ -33,7 +33,7 @@
 
 
 
-            <!-- Game Title -->
+
             <TextView
                 android:id="@+id/game_title_rp"
                 android:layout_width="wrap_content"
@@ -46,7 +46,7 @@
                 android:layout_gravity="center_horizontal"
                 android:paddingBottom="10dp" />
 
-            <!-- Grouped Layout for WebView + Game Info (Image + Platform & Genre) -->
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <!-- Main Image -->
+
                     <ImageView
                         android:id="@+id/fallbackImage"
                         android:layout_width="match_parent"
@@ -66,7 +66,7 @@
                         android:layout_gravity="center"
                         android:scaleType="fitCenter" />
 
-                    <!-- Heart Icon -->
+
                     <ImageView
                         android:id="@+id/insideHeard"
                         android:layout_width="250dp"
@@ -85,14 +85,14 @@
                     android:gravity="center_vertical"
                     android:weightSum="3">
 
-                    <!-- First box: Platform -->
+
                     <LinearLayout
                         android:id="@+id/platform"
                         android:layout_width="0dp"
                         android:layout_height="200dp"
                         android:layout_weight="1"
+                        android:background="@drawable/rounded"
                         android:layout_marginEnd="8dp"
-                        android:background="#A45A52"
                         android:padding="12dp"
                         android:elevation="4dp"
                         android:orientation="vertical">
@@ -115,18 +115,17 @@
                             android:textSize="12sp"
                             android:textColor="@android:color/white"
                             android:textStyle="bold"
-                            android:justificationMode="inter_word"
                             android:paddingBottom="4dp" />
                     </LinearLayout>
 
-                    <!-- Second box: Genre -->
+
                     <LinearLayout
                         android:id="@+id/genre"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:layout_marginEnd="8dp"
-                        android:background="#A45A52"
+                        android:background="@drawable/rounded"
                         android:padding="12dp"
                         android:elevation="4dp"
                         android:orientation="vertical">
@@ -134,11 +133,11 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:paddingBottom="4dp"
                             android:text="Genre"
-                            android:textSize="16sp"
                             android:textColor="@android:color/white"
-                            android:textStyle="bold"
-                            android:paddingBottom="4dp" />
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/genre_text"
@@ -158,7 +157,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:background="#A45A52"
+                        android:background="@drawable/rounded"
                         android:padding="12dp"
                         android:elevation="4dp"
                         android:orientation="vertical">
@@ -188,13 +187,13 @@
 
             </LinearLayout>
 
-            <!-- IDGB Rating Label -->
+
             <LinearLayout
                 android:id="@+id/ratings"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:background="#d8d8d8"
+                android:background="@drawable/rounded3"
                 android:orientation="horizontal"
                 android:gravity="center_vertical">
 
@@ -216,18 +215,18 @@
                     android:textSize="20sp"
 
                     android:textColor="@android:color/black"
-                    android:text="N/A"
+                    android:text=" "
                     android:maxLines="1"
                     android:ellipsize="end"
                     android:singleLine="true"/>
 
-                <!-- Spacer to push the heart to the end -->
+
                 <View
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
-                <!-- Heart Icon at the end -->
+
                 <ImageView
                     android:id="@+id/heart"
                     android:layout_width="50dp"
@@ -236,7 +235,7 @@
                     android:src="@drawable/baseline_favorite_border_24" />
             </LinearLayout>
 
-            <!-- Review Section -->
+
             <com.google.android.material.tabs.TabLayout
                 android:layout_marginTop="20dp"
                 android:id="@+id/tabLayout"
@@ -248,19 +247,18 @@
                 android:textColor="@android:color/black"
                 app:tabIndicatorColor="@null"
                 app:tabGravity="fill"
-                android:background="#d8d8d8"
+                android:background="@drawable/rounded3"
                 app:tabIndicator="@drawable/tab_indicator" />
 
-            <!-- FrameLayout to hold fragments -->
+
             <FrameLayout
                 android:id="@+id/frameLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-
         </LinearLayout>
     </ScrollView>
 
-    <!-- Scroll Up Button -->
+
     <Button
         android:id="@+id/scrollUpButton"
         android:layout_width="80dp"

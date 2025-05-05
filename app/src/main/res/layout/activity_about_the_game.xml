@@ -67,8 +67,7 @@
             android:layout_height="450dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="120dp"
-            android:background="@drawable/searchbar"
-            android:backgroundTint="#2B2B2B"
+            android:background="@drawable/rounded"
             android:orientation="vertical"
             android:paddingTop="20dp">
 

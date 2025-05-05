@@ -28,8 +28,8 @@ class about_me_dev2 : Activity() {
         val pic = findViewById<ImageView>(R.id.pic)
 
         Glide.with(this)
-            .load(R.drawable.juswa)  // Replace with the actual image URL or resource ID
-            .transform(CircleCrop())  // Apply CircleCrop transformation
+            .load(R.drawable.juswa)
+            .transform(CircleCrop())
             .into(pic)
 
 

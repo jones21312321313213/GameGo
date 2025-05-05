@@ -53,7 +53,6 @@ class landingFragment : Fragment() {
     private lateinit var progressBar: ProgressBar
 
     private lateinit var arrayAdapter: GameListAdapter
-    private lateinit var randomGamesGameameAdapter: GameRecyclerViewAdapterwGlide
     private lateinit var highRatedGamesGameAdapter: GameRecyclerViewAdapterwGlide
     private lateinit var ps4GamesGameAdapter: GameRecyclerViewAdapterwGlide
     private lateinit var xbox1GamesGameAdapter: GameRecyclerViewAdapterwGlide
@@ -66,7 +65,6 @@ class landingFragment : Fragment() {
     private lateinit var xbox360GameAdapter: GameRecyclerViewAdapterwGlide
 
     private lateinit var listOfGame: MutableList<Game>
-    private val listOfRandomGames = mutableListOf<Game>()
     private val listOfHighRatedGames = mutableListOf<Game>()
     private val listOfPs4Games = mutableListOf<Game>()
     private val listOfXbox1Games = mutableListOf<Game>()
@@ -82,7 +80,6 @@ class landingFragment : Fragment() {
     private var isxbox1GamesLoaded =false
     private var isps4GamesLoaded = false
     private var isHighRatedLoaded = false
-    private var isRandomLoaded = false
     private var isnintendoSwitchLoaded = false
     private var ispcGamesLoaded = false
     private var ismobileGamesLoaded = false
@@ -129,7 +126,6 @@ class landingFragment : Fragment() {
 
         // finding the recycler view in the layout
          recyclerView =view.findViewById(R.id.recyclerview)
-         rgRecyclerView = view.findViewById(R.id.randomGamesRecyclerView)
          hrgRecyclerView = view.findViewById(R.id.highRatedGamesRecyclerView)
          ps4RecyclerView = view.findViewById(R.id.ps4GamesRecyclerView)
          xbox1RecyclerView = view.findViewById(R.id.xboxOneGamesRecyclerView)
@@ -143,7 +139,6 @@ class landingFragment : Fragment() {
 
          recyclerView.layoutManager = LinearLayoutManager(requireContext())
          hrgRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
-         rgRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
          ps4RecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
          xbox1RecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
          nintendoSwitchRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
@@ -154,15 +149,8 @@ class landingFragment : Fragment() {
          ps3RecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
 
         // setting up the  adapters
-        randomGamesGameameAdapter = GameRecyclerViewAdapterwGlide(
-            requireContext(),
-            listOfRandomGames,
-            onClick ={game->
-                moreWithGlideFragment(game)
-            }
-        )
 
-        rgRecyclerView.adapter = randomGamesGameameAdapter
+
 
         highRatedGamesGameAdapter = GameRecyclerViewAdapterwGlide(
             requireContext(),
@@ -334,7 +322,6 @@ class landingFragment : Fragment() {
     }
 
     private fun fetchAllGames(){
-        fetchRandomGames()
         fetchPopularReviews()
         fetchPs4PlatformGames()
         fetchXboxOnePlatformGames()
@@ -384,18 +371,6 @@ class landingFragment : Fragment() {
 
 
 
-    @SuppressLint("NotifyDataSetChanged")
-    private fun fetchRandomGames() {
-        if (!isAdded || view == null) return // avoid crashing if view is destroyed
-        val apiKey = BuildConfig.GIANT_BOMB_API_KEY
-        val randomOffset = (0..100).random()
-        ApiClient.api.getGames(apiKey, offset = randomOffset)
-            .enqueueGameList(viewLifecycleOwner, listOfRandomGames) {
-                randomGamesGameameAdapter.notifyDataSetChanged()
-                isRandomLoaded = true
-                checkIfDataLoaded()
-            }
-    }
 
 
 
@@ -629,7 +604,7 @@ class landingFragment : Fragment() {
     // for shimmers
     @SuppressLint("NotifyDataSetChanged")
     private fun checkIfDataLoaded() {
-        if (isHighRatedLoaded || isRandomLoaded || isps4GamesLoaded || isxbox1GamesLoaded
+        if (isHighRatedLoaded  || isps4GamesLoaded || isxbox1GamesLoaded
             || ismobileGamesLoaded ||  isnintendoSwitchLoaded || ispcGamesLoaded || isNESGamesLoaded || isxbox360GamesLoaded || isps3GamesLoaded
         ) {
             requireActivity().runOnUiThread {
@@ -639,7 +614,6 @@ class landingFragment : Fragment() {
                 shimmerLayout.visibility = View.GONE
 
                 hrgRecyclerView.visibility = View.VISIBLE
-                rgRecyclerView.visibility = View.VISIBLE
                 recyclerView.visibility = View.VISIBLE
 
                 ps4RecyclerView.visibility = View.VISIBLE
@@ -656,7 +630,6 @@ class landingFragment : Fragment() {
 
                 // notify all the adapters
                 arrayAdapter.notifyDataSetChanged()
-                randomGamesGameameAdapter.notifyDataSetChanged()
                 highRatedGamesGameAdapter.notifyDataSetChanged()
                 ps4GamesGameAdapter.notifyDataSetChanged()
                 xbox1GamesGameAdapter.notifyDataSetChanged()
@@ -677,7 +650,6 @@ class landingFragment : Fragment() {
     private fun resetShimmerAndReload() {
         // Reset all loading flags
         isHighRatedLoaded = false
-        isRandomLoaded = false
         isps4GamesLoaded = false
         isxbox1GamesLoaded = false
         ismobileGamesLoaded = false
@@ -689,7 +661,6 @@ class landingFragment : Fragment() {
 
 
         hrgRecyclerView.visibility = View.GONE
-        rgRecyclerView.visibility = View.GONE
         recyclerView.visibility = View.GONE
          ps4RecyclerView.visibility = View.GONE
          xbox1RecyclerView.visibility = View.GONE
