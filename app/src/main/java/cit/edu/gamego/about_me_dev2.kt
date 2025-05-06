@@ -42,7 +42,6 @@ class about_me_dev2 : Activity() {
         val dota2Trailer = "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/-cSFPIwMEq4?si=snIX76ATWr7M80fI\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>".trimIndent()
         val cs2Trailer = "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/nSE38xjMLqE?si=NrrEFt0Up-TpVYpJ\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>".trimIndent()
         val gowTrailer = "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/hfJ4Km46A-0?si=baY8Yfl9Zer1BSCn\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>".trimIndent()
-        val eldenRingTrailer = "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/AKXiKBnzpBQ?si=zBuJ8VqG7Y5gjWOU\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>".trimIndent()
 
         // continue this tom
         val listOfGame = listOf(
@@ -50,8 +49,7 @@ class about_me_dev2 : Activity() {
             Game("DOTA 2", "2011","8.8", Image(R.drawable.dota.toString(),""),dota2Trailer,"",false,"3030-32887"),
             Game("Black Myth Wukong", "2024","9.3", Image(R.drawable.bmw.toString(),""),bmwTrailer,"",false,"3030-80279"),
             Game("God of War: Ragnarock", "2018","9.9", Image(R.drawable.gowrag.toString(),""),gowTrailer,"",false,"3030-80643"),
-            Game("Elden Ring", "2018","10.0", Image(R.drawable.eldenring.toString(),""),eldenRingTrailer,"",false,"3030-79403")
-        )
+           )
 
 
         val recyclerView = findViewById<RecyclerView>(R.id.horizontalRecyclerView)

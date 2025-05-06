@@ -40,23 +40,22 @@ class GameListAdapter(
 
         val game = listOfGame[position]
 
-        // Handle the image loading logic here
         val imageStr = game.photo?.medium_url ?: "placeholder"
 
         if (imageStr.startsWith("http")) {
-            // Load from URL using Glide
+            // load from URL using glide
             Glide.with(context)
                 .load(imageStr)
-                .placeholder(R.drawable.ye) // Show placeholder while loading
-                .error(R.drawable.ye) // Show error placeholder if image fails to load
+                .placeholder(R.drawable.ye)
+                .error(R.drawable.ye) // show error placeholder if image fails to load
                 .into(photo)
         } else {
-            // If the imageStr is not a URL, it could be a local drawable name
+
             val resId = context.resources.getIdentifier(imageStr, "drawable", context.packageName)
             if (resId != 0) {
-                photo.setImageResource(resId) // Load from drawable
+                photo.setImageResource(resId) // load from drawable
             } else {
-                photo.setImageResource(R.drawable.ye) // Fallback if the drawable doesn't exist
+                photo.setImageResource(R.drawable.ye) // fallback if the drawable doesn't exist
             }
         }
 

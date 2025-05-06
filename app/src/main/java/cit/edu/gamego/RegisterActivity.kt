@@ -25,7 +25,7 @@ class RegisterActivity : Activity() {
         setContentView(binding.root)
 
         auth = FirebaseAuth.getInstance()
-        database = FirebaseDatabase.getInstance(BuildConfig.FIREBASE_DB_URL)
+        database = FirebaseDatabase.getInstance(BuildConfig.FIREBASE_DB_URL)//FIREBASE_DB_URL is foudn in the local properties and is defined in the grade(module:app)
         reference = database.getReference("Users")
 
         binding.registerSignupId.setOnClickListener {
@@ -59,14 +59,19 @@ class RegisterActivity : Activity() {
                                 username = username,
                                 email = email,
                                 favorites = listOf(""),
-                                profilePicUrl = " "
+                                profilePicUrl = "https://i.ibb.co/YTL00wCJ/34adab4b2153.jpg" // default profilepic
                             )
                             reference.child(uid).setValue(userData)
                                 .addOnCompleteListener { dbTask ->
                                     if (dbTask.isSuccessful) {
                                         CuteToast.ct(this, "User registered successfully", CuteToast.LENGTH_SHORT, CuteToast.HAPPY, true).show();
                                         clearFields()
-                                        startActivity(Intent(this, LoginActivity::class.java))
+                                        startActivity(
+                                            Intent(this, LoginActivity::class.java).apply {
+                                                putExtra("username",username)
+                                                putExtra("password",password)
+                                            }
+                                        )
                                         finish()
                                     } else {
                                         CuteToast.ct(this, "Failed to save user data", CuteToast.LENGTH_SHORT, CuteToast.ERROR, true).show();

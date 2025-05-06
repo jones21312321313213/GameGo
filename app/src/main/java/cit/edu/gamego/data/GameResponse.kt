@@ -33,12 +33,12 @@ data class GiantBombGame(
 ///
 
 data class Genre2(
-    val id: Int,        // ID of the genre (matches the selected genre IDs)
+    val id: Int,
     val name: String    // Name of the genre
 )
 
 data class Theme2(
-    val id: Int,        // ID of the theme (matches the selected theme IDs)
+    val id: Int,
     val name: String    // Name of the theme
 )
 ///
@@ -58,7 +58,7 @@ data class ImageResponse(
 data class VideoDetails(
     val api_detail_url: String?,
     val deck: String?,
-    val embed_player: String?, // <- This is the URL you want for WebView
+    val embed_player: String?, // <- this is the URL you want for WebView
     val guid: String?,
     val id: Int?,
     val length_seconds: Int?,

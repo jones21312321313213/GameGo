@@ -22,8 +22,8 @@ class GameMediaRecyclerViewAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        // Choose the layout based on isAlternativeLayout flag
-        val layoutId = R.layout.item_media_layout // Default layout
+
+        val layoutId = R.layout.item_media_layout
 
         val view = LayoutInflater.from(parent.context).inflate(layoutId, parent, false)
         return ItemViewHolder(view)

@@ -151,7 +151,7 @@ fun Context.showConfirmation(message: String) {
 
         val intent = Intent(this, LoginActivity::class.java)
 
-        // Clearing the back stack and start a new task ( will prevent the user from going back)
+        // this will clear the backstack so that it will preven user from goint back to prev fragment/activity
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
 
         startActivity(intent)

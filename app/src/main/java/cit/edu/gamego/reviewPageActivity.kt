@@ -159,7 +159,7 @@ class reviewPageActivity : AppCompatActivity() {
         tabLayout.addTab(tabLayout.newTab().setText("Media"))
         tabLayout.addTab(tabLayout.newTab().setText("Details"))
         tabLayout.addTab(tabLayout.newTab().setText("Similar Games"))
-        // Load the first fragment by default
+        //load the first fragment by default
         loadFragment(GameDescriptionFragment(),bundle)
 
         // for local games
@@ -178,14 +178,13 @@ class reviewPageActivity : AppCompatActivity() {
             putString("alias", gg?.alias)
         }
 
-        // Handle Tab selection
         tabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 // Replace the fragment based on tab selection
                 if (tab != null) {
                     when (tab.position) {
-                        0 -> loadFragment(GameDescriptionFragment(),bundle)  // First tab
-                        1 -> loadFragment(GameMediaFragment(),imagesBundle) // Second tab
+                        0 -> loadFragment(GameDescriptionFragment(),bundle)
+                        1 -> loadFragment(GameMediaFragment(),imagesBundle)
                         2 -> loadFragment(GameDetailsFragment(),bundle2)
                         3 -> loadFragment(GameSimilarGamesFragment(),similarGamesBundle)
                     }
@@ -231,18 +230,18 @@ class reviewPageActivity : AppCompatActivity() {
             }
 
             binding.heart.setOnClickListener {
-                // Fetch favorites reference from Firebase
+                // fetch favorites reference from Firebase
                 val favoritesRef = FirebaseDatabase.getInstance(BuildConfig.FIREBASE_DB_URL)
                     .getReference("Users")
                     .child(currentUser?.uid ?: return@setOnClickListener)
                     .child("favorites")
 
                 favoritesRef.get().addOnSuccessListener { snapshot ->
-                    // Convert snapshot to a map of pushId to gameGuid
+                    // convert snapshot to a map of pushId to gameGuid
                     val favoritesMap = snapshot.value as? Map<String, String> ?: emptyMap()
 
                     if (isLiked) {
-                        // UNHEART: Remove game by finding the key with matching gameGuid
+                        // UNHEART: remove game by finding the key with matching gameGuid
                         val keyToRemove = favoritesMap.entries.find { it.value == gameGuid }?.key
 
                         if (keyToRemove != null) {
@@ -261,7 +260,7 @@ class reviewPageActivity : AppCompatActivity() {
                         }
                     } else {
 
-                        // HEART: Add game using Firebase's push() for automatic ID generation
+                        // HEART: add game using Firebase's push() for automatic ID generation
                         val newFavoriteRef = favoritesRef.push()
                         newFavoriteRef.setValue(gameGuid)
                             .addOnSuccessListener {

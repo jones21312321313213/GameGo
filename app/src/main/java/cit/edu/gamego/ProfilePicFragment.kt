@@ -50,11 +50,21 @@ class ProfilePicFragment : Fragment() {
                     if (snapshot.exists()) {
                         val username = snapshot.child("username").getValue(String::class.java) ?: ""
                         val emailVal = snapshot.child("email").getValue(String::class.java) ?: ""
-                        val favoritesMap = snapshot.child("favorites").getValue(object : GenericTypeIndicator<Map<String, String>>() {})
-                        val favorites = favoritesMap?.values?.toList() ?: emptyList()
+                        val favoritesSnapshot = snapshot.child("favorites")
+
+                        // y this? because when firebase tries to read the favorite it can be read as a map<String,bool> which is not the format in our firbase
+                        val favorites: List<String> = if (favoritesSnapshot.value is Map<*, *>) {
+                            val map = favoritesSnapshot.getValue(object : GenericTypeIndicator<Map<String, String>>() {})
+                            map?.values?.toList() ?: emptyList()
+                        } else if (favoritesSnapshot.value is List<*>) {
+                            val list = favoritesSnapshot.getValue(object : GenericTypeIndicator<List<String>>() {})
+                            list ?: emptyList()
+                        } else {
+                            emptyList()
+                        }
+
                         val profilePicUrl = snapshot.child("profilePicUrl").getValue(String::class.java)
 
-                        // Set profile image with Glide, with error handling
                         if (!profilePicUrl.isNullOrEmpty()) {
                             Glide.with(this@ProfilePicFragment)
                                 .load(profilePicUrl)
@@ -69,10 +79,11 @@ class ProfilePicFragment : Fragment() {
                         email1.text = emailVal
                         email.text = emailVal
 
-                        savedGamesTv.text = "${favorites.size - 1} saved games"
+                        val savedCount = (favorites.size - 1).coerceAtLeast(0)
+                        savedGamesTv.text = "$savedCount saved games"
                     } else {
-                        Log.e("FIREBASE", "User data not found for UID: $uid")
-                        CuteToast.ct(requireContext(), "No data found for this user", CuteToast.LENGTH_SHORT, CuteToast.ERROR, true).show();
+                        Log.e("FIREBASE", "way uid: $uid")
+                        CuteToast.ct(requireContext(), "no data found for this user", CuteToast.LENGTH_SHORT, CuteToast.ERROR, true).show();
                     }
                 }
 
@@ -82,8 +93,7 @@ class ProfilePicFragment : Fragment() {
             })
         } else {
            Log.e("AUTH", "No user is logged in")
-//            startActivity(Intent(requireContext(), LoginActivity::class.java))
-//            requireActivity().finish()
+
         }
 
         return view

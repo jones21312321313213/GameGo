@@ -16,7 +16,7 @@ class GameRecyclerViewAdapter(
     private val context: Context,
     private val listOfGame: List<Game>,
     private val onClick: (Game) -> Unit,
-    private val isAlternativeLayout: Boolean = false // Flag for layout selection
+    private val isAlternativeLayout: Boolean = false
 ) : RecyclerView.Adapter<GameRecyclerViewAdapter.ItemViewHolder>() {
 
     class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {

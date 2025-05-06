@@ -377,6 +377,7 @@ class landingFragment : Fragment() {
 
     @SuppressLint("NotifyDataSetChanged")
     private fun fetchPs4PlatformGames() {
+            // where to find the GIANT_BOMB_API_KEY or store the API KEY? IN the local properties this applies to all API keys in the code
             val apiKey = BuildConfig.GIANT_BOMB_API_KEY
             val randomOffset = (0..100).random()// for randomizing games
             ApiClient.api.getGamesByPlatform(apiKey,offset = randomOffset, filter = "platforms:146")
@@ -512,7 +513,6 @@ class landingFragment : Fragment() {
     // there is an error in here which when u go to another fragment and go back to this fragment it will esxsit
     // Modify the function to fetch game details directly for a single GUID
     fun fetchGameDetails(guid: String) {
-        // ✅ Step 1: Check if it's already in the cache
         val cachedGame = AppCache.gameCache[guid]
         if (cachedGame != null) {
             Log.d("CACHE", "Game already cached: ${cachedGame.name}")
@@ -628,7 +628,7 @@ class landingFragment : Fragment() {
 
                 cool?.visibility = View.VISIBLE
 
-                // notify all the adapters
+                // notify  adapters
                 arrayAdapter.notifyDataSetChanged()
                 highRatedGamesGameAdapter.notifyDataSetChanged()
                 ps4GamesGameAdapter.notifyDataSetChanged()

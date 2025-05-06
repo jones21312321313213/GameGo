@@ -13,7 +13,7 @@ class GameDetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_game_details, container, false)
-        // Inflate the layout for this fragment
+
         val name = view?.findViewById<TextView>(R.id.gd_name_tv)
         val date = view?.findViewById<TextView>(R.id.gd_date_tv)
         val platform = view?.findViewById<TextView>(R.id.gd_platform_tv)

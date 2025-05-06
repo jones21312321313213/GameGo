@@ -28,7 +28,7 @@ import android.widget.ScrollView
 class LoginActivity : Activity() {
     private lateinit var rootView: View
     private lateinit var auth: FirebaseAuth
-    private lateinit var transitionButton: TransitionButton // Declare TransitionButton
+    private lateinit var transitionButton: TransitionButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,17 +38,22 @@ class LoginActivity : Activity() {
         rootView = findViewById(android.R.id.content)
 
 
-        transitionButton = findViewById(R.id.login_Id) // Initialize the TransitionButton
+        transitionButton = findViewById(R.id.login_Id) // initialize the TransitionButton
 
         transitionButton.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FF0000")) // Red tint
-        transitionButton.setTextColor(Color.parseColor("#FFFFFF")) // White text
+        transitionButton.setTextColor(Color.parseColor("#FFFFFF")) // white text
 
-        val etUsername = findViewById<EditText>(R.id.login_username_Id) // Change to username input
+        val etUsername = findViewById<EditText>(R.id.login_username_Id) // change to username input
         val etPassword = findViewById<EditText>(R.id.login_pass_Id)
 
         intent?.let {
-            it.getStringExtra("email")?.let { email ->
-                etUsername.setText(email)  // Temporarily show email
+
+            it.getStringExtra("username")?.let{uname ->
+                etUsername.setText(uname)
+            }
+
+            it.getStringExtra("password")?.let{ pass ->
+                etPassword.setText(pass)
             }
         }
 
@@ -79,9 +84,6 @@ class LoginActivity : Activity() {
     }
 
     private fun loginUser(username: String, password: String) {
-        // Resize the button to match the root layout
-
-
 
         val database = FirebaseDatabase.getInstance(BuildConfig.FIREBASE_DB_URL)
         val reference = database.getReference("Users")

@@ -23,6 +23,7 @@ android {
             //useSupportLibrary = true
         }
         // added these
+        // apikey,firbaseDBurl and imgbb API are stored/found in the local.properties these wont be fetched/shown in github repo
         val properties = Properties()
         val localPropertiesFile = rootProject.file("local.properties")
         if(localPropertiesFile.exists()){properties.load(localPropertiesFile.inputStream())}
